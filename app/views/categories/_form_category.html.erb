@@ -1,0 +1,18 @@
+<% form_for(@category) do |f| %>
+  <%= f.error_messages %>
+	<div class="form_row">
+		<label> Category Name </label>
+        <%= f.text_field :name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+	</div>
+	<div class="form_row">
+		<label> Category Level </label>
+        <%= f.text_field :level, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+	</div>
+	<div class="form_row">
+		<label> Hour Fee (&euro;) </label>
+        <%= f.text_field :hour_fee, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+	</div>
+	<div class="form_row">
+		<%= f.submit 'Update' %>
+	</div>
+<% end %>

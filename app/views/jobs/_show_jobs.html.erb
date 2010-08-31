@@ -1,0 +1,37 @@
+<div id="result_table">
+    <table width="50%">
+        <thead>
+        <tr>
+            <th>Job Name</th>
+            <th>Description</th>
+            <th>Employee</th>
+            <th>Hours</th>
+            <th>Expenses</th>
+        </tr>
+        <thead>  
+        <tbody>
+        <% if @jobs.count == 0 %>
+            <tr><td colspan="5" align="center">This project doesn't have any job yet</td></tr>
+        <% else %>
+            <% @jobs.each do |job| %>
+            <tr class="row" onclick='window.location = "<%= url_for job %>"'>
+                <td align="center"><%=h job.name %> </td>
+                <td align="center"><%=h job.description %> </td>
+                <td align="center"><%=h job.employee.full_name %>  </td>
+                <!--
+                    TODO Meter aqui el acumulado de los jooobss para horas y pricing
+                -->
+                <td align="center"><%=h 0 %>  </td>
+                <td align="center"><%=h 0 %>  </td>
+            <% end %>
+        <% end %>
+        </tbody>
+    </table>
+<br />
+</div>
+<!--
+    TODO create a job/view page (with edit and delete)
+    
+    link_to 'Edit',   edit_job_path(job)
+    link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete
+-->

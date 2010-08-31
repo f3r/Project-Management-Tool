@@ -1,0 +1,33 @@
+<% if !jobs.nil? %>
+<br/>
+<div id="result_table">
+    <table width="50%">
+        <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Client</th>
+            <th>Job Name</th>
+            <th>Job Description</th>
+            <th>Status</th>
+        </tr>
+        <thead>  
+        <tbody>
+        <% jobs.each do |job| %>
+        <!--
+            TODO Cambiar url_for job.project por EDIT JOB
+        -->
+        <tr class="row" onclick='window.location = "<%= url_for job.project %>"'>
+            <td><%=h job.project.name %>        </td>
+            <td><%=h job.project.client.name %> </td>
+            <td><%=h job.name %>                </td>
+            <td><%=h job.description %> </td>
+            <!--
+                TODO Cambiar a job.status cuando lo meta en migration
+            -->
+            <td><%=h job.project.status.name %> </td>
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>
+<% end %>

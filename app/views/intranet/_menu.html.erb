@@ -1,0 +1,25 @@
+<ul class="mainNav">
+    <li <% if menu_active?('intranet')%> class="active" <%end%>>
+        <%= link_to_unless_current 'HOME', :controller => 'intranet', :action => 'index' %>
+    </li>
+    <li <% if menu_active?('projects')%> class="active" <%end%>>
+        <%= link_to_unless_current 'Projects', :controller => 'projects', :action => 'index' %>
+    </li>
+    <li <% if menu_active?('reports')%> class="active" <%end%>>
+        <%= #link_to_unless_current 'Reports', :controller => 'reports', :action => 'index' 
+        %>
+        <a href="#">REPORTS</a>
+    </li>
+    <li <% if menu_active?('clients')%> class="active" <%end%>>
+        <%= link_to_unless_current 'clients', :controller => 'clients', :action => 'index' %>
+    </li>
+    <li <% if menu_active?('employees')%> class="active" <%end%>>
+        <%= link_to_unless_current 'employees', :controller => 'employees', :action => 'index' %>
+    </li>    
+    <li <% if menu_active?('categories')%> class="active" <%end%>>
+        <%= link_to_unless_current 'categories', :controller => 'categories', :action => 'index' %>
+    </li>
+    <li <% if menu_active?('dashboard')%> class="active last" <%else%> class="last"<%end%>>
+        <%= link_to_unless_current 'Dashboard', :controller => 'dashboard', :action => 'index' %>
+    </li>
+</ul>

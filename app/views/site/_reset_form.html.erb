@@ -1,0 +1,17 @@
+<% form_tag({:controller => 'site', :action => 'reset'}, :method => 'post') do %>
+    <%= hidden_field_tag :user_id, @user.id if @user %>
+    <div class="form_row">
+        <label>New password</label>
+        <%= password_field_tag :password, nil, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+    </div>
+    <div class="form_row">
+        <label>Repeat password</label>
+        <%=  password_field_tag :password_confirmation, nil, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+    </div>
+    <div class="form_row">
+        <%= submit_tag 'Change password', :class => 'button' %>
+    </div>
+    <div class="form_row">
+        <%= link_to 'Cancel', :controller => 'site', :action => 'login' %>
+    </div>
+<% end %>

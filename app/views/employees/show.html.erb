@@ -1,0 +1,36 @@
+<h2><%= link_to 'Employees', employees_path %> &raquo; <%= @employee.full_name %> </h2>
+<div id="mainContent">	
+    <table style="margin-left:50px">
+    <tr><td width="100"><p>Level:</p></td><td><p>
+        <% if @employee.category %>
+            <%=h @employee.category.name %>
+        <% else %>
+            Not available
+        <% end %>
+        </p></td>
+    </tr>
+    <tr><td><p>NIF:</p></td>                <td><p> <%=h @employee.nif %></p></td></tr>
+    <tr><td><p>Email:</p></td>              <td><p> <%=h @employee.email %></p></td></tr>
+    <tr><td><p>Phone:</p></td>              <td><p> <%=h @employee.phone %></p></td></tr>
+    <tr><td><p>Mobile:</p></td>             <td><p> <%=h @employee.mobile %></p></td></tr>
+    <tr><td><p>Join Date:</p></td>          <td><p> 
+        <% if @employee.join_date %>
+            <%=h @employee.join_date.strftime("%d / %B / %Y") %>
+        <% else %>
+            Not available
+        <% end %>
+        </p></td></tr>
+    </table>
+</div>
+
+<div id="secondaryContent">
+    <div class="module">
+        <% if @employee.photo.exists? then %>
+            <p><%= image_tag @employee.photo.url(:small) %></p>
+        <% end %>
+        <p><%= link_to 'Edit Employee', edit_employee_path(@employee) %> <br/>
+           <%= link_to 'Delete', @employee, :confirm => 'Are you sure?', :method => :delete %></p>
+    </div>
+</div>
+
+<%= render :partial => 'jobs/list_job_for_employee', :locals => {:jobs => @jobs} %>

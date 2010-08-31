@@ -1,0 +1,7 @@
+<h2><%= link_to 'Employees', employees_path %> &raquo; New Employee</h2>
+
+<div id="mainContent">	
+    <%= render :partial => 'employees/form_employee', :locals => {:employee => @employee} %>
+    
+    <%= link_to 'Back', employees_path %>
+</div>

@@ -1,0 +1,590 @@
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2010-08-26 18:52:53) [GET]
+  Parameters: {"action"=>"index", "controller"=>"categories"}
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM `categories` [0m
+Rendering template within layouts/application
+Rendering categories/index
+  [4;36;1mCategory Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+Rendered intranet/_menu (1.8ms)
+Completed in 42ms (View: 35, DB: 2) | 200 OK [http://shp/categories]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2010-08-26 18:54:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"categories"}
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM `categories` [0m
+Rendering template within layouts/application
+Rendering categories/index
+  [4;36;1mCategory Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+Rendered intranet/_menu (2.3ms)
+Completed in 41ms (View: 35, DB: 2) | 200 OK [http://shp/categories]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CategoriesController#edit (for 127.0.0.1 at 2010-08-26 18:55:02) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"categories"}
+  [4;35;1mCategory Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `categories`[0m
+  [4;36;1mCategory Load (1.3ms)[0m   [0;1mSELECT * FROM `categories` WHERE (`categories`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering categories/edit
+Rendered categories/_form_category (4.3ms)
+Rendered intranet/_menu (1.9ms)
+Completed in 25ms (View: 17, DB: 3) | 200 OK [http://shp/categories/1/edit]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2010-08-26 18:55:05) [GET]
+  Parameters: {"action"=>"index", "controller"=>"categories"}
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM `categories` [0m
+Rendering template within layouts/application
+Rendering categories/index
+  [4;36;1mCategory Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+Rendered intranet/_menu (1.7ms)
+Completed in 34ms (View: 28, DB: 2) | 200 OK [http://shp/categories]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClientsController#index (for 127.0.0.1 at 2010-08-26 18:55:08) [GET]
+  Parameters: {"action"=>"index", "controller"=>"clients"}
+  [4;35;1mClient Load (0.3ms)[0m   [0mSELECT * FROM `clients` [0m
+Rendering template within layouts/application
+Rendering clients/index
+  [4;36;1mClient Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `clients`[0m
+Rendered intranet/_menu (2.0ms)
+Completed in 98ms (View: 92, DB: 2) | 200 OK [http://shp/clients]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClientsController#index (for 127.0.0.1 at 2010-08-26 18:56:34) [GET]
+  Parameters: {"action"=>"index", "controller"=>"clients"}
+  [4;35;1mClient Load (0.3ms)[0m   [0mSELECT * FROM `clients` [0m
+Rendering template within layouts/application
+Rendering clients/index
+  [4;36;1mClient Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `clients`[0m
+Rendered intranet/_menu (4.0ms)
+Completed in 20ms (View: 15, DB: 2) | 200 OK [http://shp/clients]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClientsController#index (for 127.0.0.1 at 2010-08-26 18:57:17) [GET]
+  Parameters: {"action"=>"index", "controller"=>"clients"}
+  [4;35;1mClient Load (1.2ms)[0m   [0mSELECT * FROM `clients` [0m
+Rendering template within layouts/application
+Rendering clients/index
+  [4;36;1mClient Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `clients`[0m
+Rendered intranet/_menu (3.8ms)
+Completed in 21ms (View: 14, DB: 3) | 200 OK [http://shp/clients]
+  [4;35;1mSQL (0.4ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-08-26 19:25:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"projects"}
+  [4;35;1mStatus Load (0.3ms)[0m   [0mSELECT * FROM `statuses` [0m
+  [4;36;1mProject Load (0.3ms)[0m   [0;1mSELECT * FROM `projects` ORDER BY status_id ASC, name[0m
+Rendering template within layouts/application
+Rendering projects/index
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` [0m
+  [4;36;1mStatus Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `statuses`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mProject Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `projects`[0m
+  [4;36;1mStatus Load (1.1ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 1) [0m
+  [4;35;1mClient Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `clients`[0m
+  [4;36;1mClient Load (0.9ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;35;1mEmployee Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `employees`[0m
+  [4;36;1mEmployee Load (2.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mEmployee Load (0.3ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mJob Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `jobs`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 3) [0m
+  [4;36;1mStatus Load (0.2ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mEmployee Load (0.2ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 5) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 2) [0m
+  [4;36;1mEmployee Load (0.1ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 1) [0m
+Rendered projects/_list_projects (99.4ms)
+Rendered intranet/_menu (1.7ms)
+Completed in 116ms (View: 94, DB: 17) | 200 OK [http://shp/projects]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-08-26 19:26:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"projects"}
+--- !map:ActionController::Session::AbstractStore::SessionHash {}
+
+  [4;35;1mStatus Load (0.3ms)[0m   [0mSELECT * FROM `statuses` [0m
+  [4;36;1mProject Load (0.3ms)[0m   [0;1mSELECT * FROM `projects` ORDER BY status_id ASC, name[0m
+Rendering template within layouts/application
+Rendering projects/index
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` [0m
+  [4;36;1mStatus Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `statuses`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mProject Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `projects`[0m
+  [4;36;1mStatus Load (1.1ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 1) [0m
+  [4;35;1mClient Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `clients`[0m
+  [4;36;1mClient Load (2.4ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;35;1mEmployee Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `employees`[0m
+  [4;36;1mEmployee Load (0.4ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mEmployee Load (0.3ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mJob Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `jobs`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 3) [0m
+  [4;36;1mStatus Load (0.2ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mEmployee Load (0.2ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 5) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mClient Load (0.2ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 2) [0m
+  [4;36;1mEmployee Load (0.2ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 1) [0m
+Rendered projects/_list_projects (42.1ms)
+Rendered intranet/_menu (1.8ms)
+Completed in 61ms (View: 37, DB: 17) | 200 OK [http://shp/projects]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-08-26 19:29:37) [GET]
+  Parameters: {"action"=>"show", "id"=>"5", "controller"=>"projects"}
+  [4;35;1mProject Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `projects`[0m
+  [4;36;1mProject Load (1.1ms)[0m   [0;1mSELECT * FROM `projects` WHERE (`projects`.`id` = 5) [0m
+
+SyntaxError (/Users/fer/Sites/shp/shp/app/models/job.rb:8: syntax error, unexpected '=', expecting kEND
+    =begin
+     ^
+/Users/fer/Sites/shp/shp/app/models/job.rb:10: syntax error, unexpected '=', expecting kEND
+    =end
+     ^):
+  app/controllers/projects_controller.rb:27:in `show'
+  passenger (2.2.7) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+  passenger (2.2.7) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.7) lib/phusion_passenger/railz/application_spawner.rb:374:in `start_request_handler'
+  passenger (2.2.7) lib/phusion_passenger/railz/application_spawner.rb:332:in `handle_spawn_application'
+  passenger (2.2.7) lib/phusion_passenger/utils.rb:184:in `safe_fork'
+  passenger (2.2.7) lib/phusion_passenger/railz/application_spawner.rb:330:in `handle_spawn_application'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.7) lib/phusion_passenger/railz/application_spawner.rb:209:in `start'
+  passenger (2.2.7) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.7) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.7) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.7) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.7) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.7) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (109.8ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-08-27 10:25:22) [GET]
+  Parameters: {"action"=>"show", "id"=>"5", "controller"=>"projects"}
+  [4;35;1mProject Columns (4.0ms)[0m   [0mSHOW FIELDS FROM `projects`[0m
+  [4;36;1mProject Load (1.3ms)[0m   [0;1mSELECT * FROM `projects` WHERE (`projects`.`id` = 5) [0m
+  [4;35;1mJob Load (0.5ms)[0m   [0mSELECT * FROM `jobs` WHERE (`jobs`.project_id = 5) [0m
+Rendering template within layouts/application
+Rendering projects/show
+  [4;36;1mStatus Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `statuses`[0m
+  [4;35;1mStatus Load (1.6ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mClient Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `clients`[0m
+  [4;35;1mClient Load (2.6ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 1) [0m
+  [4;36;1mEmployee Columns (5.0ms)[0m   [0;1mSHOW FIELDS FROM `employees`[0m
+  [4;35;1mEmployee Load (0.5ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;36;1mEmployee Load (0.3ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 5) [0m
+Rendered jobs/_show_jobs (0.1ms)
+Rendered intranet/_menu (1.7ms)
+Completed in 64ms (View: 35, DB: 19) | 200 OK [http://shp/projects/5]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-08-27 10:25:46) [GET]
+  Parameters: {"action"=>"show", "id"=>"5", "controller"=>"projects"}
+  [4;35;1mProject Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `projects`[0m
+  [4;36;1mProject Load (1.6ms)[0m   [0;1mSELECT * FROM `projects` WHERE (`projects`.`id` = 5) [0m
+  [4;35;1mJob Load (0.2ms)[0m   [0mSELECT * FROM `jobs` WHERE (`jobs`.project_id = 5) [0m
+Rendering template within layouts/application
+Rendering projects/show
+  [4;36;1mStatus Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `statuses`[0m
+  [4;35;1mStatus Load (0.4ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mClient Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `clients`[0m
+  [4;35;1mClient Load (0.6ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 1) [0m
+  [4;36;1mEmployee Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `employees`[0m
+  [4;35;1mEmployee Load (0.7ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;36;1mEmployee Load (0.2ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 5) [0m
+Rendered jobs/_show_jobs (1.4ms)
+Rendered intranet/_menu (1.8ms)
+Completed in 51ms (View: 33, DB: 9) | 200 OK [http://shp/projects/5]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-08-27 10:26:35) [GET]
+  Parameters: {"action"=>"index", "controller"=>"projects"}
+--- !map:ActionController::Session::AbstractStore::SessionHash {}
+
+  [4;35;1mStatus Load (0.8ms)[0m   [0mSELECT * FROM `statuses` [0m
+  [4;36;1mProject Load (0.3ms)[0m   [0;1mSELECT * FROM `projects` ORDER BY status_id ASC, name[0m
+Rendering template within layouts/application
+Rendering projects/index
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` [0m
+  [4;36;1mStatus Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `statuses`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mProject Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `projects`[0m
+  [4;36;1mStatus Load (0.2ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 1) [0m
+  [4;35;1mClient Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `clients`[0m
+  [4;36;1mClient Load (0.3ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;35;1mEmployee Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `employees`[0m
+  [4;36;1mEmployee Load (0.2ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mEmployee Load (0.3ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mJob Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `jobs`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 3) [0m
+  [4;36;1mStatus Load (0.1ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mEmployee Load (0.1ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 5) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 2) [0m
+  [4;36;1mEmployee Load (0.2ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 1) [0m
+Rendered projects/_list_projects (33.6ms)
+Rendered intranet/_menu (59.8ms)
+Completed in 113ms (View: 95, DB: 11) | 200 OK [http://shp/projects]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClientsController#index (for 127.0.0.1 at 2010-08-27 10:26:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"clients"}
+  [4;35;1mClient Load (0.5ms)[0m   [0mSELECT * FROM `clients` [0m
+Rendering template within layouts/application
+Rendering clients/index
+  [4;36;1mClient Columns (2.3ms)[0m   [0;1mSHOW FIELDS FROM `clients`[0m
+Rendered intranet/_menu (1.6ms)
+Completed in 16ms (View: 9, DB: 3) | 200 OK [http://shp/clients]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EmployeesController#index (for 127.0.0.1 at 2010-08-27 10:26:46) [GET]
+  Parameters: {"action"=>"index", "controller"=>"employees"}
+  [4;35;1mEmployee Load (0.3ms)[0m   [0mSELECT * FROM `employees` [0m
+Rendering template within layouts/application
+Rendering employees/index
+  [4;36;1mEmployee Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `employees`[0m
+  [4;35;1mJob Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `jobs`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.employee_id = 1) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.employee_id = 2) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.employee_id = 3) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.employee_id = 4) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.employee_id = 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.employee_id = 6) [0m
+Rendered intranet/_menu (1.6ms)
+Completed in 31ms (View: 21, DB: 5) | 200 OK [http://shp/employees]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EmployeesController#show (for 127.0.0.1 at 2010-08-27 10:26:53) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"employees"}
+  [4;36;1mEmployee Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `employees`[0m
+  [4;35;1mEmployee Load (1.2ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mJob Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `jobs`[0m
+  [4;35;1mJob Load (0.5ms)[0m   [0mSELECT * FROM `jobs` WHERE (`jobs`.`employee_id` = '2') ORDER BY project_id[0m
+Rendering template within layouts/application
+Rendering employees/show
+  [4;36;1mCategory Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM `categories` WHERE (`categories`.`id` = 3) [0m
+  [4;36;1mProject Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `projects`[0m
+  [4;35;1mProject Load (0.9ms)[0m   [0mSELECT * FROM `projects` WHERE (`projects`.`id` = 1) [0m
+  [4;36;1mClient Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `clients`[0m
+  [4;35;1mClient Load (0.5ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 2) [0m
+  [4;36;1mStatus Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `statuses`[0m
+  [4;35;1mStatus Load (0.5ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `projects` WHERE (`projects`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 2) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `projects` WHERE (`projects`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 2) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mProject Load (0.2ms)[0m   [0;1mSELECT * FROM `projects` WHERE (`projects`.`id` = 6) [0m
+  [4;35;1mClient Load (0.2ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+Rendered jobs/_list_job_for_employee (86.2ms)
+Rendered intranet/_menu (1.8ms)
+Completed in 118ms (View: 96, DB: 13) | 200 OK [http://shp/employees/2]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2010-08-27 10:27:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"categories"}
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM `categories` [0m
+Rendering template within layouts/application
+Rendering categories/index
+  [4;36;1mCategory Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+Rendered intranet/_menu (1.6ms)
+Completed in 38ms (View: 30, DB: 2) | 200 OK [http://shp/categories]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-08-27 10:27:13) [GET]
+  Parameters: {"action"=>"index", "controller"=>"projects"}
+--- !map:ActionController::Session::AbstractStore::SessionHash {}
+
+  [4;35;1mStatus Load (0.3ms)[0m   [0mSELECT * FROM `statuses` [0m
+  [4;36;1mProject Load (0.2ms)[0m   [0;1mSELECT * FROM `projects` ORDER BY status_id ASC, name[0m
+Rendering template within layouts/application
+Rendering projects/index
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` [0m
+  [4;36;1mStatus Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `statuses`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mProject Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `projects`[0m
+  [4;36;1mStatus Load (0.2ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 1) [0m
+  [4;35;1mClient Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `clients`[0m
+  [4;36;1mClient Load (0.9ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;35;1mEmployee Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `employees`[0m
+  [4;36;1mEmployee Load (0.4ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mEmployee Load (0.2ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mJob Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `jobs`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 3) [0m
+  [4;36;1mStatus Load (0.1ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mEmployee Load (0.7ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 5) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 2) [0m
+  [4;36;1mEmployee Load (0.2ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 1) [0m
+Rendered projects/_list_projects (34.6ms)
+Rendered intranet/_menu (1.9ms)
+Completed in 131ms (View: 102, DB: 10) | 200 OK [http://shp/projects]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClientsController#index (for 127.0.0.1 at 2010-08-27 14:51:17) [GET]
+  Parameters: {"action"=>"index", "controller"=>"clients"}
+  [4;36;1mClient Load (0.3ms)[0m   [0;1mSELECT * FROM `clients` [0m
+Rendering template within layouts/application
+Rendering clients/index
+  [4;35;1mClient Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `clients`[0m
+Rendered intranet/_menu (4.0ms)
+Completed in 162ms (View: 152, DB: 2) | 200 OK [http://shp/clients]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SiteController#index (for 127.0.0.1 at 2010-08-29 17:57:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"site"}
+Redirected to http://shp/site/login
+Completed in 3ms (DB: 0) | 302 Found [http://shp/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SiteController#login (for 127.0.0.1 at 2010-08-29 17:57:56) [GET]
+  Parameters: {"action"=>"login", "controller"=>"site"}
+Redirected to http://shp/intranet
+Completed in 3ms (DB: 0) | 302 Found [http://shp/site/login]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing IntranetController#index (for 127.0.0.1 at 2010-08-29 17:57:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"intranet"}
+Rendering template within layouts/application
+Rendering intranet/index
+Rendered intranet/_menu (16.8ms)
+Completed in 134ms (View: 132, DB: 0) | 200 OK [http://shp/intranet]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-08-29 17:58:13) [GET]
+  Parameters: {"action"=>"index", "controller"=>"projects"}
+--- !map:ActionController::Session::AbstractStore::SessionHash {}
+
+  [4;36;1mStatus Load (0.4ms)[0m   [0;1mSELECT * FROM `statuses` [0m
+  [4;35;1mProject Load (0.3ms)[0m   [0mSELECT * FROM `projects` ORDER BY status_id ASC, name[0m
+Rendering template within layouts/application
+Rendering projects/index
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `statuses` [0m
+  [4;35;1mStatus Columns (62.8ms)[0m   [0mSHOW FIELDS FROM `statuses`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mProject Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `projects`[0m
+  [4;35;1mStatus Load (1.4ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 1) [0m
+  [4;36;1mClient Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `clients`[0m
+  [4;35;1mClient Load (0.6ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;36;1mEmployee Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `employees`[0m
+  [4;35;1mEmployee Load (1.4ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;36;1mEmployee Load (0.2ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;35;1mJob Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `jobs`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 3) [0m
+  [4;35;1mStatus Load (0.2ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mClient Load (0.1ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;36;1mEmployee Load (0.2ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 5) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `clients` WHERE (`clients`.`id` = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 3) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `statuses` WHERE (`statuses`.`id` = 2) [0m
+  [4;36;1mClient Load (0.1ms)[0m   [0;1mSELECT * FROM `clients` WHERE (`clients`.`id` = 2) [0m
+  [4;35;1mEmployee Load (0.1ms)[0m   [0mSELECT * FROM `employees` WHERE (`employees`.`id` = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `employees` WHERE (`employees`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM `jobs` WHERE (`jobs`.project_id = 1) [0m
+Rendered projects/_list_projects (210.8ms)
+Rendered intranet/_menu (1.6ms)
+Completed in 460ms (View: 273, DB: 75) | 200 OK [http://shp/projects]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (130.2ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (95.3ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateEmployees (20100805174307)
+  [4;35;1mSQL (152.9ms)[0m   [0mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `first_name` varchar(255), `last_name` varchar(255), `nif` varchar(255), `email` varchar(255), `phone` varchar(255), `mobile` varchar(255), `join_date` datetime, `password` varchar(255), `reset_uuid` varchar(255), `photo_file_name` varchar(255), `photo_content_type` varchar(255), `photo_file_size` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mEmployee Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `employees`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mEmployee Load (0.4ms)[0m   [0;1mSELECT `employees`.id FROM `employees` WHERE (`employees`.`email` = BINARY 'fer@wadomo.com') LIMIT 1[0m
+  [4;35;1mEmployee Load (0.1ms)[0m   [0mSELECT `employees`.id FROM `employees` WHERE (`employees`.`nif` = BINARY '123456789') LIMIT 1[0m
+  [4;36;1mEmployee Create (0.3ms)[0m   [0;1mINSERT INTO `employees` (`nif`, `photo_file_size`, `created_at`, `reset_uuid`, `join_date`, `photo_file_name`, `updated_at`, `photo_content_type`, `mobile`, `last_name`, `phone`, `password`, `first_name`, `email`) VALUES('123456789', NULL, '2010-08-30 16:59:57', NULL, NULL, NULL, '2010-08-30 16:59:57', NULL, NULL, 'admin', NULL, '6b5fb18df4b219c16a57ed8bd5cde3e261ac00f5', 'admin', 'fer@wadomo.com')[0m
+[paperclip] Saving attachments.
+  [4;35;1mSQL (27.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (16.8ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100805174307')[0m
+Migrating to CreateCategories (20100808000136)
+  [4;35;1mSQL (73.3ms)[0m   [0mCREATE TABLE `categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `level` int(11), `hour_fee` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mCategory Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCategory Create (0.1ms)[0m   [0;1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('admin', '2010-08-30 16:59:57', '2010-08-30 16:59:57', 10000, 0.0)[0m
+  [4;35;1mSQL (25.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCategory Create (0.2ms)[0m   [0mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Partner', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 1000, 100.0)[0m
+  [4;36;1mSQL (39.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCategory Create (0.1ms)[0m   [0;1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Manager 3', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 900, 90.0)[0m
+  [4;35;1mSQL (23.3ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCategory Create (0.1ms)[0m   [0mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Manager 2', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 800, 80.0)[0m
+  [4;36;1mSQL (23.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCategory Create (0.1ms)[0m   [0;1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Manager 1', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 700, 70.0)[0m
+  [4;35;1mSQL (23.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCategory Create (0.1ms)[0m   [0mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Associate 3', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 600, 60.0)[0m
+  [4;36;1mSQL (23.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCategory Create (0.1ms)[0m   [0;1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Associate 2', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 500, 50.0)[0m
+  [4;35;1mSQL (31.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCategory Create (0.1ms)[0m   [0mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Associate 1', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 400, 40.0)[0m
+  [4;36;1mSQL (101.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCategory Create (0.1ms)[0m   [0;1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Junior 3', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 300, 30.0)[0m
+  [4;35;1mSQL (21.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCategory Create (0.1ms)[0m   [0mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Junior 2', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 200, 20.0)[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCategory Create (0.1ms)[0m   [0;1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`, `level`, `hour_fee`) VALUES('Junior 1', '2010-08-30 16:59:58', '2010-08-30 16:59:58', 100, 10.0)[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (16.9ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100808000136')[0m
+Migrating to AddCategoryToEmployees (20100808182926)
+  [4;35;1mSQL (143.1ms)[0m   [0mALTER TABLE `employees` ADD `category_id` int(11)[0m
+  [4;36;1mSQL (24.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100808182926')[0m
+Migrating to CreateClients (20100810070029)
+  [4;35;1mSQL (139.5ms)[0m   [0mCREATE TABLE `clients` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `cif` varchar(255), `address` varchar(255), `fax` varchar(255), `phone` varchar(255), `mobile` varchar(255), `email` varchar(255), `website` varchar(255), `notes` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (16.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100810070029')[0m
+Migrating to CreateProjects (20100813135606)
+  [4;35;1mSQL (73.1ms)[0m   [0mCREATE TABLE `projects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `partner_id` int(11), `manager_id` int(11), `client_id` int(11), `name` varchar(255), `description` text, `status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (16.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100813135606')[0m
+Migrating to CreateStatuses (20100813140054)
+  [4;35;1mSQL (81.5ms)[0m   [0mCREATE TABLE `statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mStatus Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `statuses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mStatus Create (0.1ms)[0m   [0;1mINSERT INTO `statuses` (`name`, `created_at`, `updated_at`) VALUES('Not started', '2010-08-30 16:59:58', '2010-08-30 16:59:58')[0m
+  [4;35;1mSQL (35.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mStatus Create (0.3ms)[0m   [0mINSERT INTO `statuses` (`name`, `created_at`, `updated_at`) VALUES('Started', '2010-08-30 16:59:58', '2010-08-30 16:59:58')[0m
+  [4;36;1mSQL (99.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mStatus Create (0.1ms)[0m   [0;1mINSERT INTO `statuses` (`name`, `created_at`, `updated_at`) VALUES('Finished', '2010-08-30 16:59:59', '2010-08-30 16:59:59')[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (16.9ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100813140054')[0m
+Migrating to CreateJobs (20100821213401)
+  [4;35;1mSQL (73.6ms)[0m   [0mCREATE TABLE `jobs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `description` text, `employee_id` int(11), `project_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (16.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100821213401')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `categories`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `categories`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `clients`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `clients`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW KEYS FROM `clients`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `employees`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `employees`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW KEYS FROM `employees`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `jobs`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mdescribe `jobs`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW KEYS FROM `jobs`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `projects`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mdescribe `projects`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW KEYS FROM `projects`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW FIELDS FROM `statuses`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mdescribe `statuses`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW KEYS FROM `statuses`[0m

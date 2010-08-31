@@ -1,0 +1,29 @@
+<h2>Listing clients</h2>
+<br />
+<div id="result_table">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>CIF</th>
+                <th>Email</th>
+                <th>Website</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @clients.each do |client| %>
+              <tr class="row" onclick='window.location = "<%= url_for client %>"'>
+                <td><%=h client.name %></td>
+                <td><%=h client.cif %></td>
+                <td><%=h client.email %></td>
+                <td><%=h client.website %></td>
+              </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<br />
+
+<%= link_to 'New client', new_client_path %>
+
+

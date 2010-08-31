@@ -1,0 +1,34 @@
+<% form_for(@project) do |f| %>
+    <%= f.error_messages %>
+	<div class="form_row">
+		<label> Project Name</label>
+        <%= f.text_field :name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+	</div>
+	<div class="form_row">
+		<label> Description </label>
+        <%= f.text_area :description, :cols => TEXT_FIELD_SIZE, :rows => 10 %>
+	</div>
+	<div class="form_row">
+		<label> Partner </label>
+        <%= f.collection_select(:partner_id, @partners, :id, :full_name) %>
+	</div>
+	<div class="form_row">
+		<label> Manager </label>
+        <%= f.collection_select(:manager_id, @managers, :id, :full_name) %>
+	</div>
+	<div class="form_row">
+		<label> Client </label>
+        <%= f.collection_select(:client_id, @clients, :id, :name) %>
+	</div>
+	<div class="form_row">
+		<label> Status </label>
+        <%= f.collection_select(:status_id, @statuses, :id, :name) %>
+	</div>
+	<div class="form_row">
+        <% if @current_action == "new" %>
+            <%= f.submit 'Create New Project' %>
+        <% else %>
+            <%= f.submit 'Update Project' %>
+        <% end %>
+	</div>
+<% end -%>

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" language="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= "[Intranet SHP] #{@title}"%></title>
+    <%= stylesheet_link_tag "main" %>
+    <%= javascript_include_tag :all %>
+	<%  #if RAILS_ENV=='production'   
+	        #Codigo Especifico para entorno de producccion, p.ej. Analytics       
+	    #end 
+    %>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header" align="center">
+        <%= image_tag 'logo.png', :border => 0, :title => 'Logo ' %>
+    </div>	<!--div#header-->
+
+	<div id="content">
+    	<% if flash[:notice] -%>
+    	   <div id="notice"><%= flash[:notice] %></div>					
+    	<% end -%>
+
+    	<% if flash[:error] -%>
+    	   <div id="error"><%= flash[:error] %></div>
+    	<% end -%>				
+
+	    <%= yield %>
+    </div> <!--div#content-->
+
+</div> <!--div#wrapper-->
+
+<%  #if RAILS_ENV !='production'   
+        #Codigo para otro entorno que producccion, p.ej. snapABug
+    #end 
+%>
+</body>
+</html>

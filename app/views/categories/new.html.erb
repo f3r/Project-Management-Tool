@@ -1,0 +1,7 @@
+<h2>New category</h2>
+
+<div id="mainContent">	
+    <%= render :partial => 'categories/form_category', :locals => {:category => @category} %>
+    
+    <%= link_to 'Back', categories_path %>
+</div>

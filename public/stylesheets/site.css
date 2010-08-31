@@ -1,0 +1,911 @@
+/* v1.0 | 20080212
+http://meyerweb.com/eric/tools/css/reset/index.html*/
+html,body,div,span,applet,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,
+del,dfn,em,font,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,
+b,u,i,center,
+dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+body{line-height:1;}
+ol,ul{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,
+q:before,q:after{content:'';content:none;}
+/* remember to define focus styles! */
+:focus{outline:0;}
+/* remember to highlight inserts somehow! */
+ins{text-decoration:none;}
+del{text-decoration:line-through;}
+/* tables still need 'cellspacing="0"' in the markup */
+table{border-collapse:collapse;border-spacing:0;}
+
+body {
+  color: #666;
+  font: 62.5%/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a:link, a:visited {
+  color: #EBAA38;
+  font-weight: bold;
+}
+
+a:hover, a:active, a:focus
+{
+  color: #444;
+}
+
+
+#errorExplanation
+{
+  color: red;
+  padding: 1em;
+  margin-bottom: 1em;
+  display: inline-block;
+  font-size: 1.2em;
+}
+
+#errorExplanation li
+{
+  clear: both;
+}
+
+form .form_row .fieldWithErrors input[type=text],
+form .form_row .fieldWithErrors textarea,
+input.fieldWithErrors[type=text]
+{
+   border: 1px solid red;
+}
+
+#header h1{
+  float: left;
+}
+
+#content h1{
+  font-size: 2em;
+  border-bottom: 1px solid #AAA;
+  padding-bottom: 1em;
+}
+
+h2
+{
+  border-bottom: 1px solid #DDD;
+  color: #444;
+  font-size: 1.6em;
+  font-weight: normal;
+  padding: 1em 0 .75em 0;
+}
+
+h3 {
+  color: #444;
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0 0 1em 0;
+}
+
+h3.message
+{
+  font-size: 2em;
+  padding: 3em;
+  color: #999;
+  border-left: 1px solid #DDD;
+  border-right: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  text-align:center;
+}
+
+
+
+#mainContentWidth h2 {
+  border: none;
+  font-size: 2.8em;
+  font-weight: bold;
+  line-height: 1.5em;
+  text-align: center;
+  padding: 1em 2em;
+}
+
+.module h2 {
+    border: none;
+    color: #666;
+    font-size: 1.4em;
+    line-height: 1.6em;
+    font-weight: bold;
+    margin: 0 0 1em 0;
+    padding: 0;
+  }
+  
+#secondaryContentWidth .module h2 {
+    color: #444;
+    font-size: 1.6em;
+  }
+  
+.creditor {
+	font-size:1.5em;
+	padding-left:25px;
+	margin-bottom:10px;
+}
+  
+#mainContent .module h2 {
+    margin: 0 0 .3em 0;
+  }
+
+
+
+#content .terms_and_conds
+{
+  text-align:right;
+  padding-top: 1em;
+}
+
+
+#mainContent {
+  float: left;
+  padding: 3em 0 4em 0;
+  width: 53.1em;
+}
+
+#mainContentWidth {
+  border: 1px solid #DDD;
+  padding: 3em 0 4em 0;
+  background: -webkit-gradient(linear, 0% 75%, 0% 0%, from(#EEE), to(#FFF));
+  background: -moz-linear-gradient(bottom, #EEE, #FFF);
+  float: none;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -moz-box-shadow: 2px 2px 0 #EEE;
+  -webkit-box-shadow: 2px 2px 0 #EEE;
+  -khtml-box-shadow: 2px 2px 0 #EEE;
+  margin: 0 0 1em 0;
+  width: auto;
+}
+.invoice{
+	font-size:1.4em;
+}
+
+a {
+ color: #EEB03B;
+}
+
+#mainContent p {
+  font-size: 1.4em;
+  line-height: 1.5em;
+  margin: 0 0 1em 0;  
+}
+
+#mainContent a {
+  font-size: 1.4em;
+  line-height: 1.5em;
+  margin: 0 0 1em 0;  
+}
+
+
+#faqs > h1
+{
+   clear: both;
+   padding-top: 1.5em;
+}
+
+#faqs > p
+{
+   padding-top: 1em;
+}
+
+#faqs > a
+{
+   padding-top: 0.5em;
+}
+
+
+#content form
+{
+  display: block;
+}
+
+table.transaction
+{
+ margin-left: 15em;
+ font-size: 1.4em;
+ color: #999;
+}
+table.transaction td
+{
+   padding: 1em;
+}
+
+
+#content #result_table
+{
+  font-size: 1.3em;
+  padding-left: 2em;
+  padding-right: 2em;
+  clear: both;
+  margin-bottom: 1em;
+}
+
+#content #result_table .title
+{
+  clear: both;
+  display:block;
+  color: #FFF;
+  font-weight: bold;
+}
+
+#notification table,
+#result_table table {
+	width:100%;
+}
+#notification table,
+#content #result_table table thead 
+{
+   color: #FFF;
+}
+
+#notification table,
+#content #result_table table tbody
+{
+   color: #999;
+}
+
+#content #result_table td.money
+{
+   text-align:center;
+}
+#notification td,
+#notification th,
+#content #result_table td,
+ #content #result_table th
+{
+   padding: 1em;
+   vertical-align: middle;
+}
+#content #result_table td.no_claims
+{
+   padding: 0em;
+}
+#content #result_table .title .item
+{
+  width: 25%;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+#notification{
+  font-size: 1.4em;
+  text-align: center;
+}
+
+#notification table thead,
+#content #result_table table  thead
+{
+  background-color: #0000AD;
+}
+
+#content #result_table .title .itemCancell
+{
+  background-color: #0000AD;
+  height: 2em;
+  text-indent: 0.5em;
+}
+
+#notification tbody td
+#content #result_table .itemCancell
+{
+  width: 20%;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  float: left;
+  text-indent: 0.5em;
+}
+
+
+#content #result_table .title .itemSearch
+{
+  background-color: gray;
+  width: 30%;
+  padding: 0.5em;
+}
+
+#content #result_table .item
+{
+  float: left;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: 25%;
+  text-indent: 0.5em;
+}
+
+#content #result_table .itemSearch
+{
+  float: left;
+  width: 33%;
+}
+
+#content form#new_action
+{
+}
+
+#content form#login
+{
+}
+
+.form_row
+{
+  padding-bottom: 2em;
+  padding-top: 1em;
+  height: 30px;
+  clear: both;
+}
+
+
+label {
+  color: #999;
+  display: block;
+  float: left;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: .5em 1em;
+  text-align: right;
+  width: 15.1em;
+}
+
+.user_info_text {
+	  color: black;
+	  display: block;
+	  float: left;
+	  font-size: 1.4em;
+	  padding: .5em 1em;
+	  text-align: right;
+}
+
+textarea
+{
+  margin-bottom: 1em;
+}
+
+form .form_row  .title
+{
+  float: left;
+  width: 45%;
+}
+
+form .form_row  .value
+{
+  font-size: 1.4em;
+}
+
+form .form_row a
+{
+  float: right;
+  font-size: 1.4em;
+}
+
+input, textarea {
+  border: 1px solid darkgrey;
+  color: #999;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.4em;
+  padding: .5em;
+  width: 250px;
+  float: right;
+}
+
+.standar_field {
+  color: #999;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: .5em;
+  padding: .1em;
+  width: 3px;
+}
+
+input[type=submit]
+{
+  color: #FFF;
+  background-color: #999;
+  cursor: pointer;
+}
+
+input[type=checkbox]
+{
+  float:left;
+  width:20px;
+  margin-left:200px;
+}
+
+#content .bottomborder
+{
+  border-bottom: 1px solid #AAA;
+}
+
+
+
+h1 a {
+/*background: url(../images/logo.png) no-repeat;*/
+display:block;
+height:69px;
+text-indent:-99999em;
+width:171px;
+}
+
+#wrapper {
+  margin: 0 auto;
+  width: 83.1em;
+}
+
+#header {
+  clear: both;
+  padding: 4em 0 0 0;
+  height:10em;
+}
+
+#header .user {
+  font-size: 1.3em;
+  float: right;
+  padding-right: 0.4em;
+  text-align:right;
+  line-height: 1.3em;
+}
+
+#header .user form
+{
+  padding-top: 0.3em;
+}
+
+#header .user form select
+{
+  border: #000000; 
+  border-style: solid; 
+  border: 1px;
+  background-color: #e8c2A1;
+} 
+
+#header .user form option:hover
+{
+  background-color: #e8c271;
+} 
+
+#mainMenu {
+  /*background: #EEB03B url(img/bg.png) repeat-x;
+  clear: both;
+  overflow: hidden;
+  padding: 0.2em;*/
+}
+
+#mainMenu form{
+  float: right;
+}
+
+#header #loggedMenu
+{
+  background: #979AA3 repeat-x;
+  font-size: 1.2em;
+  font-weight: bold;
+  clear: both;
+  overflow: hidden;
+  padding: 0.8em;
+  margin-top: 2em;
+}
+
+#header #loggedMenu a
+{
+  text-decoration: none;
+  color: #FFF;
+}
+
+.mainNav {
+  float: left;
+  width: 100%;
+  background: #F3B940;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EBA938), to(#F3B940));
+  background: -moz-linear-gradient(top, #EBA938, #F3B940);
+  margin: 1.5em 0 2em 0;
+  overflow: auto;
+  -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+  -moz-box-shadow: 1px 1px 0 #BBB;
+  -webkit-box-shadow: 1px 1px 0 #BBB;
+  -khtml-box-shadow: 1px 1px 0 #BBB;
+}
+
+.mainNav li {
+  float: left;
+  color: #FFF;
+  display: block;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1.1em 1.6em;
+}
+
+.mainNav a:link, .mainNav a:visited {
+  background: url(img/navLine.png) right center no-repeat;
+  color: #FFF;
+  text-decoration: none;
+  display: block;
+}
+
+.mainNav a:hover,
+.mainNav a:active,
+.mainNav a:focus {
+  color: #666;
+}
+
+.mainNav .active {
+  background: url(img/navLine.png) right center no-repeat;
+  /*padding: 0 2px 0 0;*/
+}
+
+/*.mainNav .active a:link,
+.mainNav .active a:visited,
+.mainNav .active a:hover,
+.mainNav .active a:active,
+.mainNav .active a:focus*/
+.mainNav .active {
+  background: #F0AA37;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0AA37), to(#FFD067));
+  background: -moz-linear-gradient(top, #F0AA37, #FFD067);
+  color: #FFF;
+}
+
+#logos_home {
+	width:100%;
+}
+
+.logo_home {
+	float:left;
+	width:33%;
+	text-align:center;
+}
+
+#secondaryContent {
+  float: right;
+  padding: 0 0 4em 0;
+  width: 23.1em;
+}
+
+
+#secondaryContentWidth {
+    float: none;
+    overflow: hidden;
+    padding: 0 0 2em 0;
+    width: auto;
+}
+
+
+#secondaryContent p, #secondaryContentWidth p {
+  font-size: 1.3em;
+  line-height: 1.5em;
+  margin: 0 0 1em 0;
+}
+
+
+.module {
+  border: 1px solid #DDD;
+  margin: 3em 0 0 0;
+  overflow: hidden;
+  padding: 2.5em;
+  -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+  -moz-box-shadow: 0 2px 0 #EEE;
+  -webkit-box-shadow: 0 2px 0 #EEE;
+  -khtml-box-shadow: 0 2px 0 #EEE;
+  background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#EEE), to(#FFF));
+  background: -moz-linear-gradient(bottom, #EEE, #FFF);
+  float: left;
+}
+
+#secondaryContentWidth .module {
+  background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#EEE), to(#FFF));
+  background: -moz-linear-gradient(bottom, #EEE, #FFF);
+  float: left;
+  margin: 0 .7em 2em 0;
+  width: 21.9em;
+  height:20em;
+}
+
+
+
+#content .last {
+  margin: 0 !important;
+}
+
+
+
+  #loggedMenu li {
+    float: left;
+    line-height: 30px; 
+    padding: 0px 10px;
+    border-right: 1px solid #AAA;
+    font-size: 1.1em;
+  }
+
+.mainNav li.last, #loggedMenu li.last
+{
+     border-right-style: none;
+}
+
+#notice, #error
+{
+  border: 1px solid #AAA;
+  padding: 1em; 
+  margin: 1em;
+  margin-bottom: 2em;
+  background-color: #EEE;
+  font: bold small sans-serif;
+  color: #EEB03B;
+}
+
+#error
+{
+  color: red
+}
+
+#content {
+  overflow: hidden;
+  clear: both;
+  width: 100%;
+}
+
+#content .medium
+{
+  font-size: 1.6em;
+}
+
+#content .divBlock
+{
+  clear: both;
+  display: inline-block;
+  width: 100%;
+}
+
+#content .divBlock strong
+{
+  display: block;
+  padding: 0.7em 0em;
+}
+
+#content .divBlock .tableTitle
+{
+  float: left;
+  width: 15em;
+  font-weight: bold;
+}
+
+#content .divBlock .tableText
+{
+  float: left;
+  width: 15em;
+  font-weight: bold;
+}
+
+
+#content .halfWidth
+{
+  width: 50%
+}
+
+#content .divBlock .leftBlock
+{
+  float: left;
+  width: 62%;
+}
+
+#content .divBlock .mainLeft
+{
+  width: 35%;
+}
+
+#content li
+{
+  float: left;
+  margin: 0 1em 0 0;
+}
+
+#content .divBlock .leftBlock a.delete
+{
+  background: url(img/delete.png) no-repeat;
+  padding-left: 20px;
+}
+
+#content .divBlock .rightBlock
+{
+  float: right;
+  width: 30%;
+}
+
+#content .divBlock .rightBlock.withBorder
+{
+  border: 1px solid #AAA;
+  padding: 2em;
+}
+
+#content .divBlock .rightBlock.withMargin
+{
+  margin-top: 2em;
+}
+
+#content .divBlock .rightBlock a.add
+{
+  background: url(img/add.png) no-repeat;
+  padding-left: 20px;
+}
+
+
+#footer {
+  border-top: 1px solid #DDD;
+  color: #999;
+  font-size: 1.2em;
+  padding: 1em 0 4em 0;
+  position: relative;
+  margin-top: 1em;
+}
+
+.footerNav {
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 1em;
+}
+
+.footerNav li {
+  float: left;
+  margin: 0 0 0 1em;
+}
+
+#footer a {
+  color: #999;
+  font-weight: normal;
+}
+
+/*th {
+  text-align:center;
+  background-color:#AAA;
+  color:#DDD;
+  font-size:1.5em;
+}*/
+
+#notifications_table td input
+{
+  float: none;
+}
+
+#notifications_table table
+{
+  margin-left: 5%;
+  font-size:1.4em;
+}
+
+#notifications_table td,  #notifications_table th
+{
+  padding: 1em;
+}
+#notifications_table td,  #notifications_table input[type="checkbox"]
+{
+  margin: 0;
+}
+
+#notifications_table .even.unreaded,
+#notifications_table .odd.unreaded{
+  background: #EFF url(img/new.png) no-repeat scroll 30px center;
+	font-weight:bold;
+	font-size:8pt;
+}
+
+tr.odd { 
+background: #EEE; 
+} 
+tr.even { 
+background: #FFF; 
+} 
+
+.module .more {
+	float:right;
+	font-size:1.3em;
+}
+
+.home .more {
+	margin-top:14em;
+	position:absolute;
+	text-align:right;
+	padding-left:10em;
+}
+
+
+
+/*COMMON CLASSES */
+
+.clear {
+	clear:both;
+	display:block;	
+}
+
+/* MODALBOX */
+.ui-dialog{
+	-moz-box-shadow: 0 2px 0 #EEE;
+	-webkit-box-shadow: 0 2px 0 #EEE;
+	-khtml-box-shadow: 0 2px 0 #EEE;
+}
+.modalbox {
+	-webkit-border-radius:3px 3px 3px 3px;
+	background: -moz-linear-gradient(bottom, #EEE, #FFF);
+	background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#EEE), to(#FFF));
+	position:relative;
+
+
+}
+.ui-dialog-titlebar{
+	background-color:#EDAE3A;
+	color:#fff;
+	text-align:right;
+	padding-right:10px;
+	-moz-border-radius:5px 5px 0 0;
+}
+
+.ui-icon-closethick{
+	color:#fff;
+}
+
+.modalbox label {
+	width:auto;
+	margin:0;
+}
+
+.modalbox span{
+	font-size:1.2em;
+	padding:0.5em 1em;
+	line-height:2.5em;
+}
+
+.modalbox .row{
+	display:block;
+	clear:both;
+}
+/* USER INDEX */
+
+#dashboard .module{
+	font-size:1.3em;
+}
+
+#content .widget {
+	padding:1em;
+        line-height: 1.5em;
+        font-size: 130%;
+}
+
+#dashboard .module {
+	width:90%;
+}
+#dashboard table {
+	width:100%;
+}
+#dashboard thead th {
+	background-color:#ccc;
+	color:#666;
+}
+#dashboard thead th, #dashboard tbody td
+{
+   padding: 1em;
+}
+#dashboard table {
+	text-align:center;
+}
+.captcha_row{
+	margin-left:24em;
+	padding:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+/* AUTOCOMPLETE */
+
+input.ac_loading[type='text']{
+	background: url('../images/spinner.gif') no-repeat right center;
+}

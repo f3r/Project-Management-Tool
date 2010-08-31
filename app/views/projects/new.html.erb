@@ -1,0 +1,5 @@
+<h2><%= link_to 'Projects', projects_path %> &raquo; New Project</h2>
+
+<div id="mainContent">	
+    <%= render :partial => 'projects/form_project', :locals => {:project => @project} %>
+</div>

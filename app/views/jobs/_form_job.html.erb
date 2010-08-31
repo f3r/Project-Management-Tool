@@ -1,0 +1,19 @@
+
+<% form_for ([@project,@job]) do |f| %>
+    <%= f.error_messages %>
+	<div class="form_row">
+		<label> Job Name </label>
+        <%= f.text_field :name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+	</div>
+	<div class="form_row">
+		<label> Description </label>
+        <%= f.text_area :description, :cols => TEXT_FIELD_SIZE, :rows => 10 %>
+	</div>
+	<div class="form_row">
+		<label> Employee </label>
+        <%= f.collection_select(:employee_id, @employees, :id, :full_name) %>
+	</div>
+	<div class="form_row">
+		<%= f.submit 'Update' %> &nbsp; <%= submit_tag "Cancel" %>
+	</div>
+<% end %>

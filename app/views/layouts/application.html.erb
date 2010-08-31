@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" language="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= "[Intranet SHP] #{@title}"%></title>
+    <%= stylesheet_link_tag "main" %>
+    <%= javascript_include_tag :all %>
+	<%  #if RAILS_ENV=='production'   
+	        #Codigo Especifico para entorno de producccion, p.ej. Analytics       
+	    #end 
+    %>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <h1><%= link_to 'Main', :controller => 'intranet', :action => 'index' %> </h1>
+        <div class="user">
+            <% if is_user_logged? %>
+                <span>Hi </span>
+                <%= link_to_unless_current "#{session[:user_name]}" , :controller => 'user', :action => 'view' %> |
+                <%= link_to 'logout', :controller => 'site', :action => 'logout' %>
+            <% end %>
+        </div> <!--div#user-->
+
+        <%= render :partial => 'intranet/menu'  %>
+    </div>	<!--div#header-->
+
+	<div id="content">
+    	<% if flash[:notice] -%>
+    	   <div id="notice"><%= flash[:notice] %></div>					
+    	<% end -%>
+
+    	<% if flash[:error] -%>
+    	   <div id="error"><%= flash[:error] %></div>
+    	<% end -%>				
+
+	    <%= yield %>
+    </div><!--div#content-->
+
+    <div id="footer">
+        <p class="copy"> <%= Time.now.to_date.year %> <%= '&copy; Wadomo' %></p>
+        <ul class="footerNav">
+            <li><%= link_to_unless_current 'web_map',   :controller => 'site', :action => 'map'     %> </li>
+            <li><%= link_to_unless_current 'terms',     :controller => 'site', :action => 'terms'   %></li>
+        </ul>
+    </div><!--div#footer-->
+
+</div> <!--div#wrapper-->
+
+<%  #if RAILS_ENV !='production'   
+        #Codigo para otro entorno que producccion, p.ej. snapABug
+    #end 
+%>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<h2><%= link_to 'Projects', projects_path %> &raquo; <%=h @project.name%> </h2>
+
+<div id="mainContent">	
+    <table style="margin-left:50px">
+    <tr><td width="100px">
+            <p><strong>Description</strong>:</p></td>  <td><p> <%=  @project.description.gsub(/\r\n\r\n/,'</p><p>').gsub(/\r\n/,'<br/>') %></p></td></tr>
+    <tr><td><p><strong>Status</strong>:</p></td>       <td><p> <%=h @project.status.name %></p></td></tr>
+    <tr><td><p><strong>Client</strong>:</p></td>       <td> <%= link_to @project.client.name, client_path(@project.client) %>         </td></tr>
+    <tr><td><p><strong>Partner</strong>:</p></td>      <td> <%= link_to @project.partner.full_name, employee_path(@project.partner) %></td></tr>
+    <tr><td><p><strong>Manager</strong>:</p></td>      <td> <%= link_to @project.manager.full_name, employee_path(@project.manager) %></td></tr>
+    </table>
+</div>
+<div id="secondaryContent">
+        <div class="module">
+            <p><strong>Project Option</strong>s</p>
+            <p> <%= link_to 'Edit Project', edit_project_path(@project) %><br/>
+                <%= link_to 'Delete Project', @project, :confirm => 'Are you sure?', :method => :delete %></p>
+        </div>
+</div>
+<%= render :partial => 'jobs/show_jobs', :locals => {:jobs => @jobs, :project => @project} %>
+<%= link_to 'Create New Job', new_project_job_path(@project, @job) %>
+

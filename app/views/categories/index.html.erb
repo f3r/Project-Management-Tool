@@ -1,0 +1,27 @@
+<h2>Listing Categories</h2>
+<br />
+<div id="result_table">
+    <table>
+        <thead>
+            <tr>
+                <th align="center">Name</th>
+                <th align="center">Level</th>
+                <th align="center">Hour fee</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td align="center"><%= link_to category.name, :action => :edit, :id => category %></td>
+                <td align="center"><%=h category.level %></td>
+                <td align="center"><%=h category.hour_fee %></td>
+                <td width="10%" align="center"><%= link_to 'Delete', category, :confirm => "Are you sure you want to delete category #{category.name}?", :method => :delete %></td>
+              </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<br />
+
+<%= link_to 'New category', new_category_path %>

@@ -1,0 +1,9 @@
+<% form_for :site, :url => { :action => "remind" }, :html => {:id => 'login'} do |f| -%>
+  	<div class="form_row">
+  		<label>Email</label>
+		<%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+  	</div>
+	<div class="form_row">
+	  	<%= submit_tag 'I forgot my password!' %>
+	</div>
+<% end -%>
