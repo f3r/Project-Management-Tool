@@ -9,10 +9,14 @@ class Employee < ActiveRecord::Base
     # Paperclip
     has_attached_file :photo,
       :styles => {
-        :thumb=> "100x100#",
-        :small  => "150x150>",
-        :medium => "300x300>",
-        :large =>   "400x400>" }
+          :thumb  => "100x100#",
+          :small  => "150x150>",
+          :medium => "300x300>",
+          :large  => "400x400>" },
+      :storage => :s3, 
+      :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
+      :path => "/:style/:filename"
+
         
     # Relationships
     belongs_to :category
