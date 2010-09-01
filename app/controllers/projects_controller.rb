@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   def index
     logger.error { "#{session.to_yaml}" }
     @status = Status.all 
-    @projects = Project.all (:order => "status_id ASC, name")
+    @projects = Project.all(:order => "status_id ASC, name")
     @status_name = "All"
   end
 

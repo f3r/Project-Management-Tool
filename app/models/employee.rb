@@ -15,7 +15,7 @@ class Employee < ActiveRecord::Base
           :large  => "400x400>" },
       :storage => :s3, 
       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
-      :path => "/:style/:filename",
+      :path => ":style/:filename",
       :bucket => 'shp-intranet'
         
     # Relationships
