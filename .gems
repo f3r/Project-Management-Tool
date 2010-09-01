@@ -2,3 +2,4 @@ rails -v 2.3.5
 paperclip --version 2.3.3
 uuidtools -v 2.1.1
 aws-s3 -v 0.6.2
+right_aws -v 2.0.0
