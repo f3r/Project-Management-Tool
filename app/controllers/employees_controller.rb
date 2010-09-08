@@ -63,6 +63,7 @@ class EmployeesController < ApplicationController
     end
   end
 
+
   def destroy
     begin
         @employee = Employee.find(params[:id])

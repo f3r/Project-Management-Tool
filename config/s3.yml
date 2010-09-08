@@ -1,14 +1,14 @@
 development:
-  bucket: shp-intranet
+  bucket: shp-intranet2
   access_key_id: AKIAIQXUFHOYHFSRKOIA
   secret_access_key: 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
 
 test:
-  bucket: shp-intranet
+  bucket: shp-intranet2
   access_key_id: AKIAIQXUFHOYHFSRKOIA
   secret_access_key: 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
 
 production:
-  bucket: shp-intranet
+  bucket: shp-intranet2
   access_key_id: AKIAIQXUFHOYHFSRKOIA
   secret_access_key: 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
