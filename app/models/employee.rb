@@ -15,7 +15,7 @@ class Employee < ActiveRecord::Base
           :large  => "400x400>" },
       :storage => :s3, 
       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
-      :path => ":style/:filename",
+      :path => "/:style/:filename",
       :bucket => 'shp-intranet'
         
     # Relationships
@@ -28,6 +28,7 @@ class Employee < ActiveRecord::Base
     
     def self.create_employee(params)
       begin
+          logger.error { "PARAMS TO CREATE EMPLOYEE #{params.to_yaml}" }
           user = Employee.new(params)
           user.password = user.nif
           user.password_confirmation = user.nif
