@@ -18,7 +18,12 @@ class CreateEmployees < ActiveRecord::Migration
       t.timestamps
     end
     # fer@wadomo.com / w4d0m0
-    Employee.create(:first_name => "admin", :last_name => "admin", :nif => "123456789", :email => "fer@wadomo.com", :password => "6b5fb18df4b219c16a57ed8bd5cde3e261ac00f5")
+    Employee.create(
+        :first_name => "admin", 
+        :last_name => "admin", 
+        :nif => "123456789", 
+        :email => "fer@wadomo.com", 
+        :password => "6b5fb18df4b219c16a57ed8bd5cde3e261ac00f5")
     
   end
 
