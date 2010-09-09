@@ -16,7 +16,7 @@ class Employee < ActiveRecord::Base
       :storage => :s3, 
       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
       :path => "/:style/:filename",
-      :bucket => 'shp-intranet'
+      :bucket => 'shp-intranet2'
         
     # Relationships
     belongs_to :category
