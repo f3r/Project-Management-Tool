@@ -119,7 +119,7 @@ class Employee < ActiveRecord::Base
 
     def self.get_managers
         begin
-            return Employee.find(:all, :conditions => ["category_id >? and category_id<?",2,5])            
+            return Employee.find(:all, :conditions => ["category_id >? and category_id<?",2,6])            
         rescue Exception => e
             logger.error { "Error [employee.rb/get_manaters] #{e.message}" }
         end
