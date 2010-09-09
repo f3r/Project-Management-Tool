@@ -7,7 +7,7 @@
 <div id="secondaryContent">
     <% if @employee.photo.exists? then %>
         <div class="module">
-            <%= image_tag @employee.photo.url(:small) %><br/>
+            <%= image_tag @employee.photo.url(:original) %><br/>
         </div>
     <% end %>
 
