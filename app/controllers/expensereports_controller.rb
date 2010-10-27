@@ -38,6 +38,13 @@ class ExpensereportsController < ApplicationController
         flash[:notice] = 'Expensereport was successfully created.'
         redirect_to(expensereports_url)
     else
+        @jobs = Job.find_all_by_employee_id(session[:user_id])
+        @projects = Array.new
+        @jobs.each do |job|
+          if !@projects.include?(Project.find(job.project_id))
+            @projects << Project.find(job.project_id)
+          end 
+        end      
         render :action => "new"
     end
   end
