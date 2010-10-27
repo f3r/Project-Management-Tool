@@ -16,7 +16,7 @@
         <!--
             TODO Cambiar url_for job.project por EDIT JOB
         -->
-        <tr class="row" onclick='window.location = "<%= url_for :controller => "job", :action => "edit", :id => job.id %>"'>
+        <tr class="row" onclick='window.location = "<%= url_for :controller => 'job', :action => 'edit', :id => job.id %>"'>
             <td><%=h job.project.name %>        </td>
             <td><%=h job.project.client.name %> </td>
             <td><%=h job.name %>                </td>
