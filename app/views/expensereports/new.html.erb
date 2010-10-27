@@ -1,0 +1,6 @@
+<h2>New Expense</h2>
+
+<div id="mainContent">  
+    <%= render :partial => 'expensereports/form_expensereport', 
+               :locals => {:expensereport => @expensereport, :projects => @projects, :jobs => @jobs} %>
+</div>

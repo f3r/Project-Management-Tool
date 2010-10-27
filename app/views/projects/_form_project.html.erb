@@ -24,6 +24,14 @@
 		<label> Status </label>
         <%= f.collection_select(:status_id, @statuses, :id, :name) %>
 	</div>
+  <div class="form_row">
+    <label> Start Date </label>
+        <%= date_select("project", "date_start", :start_year => 2010) %>
+  </div>
+  <div class="form_row">
+    <label> End Date </label>
+        <%= date_select("project", "date_end", :start_year => 2010) %>
+  </div>
 	<div class="form_row">
         <% if @current_action == "new" %>
             <%= f.submit 'Create New Project' %>

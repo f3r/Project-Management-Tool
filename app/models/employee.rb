@@ -8,11 +8,11 @@ class Employee < ActiveRecord::Base
 
     # Paperclip
     has_attached_file :photo,
-      #:styles => {
-      #    :thumb  => "100x100#",
-      #    :small  => "150x150>",
-      #    :medium => "300x300>",
-      #    :large  => "400x400>" },
+      :styles => {
+          :thumb  => "100x100#",
+          :small  => "150x150>",
+          :medium => "300x300>",
+          :large  => "400x400>" },
       :storage => :s3, 
       :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
       :path => "/:style/:filename",
@@ -22,6 +22,7 @@ class Employee < ActiveRecord::Base
     belongs_to :category
     has_many   :projects
     has_many   :jobs
+    has_many   :expensereports
     
     attr_protected  :id
     attr_accessor   :password_confirmation
@@ -119,7 +120,7 @@ class Employee < ActiveRecord::Base
 
     def self.get_managers
         begin
-            return Employee.find(:all, :conditions => ["category_id >? and category_id<?",2,6])            
+            return Employee.find(:all, :conditions => ["category_id >? and category_id<?",2,5])            
         rescue Exception => e
             logger.error { "Error [employee.rb/get_manaters] #{e.message}" }
         end

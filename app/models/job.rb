@@ -5,7 +5,11 @@ class Job < ActiveRecord::Base
     # Relationships
     belongs_to  :employee
     belongs_to  :project
+    has_many    :expensereports
 
     #TODO Add that Job has_one :status
 
+    def expenses
+      return Expensereport.find_all_by_job_id(self.id).sum(&:amount)
+    end
 end

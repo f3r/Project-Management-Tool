@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100821213401) do
+ActiveRecord::Schema.define(:version => 20101026223800) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(:version => 20100821213401) do
     t.integer  "category_id"
   end
 
+  create_table "expensereports", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "employee_id"
+    t.integer  "amount",      :limit => 10, :precision => 10, :scale => 0
+    t.date     "expenseDate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+  end
+
   create_table "jobs", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -69,6 +79,8 @@ ActiveRecord::Schema.define(:version => 20100821213401) do
     t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date_start"
+    t.date     "date_end"
   end
 
   create_table "statuses", :force => true do |t|

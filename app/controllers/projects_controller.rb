@@ -14,9 +14,8 @@ class ProjectsController < ApplicationController
           page.replace_html 'project_list', :partial => 'list_projects', :projects => @projects, :status_name => @status_name
       end
   end
-
+  
   def index
-    logger.error { "#{session.to_yaml}" }
     @status = Status.all 
     @projects = Project.all(:order => "status_id ASC, name")
     @status_name = "All"

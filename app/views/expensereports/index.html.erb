@@ -1,0 +1,29 @@
+<h2>Expense Reports</h2>
+<br />
+<div id="result_table">
+    <table width="50%">
+        <thead>
+        <tr>
+          <th>Project</th>
+          <th>Job</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+        <thead>  
+        <tbody>
+          <% @expensereports.each do |expensereport| %>
+            <tr>
+              <td><%=h Project.find(expensereport.project_id).name %></td>
+              <td><%=h Job.find(expensereport.job_id).name %></td>
+              <td><%=h expensereport.amount %> &euro;</td>
+              <td><%=h expensereport.expenseDate %></td>
+              <td><%= link_to 'Edit', edit_expensereport_path(expensereport) %></td>
+              <td><%= link_to 'Delete', expensereport, :confirm => 'Are you sure?', :method => :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>
+<br />
+
+<%= link_to 'New expensereport', new_expensereport_path %>

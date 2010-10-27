@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
     belongs_to  :client
     belongs_to  :status
     has_many    :jobs, :dependent => :destroy
+    has_many   :expensereports
     
     def self.create_project(params)
       begin
@@ -27,5 +28,5 @@ class Project < ActiveRecord::Base
         logger.error { "Error [project.rb/number_of_jobs] #{e.message}" }
       end
     end
-    
+  
 end

@@ -8,15 +8,15 @@
     <tr><td><p><strong>Client</strong>:</p></td>       <td> <%= link_to @project.client.name, client_path(@project.client) %>         </td></tr>
     <tr><td><p><strong>Partner</strong>:</p></td>      <td> <%= link_to @project.partner.full_name, employee_path(@project.partner) %></td></tr>
     <tr><td><p><strong>Manager</strong>:</p></td>      <td> <%= link_to @project.manager.full_name, employee_path(@project.manager) %></td></tr>
+    <tr><td><p><strong>Duration</strong>:</p></td>     <td> <%= @project.date_start %></td></tr>
     </table>
 </div>
 <div id="secondaryContent">
         <div class="module">
-            <p><strong>Project Option</strong>s</p>
+            <p><strong>Project Options</strong></p>
             <p> <%= link_to 'Edit Project', edit_project_path(@project) %><br/>
                 <%= link_to 'Delete Project', @project, :confirm => 'Are you sure?', :method => :delete %></p>
         </div>
 </div>
 <%= render :partial => 'jobs/show_jobs', :locals => {:jobs => @jobs, :project => @project} %>
 <%= link_to 'Create New Job', new_project_job_path(@project, @job) %>
-

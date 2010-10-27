@@ -26,7 +26,7 @@
 <div id="secondaryContent">
     <div class="module">
         <% if @employee.photo.exists? then %>
-            <p><%= image_tag @employee.photo.url(:original), :size => "150x150"  %></p>
+            <p><%= image_tag @employee.photo.url(:small) %></p>
         <% end %>
         <p><%= link_to 'Edit Employee', edit_employee_path(@employee) %> <br/>
            <%= link_to 'Delete', @employee, :confirm => 'Are you sure?', :method => :delete %></p>
