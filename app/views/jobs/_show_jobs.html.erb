@@ -14,7 +14,7 @@
             <tr><td colspan="5" align="center">This project doesn't have any job yet</td></tr>
         <% else %>
             <% @jobs.each do |job| %>
-            <tr class="row" onclick='window.location = "<%= url_for job %>"'>
+            <tr class="row" onclick='window.location = "<%= url_for :controller => 'jobs', :action => 'edit', :id => job.id %>"'>
                 <td align="center"><%=h job.name %> </td>
                 <td align="center"><%=h job.description %> </td>
                 <td align="center"><%=h job.employee.full_name %>  </td>

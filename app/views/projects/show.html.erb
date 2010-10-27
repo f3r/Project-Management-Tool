@@ -8,7 +8,8 @@
     <tr><td><p><strong>Client</strong>:</p></td>       <td> <%= link_to @project.client.name, client_path(@project.client) %>         </td></tr>
     <tr><td><p><strong>Partner</strong>:</p></td>      <td> <%= link_to @project.partner.full_name, employee_path(@project.partner) %></td></tr>
     <tr><td><p><strong>Manager</strong>:</p></td>      <td> <%= link_to @project.manager.full_name, employee_path(@project.manager) %></td></tr>
-    <tr><td><p><strong>Duration</strong>:</p></td>     <td> <%= @project.date_start %></td></tr>
+    <tr><td><p><strong>Start Date</strong>:</p></td>   <td><p> <%= @project.date_start.strftime('%A, %B %d, %Y') %></p></td></tr>
+    <tr><td><p><strong>End Date</strong>:</p></td>     <td><p> <%= @project.date_end.strftime('%A, %B %d, %Y')%></p></td></tr>    
     </table>
 </div>
 <div id="secondaryContent">
