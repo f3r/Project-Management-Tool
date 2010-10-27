@@ -21,14 +21,20 @@ class ExpensereportsController < ApplicationController
   end
 
   def edit
-    @jobs = Job.find_all_by_employee_id(session[:user_id])
-    @projects = Array.new
-    @jobs.each do |job|
-      if !@projects.include?(Project.find(job.project_id))
-        @projects << Project.find(job.project_id)
-      end 
-    end    
-    @expensereport = Expensereport.find(params[:id])
+    if Expensereport.exists?(params[:id])
+      @jobs = Job.find_all_by_employee_id(session[:user_id])
+      @projects = Array.new
+      @jobs.each do |job|
+        if !@projects.include?(Project.find(job.project_id))
+          @projects << Project.find(job.project_id)
+        end 
+      end    
+      @expensereport = Expensereport.find(params[:id])
+    else
+      # TODO: esto es porque hacer click en delete, al tener el click
+      # en toda la fila, llama a delete, pero tb a edit
+      redirect_to(expensereports_url)
+    end
   end
 
   def create
