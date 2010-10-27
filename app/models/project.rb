@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
     belongs_to  :client
     belongs_to  :status
     has_many    :jobs, :dependent => :destroy
-    has_many   :expensereports
+    has_many    :expensereports
     
     def self.create_project(params)
       begin
@@ -26,6 +26,14 @@ class Project < ActiveRecord::Base
           self.jobs.count
       rescue Exception => e
         logger.error { "Error [project.rb/number_of_jobs] #{e.message}" }
+      end
+    end
+    
+    def accumulated_expenses
+      begin
+        self.expensereports.to_a.sum(&:amount)
+      rescue Exception => e
+        logger.error { "Error [project.rb/accumulated_expenses] #{e.message}" }
       end
     end
   

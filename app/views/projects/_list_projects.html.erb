@@ -10,6 +10,7 @@
             <th>Partner</th>
             <th>Manager</th>
             <th>Jobs</th>
+            <th>Acc &euro;</th>
         </tr>
         <thead>  
         <tbody>
@@ -18,12 +19,13 @@
         <% else %>
             <% projects.each do |project| %>
             <tr class="row" onclick='window.location = "<%= url_for project %>"'>
-                <td><%=h project.status.name %>       </td>
-                <td><%=h project.name %>              </td>   
-                <td><%=h project.client.name %>       </td>
-                <td><%=h project.partner.full_name %> </td>
-                <td><%=h project.manager.full_name %> </td>
-                <td><%=h project.number_of_jobs    %> </td>
+                <td><%=h project.status.name %>          </td>
+                <td><%=h project.name %>                 </td>   
+                <td><%=h project.client.name %>          </td>
+                <td><%=h project.partner.full_name %>    </td>
+                <td><%=h project.manager.full_name %>    </td>
+                <td><%=h project.number_of_jobs    %>    </td>
+                <td><%=h project.accumulated_expenses %> </td>
             </tr>
             <% end %>
         <% end %>
