@@ -22,7 +22,7 @@
                     TODO Meter aqui el acumulado de los jooobss para horas y pricing
                 -->
                 <td align="center"><%=h 0 %>h </td>
-                <td align="center"><%=h job.expenses %> &euro;  </td>
+                <td align="center"><%=  number_to_currency(job.expenses, :unit => "&euro;", :precision => 0) %> </td>
             <% end %>
         <% end %>
         </tbody>

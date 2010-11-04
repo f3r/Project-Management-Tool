@@ -16,7 +16,7 @@
             <tr class="row" onclick='window.location = "<%= url_for :controller => 'expensereports', :action => 'edit', :id => exrep.id %>"'>
               <td><%=h Project.find(exrep.project_id).name %></td>
               <td><%=h Job.find(exrep.job_id).name %></td>
-              <td><%=h exrep.amount %> &euro;</td>
+              <td><%= number_to_currency(exrep.amount, :unit => "&euro;", :precision => 0) %> </td>
               <td><%=h exrep.expenseDate %></td>
               <td><%= link_to 'Delete', exrep, :confirm => 'Are you sure?', :method => :delete %></td>
             </tr>
