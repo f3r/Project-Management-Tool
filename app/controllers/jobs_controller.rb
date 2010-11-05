@@ -52,7 +52,6 @@ class JobsController < ApplicationController
         @job = Job.find(params[:id])
         @proj = @job.project
         @job.destroy
-        logger.error { "EEEEEEEEEEEEEE --> #{@proj.name}" }
         redirect_to(@proj)
     rescue Exception => e
         logger.error { "Error [jobs_controller.rb/destroy] #{e.message}" }

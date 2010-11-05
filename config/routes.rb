@@ -8,6 +8,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :expensereports
   #map.resources :jobs
 
+  map.connect 'js/:emp_id/:week_no/:year',
+             :controller => 'Js',
+             :action     => 'index'
+
   map.root :controller => "site", :action => 'index' 
 
   map.connect ':controller/:action/:id'
