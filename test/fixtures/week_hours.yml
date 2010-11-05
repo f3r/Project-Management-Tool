@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  year: 1
+  week: 1
+  job_id: 1
+  h_mon: 1.5
+  h_tue: 1.5
+  h_wed: 1.5
+  h_thu: 1.5
+  h_fri: 1.5
+
+two:
+  year: 1
+  week: 1
+  job_id: 1
+  h_mon: 1.5
+  h_tue: 1.5
+  h_wed: 1.5
+  h_thu: 1.5
+  h_fri: 1.5

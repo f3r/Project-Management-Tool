@@ -6,6 +6,7 @@ class Job < ActiveRecord::Base
     belongs_to  :employee
     belongs_to  :project
     has_many    :expensereports
+    has_many    :week_hours
 
     #TODO Add that Job has_one :status
 
