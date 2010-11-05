@@ -9,14 +9,17 @@ class JsController < ApplicationController
     # Sanity check for parameters
     if (!Employee.exists?(@emp_id))
       render :inline => 'Parameter error. Please check employee id'
+      logger.error { "Parameter error. Please check employee id" }
       return
     end
     if (@week_no < 1) or (@week_no > 52) 
       render :inline => 'Parameter error. Please check week number is between 1-52'
+      logger.error { "Parameter error. Please check week number is between 1-52" }
       return
     end
     if (@year < 2000) or (@year > 2050)
       render :inline => 'Parameter error. Please check year is between 2000-2050'
+      logger.error { "Parameter error. Please check year is between 2000-2050" }
       return
     end
     
@@ -24,7 +27,9 @@ class JsController < ApplicationController
     @employee = Array.[]('employee_name : ' + session[:user_name], 'employee_id : ' + session[:user_id].to_s)
 
     # We get the text for the header
-    @week_dates = Array.[]('week_text : ' + self.week_dates(@week_no, @year.to_s), 'week_number : ' + @week_no.to_s)
+    @week_dates = Array.[]('week_text : '   + self.week_dates(@week_no, @year.to_s), 
+                           'week_number : ' + @week_no.to_s,
+                           'week_start : '  + Date.commercial(@year, @week_no, 1).to_s)
 
     # We get the list of all the projects
     @projects = self.get_projects(@emp_id, @week_no, @year)
