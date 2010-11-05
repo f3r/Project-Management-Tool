@@ -24,7 +24,7 @@ class JsController < ApplicationController
     end
     
     # We get the employee details
-    @employee = Array.[]('employee_name : ' + session[:user_name], 'employee_id : ' + session[:user_id].to_s)
+    @employee = Array.[]('employee_id : ' + @emp_id.to_s)
 
     # We get the text for the header
     @week_dates = Array.[]('week_text : '   + self.week_dates(@week_no, @year.to_s), 
