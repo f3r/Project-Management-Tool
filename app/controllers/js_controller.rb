@@ -78,17 +78,6 @@ class JsController < ApplicationController
     end
   end
 
-  # function that receives a project and finds all the jobs
-  #  assigned to the employee and includes them in the array
-  def include_jobs_from_project(projects,emp_id)
-    begin
-
-      return output
-    rescue Exception => e
-      logger.error { "Error [js_controller.rb/include_jobs_from_project] #{e.message}" }
-    end
-  end
-
   def week_dates(week_num, year)
     begin
       week_start = Date.commercial(year.to_i, week_num.to_i, 1)
