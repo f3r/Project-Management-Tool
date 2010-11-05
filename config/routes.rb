@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories, :has_many => :employees
   map.resources :employees
   map.resources :expensereports
+  map.resources :hours
   #map.resources :jobs
 
   map.connect 'js/:emp_id/:week_no/:year',
