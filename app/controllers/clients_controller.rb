@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  include ApplicationHelper
+  before_filter :protect_user
   
   def index
     @clients = Client.all

@@ -1,4 +1,8 @@
 class IntranetController < ApplicationController
-    def index
-    end
+
+  include ApplicationHelper
+  before_filter :protect_user
+
+  def index
+  end
 end

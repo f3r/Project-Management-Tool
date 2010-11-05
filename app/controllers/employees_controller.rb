@@ -1,4 +1,7 @@
 class EmployeesController < ApplicationController
+  include ApplicationHelper
+  before_filter :protect_user
+
   before_filter :check_for_cancel, :only => [:create, :update]
   
   def index

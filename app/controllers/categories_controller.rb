@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  include ApplicationHelper
+  before_filter :protect_user
 
   def index
       begin

@@ -1,4 +1,6 @@
 class ExpensereportsController < ApplicationController
+  include ApplicationHelper
+  before_filter :protect_user
 
   def index
     @expensereports = Expensereport.all

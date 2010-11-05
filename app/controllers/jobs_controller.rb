@@ -1,4 +1,7 @@
 class JobsController < ApplicationController
+  include ApplicationHelper
+  before_filter :protect_user
+
   before_filter :load_project, :only => [:new, :create]
   before_filter :check_for_cancel, :only => [:create, :update]
   

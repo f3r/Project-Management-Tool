@@ -1,4 +1,7 @@
 class JsController < ApplicationController
+  include ApplicationHelper
+  before_filter :protect_user
+
 
   def index
     # Load params in local vars
