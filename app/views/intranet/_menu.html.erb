@@ -8,10 +8,8 @@
     <li <% if menu_active?('projects')%> class="active" <%end%>>
         <%= link_to_unless_current 'Projects', :controller => 'projects', :action => 'index' %>
     </li>
-    <li <% if menu_active?('time_reports')%> class="active" <%end%>>
-        <%= #link_to_unless_current 'Reports', :controller => 'timeReports', :action => 'index' 
-        %>
-        <a href="#">TIME REPORTS</a>
+    <li <% if menu_active?('hours')%> class="active" <%end%>>
+        <%= link_to_unless_current 'TIME REPORTS', :controller => 'hours', :action => 'index' %>
     </li>
     <li <% if menu_active?('expensereports')%> class="active" <%end%>>
         <%= link_to_unless_current 'Expense Reports', :controller => 'expensereports', :action => 'index' %>

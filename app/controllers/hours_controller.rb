@@ -1,5 +1,8 @@
 class HoursController < ApplicationController
+
+  include ApplicationHelper
+  before_filter :protect_user
+  
   def index
-    render :inline => 'testinggg'
   end
 end

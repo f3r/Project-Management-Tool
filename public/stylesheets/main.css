@@ -910,3 +910,46 @@ background: #FFF;
 input.ac_loading[type='text']{
 	background: url('../images/spinner.gif') no-repeat right center;
 }
+
+
+/* TIME REPORT */
+table#timeReport {
+  margin-left: 5em;
+  width:70%;
+  border:1px black solid;
+}
+
+tr#timeRep_dateNav {
+  background-color: #333;
+  color: white;
+  height :20px;
+  vertical-align: bottom;
+}
+
+tr#timeRep_days {
+  background-color:#666;
+  text-align :left;
+  color: white;    
+}
+
+tr#timeRep_proj {
+  background-color:#ddd;
+  border:1px black solid;
+  text-align :left;
+}
+
+tr#timeRep_footer {
+  background-color:#666;
+  border:1px black solid;
+  text-align :left;
+}
+
+input#blah {
+  border: 0px solid darkgrey;
+  color: #444;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  padding: .5em;
+  width: 20px;
+  float:none;
+}
