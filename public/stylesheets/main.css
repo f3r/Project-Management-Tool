@@ -915,7 +915,7 @@ input.ac_loading[type='text']{
 /* TIME REPORT */
 table#timeReport {
   margin-left: 5em;
-  width:70%;
+  width:90%;
   border:1px black solid;
 }
 
@@ -928,14 +928,18 @@ tr#timeRep_dateNav {
 
 tr#timeRep_days {
   background-color:#666;
-  text-align :left;
+  text-align: center;
   color: white;    
 }
 
 tr#timeRep_proj {
   background-color:#ddd;
   border:1px black solid;
-  text-align :left;
+  text-align :center;
+}
+
+td#timeRep_hours {
+  text-align: center;
 }
 
 tr#timeRep_footer {
@@ -949,7 +953,10 @@ input#blah {
   color: #444;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;
+  text-align: center;
   padding: .5em;
-  width: 20px;
+  width: 25px;
   float:none;
+  align:center;
 }
+
