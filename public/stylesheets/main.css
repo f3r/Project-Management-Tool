@@ -924,28 +924,58 @@ tr#timeRep_dateNav {
   color: white;
   height :20px;
   vertical-align: bottom;
+  font-size: 1.5em;
 }
 
 tr#timeRep_days {
   background-color:#666;
   text-align: center;
-  color: white;    
+  color: white; 
+  font-size: 1.2em;   
 }
 
 tr#timeRep_proj {
-  background-color:#ddd;
-  border:1px black solid;
-  text-align :center;
+  background-color:#abc;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 30px;
+  font-size: 17px;
+  text-align: center;
+  vertical-align: middle;   
+}
+
+th#timeRep_proj {
+  padding-left: 10px;
+  text-align: left;
+  vertical-align: middle;  
+}
+
+td#timeRep_proj {
+  vertical-align: middle;  
 }
 
 td#timeRep_hours {
-  text-align: center;
+  border:0px;
+  text-align :center;
+}
+
+tr#timeRep_hours {
+  border:0px;
+  text-align :center;
+}
+
+td#timeRep_job {
+  border:0px;
+  text-align :left;
+  font-size: 1.2em;
 }
 
 tr#timeRep_footer {
-  background-color:#666;
+  background-color:#222;
   border:1px black solid;
-  text-align :left;
+  text-align :center;
+  color: white;
+  
 }
 
 input#blah {
