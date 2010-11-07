@@ -1006,15 +1006,24 @@ input.hours:hover {
 
 /* FOOTER: DAILY ACCUMULATED */
 
-tr.timeRep_footer th,
-tr.timeRep_footer td{
+tr.timeRep_footer {
   background-color:#222;
   border-top:1px black solid;
   border-bottom:1px black solid;  
-  text-align :center;
+  text-align :right;
   font-size: 17px;
   color: white;
   height: 30px;
+  vertical-align: middle;
+}
+
+tr.timeRep_footer th {
+  text-align :right;
+  vertical-align: middle;
+}
+
+tr.timeRep_footer td{
+  text-align :center;
   vertical-align: middle;
 }
 
@@ -1031,3 +1040,8 @@ input.timeRep_button {
   background-color:#333333;
 }
 
+a.toggleLink {
+  vertical-align: middle;
+  text-decoration : none;
+  color: #222222; 
+}

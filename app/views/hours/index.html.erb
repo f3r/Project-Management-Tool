@@ -21,11 +21,11 @@
       <TH>Wed 
       <TH>Thu 
       <TH>Fri 
-      <TH>Week
+      <TH>Total Week
   </thead>
   <tfoot>
     <TR class="timeRep_footer">
-      <TH>
+      <TH> Total Day
       <TD id="total_1">0
       <TD id="total_2">0
       <TD id="total_3">0
@@ -35,7 +35,7 @@
   </tfoot>
   <tbody>
     <TR class="timeRep_proj">
-      <TH>Project 1
+      <TH id="timeRep_proj_1">Project 1 
       <TD id="pr1_1">0
       <TD id="pr1_2">0
       <TD id="pr1_3">0
@@ -61,7 +61,7 @@
   </tbody>
   <tbody>
     <TR class="timeRep_proj">
-      <TH>Project 1
+      <TH id="timeRep_proj_2">Project 2
       <TD id="pr12_1">0
       <TD id="pr12_2">0
       <TD id="pr12_3">0
@@ -168,18 +168,50 @@ $('.hours').focusout(function() {
 });
 
 // In case the user wants to leave the page
-window.onbeforeunload = function (e) {
-    var e = e || window.event;
-    var msg = '';
+//window.onbeforeunload = function (e) {
+//    var e = e || window.event;
+//    var msg = 'Are you sure you want to leave?';
+//
+//    // For IE and Firefox
+//    if (e) {
+//        e.returnValue = msg;
+//    }
+//
+//    // For Safari / chrome
+//    return msg;
+//}
 
-    // For IE and Firefox
-    if (e) {
-        e.returnValue = msg;
-    }
 
-    // For Safari / chrome
-    return msg;
-}
+// Andy Langton's show/hide/mini-accordion - updated 23/11/2009
+// Latest version @ http://andylangton.co.uk/jquery-show-hide
+
+// this tells jquery to run the function below once the DOM is ready
+$(document).ready(function() {
+
+  // choose text for the show/hide link - can contain HTML (e.g. an image)
+  var showText= 'show';
+  var hideText= 'hide';
+  
+  // append show/hide links to the element directly preceding the element with a class of "toggle"
+  $('th[id^=timeRep_proj_]').prepend('(<a href="#" class="toggleLink">'+showText+'</a>) ');
+  
+  // hide all of the elements with a class of 'toggle'
+  $('.timeRep_job').hide();
+  
+  // capture clicks on the toggle links
+  $('a.toggleLink').click(function() {
+  
+    // change the link depending on whether the element is shown or hidden
+    $(this).html( ($(this).html().substr(1,5) == hideText) ? showText : hideText);
+    
+    
+    // toggle the display
+    $(this).parent().parent().siblings().toggle(1000);  
+    
+    // return false so any link destination is not followed
+    return false;
+  });
+});
 
 
 </script>
