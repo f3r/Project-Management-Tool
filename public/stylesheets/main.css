@@ -972,9 +972,18 @@ tr.timeRep_job {
   font-size:  15px;  
 }
 
-td.timeRep_job_title {
+/* First column */
+tr.timeRep_job th {
   padding-left: 15px;
   text-align: left;
+  background-color : #E0E0E0;
+  font-weight normal;
+}
+
+/* Last column */
+tr.timeRep_job td + td + td +td +td +td {
+  background-color : #D0D0D0;
+  font-weight : bold;
 }
 
 input.hours {
@@ -984,7 +993,7 @@ input.hours {
   font-size: 14px;
   text-align: center;
   padding: 10px;
-  width: 25px;
+  width: 45px;
   float:none;
   align:center;
   background-color: white;
@@ -1007,6 +1016,11 @@ tr.timeRep_footer td{
   color: white;
   height: 30px;
   vertical-align: middle;
+}
+
+/* Last column */
+tr.timeRep_footer td + td + td +td +td +td {
+  font-weight : 900;
 }
 
 /* BUTTONS FOR SUBMITTING */

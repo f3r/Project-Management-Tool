@@ -16,49 +16,75 @@
   <thead>
     <TR class="timeRep_days">
       <TH> 
-      <TH>MON 
-      <TH>TUE 
-      <TH>WED 
-      <TH>THU 
-      <TH>FRI 
-      <TH>
+      <TH>Mon 
+      <TH>Tue 
+      <TH>Wed 
+      <TH>Thu 
+      <TH>Fri 
+      <TH>Week
   </thead>
   <tfoot>
     <TR class="timeRep_footer">
       <TH>
-      <TD>1.9
-      <TD>0
-      <TD>0
-      <TD>4.5
-      <TD>0
-      <TD><strong>6.1</strong>    
+      <TD id="total_1">0
+      <TD id="total_2">0
+      <TD id="total_3">0
+      <TD id="total_4">0
+      <TD id="total_5">0
+      <TD id="total_total">0  
   </tfoot>
   <tbody>
     <TR class="timeRep_proj">
       <TH>Project 1
-      <TD>1.9
-      <TD>0
-      <TD>0
-      <TD>4.2
-      <TD>0
-      <TD>6.1
+      <TD id="pr1_1">0
+      <TD id="pr1_2">0
+      <TD id="pr1_3">0
+      <TD id="pr1_4">0
+      <TD id="pr1_5">0
+      <TD id="pr1_total">0
     <TR class="timeRep_job">
-        <TD class="timeRep_job_title">My first job 
-        <TD><input class="hours" id="job1_mon"   size="2" type="text" value="0" onChange=validateInput(this.value)/>
-        <TD><input class="hours" id="job1_tue"   size="2" type="text" value="0"/>
-        <TD><input class="hours" id="job1_wed"   size="2" type="text" value="0"/>
-        <TD><input class="hours" id="job1_thu"   size="2" type="text" value="0"/>
-        <TD><input class="hours" id="job1_fri"   size="2" type="text" value="0"/>
-        <TD>12.2
+        <TH>My first job 
+        <TD><input class="hours" id="p1_j1_1"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p1_j1_2"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p1_j1_3"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p1_j1_4"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p1_j1_5"   size="2" type="text" value="0"/>
+        <TD id="p1_j1_total">0
     <TR class="timeRep_job">
-        <TD class="timeRep_job_title">My second job 
-        <TD><input class="hours" id="job2_mon"   size="2" type="text" value="0"/>
-        <TD><input class="hours" id="job2_tue"   size="2" type="text" value="0"/>
-        <TD><input class="hours" id="job2_wed"   size="2" type="text" value="0"/>
-        <TD><input class="hours" id="job2_thu"   size="2" type="text" value="0"/>
-        <TD><input class="hours" id="job2_fri"   size="2" type="text" value="0"/>
-        <TD>13.4
+        <TH>My second job 
+        <TD><input class="hours" id="p1_j2_1"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p1_j2_2"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p1_j2_3"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p1_j2_4"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p1_j2_5"   size="2" type="text" value="0"/>
+        <TD id="p1_j2_total">0
   </tbody>
+  <tbody>
+    <TR class="timeRep_proj">
+      <TH>Project 1
+      <TD id="pr12_1">0
+      <TD id="pr12_2">0
+      <TD id="pr12_3">0
+      <TD id="pr12_4">0
+      <TD id="pr12_5">0
+      <TD id="pr12_total">0
+    <TR class="timeRep_job">
+        <TH>My first job 
+        <TD><input class="hours" id="p12_j91_1"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p12_j91_2"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p12_j91_3"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p12_j91_4"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p12_j91_5"   size="2" type="text" value="0"/>
+        <TD id="p12_j91_total">0
+    <TR class="timeRep_job">
+        <TH>My second job 
+        <TD><input class="hours" id="p12_j192_1"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p12_j192_2"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p12_j192_3"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p12_j192_4"   size="2" type="text" value="0"/>
+        <TD><input class="hours" id="p12_j192_5"   size="2" type="text" value="0"/>
+        <TD id="p12_j192_total">0
+  </tbody>  
 </TABLE>
 <br /><br />
 <input type="submit" class="timeRep_button" value="Save & Continue"> 
@@ -66,13 +92,94 @@
 
 <script type="text/javascript" language="JavaScript">
 
-function validateInput() {
-  userInput = new String();
-  userInput = this.job1_mon.value;
-  if (userInput.match("@"))
-    alert("Thanks for your interest.");
-  else
-    alert("Please check your email details are correct before submitting");
+error = false;
+
+$('.hours').focusin(function() {
+   last_value = $(this).val();
+});
+
+$('.hours').click(function() {
+  if (this.value == 0) {
+    $(this).val("");
+  }
+});
+
+$('.hours').change(function() {
+  // If user leaves blank, we put a zero
+  if (this.value == "") {
+    $(this).val(0);
+  } 
+  // if user doesn't write a number
+  else if (isNaN(this.value) || isNaN(parseFloat(this.value))) {
+    error = true;
+    $(this).val(last_value);
+    alert('Please introduce a valid number!');
+    $(this).focus();
+  }
+});
+
+$('.hours').focusout(function() {
+
+  // we check that there has been no error
+  if (!error) {
+    project_id = this.id.split("_")[0].substr(1)
+    job_id     = this.id.split("_")[1].substr(1)
+    week_day   = this.id.split("_")[2]
+    hours      = this.value
+    
+    // Update Job TOTAL
+    total = 0
+    for(i=1;i<6;i++) {
+      total += parseFloat($("#p"+project_id+"_j"+job_id+"_"+i).val());
+    }
+    $("#p"+project_id+"_j"+job_id+"_total").html(total);
+    
+    // Update Project DAY
+    total = 0
+    $('input[id^="p'+project_id +'_j"][id$='+week_day+']').each(function() {
+      total += parseFloat($(this).val());
+    });
+    $("#pr"+project_id+"_"+week_day).html(total);
+      
+    // Update Project TOTAL
+    total = 0
+    for(i=1;i<6;i++) {
+      total += parseFloat($("#pr"+project_id+"_"+i).html());
+    }
+    $("#pr"+project_id+"_total").html(total);
+    
+    // Update Day TOTAL
+    total = 0
+    $('td[id^="pr"][id$='+week_day+']').each(function() {
+      total += parseFloat($(this).html());
+    });
+    $("#total_"+week_day).html(total);
+        
+    // Update Total TOTAL
+    total = 0
+    for(i=1;i<6;i++) {
+      total += parseFloat($("#total_"+i).html());
+    }
+    $("#total_total").html(total);    
+
+  } else {
+    error = false;
+  } 
+});
+
+// In case the user wants to leave the page
+window.onbeforeunload = function (e) {
+    var e = e || window.event;
+    var msg = '';
+
+    // For IE and Firefox
+    if (e) {
+        e.returnValue = msg;
+    }
+
+    // For Safari / chrome
+    return msg;
 }
+
 
 </script>
