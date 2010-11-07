@@ -977,7 +977,7 @@ tr.timeRep_job th {
   padding-left: 15px;
   text-align: left;
   background-color : #E0E0E0;
-  font-weight normal;
+  font-weight : normal;
 }
 
 /* Last column */
@@ -995,7 +995,7 @@ input.hours {
   padding: 10px;
   width: 45px;
   float:none;
-  align:center;
+  text-align:center;
   background-color: white;
 }
 

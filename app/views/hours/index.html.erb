@@ -104,21 +104,20 @@ $('.hours').click(function() {
   }
 });
 
-$('.hours').change(function() {
+$('.hours').focusout(function() {
+
   // If user leaves blank, we put a zero
   if (this.value == "") {
-    $(this).val(0);
-  } 
-  // if user doesn't write a number
+    $(this).val("0");
+    return false;
+  }   // if user doesn't write a number
   else if (isNaN(this.value) || isNaN(parseFloat(this.value))) {
     error = true;
     $(this).val(last_value);
     alert('Please introduce a valid number!');
     $(this).focus();
   }
-});
-
-$('.hours').focusout(function() {
+ 
 
   // we check that there has been no error
   if (!error) {
@@ -189,21 +188,23 @@ $('.hours').focusout(function() {
 $(document).ready(function() {
 
   // choose text for the show/hide link - can contain HTML (e.g. an image)
-  var showText= 'show';
-  var hideText= 'hide';
+  var expand  = '<img src="/images/expand.png" />';
+  var contract= '<img src="/images/contract.png" />';
   
-  // append show/hide links to the element directly preceding the element with a class of "toggle"
-  $('th[id^=timeRep_proj_]').prepend('(<a href="#" class="toggleLink">'+showText+'</a>) ');
+  // append show/hide links
+  $('th[id^=timeRep_proj_]').prepend('<a href="#" class="toggleLink">'+expand+'</a> ');
   
   // hide all of the elements with a class of 'toggle'
   $('.timeRep_job').hide();
   
-  // capture clicks on the toggle links
+  // change the link depending on whether the element is shown or hidden
   $('a.toggleLink').click(function() {
   
-    // change the link depending on whether the element is shown or hidden
-    $(this).html( ($(this).html().substr(1,5) == hideText) ? showText : hideText);
-    
+    if ($(this).html().search("expand") != -1) {
+      $(this).html(contract);
+    } else {
+      $(this).html(expand);
+    };
     
     // toggle the display
     $(this).parent().parent().siblings().toggle(1000);  
@@ -212,6 +213,5 @@ $(document).ready(function() {
     return false;
   });
 });
-
 
 </script>
