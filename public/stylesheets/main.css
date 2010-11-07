@@ -912,82 +912,108 @@ input.ac_loading[type='text']{
 }
 
 
-/* TIME REPORT */
-table#timeReport {
-  margin-left: 5em;
-  width:90%;
+/* TIME REPORT TABLE */
+table.timeReport {
+  margin: auto;
+  width:95%;
   border:1px black solid;
 }
 
-tr#timeRep_dateNav {
-  background-color: #333;
+/* WEEK NAVIGATION */
+tr.timeRep_dateNav th {
+  background-color: #000;
   color: white;
-  height :20px;
-  vertical-align: bottom;
-  font-size: 1.5em;
+  height :30px;
+  vertical-align: middle;
+  font-size: 20px;
 }
 
-tr#timeRep_days {
-  background-color:#666;
+/* DAYS OF THE WEEK */
+
+tr.timeRep_days th {
+  background-color:#333;
   text-align: center;
   color: white; 
-  font-size: 1.2em;   
+  font-size: 16px;
+  height: 26px;
+  vertical-align: middle;
 }
 
-tr#timeRep_proj {
+/* PROJECT LINE */
+
+tr.timeRep_proj {
   background-color:#abc;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   height: 30px;
   font-size: 17px;
+  font-weight:bold;
   text-align: center;
   vertical-align: middle;   
 }
 
-th#timeRep_proj {
-  padding-left: 10px;
+tr.timeRep_proj th {
+  padding-left: 5px;
   text-align: left;
-  vertical-align: middle;  
+  vertical-align: middle;
 }
 
-td#timeRep_proj {
-  vertical-align: middle;  
-}
-
-td#timeRep_hours {
+tr.timeRep_proj td {
   border:0px;
   text-align :center;
+  vertical-align: middle;
 }
 
-tr#timeRep_hours {
-  border:0px;
-  text-align :center;
+/* JOB LINE */
+
+tr.timeRep_job {
+  border: 0px;
+  text-align: center;
+  font-size:  15px;  
 }
 
-td#timeRep_job {
-  border:0px;
-  text-align :left;
-  font-size: 1.2em;
+td.timeRep_job_title {
+  padding-left: 15px;
+  text-align: left;
 }
 
-tr#timeRep_footer {
-  background-color:#222;
-  border:1px black solid;
-  text-align :center;
-  color: white;
-  
-}
-
-input#blah {
+input.hours {
   border: 0px solid darkgrey;
   color: #444;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1em;
+  font-size: 14px;
   text-align: center;
-  padding: .5em;
+  padding: 10px;
   width: 25px;
   float:none;
   align:center;
+  background-color: white;
+}
+
+input.hours:focus,
+input.hours:hover {
   background-color :#F8D291;
+}
+
+/* FOOTER: DAILY ACCUMULATED */
+
+tr.timeRep_footer th,
+tr.timeRep_footer td{
+  background-color:#222;
+  border-top:1px black solid;
+  border-bottom:1px black solid;  
+  text-align :center;
+  font-size: 17px;
+  color: white;
+  height: 30px;
+  vertical-align: middle;
+}
+
+/* BUTTONS FOR SUBMITTING */
+
+input.timeRep_button {
+  margin-right:22px;
+  width:180px;
+  background-color:#333333;
 }
 
