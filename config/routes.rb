@@ -6,9 +6,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories, :has_many => :employees
   map.resources :employees
   map.resources :expensereports
-  map.resources :hours
-  #map.resources :jobs
-
+  map.connect 'hoursreports/:year/:week',
+             :controller => 'hours',
+             :action     => 'index'
+ 
   map.connect 'js/:emp_id/:week_no/:year',
              :controller => 'Js',
              :action     => 'index'

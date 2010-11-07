@@ -926,6 +926,7 @@ tr.timeRep_dateNav th {
   height :30px;
   vertical-align: middle;
   font-size: 20px;
+  border-bottom: 2px solid #fff;
 }
 
 /* DAYS OF THE WEEK */
@@ -938,6 +939,13 @@ tr.timeRep_days th {
   height: 26px;
   vertical-align: middle;
 }
+
+a.timeRep_days {
+  text-decoration : none;
+  color : white;
+  font-size: 28px;
+}
+
 
 /* PROJECT LINE */
 
