@@ -173,6 +173,6 @@ $(document).ready(function() {
   
   // We TOTALIZE for every job hour there is in the document (PreLoad Sum Hours)
   $('.hours').trigger('focusout');
-  $('.hours_signed').trigger('focusout');
+  //$('.hours_signed').trigger('focusout');
 });
 
