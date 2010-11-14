@@ -37,4 +37,8 @@ module HoursHelper
     p = (Project.find_by_sql ["SELECT DISTINCT (p.date_start) FROM projects p, jobs j WHERE p.id=j.project_id AND j.employee_id=1"])
     return (p.min { |a,b| a[:date_start] <=> b[:date_start] })["date_start"]
   end
+  
+  def ftoi(foo)
+     return (foo.to_i == foo)? foo.to_i : foo
+  end  
 end

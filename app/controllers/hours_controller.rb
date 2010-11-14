@@ -29,17 +29,28 @@ class HoursController < ApplicationController
   end
   
   def saveHours
-
-      # We get all the jobs from
+    # We check if the user wants to save data
+    if params["commit"] == "Save & Continue"
+      # We get all the jobs from the params and save all of them
       params['job'].each do |job|
         saveWeekHoursForJob(params['year'],params['week'],job)
       end
             
-      @year = Time.now.year.to_i
-      @week = Time.now.strftime("%W")
       flash[:notice] = 'Hours successfully updated!'
-      redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
+      redirect_to url_for(:action => 'index', :year => params['year'], :week => params['week'], :escape => false)
       return
+
+    # If the user wants to SIGN the report
+    else
+      # We get all the jobs from the jobs, and save+sign all of them
+      params['job'].each do |job|
+        saveAndSignWeekHoursForJob(params['year'],params['week'],job)
+      end
+
+      flash[:notice] = 'Your report has been signed'
+      redirect_to url_for(:action => 'index', :year => params['year'], :week => params['week'], :escape => false)
+      return
+    end      
   end
   
 private
@@ -91,7 +102,30 @@ private
                               :h_wed => wed, :h_thu => thu, :h_fri => fri, :signed => false)
       else
         # update attributes with new hours
-        @job.week_hour.update_attributes(:h_mon => mon, :h_tue => tue, :h_wed => wed, :h_thu => thu, :h_fri => fri)
+        @hours.update_attributes(:h_mon => mon, :h_tue => tue, :h_wed => wed, :h_thu => thu, :h_fri => fri)
       end    
   end
+  
+  def saveAndSignWeekHoursForJob(year,week,jobArray)
+      @job  = Job.find(jobArray[0])
+      
+      # parse params
+      mon = jobArray[1]['mon'].to_i
+      tue = jobArray[1]['tue'].to_i
+      wed = jobArray[1]['wed'].to_i
+      thu = jobArray[1]['thu'].to_i
+      fri = jobArray[1]['fri'].to_i
+
+      @hours = @job.week_hour.find(:first, :conditions => { :year => year, :week => week })
+
+      # If there are no hours associated with this job in this week,year
+      if @hours.blank?
+        # create hours
+        @job.week_hour.create(:year => year, :week => week, :h_mon => mon, :h_tue => tue, 
+                              :h_wed => wed, :h_thu => thu, :h_fri => fri, :signed => true)
+      else
+        # update attributes with new hours
+        @hours.update_attributes(:h_mon => mon, :h_tue => tue, :h_wed => wed, :h_thu => thu, :h_fri => fri, :signed => true)
+      end    
+  end  
 end

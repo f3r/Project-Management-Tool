@@ -41,10 +41,22 @@
       <%= render :partial => "project_line", 
                  :locals => {:pid => project.id.to_s, :proj_title => project.name} %>
       <%  jobs = get_jobs(project)
-          jobs.each do |job| %>                   
-        <%= render :partial => "job_line", 
-                   :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name} %>
-      <% end %>
+
+          jobs.each do |job| %>
+            <% hours = job.week_hour.find(:first, :conditions => { :year => @year, :week => @week}) 
+               if hours.blank? 
+                   hours = job.week_hour.create(:year=>@year,:week=>@week,:h_mon=>0,:h_tue=>0, 
+                              :h_wed=>0,:h_thu=>0,:h_fri=>0,:signed=>false)           
+               end %>
+             <% if hours.signed? %>
+                <%= render :partial => "job_line_signed", 
+                           :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
+             <% else %>
+                <%= render :partial => "job_line", 
+                           :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
+
+             <% end %>
+      <%  end %>
     </tbody>
     <% end %>
 
