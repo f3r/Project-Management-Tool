@@ -29,11 +29,10 @@ class HoursController < ApplicationController
   end
   
   def saveHours
-      logger.error { "Year: #{@year}" }
 
       # We get all the jobs from
       params['job'].each do |job|
-        saveWeekHoursForJob(@year,@week,job)
+        saveWeekHoursForJob(params['year'],params['week'],job)
       end
             
       @year = Time.now.year.to_i
@@ -73,17 +72,26 @@ private
     end
   end  
 
-  def saveWeekHoursForJob(year,week,job)
-      @job = Job.find(job[0])
+  def saveWeekHoursForJob(year,week,jobArray)
+      @job  = Job.find(jobArray[0])
+      
+      # parse params
+      mon = jobArray[1]['mon'].to_i
+      tue = jobArray[1]['tue'].to_i
+      wed = jobArray[1]['wed'].to_i
+      thu = jobArray[1]['thu'].to_i
+      fri = jobArray[1]['fri'].to_i
 
-      logger.error { "Year: #{year}" }
-      logger.error { "Week: #{week}" }
-      logger.error { "JOB NO: #{@job.id}" }
-      logger.error { "JOB Name: #{@job.name}" }
+      @hours = @job.week_hour.find(:first, :conditions => { :year => year, :week => week })
 
-      #@hours = @job.week_hour.find(:first, :conditions => { :year => year, :week => week })
-      #if @hours.
-      #  
-      #end    
+      # If there are no hours associated with this job in this week,year
+      if @hours.blank?
+        # create hours
+        @job.week_hour.create(:year => year, :week => week, :h_mon => mon, :h_tue => tue, 
+                              :h_wed => wed, :h_thu => thu, :h_fri => fri, :signed => false)
+      else
+        # update attributes with new hours
+        @job.week_hour.update_attributes(:h_mon => mon, :h_tue => tue, :h_wed => wed, :h_thu => thu, :h_fri => fri)
+      end    
   end
 end
