@@ -6,7 +6,7 @@ $('.hours').focusin(function() {
 });
 
 $('.hours').click(function() {
-  if (this.value == 0) {
+  if ((this.value == 0) && ($(this).hasClass('nosign'))) {
     $(this).val("");
   }
 });
@@ -80,53 +80,6 @@ $('.hours').focusout(function() {
   } 
 });
 
-//
-// All the logic for Hours that are SIGNED
-//
-$('.hours_signed').keydown(function() {
-  
-  project_id = this.id.split("_")[0].substr(1)
-  job_id     = this.id.split("_")[1].substr(1)
-  week_day   = this.id.split("_")[2]
-  hours      = this.value
-  
-  // Update Job TOTAL
-  total = 0
-  for(i=1;i<6;i++) {
-    total += parseFloat($("#p"+project_id+"_j"+job_id+"_"+i).val());
-  }
-  $("#p"+project_id+"_j"+job_id+"_total").html(total);
-  
-  // Update Project ALL JOBS OF DAY 
-  total = 0
-  $('input[id^="p'+project_id +'_j"][id$='+week_day+']').each(function() {
-    total += parseFloat($(this).val());
-  });
-  $("#pr"+project_id+"_"+week_day).html(total);
-    
-  // Update Project WEEK TOTAL
-  total = 0
-  for(i=1;i<6;i++) {
-    total += parseFloat($("#pr"+project_id+"_"+i).html());
-  }
-  $("#pr"+project_id+"_total").html(total);
-  
-  // Update Day TOTAL
-  total = 0
-  $('td[id^="pr"][id$='+week_day+']').each(function() {
-    total += parseFloat($(this).html());
-  });
-  $("#total_"+week_day).html(total);
-      
-  // Update Total TOTAL
-  total = 0
-  for(i=1;i<6;i++) {
-    total += parseFloat($("#total_"+i).html());
-  }
-  $("#total_total").html(total);
-});
-
-
 // In case the user wants to leave the page
 //window.onbeforeunload = function (e) {
 //    var e = e || window.event;
@@ -173,6 +126,5 @@ $(document).ready(function() {
   
   // We TOTALIZE for every job hour there is in the document (PreLoad Sum Hours)
   $('.hours').trigger('focusout');
-  //$('.hours_signed').trigger('focusout');
 });
 
