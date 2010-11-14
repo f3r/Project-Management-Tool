@@ -1049,6 +1049,12 @@ input.timeRep_button {
   background-color:#333333;
 }
 
+input.timeRep_button_left {
+  margin-left:22px;
+  width:180px;
+  background-color:#333333;
+}
+
 a.toggleLink {
   vertical-align: middle;
   text-decoration : none;

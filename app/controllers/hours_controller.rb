@@ -30,7 +30,7 @@ class HoursController < ApplicationController
   
   def saveHours
     # We check if the user wants to save data
-    if params["commit"] == "Save & Continue"
+    if params["commit"] == "Save"
       # We get all the jobs from the params and save all of them
       params['job'].each do |job|
         saveWeekHoursForJob(params['year'],params['week'],job)
