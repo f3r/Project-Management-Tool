@@ -103,7 +103,7 @@ $(document).ready(function() {
   var contract= '<img src="/images/contract.png" />';
   
   // append show/hide links
-  $('th[id^=timeRep_proj_]').prepend('<a href="#" class="toggleLink">'+expand+'</a> ');
+  $('th[id^=timeRep_proj_]').prepend('<a href="#" class="toggleLink">'+contract+'</a> ');
   
   // hide all of the elements with a class of 'toggle'
   //$('.timeRep_job').hide();
