@@ -29,6 +29,8 @@ class HoursController < ApplicationController
   end
   
   def saveHours
+      logger.error { "Year: #{@year}" }
+
       # We get all the jobs from
       params['job'].each do |job|
         saveWeekHoursForJob(@year,@week,job)
@@ -72,10 +74,14 @@ private
   end  
 
   def saveWeekHoursForJob(year,week,job)
-      logger.error { "JOB NO: #{job[0]}" }
-      
       @job = Job.find(job[0])
-      @hours = @job.week_hour.find(:first, :conditions => { :year => year, :week => week })
+
+      logger.error { "Year: #{year}" }
+      logger.error { "Week: #{week}" }
+      logger.error { "JOB NO: #{@job.id}" }
+      logger.error { "JOB Name: #{@job.name}" }
+
+      #@hours = @job.week_hour.find(:first, :conditions => { :year => year, :week => week })
       #if @hours.
       #  
       #end    
