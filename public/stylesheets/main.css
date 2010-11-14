@@ -1050,7 +1050,8 @@ input.timeRep_button {
 }
 
 input.timeRep_button_left {
-  margin-left:22px;
+  float:left;
+  margin-left: 20px;
   width:180px;
   background-color:#333333;
 }
