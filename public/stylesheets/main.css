@@ -1053,7 +1053,8 @@ input.timeRep_button_left {
   float:left;
   margin-left: 20px;
   width:180px;
-  background-color:#333333;
+  color:black;
+  background-color:#ccc;
 }
 
 a.toggleLink {
