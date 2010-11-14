@@ -128,3 +128,9 @@ $(document).ready(function() {
   $('.hours').trigger('focusout');
 });
 
+function confirmSign()
+{
+  var agree=confirm("Are you sure you want to sign this report?");
+  if (agree) return true ;
+  else       return false ;
+}

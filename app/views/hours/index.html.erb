@@ -34,9 +34,11 @@
       <TD id="total_total">0  
   </tfoot>
   <form method="post" action="<%= request.request_uri %>/saveHours" >
-    <%= token_tag%>
+    <%= token_tag %>
     
-    <% @projects.each do |project|  %>
+    <% 
+    jobs_are_signed = false
+    @projects.each do |project|  %>
     <tbody>
       <%= render :partial => "project_line", 
                  :locals => {:pid => project.id.to_s, :proj_title => project.name} %>
@@ -48,7 +50,8 @@
                    hours = job.week_hour.create(:year=>@year,:week=>@week,:h_mon=>0,:h_tue=>0, 
                               :h_wed=>0,:h_thu=>0,:h_fri=>0,:signed=>false)           
                end %>
-             <% if hours.signed? %>
+             <% if hours.signed? 
+                    jobs_are_signed = true %>
                 <%= render :partial => "job_line_signed", 
                            :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
              <% else %>
@@ -62,8 +65,9 @@
 
 </TABLE>
 <br /><br />
-
-  <input name="commit" type="submit" class="timeRep_button" value="Save"> 
-  <input name="commit" type="submit" class="timeRep_button_left" value="Sign Report" >
+  <% if !jobs_are_signed %>
+    <input name="commit" type="submit" class="timeRep_button" value="Save"> 
+    <input name="commit" type="submit" class="timeRep_button_left" value="Sign Report" onClick="return confirmSign()">
+  <% end%>
 </form>
 <%= javascript_include_tag 'hour_management' %>
