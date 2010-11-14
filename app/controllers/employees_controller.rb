@@ -2,8 +2,6 @@ class EmployeesController < ApplicationController
   include ApplicationHelper
   before_filter :protect_user
 
-  before_filter :check_for_cancel, :only => [:create, :update]
-  
   def index
     begin
         @employees = Employee.all
@@ -39,13 +37,17 @@ class EmployeesController < ApplicationController
 
   def create
     begin
+      if params[:commit] == "Cancel"
+        redirect_to(@employee)
+      else
         @employee = Employee.create_employee(params[:employee])
         if @employee.save
             flash[:notice] = 'Employee was successfully created.'
             redirect_to(@employee)
         else
             render :action => "new" 
-        end        
+        end
+      end        
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/create] #{e.message}"  }
     end
@@ -53,6 +55,9 @@ class EmployeesController < ApplicationController
 
   def update
     begin
+      if params[:commit] == "Cancel"
+        redirect_to(@employee)
+      else      
         @employee = Employee.find(params[:id])
 
         if @employee.update_attributes(params[:employee])
@@ -61,6 +66,7 @@ class EmployeesController < ApplicationController
         else
             render :action => "edit"
         end
+      end
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/update] #{e.message}"  }
     end

@@ -1,42 +1,61 @@
 <% form_for(@employee, :html => { :multipart => true }) do |f| %>
-  <%= f.error_messages %>
-	<div class="form_row">
-		<label> First Name </label>
-        <%= f.text_field :first_name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-	</div>
-	<div class="form_row">
-		<label> Last Name </label>
-        <%= f.text_field :last_name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-	</div>
-	<div class="form_row">
-		<label> Email</label>
-        <%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-	</div>
-	<div class="form_row">
-		<label> NIF</label>
-        <%= f.text_field :nif, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-	</div>
-	<div class="form_row">
-		<label> Phone </label>
-        <%= f.text_field :phone, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-	</div>
-	<div class="form_row">
-		<label> Mobile Phone</label>
-        <%= f.text_field :mobile, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-	</div>
-	<div class="form_row">
-		<label> Role</label>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, :prompt => true) %>
-	</div>
-	<div class="form_row">
-		<label> Join Date</label>
-        <%= date_select("employee","join_date", options = {:order => [:day, :month, :year], :start_year => 2010}) %>
-	</div>
-	<div class="form_row">
-		<label> Photo</label>
-        <%= f.file_field :photo %>
-	</div>
-	<div class="form_row">
-        <%= f.submit 'Save Employee' %> &nbsp; <%= submit_tag "Cancel" %>
-	</div>
+<%= f.error_messages %>
+<div class="form_row">
+    <label>
+        First Name
+    </label>
+    <%= f.text_field :first_name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+</div>
+<div class="form_row">
+    <label>
+        Last Name
+    </label>
+    <%= f.text_field :last_name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+</div>
+<div class="form_row">
+    <label>
+        Email
+    </label>
+    <%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+</div>
+<div class="form_row">
+    <label>
+        NIF
+    </label>
+    <%= f.text_field :nif, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+</div>
+<div class="form_row">
+    <label>
+        Phone
+    </label>
+    <%= f.text_field :phone, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+</div>
+<div class="form_row">
+    <label>
+        Mobile Phone
+    </label>
+    <%= f.text_field :mobile, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
+</div>
+<div class="form_row">
+    <label>
+        Role
+    </label>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, :prompt => true) %>
+</div>
+<div class="form_row">
+    <label>
+        Join Date
+    </label>
+    <%= date_select("employee","join_date", options = {:order => [:day, :month, :year], :start_year => 2010}) %>
+</div>
+<div class="form_row">
+    <label>
+        Photo
+    </label>
+    <%= f.file_field :photo %>
+</div>
+<div class="form_row">
+    <%= f.submit 'Save Employee' %>  &nbsp;
+    <input name="cancel" type="submit" value="Cancel" onClick="history.back();return false;">
+</div>
 <% end -%>

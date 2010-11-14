@@ -14,6 +14,7 @@
         <%= f.collection_select(:employee_id, @employees, :id, :full_name) %>
 	</div>
 	<div class="form_row">
-		<%= f.submit 'Update' %> &nbsp; <%= submit_tag "Cancel" %>
+		<%= f.submit 'Update' %> &nbsp; 
+		<input name="cancel" type="submit" value="Cancel" onClick="history.back();return false;">
 	</div>
 <% end %>

@@ -3,8 +3,6 @@ class ProjectsController < ApplicationController
   include ApplicationHelper
   before_filter :protect_user
   
-  before_filter :check_for_cancel, :only => [:create, :update]
-  
   def get_projects
       @status = Status.all
       if params[:id] == 0 

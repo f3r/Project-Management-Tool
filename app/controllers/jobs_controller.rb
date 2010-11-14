@@ -3,7 +3,6 @@ class JobsController < ApplicationController
   before_filter :protect_user
 
   before_filter :load_project, :only => [:new, :create]
-  before_filter :check_for_cancel, :only => [:create, :update]
   
   def new
     begin
@@ -16,14 +15,18 @@ class JobsController < ApplicationController
   end
 
   def create
-    @project = Project.find(params[:project_id])
-    @job = @project.jobs.new(params[:job])
-    if @job.save
-      flash[:notice] = 'Job was successfully created.'
+    if params[:commit] == "Cancel"
       redirect_to(@job.project)
-    else
-      flash[:notice] = "Error creating job: #{@job.errors}"
-      redirect_to(@job.project)
+    else  
+      @project = Project.find(params[:project_id])
+      @job = @project.jobs.new(params[:job])
+      if @job.save
+        flash[:notice] = 'Job was successfully created.'
+        redirect_to(@job.project)
+      else
+        flash[:notice] = "Error creating job: #{@job.errors}"
+        redirect_to(@job.project)
+      end
     end
   end
 
@@ -38,12 +41,16 @@ class JobsController < ApplicationController
 
   def update
     begin
-      @job = Job.find(params[:id])
-      if @job.update_attributes(params[:job])
-        flash[:notice] = "Job was successfully updated."
+      if params[:commit] == "Cancel"
         redirect_to(@job.project)
-      else
-        render :action => 'edit'
+      else  
+        @job = Job.find(params[:id])
+        if @job.update_attributes(params[:job])
+          flash[:notice] = "Job was successfully updated."
+          redirect_to(@job.project)
+        else
+          render :action => 'edit'
+        end
       end
     rescue Exception => e
       logger.error { "Error [jobs_controller.rb/update] #{e.message}" }

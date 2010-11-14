@@ -37,6 +37,7 @@
         <%= f.text_area :notes, :cols => TEXT_FIELD_SIZE, :rows => 10 %>
 	</div>
 	<div class="form_row">
-        <%= f.submit 'Save Client' %>
+        <%= f.submit 'Save Client' %> &nbsp;
+        <input name="cancel" type="submit" value="Cancel" onClick="history.back();return false;">
 	</div>
 <% end -%>

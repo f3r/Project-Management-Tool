@@ -34,9 +34,10 @@
   </div>
 	<div class="form_row">
         <% if @current_action == "new" %>
-            <%= f.submit 'Create New Project' %>
+            <%= f.submit 'Create New Project' %> 
         <% else %>
             <%= f.submit 'Update Project' %>
         <% end %>
+        &nbsp; <input name="cancel" type="submit" value="Cancel" onClick="history.back();return false;">
 	</div>
 <% end -%>

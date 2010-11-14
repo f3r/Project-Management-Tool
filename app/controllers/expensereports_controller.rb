@@ -3,7 +3,7 @@ class ExpensereportsController < ApplicationController
   before_filter :protect_user
 
   def index
-    @expensereports = Expensereport.all
+    @expensereports = Expensereport.find_all_by_employee_id(session[:user_id])
   end
 
   def show

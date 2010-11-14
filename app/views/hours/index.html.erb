@@ -19,55 +19,64 @@
 </table>
 
 <TABLE class="timeReport">
-  <thead>
-    <TR class="timeRep_days">
-      <TH> <TH>Mon <TH>Tue <TH>Wed <TH>Thu <TH>Fri <TH>Total Week
-  </thead>
-  <tfoot>
-    <TR class="timeRep_footer">
-      <TH> Total Day
-      <TD id="total_1">0
-      <TD id="total_2">0
-      <TD id="total_3">0
-      <TD id="total_4">0
-      <TD id="total_5">0
-      <TD id="total_total">0  
-  </tfoot>
-  <form method="post" action="<%= request.request_uri %>/saveHours" >
-    <%= token_tag %>
+  <% if @projects.blank? %>
+      <tbody>
+        <tr class="timeRep_empty"><th colspan="6" >No projects to show this week
+      </tbody>
+      </table>
+  <% else %>  
+      <thead>
+        <TR class="timeRep_days">
+          <TH> <TH>Mon <TH>Tue <TH>Wed <TH>Thu <TH>Fri <TH>Total Week
+      </thead>
+      <tfoot>
+        <TR class="timeRep_footer">
+          <TH> Total Day
+          <TD id="total_1">0
+          <TD id="total_2">0
+          <TD id="total_3">0
+          <TD id="total_4">0
+          <TD id="total_5">0
+          <TD id="total_total">0  
+      </tfoot>
+      <form method="post" action="<%= request.request_uri %>/saveHours" >
+        <%= token_tag %>
+        
+        <% 
+        jobs_are_signed = false
+        @projects.each do |project|  %>
+        <tbody>
+          <%= render :partial => "project_line", 
+                     :locals => {:pid => project.id.to_s, :proj_title => project.name} %>
+          <%  jobs = get_jobs(project)
     
-    <% 
-    jobs_are_signed = false
-    @projects.each do |project|  %>
-    <tbody>
-      <%= render :partial => "project_line", 
-                 :locals => {:pid => project.id.to_s, :proj_title => project.name} %>
-      <%  jobs = get_jobs(project)
-
-          jobs.each do |job| %>
-            <% hours = job.week_hour.find(:first, :conditions => { :year => @year, :week => @week}) 
-               if hours.blank? 
-                   hours = job.week_hour.create(:year=>@year,:week=>@week,:h_mon=>0,:h_tue=>0, 
-                              :h_wed=>0,:h_thu=>0,:h_fri=>0,:signed=>false)           
-               end %>
-             <% if hours.signed? 
-                    jobs_are_signed = true %>
-                <%= render :partial => "job_line_signed", 
-                           :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
-             <% else %>
-                <%= render :partial => "job_line", 
-                           :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
-
-             <% end %>
-      <%  end %>
-    </tbody>
-    <% end %>
-
-</TABLE>
-<br /><br />
-  <% if !jobs_are_signed %>
-    <input name="commit" type="submit" class="timeRep_button" value="Save"> 
-    <input name="commit" type="submit" class="timeRep_button_left" value="Sign Report" onClick="return confirmSign()">
-  <% end%>
-</form>
-<%= javascript_include_tag 'hour_management' %>
+              jobs.each do |job| %>
+                <% hours = job.week_hour.find(:first, :conditions => { :year => @year, :week => @week}) 
+                   if hours.blank? 
+                       hours = job.week_hour.create(:year=>@year,:week=>@week,:h_mon=>0,:h_tue=>0, 
+                                  :h_wed=>0,:h_thu=>0,:h_fri=>0,:signed=>false)           
+                   end %>
+                 <% if hours.signed? 
+                        jobs_are_signed = true %>
+                    <%= render :partial => "job_line_signed", 
+                               :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
+                 <% else %>
+                    <%= render :partial => "job_line", 
+                               :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
+    
+                 <% end %>
+          <%  end %>
+        </tbody>
+        <% end %>
+    
+    </TABLE>
+    <br /><br />
+      <% if !jobs_are_signed %>
+        <input name="commit" type="submit" class="timeRep_button" value="Save"> 
+        <input name="commit" type="submit" class="timeRep_button_left" value="Sign Report" onClick="return confirmSign()">
+      <% else %>
+        <input name="commit" type="submit" class="timeRep_button_signed" value="This Report is already signed" onClick="return false;"> 
+      <% end%>
+    </form>
+    <%= javascript_include_tag 'hour_management' %>
+<% end %>

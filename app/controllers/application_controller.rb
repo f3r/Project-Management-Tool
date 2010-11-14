@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   private 
-  def check_for_cancel
-      if params[:commit] == "Cancel"
-          redirect_to :action => "show"
-      end
-  end
 
   def instantiate_controller_and_action_names
       @current_action = action_name
