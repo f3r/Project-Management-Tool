@@ -29,7 +29,6 @@ class Employee < ActiveRecord::Base
     
     def self.create_employee(params)
       begin
-          logger.error { "PARAMS TO CREATE EMPLOYEE #{params.to_yaml}" }
           user = Employee.new(params)
           user.password = user.nif
           user.password_confirmation = user.nif
@@ -110,6 +109,7 @@ class Employee < ActiveRecord::Base
             logger.error { "Error [employee.rb/new_reset_uuid] #{e.message}" }
         end
     end     
+
     def self.get_partners
         begin
             return Employee.find(:all, :conditions => ["category_id =?",2]) 

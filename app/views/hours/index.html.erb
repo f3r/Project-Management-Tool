@@ -4,9 +4,17 @@
 <TABLE class="timeReport">
   <thead>
     <TR class="timeRep_dateNav">
-      <TH> <%= link_to "&laquo;", url_for_prev_week(@year, @week), :class => "timeRep_days"  %> 
+      <TH> <% # Don't allow to navigate before your first project start date 
+              if start_date < Date.commercial(@year,@week, 1) %>
+              <%= link_to "&laquo;", url_for_prev_week(@year, @week), :class => "timeRep_days"  %>
+           <% end %> 
+
       <TH> <%= show_date(@year, @week) %> 
-      <TH> <%= link_to "&raquo;", url_for_next_week(@year, @week), :class => "timeRep_days" %>
+
+      <TH> <% # Don't allow to put future dates
+              if Date.commercial(@year,@week, 7) < Date.today %>
+              <%= link_to "&raquo;", url_for_next_week(@year, @week), :class => "timeRep_days" %>
+           <% end %>
   </thead>
 </table>
 
@@ -25,33 +33,25 @@
       <TD id="total_5">0
       <TD id="total_total">0  
   </tfoot>
-  
-  <tbody>
-    <%= render :partial => "project_line", 
-               :locals => {:pid => "1", :proj_title => "First Project"} %>
-    <%= render :partial => "job_line", 
-               :locals => {:id => "1", :pid => "1", :job_title => "My first jobbb"} %>
-    <%= render :partial => "job_line", 
-               :locals => {:id => "2", :pid => "1", :job_title => "My second job"} %>
-  </tbody>
+  <form method="post" action="<%= request.request_uri %>/saveHours" >
+    <%= token_tag%>
+    
+    <% @projects.each do |project|  %>
+    <tbody>
+      <%= render :partial => "project_line", 
+                 :locals => {:pid => project.id.to_s, :proj_title => project.name} %>
+      <%  jobs = get_jobs(project)
+          jobs.each do |job| %>                   
+        <%= render :partial => "job_line", 
+                   :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name} %>
+      <% end %>
+    </tbody>
+    <% end %>
 
-  <tbody>
-    <%= render :partial => "project_line", 
-               :locals => {:pid => "12", :proj_title => "Second Project"} %>
-    <%= render :partial => "job_line", 
-               :locals => {:id => "91", :pid => "12", :job_title => "Another job"} %>
-    <%= render :partial => "job_line", 
-               :locals => {:id => "33", :pid => "12", :job_title => "even one more job"} %>
-    <%= render :partial => "job_line", 
-               :locals => {:id => "76", :pid => "12", :job_title => "even another more job"} %>
-    <%= render :partial => "job_line", 
-               :locals => {:id => "142", :pid => "12", :job_title => "ok, this is cool"} %>
-    <%= render :partial => "job_line", 
-               :locals => {:id => "74", :pid => "12", :job_title => "yeah!!!"} %>
-  </tbody>  
 </TABLE>
 <br /><br />
-<input type="submit" class="timeRep_button" value="Save & Continue"> 
-<input type="submit" class="timeRep_button" value="Sign Report" >
 
+  <input name="commit" type="submit" class="timeRep_button" value="Save & Continue"> 
+  <input name="commit" type="submit" class="timeRep_button" value="Sign Report" >
+</form>
 <%= javascript_include_tag 'hour_management' %>

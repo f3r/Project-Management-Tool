@@ -1,9 +1,9 @@
     <TR class="timeRep_job">
         <TH><%= job_title %>
         <% idAll = 'p'+pid+'_j'+id+'_' %>
-        <TD><input class="hours" id="<%= idAll+'1' %>"  size="2" type="text" value="0"/>
-        <TD><input class="hours" id="<%= idAll+'2' %>"  size="2" type="text" value="0"/>
-        <TD><input class="hours" id="<%= idAll+'3' %>"  size="2" type="text" value="0"/>
-        <TD><input class="hours" id="<%= idAll+'4' %>"  size="2" type="text" value="0"/>
-        <TD><input class="hours" id="<%= idAll+'5' %>"  size="2" type="text" value="0"/>
+        <TD><input class="hours" id="<%= idAll+'1' %>" name="job[<%= id %>][mon]" size="2" type="text" value="0"/>
+        <TD><input class="hours" id="<%= idAll+'2' %>" name="job[<%= id %>][tue]" size="2" type="text" value="0"/>
+        <TD><input class="hours" id="<%= idAll+'3' %>" name="job[<%= id %>][wed]" size="2" type="text" value="0"/>
+        <TD><input class="hours" id="<%= idAll+'4' %>" name="job[<%= id %>][thu]" size="2" type="text" value="0"/>
+        <TD><input class="hours" id="<%= idAll+'5' %>" name="job[<%= id %>][fri]" size="2" type="text" value="0"/>
         <TD id="<%= idAll+'total' %>">0

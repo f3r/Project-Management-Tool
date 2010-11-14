@@ -26,4 +26,15 @@ module HoursHelper
     end
     return url_for(:action => 'index', :year => year.to_s, :week => week.to_s, :escape => false)
   end
+  
+  def get_jobs(project)
+    return project.jobs.find_all_by_employee_id(session[:user_id])
+  end
+  
+  # Calculates the earliest starting date for the employee
+  # We select all the projects that have a job assigned to the employee and return the earliest
+  def start_date
+    p = (Project.find_by_sql ["SELECT DISTINCT (p.date_start) FROM projects p, jobs j WHERE p.id=j.project_id AND j.employee_id=1"])
+    return (p.min { |a,b| a[:date_start] <=> b[:date_start] })["date_start"]
+  end
 end

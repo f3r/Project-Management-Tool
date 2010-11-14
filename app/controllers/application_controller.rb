@@ -14,10 +14,7 @@ class ApplicationController < ActionController::Base
   private 
   def check_for_cancel
       if params[:commit] == "Cancel"
-=begin
-    TODO change to @current_controller.show or something like that 
-=end
-          redirect_to :back
+          redirect_to :action => "show"
       end
   end
 

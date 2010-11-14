@@ -17,15 +17,19 @@ $('.hours').focusout(function() {
   if (this.value == "") {
     $(this).val("0");
     return false;
-  }   // if user doesn't write a number
-  else if (isNaN(this.value) || isNaN(parseFloat(this.value))) {
+  }
+  // We help the user to change "," for "."
+  if (this.value.indexOf(",") != -1) {
+    this.value = this.value.replace(",",".");
+  }
+  // if user doesn't write a number
+  if (isNaN(this.value) || isNaN(parseFloat(this.value))) {
     error = true;
     $(this).val(last_value);
     alert('Please introduce a valid number!');
     $(this).focus();
   }
- 
-
+  
   // we check that there has been no error
   if (!error) {
     project_id = this.id.split("_")[0].substr(1)
