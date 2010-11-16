@@ -6,51 +6,74 @@ class HoursController < ApplicationController
   
   # Shows the Hour Report form
   def index
-    # We check if parameters are passed
-    if params[:year].blank? || params[:week].blank?
-      @year = (params[:year].blank?) ? Time.now.year.to_i : params[:year].to_i
-      @week = (params[:week].blank?) ? Time.now.strftime("%W") : params[:week].to_i
-      redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
-      return
-    end
-    
-    @year = params[:year].to_i
-    @week = params[:week].to_i
+    begin
+      
+      logger.error("1111 YEAR = #{@year} ||||| WEEK = #{@week}")
+      
+      # We check if parameters are passed
+      if params[:year].blank? || params[:week].blank?
+        @year = (params[:year].blank?) ? Time.now.year           : params[:year]
+        @week = (params[:week].blank?) ? Time.now.strftime("%W") : params[:week]
+        redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
+        return
+      end
 
-    # We check if user can go to a certain date
-    if start_date > Date.commercial(@year,@week, 1) or Date.commercial(@year,@week, 7) > Date.today
-      @year = Time.now.year.to_i
-      @week = Time.now.strftime("%W")
-      redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
-      return
+      @year = params[:year].to_i
+      @week = params[:week].to_i
+            
+      # If the date suplied is not a valid date
+      if !Date.valid_commercial?(@year,@week,7)
+        @year = Time.now.year
+        @week = Time.now.strftime("%W")
+        redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
+        return
+      end
+       
+      # We check if user can go to a certain date
+      # - Week starts before the first project
+      # - Week ends later than today
+      if Date.commercial(@year,@week, 1) < start_date  or Date.today < Date.commercial(@year,@week, 1)
+        @year = Time.now.year.to_i
+        @week = Time.now.strftime("%W").to_i
+        redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
+        return
+      end
+      
+      @projects = get_projects(@year,@week)
+
+    rescue Exception => e
+      logger.error { "Error [hours_controller.rb/index] #{e.message}" }
     end
-    
-    @projects = get_projects(@year,@week)
   end
   
+  # Function that is called when user wants to SAVE or SIGN hours
   def saveHours
-    # We check if the user wants to save data
-    if params["commit"] == "Save"
-      # We get all the jobs from the params and save all of them
-      params['job'].each do |job|
-        saveWeekHoursForJob(params['year'],params['week'],job)
+    begin
+      # We check if the user wants to save data
+      if params["commit"] == "Save"
+        # We get all the jobs from the params and save all of them
+        params['job'].each do |job|
+          saveWeekHoursForJob(params['year'],params['week'],job)
+        end
+              
+        flash[:notice] = 'Hours successfully updated!'
+        redirect_to url_for(:action => 'index', :year => params['year'], :week => params['week'], :escape => false)
+        return
+  
+      # If the user wants to SIGN the report
+      else
+        # We get all the jobs from the jobs, and save+sign all of them
+        params['job'].each do |job|
+          saveAndSignWeekHoursForJob(params['year'],params['week'],job)
+        end
+  
+        flash[:notice] = 'Your report has been signed'
+        redirect_to url_for(:action => 'index', :year => params['year'], :week => params['week'], :escape => false)
+        return
       end
-            
-      flash[:notice] = 'Hours successfully updated!'
-      redirect_to url_for(:action => 'index', :year => params['year'], :week => params['week'], :escape => false)
-      return
-
-    # If the user wants to SIGN the report
-    else
-      # We get all the jobs from the jobs, and save+sign all of them
-      params['job'].each do |job|
-        saveAndSignWeekHoursForJob(params['year'],params['week'],job)
-      end
-
-      flash[:notice] = 'Your report has been signed'
-      redirect_to url_for(:action => 'index', :year => params['year'], :week => params['week'], :escape => false)
-      return
-    end      
+    rescue Exception => e
+      logger.error { "Error [hours_controller.rb/saveHours] #{e.message}" }
+    end
   end
   
 private

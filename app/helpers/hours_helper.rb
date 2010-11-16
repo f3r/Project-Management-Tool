@@ -34,10 +34,11 @@ module HoursHelper
   # Calculates the earliest starting date for the employee
   # We select all the projects that have a job assigned to the employee and return the earliest
   def start_date
-    p = (Project.find_by_sql ["SELECT DISTINCT (p.date_start) FROM projects p, jobs j WHERE p.id=j.project_id AND j.employee_id=1"])
+    p = (Project.find_by_sql ["SELECT DISTINCT (p.date_start) FROM projects p, jobs j WHERE p.id=j.project_id AND j.employee_id=#{session[:user_id]}"])
     return (p.min { |a,b| a[:date_start] <=> b[:date_start] })["date_start"]
   end
   
+  # If a float is .0, we return an int, otherwise return the float
   def ftoi(foo)
      return (foo.to_i == foo)? foo.to_i : foo
   end  

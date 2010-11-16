@@ -17,10 +17,6 @@ ActionController::Routing::Routes.draw do |map|
              :controller => 'hours',
              :action     => 'index'
 
-  map.connect 'js/:emp_id/:week_no/:year',
-             :controller => 'Js',
-             :action     => 'index'
-
   map.root :controller => "site", :action => 'index' 
 
   map.connect ':controller/:action/:id'
