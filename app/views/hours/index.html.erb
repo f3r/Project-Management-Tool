@@ -5,7 +5,7 @@
   <thead>
     <TR class="timeRep_dateNav">
       <TH> <% # Don't allow to navigate before your first project start date 
-              if start_date < Date.commercial(@year,@week, 1) %>
+              if !start_date.nil? and start_date < Date.commercial(@year,@week, 1) %>
               <%= link_to "&laquo;", url_for_prev_week(@year, @week), :class => "timeRep_days"  %>
            <% end %> 
 

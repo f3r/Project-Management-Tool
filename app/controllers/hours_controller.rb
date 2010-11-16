@@ -8,8 +8,6 @@ class HoursController < ApplicationController
   def index
     begin
       
-      logger.error("1111 YEAR = #{@year} ||||| WEEK = #{@week}")
-      
       # We check if parameters are passed
       if params[:year].blank? || params[:week].blank?
         @year = (params[:year].blank?) ? Time.now.year           : params[:year]
