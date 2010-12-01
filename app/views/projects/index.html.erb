@@ -1,22 +1,21 @@
 <div id="project_list">
-
-	<div class="breadcrumbs"><p><%= link_to 'Projects', projects_path %> &raquo; <%= @status_name %> </p></div><!-- .breadcrumbs -->
+	<div class="breadcrumbs"><%= link_to 'Projects', projects_path %> &raquo; <%= @status_name %></div><!-- .breadcrumbs -->
 	<div class="status_selector">
-    <% remote_function :url => {:action => 'get_projects'} %>
-    <!--
-        TODO Add My projects ==> Project.show(session[:user_id])
-    -->
-    <%= collection_select(  :status,:id,Status.find(:all).insert(0,Status.new(:name => "All Projects", :id => 0)),:id,:name,{},{:id => "status_selected"}) %>
+	<% remote_function :url => {:action => 'get_projects'} %>
 
-    <!--
-        TODO Asegurarse que ALL PROJECTS se muestra tambien
-    -->
-    <%= observe_field 'status_selected',
-                      :url => {:action => 'get_projects'},
-                      :with => 'id',
-                      :update => :project_list %>
+	<!--
+	    TODO Add My projects ==> Project.show(session[:user_id])
+	-->
 
-    </div><!-- .status_selector -->
-	<div class="clear"></div>	
+	<select id="status_selected">
+	<%= options_from_collection_for_select(Status.find(:all).insert(0,Status.new(:id => 0,:name => "All Projects")),:id,:name, params[:id].to_i) %>
+	</select>
+
+	<%= observe_field 'status_selected',:url => {:action => 'get_projects'},:with => 'id',:update => :project_list %>
+
+	</div><!-- .status_selector -->
+	<div class="clear"></div>
+
     <%= render :partial => 'list_projects', :locals => {:projects => @projects, :status_name => @status_name } %>
+
 </div>

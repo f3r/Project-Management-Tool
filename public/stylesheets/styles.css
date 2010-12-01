@@ -98,11 +98,11 @@ table.generic td.name {font-weight:bold;}
 table.generic td.job {text-align:center;}
 table.generic td.expense {text-align:right;}
 
-.breadcrumbs {font-size:12px; color:#666;}
+.breadcrumbs {font-size:12px; color:#666;margin-bottom:10px;}
 .breadcrumbs a {color:#006699; font-weight:bold;}
 
-#project_list .breadcrumbs {float:left;}
-#project_list .status_selector {float:right;}
+.breadcrumbs {float:left;}
+.status_selector {float:right;}
 
 
 

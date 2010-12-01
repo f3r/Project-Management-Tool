@@ -5,12 +5,13 @@ class ProjectsController < ApplicationController
   
   def get_projects
       @status = Status.all
-      if params[:id] == 0 
+      if params[:id].to_i == 0 or params[:id] == blank?
           @projects = Project.all
+          @status_name = "All"
       else
           @projects = Project.find_all_by_status_id(params[:id])
+          @status_name = Status.find(params[:id]).name
       end
-      @status_name = Status.find(params[:id]).name
       render :index, :layout => false do |page|
           page.replace_html 'project_list', :partial => 'list_projects', :projects => @projects, :status_name => @status_name
       end
