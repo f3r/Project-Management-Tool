@@ -1,10 +1,8 @@
-<h2><%= link_to 'Projects', projects_path %> &raquo; <%= status_name %> </h2>
-<br />
 <div id="result_table">
-    <table width="50%">
+    <table class="generic">
         <thead>
         <tr>
-            <th>Status</th>
+            <th class="{sorter: false}">&nbsp;</th>
             <th>Name</th>
             <th>Client</th>
             <th>Partner</th>
@@ -18,14 +16,14 @@
             <tr height="100"><td colspan="6" align="center">No projects to show</td></tr>
         <% else %>
             <% projects.each do |project| %>
-            <tr class="row" onclick='window.location = "<%= url_for project %>"'>
-                <td><%=h project.status.name %>          </td>
-                <td><%=h project.name %>                 </td>   
-                <td><%=h project.client.name %>          </td>
-                <td><%=h project.partner.full_name %>    </td>
-                <td><%=h project.manager.full_name %>    </td>
-                <td><%=h project.number_of_jobs    %>    </td>
-                <td><%=h project.accumulated_expenses %> </td>
+            <tr class="<%= cycle('odd', 'even') %>">
+                <td class="status status_<%= project.status.id %>">&nbsp;</td>
+                <td class="name"><%= link_to project.name, project %>                 </td>   
+                <td><%= link_to project.client.name, project.client %>          </td>
+                <td><%= link_to project.partner.short_name, project.partner %>    </td>
+                <td><%= link_to project.manager.short_name, project.manager %>    </td>
+                <td class="job"><%=h project.number_of_jobs    %>    </td>
+                <td class="expense"><%=h project.accumulated_expenses %> </td>
             </tr>
             <% end %>
         <% end %>
@@ -33,4 +31,4 @@
     </table>
 </div>
 
-<%= link_to 'Create New Project', new_project_path %>
+<p><%= link_to 'Create New Project', new_project_path, :class => "button" %></p>

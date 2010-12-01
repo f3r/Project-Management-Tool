@@ -1,20 +1,31 @@
-<ul class="mainNav">
-    <li <% if menu_active?('employees')%> class="active" <%end%>>
-        <%= link_to_unless_current 'employees', :controller => 'employees', :action => 'index' %>
+<ul class="dropdown">
+    <li <% if menu_active?('intranet')%> class="active" <%end%>>
+        <%= link_to 'Overview', :controller => 'intranet', :action => 'index' %>
     </li>    
     <li <% if menu_active?('clients')%> class="active" <%end%>>
-        <%= link_to_unless_current 'clients', :controller => 'clients', :action => 'index' %>
+        <%= link_to 'Clients', :controller => 'clients', :action => 'index' %>
     </li>
+	<li class="dir"><a href="#">Employees</a>
+		<ul>
+	    <li <% if menu_active?('employees')%> class="active" <%end%>>
+	        <%= link_to 'Employees', :controller => 'employees', :action => 'index' %>
+	    </li>    
+	    <li <% if menu_active?('categories')%> class="active last" <%end%>>
+	        <%= link_to 'Categories', :controller => 'categories', :action => 'index' %>
+	    </li>
+		</ul>    
+	</li>
     <li <% if menu_active?('projects')%> class="active" <%end%>>
-        <%= link_to_unless_current 'Projects', :controller => 'projects', :action => 'index' %>
+        <%= link_to 'Projects', :controller => 'projects', :action => 'index' %>
     </li>
-    <li <% if menu_active?('hours')%> class="active" <%end%>>
-        <%= link_to_unless_current 'TIME REPORTS', :controller => 'hours', :action => 'index' %>
-    </li>
-    <li <% if menu_active?('expensereports')%> class="active" <%end%>>
-        <%= link_to_unless_current 'Expense Reports', :controller => 'expensereports', :action => 'index' %>
-    </li>    
-    <li <% if menu_active?('categories')%> class="active last" <%end%>>
-        <%= link_to_unless_current 'categories', :controller => 'categories', :action => 'index' %>
-    </li>
+	<li class="dir"><a href="#">Reports</a>
+		<ul>
+	    <li <% if menu_active?('hours')%> class="active" <%end%>>
+	        <%= link_to 'Time Reports', :controller => 'hours', :action => 'index' %>
+	    </li>
+	    <li <% if menu_active?('expensereports')%> class="active" <%end%>>
+	        <%= link_to 'Expense Reports', :controller => 'expensereports', :action => 'index' %>
+	    </li>
+		</ul>    
+	</li>
 </ul>

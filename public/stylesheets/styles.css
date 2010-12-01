@@ -1,0 +1,105 @@
+/* GRID */
+
+.container_24 {margin:0 auto; width:994px;}
+body {background-image: url(../images/header_background.png); background-repeat: repeat-x; background-position: left top; zoom:1; background-color:#e9e9e9;}
+strong {font-weight:bold;}
+a { color:#333; }
+a:hover { color:#000; }
+
+/* HEADER */
+
+#header {  height:100px; }
+#header h1 { margin:0; }
+#header h1 a { text-decoration:none; margin-top: 10px; padding-top:20px; color:#fff; height:63px; display:block; background-image: url(../images/logo_shp.png); background-repeat:no-repeat; }
+#header h1 a span {padding-left:90px; display:none; }
+
+/* TITLE FONT */
+
+#main_nav li a,
+table.generic th,
+#header h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {font-family: "Lucida Grande";}
+
+/* MENU */
+
+#main_nav { height:40px;float:right;}
+#main_nav ul {margin:0;}
+#main_nav li { float:left; list-style:none; margin:0; }
+#main_nav li a {padding:8px 11px; margin: 0 0 0 1px; color:#fff; background-color:#3B1E02; text-decoration:none; display:block; font-size:16px; }
+#main_nav li.active a {background-color:#e9e9e9; color:#333;}
+#main_nav li.hover a,
+#main_nav li a:hover {background-color:#532901;color:#fff;}
+
+/* FIRST LEVEL */
+#main_nav li ul {padding-bottom:10px;}
+#main_nav li ul a { font-size:12px;background-color:#532901;}
+#main_nav li ul a:hover { font-size:12px;background-color:#5A310B;}
+
+#user_nav {float:right; height:60px; font-size:11px; color:#fff; }
+#user_nav ul {margin:0;padding:0;}
+#user_nav li {float:left; list-style:none; margin:0; }
+#user_nav a { text-decoration:none; color:#fff; padding:0 0 0 20px; margin:5px 0 0 10px; display:block; background-repeat:no-repeat;background-position:left center; }
+#user_nav a.user {}
+#user_nav a.mail {background-image:url(../images/icon_mail_closed.png);}
+#user_nav a.logout {background-image:url(../images/icon_logout.png); background-position: 2px center;}
+
+/* DROPDOWN */
+
+ul.dropdown { position: relative; z-index: 597; float: left; }
+ul.dropdown,
+ul.dropdown li,
+ul.dropdown ul { list-style: none; margin: 0; padding: 0; }
+ul.dropdown li { float: left; vertical-align: middle; zoom: 1; }
+ul.dropdown li.hover,
+ul.dropdown li:hover { position: relative; z-index: 599; cursor: default; }
+ul.dropdown ul { display: none; position: absolute; top: 100%; left: 0; z-index: 598; width: 100%; }
+ul.dropdown ul li { float: none; width:180px; }
+ul.dropdown ul ul { top: 1px; left: 99%; }
+ul.dropdown li:hover > ul { display: block;}
+
+/* CONTENT */
+#content_top {margin-top:10px; height:12px; background-image: url(../images/main_background_top.png); background-repeat: no-repeat; background-position: center bottom; zoom:1; }
+
+#content {background-image: url(../images/main_background_middle.png); background-repeat: repeat-y; background-position: center top; zoom:1; }
+#content #wrapper {margin:0 auto;width:980px;}
+
+#content h2 {font-size:18px;color:#000;}
+
+/* TABLES */
+
+table.generic th.header {background-repeat:no-repeat;background-position:4px center; padding-left:16px; background-image:url(../images/icon_sort.png);}
+table.generic th.headerSortUp {background-image:url(../images/icon_sort_up.png);}
+table.generic th.headerSortDown {background-image:url(../images/icon_sort_down.png);}
+
+table.generic {width:100%;}
+table.generic th { background-color:#cce0eb; font-size:12px; font-weight:bold; text-align:left; border-bottom:1px solid #cacaca; }
+table.generic th,
+table.generic td {padding:4px;}
+table.generic th.actions {width:100px;}
+table.generic td {font-size:12px;color:#000;}
+table.generic td a {color:#666;}
+table.generic td a:hover {color:#000;}
+table.generic tr.odd td {}
+table.generic tr.even td {background-color:#f7f7f7;}
+table.generic tr:hover td {background-color:#eee;}
+table.generic tr.totals td { border-top:1px solid #ccc; font-size:16px; }
+
+table.generic td.status {background-repeat:no-repeat;background-position:center center;width:10px;}
+table.generic td.status_1 {background-image:url(../images/icon_status_not_started.png);}
+table.generic td.status_2 {background-image:url(../images/icon_status_started.png);}
+table.generic td.status_3 {background-image:url(../images/icon_status_finished.png);}
+table.generic td.job,
+table.generic td.expense,
+table.generic td.name {font-weight:bold;}
+table.generic td.job {text-align:center;}
+table.generic td.expense {text-align:right;}
+
+/* FOOTER */
+#footer {padding-top:10px; background-image: url(../images/main_background_bottom.png); background-repeat: no-repeat; background-position: center top; zoom:1; }
+#footer .copyright {font-weight:bold; color:#999;}
+#footer .language_selector {text-align:right;}
+

@@ -3,49 +3,73 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><%= "[Intranet SHP] #{@title}"%></title>
-    <%= stylesheet_link_tag "main" %>
-    <%= javascript_include_tag  :all %>
+    <%= stylesheet_link_tag "reset", "960", "text", "styles" %>
+    <%= javascript_include_tag "jquery-1.4.3.min", "application", "dropdown", "hour_management", "jquery.tablesorter.min", "jquery.metadata" %>
 	<%  #if RAILS_ENV=='production'   
 	        #Codigo Especifico para entorno de producccion, p.ej. Analytics       
 	    #end 
     %>
 </head>
 <body>
-<div id="wrapper">
-    <div id="header">
-        <h1><%= link_to 'Main', :controller => 'intranet', :action => 'index' %> </h1>
-        <div class="user">
-            <% if is_user_logged? %>
-                <span>Hi </span>
-                <%= link_to_unless_current "#{session[:user_name]}" , :controller => 'user', :action => 'view' %> |
-                <%= link_to 'logout', :controller => 'site', :action => 'logout' %>
-            <% end %>
-        </div> <!--div#user-->
 
-        <%= render :partial => 'intranet/menu'  %>
-    </div>	<!--div#header-->
+<div class="container_24">
+	<div id="header">
+	<div class="grid_9">
+		<h1><% link_to(root_path) do %><span>[Intranet SHP]</span><% end %></h1>
+	</div>
+
+	<div class="grid_15">
+
+	<div id="user_nav">
+        <% if is_user_logged? %>
+		<ul>
+            <li><span>Hi </span></li>
+            <li><%= link_to_unless_current "#{session[:user_name]}" , :controller => 'user', :action => 'view' %></li>
+            <li><%= link_to 'logout', :controller => 'site', :action => 'logout' %></li>
+		</ul>
+        <% end %>
+	</div><!-- #user_nav -->
+	<div class="clear"></div>
+
+	<div id="main_nav">
+	    <%= render :partial => 'intranet/menu'  %>
+	</div><!-- #main_nav -->
+	</div>
+	<div class="clear"></div>
+	</div><!-- #header -->
+
+	<div id="content_top"></div>
 
 	<div id="content">
+	<div id="wrapper">
     	<% if flash[:notice] -%>
     	   <div id="notice"><%= flash[:notice] %></div>					
     	<% end -%>
-
     	<% if flash[:error] -%>
     	   <div id="error"><%= flash[:error] %></div>
     	<% end -%>				
 
-	    <%= yield %>
-    </div><!--div#content-->
+		<div class="grid_18">
+			<%= yield %>
+		</div>
+		<div class="grid_6">
+			sidebar
+		</div>
+		<div class="clear"></div>
 
-    <div id="footer">
-        <p class="copy"> <%= Time.now.to_date.year %> <%= '&copy; Wadomo' %></p>
-        <ul class="footerNav">
-            <li><%= link_to_unless_current 'web_map',   :controller => 'site', :action => 'map'     %> </li>
-            <li><%= link_to_unless_current 'terms',     :controller => 'site', :action => 'terms'   %></li>
-        </ul>
-    </div><!--div#footer-->
+	</div><!-- #wrapper -->
+	</div><!-- #content -->
 
-</div> <!--div#wrapper-->
+	<div id="footer">
+		<div class="grid_12">
+			<div class="copyright"><%= Time.now.to_date.year %> <%= '&copy; Wadomo' %></div>
+		</div>
+		<div class="grid_12">
+		</div>
+		<div class="clear"></div>
+	</div><!-- #footer -->
+
+</div><!-- .container_24 -->
 
 <%  #if RAILS_ENV !='production'   
         #Codigo para otro entorno que producccion, p.ej. snapABug

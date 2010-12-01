@@ -1,7 +1,7 @@
 <h2>Listing clients</h2>
 <br />
 <div id="result_table">
-    <table>
+    <table class="generic">
         <thead>
             <tr>
                 <th>Name</th>
@@ -12,11 +12,11 @@
         </thead>
         <tbody>
             <% @clients.each do |client| %>
-              <tr class="row" onclick='window.location = "<%= url_for client %>"'>
-                <td><%=h client.name %></td>
+              <tr class="<%= cycle('odd', 'even') %>" onclick='window.location = "<%= url_for client %>"'>
+                <td><%= link_to client.name, client %></td>
                 <td><%=h client.cif %></td>
-                <td><%=h client.email %></td>
-                <td><%=h client.website %></td>
+                <td><%= mail_to client.email, client.email, :encode => "hex" %></td>
+                <td><%= link_to client.website, client.website, :target => "_blank" %></td>
               </tr>
             <% end %>
         </tbody>

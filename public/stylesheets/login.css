@@ -1,0 +1,12 @@
+body {font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;background-image:url("../images/background_login_screen.png");background-repeat:repeat-x;background-color:#511C05;color:#fff;}
+a {color:#fff;}
+#header {margin:40px auto;}
+#content h2{text-align:center;font-family: "Lucida Grande";}
+#mainContent{margin:0 auto;width:300px;}
+#mainContent form {background-color:#511C05;padding:10px;}
+#mainContent form div.fields {margin:5px 0;border-bottom:1px solid #9A5030;padding:10px 5px;}
+#mainContent form div.fields label {font-weight:bold;}
+#mainContent form div.fields input.field {padding:4px;border:0;float:right;}
+
+fieldset {border:1px solid #9A5030;}
+fieldset legend {font-family: "Lucida Grande";font-weight:bold;font-size:14px;}

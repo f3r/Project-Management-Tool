@@ -2,7 +2,7 @@
 
 <br />
 <div id="result_table">
-    <table width="50%">
+    <table class="generic">
         <thead>
         <tr>
             <th>First Name</th>
@@ -15,13 +15,13 @@
         <thead>  
         <tbody>
         <% @employees.each do |employee| %>
-        <tr class="row" onclick='window.location = "<%= url_for employee %>"'>
-            <td align="center"><%=h employee.first_name %>     </td>
-            <td align="center"><%=h employee.last_name %>      </td>   
-            <td align="center"><%=h employee.email %>          </td>
-            <td align="center"><%=h employee.phone %>          </td>
-            <td align="center"><%=h employee.mobile %>         </td>
-            <td align="center"><%=h employee.number_of_jobs %> </td> 
+        <tr class="<%= cycle('odd', 'even') %>" onclick='window.location = "<%= url_for employee %>"'>
+            <td><%= link_to employee.first_name, employee %></td>
+            <td><%= link_to employee.last_name, employee %></td>   
+            <td><%= mail_to employee.email, employee.email, :encode => "hex" %></td>
+            <td><%=h employee.phone %></td>
+            <td><%=h employee.mobile %></td>
+            <td><%=h employee.number_of_jobs %></td> 
         </tr>
         <% end %>
         </tbody>
