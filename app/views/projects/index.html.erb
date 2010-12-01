@@ -1,7 +1,7 @@
 <div id="project_list">
 
 	<div class="breadcrumbs"><p><%= link_to 'Projects', projects_path %> &raquo; <%= @status_name %> </p></div><!-- .breadcrumbs -->
-
+	<div class="status_selector">
     <% remote_function :url => {:action => 'get_projects'} %>
     <!--
         TODO Add My projects ==> Project.show(session[:user_id])
@@ -22,6 +22,7 @@
                       :url => {:action => 'get_projects'},
                       :with => 'id',
                       :update => :project_list %>
-                      
+    </div><!-- .status_selector -->
+	<div class="clear"></div>	
     <%= render :partial => 'list_projects', :locals => {:projects => @projects, :status_name => @status_name } %>
 </div>
