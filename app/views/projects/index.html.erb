@@ -6,14 +6,7 @@
     <!--
         TODO Add My projects ==> Project.show(session[:user_id])
     -->
-    <%= collection_select(  :status,
-                            :id, 
-                            Status.find(:all).insert(0,Status.new(:name => "All Projects", :id => 0)),
-                            :id, 
-                            :name, 
-                            {}, 
-                            {:id => "status_selected"})
-    %>
+    <%= collection_select(  :status,:id,Status.find(:all).insert(0,Status.new(:name => "All Projects", :id => 0)),:id,:name,{},{:id => "status_selected"}) %>
 
     <!--
         TODO Asegurarse que ALL PROJECTS se muestra tambien
@@ -22,6 +15,7 @@
                       :url => {:action => 'get_projects'},
                       :with => 'id',
                       :update => :project_list %>
+
     </div><!-- .status_selector -->
 	<div class="clear"></div>	
     <%= render :partial => 'list_projects', :locals => {:projects => @projects, :status_name => @status_name } %>
