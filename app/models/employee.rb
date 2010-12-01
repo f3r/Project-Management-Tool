@@ -133,6 +133,16 @@ class Employee < ActiveRecord::Base
             logger.error { "Error [employee.rb/full_name] #{e.message}" }
         end 
     end
+
+    def short_name
+        begin
+          last_name_initial = last_name[0,1] + "."
+          short_name = [first_name, last_name_initial].join(' ')
+          return short_name
+        rescue Exception => e
+            logger.error { "Error [employee.rb/short_name] #{e.message}" }
+        end 
+    end
     
     def number_of_jobs
         begin
