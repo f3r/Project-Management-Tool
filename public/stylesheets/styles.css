@@ -43,8 +43,9 @@ table.generic th,
 #user_nav ul {margin:0;padding:0;}
 #user_nav li {float:left; list-style:none; margin:0; }
 #user_nav a { text-decoration:none; color:#fff; padding:0 0 0 20px; margin:5px 0 0 10px; display:block; background-repeat:no-repeat;background-position:left center; }
-#user_nav a.user {}
+#user_nav a.user {background-image:url(../images/icon_user.png);}
 #user_nav a.mail {background-image:url(../images/icon_mail_closed.png);}
+#user_nav a.settings {background-image:url(../images/icon_preferences.png);}
 #user_nav a.logout {background-image:url(../images/icon_logout.png); background-position: 2px center;}
 
 /* DROPDOWN */
@@ -109,9 +110,9 @@ table.generic td .no_projects {font-size:22px;font-weight:bold;text-align:center
 .status_selector {margin:10px 0;}
 
 /* SIDEBAR */
-#sidebar {color:#666;font-size:12px;}
-#sidebar h3 {font-size:14px;color:#000;margin:0;}
-#sidebar ul{border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; list-style:none;}
+#sidebar {color:#666;font-size:12px;padding:10px 15px;}
+#sidebar h3 {font-size:14px;color:#000;margin:4px 6px;}
+#sidebar ul{border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; list-style:none;padding:10px 6px;}
 #sidebar ul li{margin:0;padding:0;font-weight:bold;;}
 
 

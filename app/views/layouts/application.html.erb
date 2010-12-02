@@ -24,9 +24,9 @@
 	<div id="user_nav">
         <% if is_user_logged? %>
 		<ul>
-            <li><span>Hi </span></li>
-            <li><%= link_to_unless_current "#{session[:user_name]}" , :controller => 'user', :action => 'view' %></li>
-            <li><%= link_to 'logout', :controller => 'site', :action => 'logout' %></li>
+            <li><a>Hi <%= session[:user_name] %></a></li>
+            <li><%= link_to "Profile" , employee_path(session[:user_id]), :class => "user" %></li>
+            <li><%= link_to 'Logout', {:controller => 'site', :action => 'logout'}, :class => "logout" %></li>
 		</ul>
         <% end %>
 	</div><!-- #user_nav -->
@@ -53,8 +53,10 @@
 		<div class="grid_18">
 			<%= yield %>
 		</div>
-		<div class="grid_6" id="sidebar">
+		<div class="grid_6">
+			<div id="sidebar">
 			<%= yield(:sidebar) %>
+			</div>
 		</div>
 		<div class="clear"></div>
 
