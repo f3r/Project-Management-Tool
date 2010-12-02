@@ -11,7 +11,7 @@
 	<%= options_from_collection_for_select(Status.find(:all).insert(0,Status.new(:id => 0,:name => "All Projects")),:id,:name, params[:id].to_i) %>
 	</select>
 
-	<%= observe_field 'status_selected',:url => {:action => 'get_projects'},:with => 'id',:update => :project_list %>
+	<%= observe_field 'status_selected',:url => {:action => 'get_projects'},:with => 'id',:update => :project_list, :success => "update_tablesort('.generic')" %>
 
 	</div><!-- .status_selector -->
 	<div class="clear"></div>
@@ -19,3 +19,14 @@
     <%= render :partial => 'list_projects', :locals => {:projects => @projects, :status_name => @status_name } %>
 
 </div>
+
+<% content_for :sidebar do %>
+<h3>Projects</h3>
+<ul>
+	<li>Started projects:</li>
+	<li>Not Started projects:</li>
+	<li>Finished projects:</li>
+	<li>Total jobs:</li>
+	<li>Total expenses:</li>
+</ul>
+<% end %>

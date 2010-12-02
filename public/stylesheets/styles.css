@@ -98,12 +98,21 @@ table.generic td.name {font-weight:bold;}
 table.generic td.job {text-align:center;}
 table.generic td.expense {text-align:right;}
 
-.breadcrumbs {font-size:12px; color:#666;margin-bottom:10px;}
+table.generic td .no_projects {font-size:22px;font-weight:bold;text-align:center;padding:20px 0;}
+
+.breadcrumbs {font-size:12px; color:#666;}
 .breadcrumbs a {color:#006699; font-weight:bold;}
 
 .breadcrumbs {float:left;}
 .status_selector {float:right;}
+.breadcrumbs,
+.status_selector {margin:10px 0;}
 
+/* SIDEBAR */
+#sidebar {color:#666;font-size:12px;}
+#sidebar h3 {font-size:14px;color:#000;margin:0;}
+#sidebar ul{border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; list-style:none;}
+#sidebar ul li{margin:0;padding:0;font-weight:bold;;}
 
 
 /* FOOTER */
