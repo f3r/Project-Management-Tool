@@ -31,4 +31,9 @@ module ApplicationHelper
       end
   end
   
+  def title(str, container = nil)
+    @title = str
+    content_tag(container, str) if container
+  end
+
 end
