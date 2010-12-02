@@ -1,34 +1,36 @@
 <div id="result_table">
-    <table width="50%">
+    <table class="generic">
         <thead>
         <tr>
             <th>Job Name</th>
             <th>Description</th>
             <th>Employee</th>
-            <th>Hours</th>
-            <th>Expenses</th>
+            <th class="hours">Hours</th>
+            <th class="expenses">Expenses</th>
+            <th class="{sorter: false}">&nbsp;</th>
         </tr>
         <thead>  
         <tbody>
         <% if @jobs.count == 0 %>
-            <tr><td colspan="5" align="center">This project doesn't have any job yet</td></tr>
+            <tr><td colspan="5">This project doesn't have any job yet</td></tr>
         <% else %>
             <% @jobs.each do |job| %>
-            <tr class="row" onclick='window.location = "<%= url_for :controller => 'jobs', :action => 'edit', :id => job.id %>"'>
-                <td align="center"><%=h job.name %> </td>
-                <td align="center"><%=h job.description %> </td>
-                <td align="center"><%=h job.employee.full_name %>  </td>
+            <tr class="<%= cycle('odd', 'even') %>">
+                <td><%=h job.name %> </td>
+                <td><%=h job.description %> </td>
+                <td><%= link_to job.employee.short_name, job.employee %></td>
                 <!--
                     TODO Meter aqui el acumulado de los jooobss para horas y pricing
                 -->
-                <td align="center"><%=h 0 %>h </td>
-                <td align="center"><%=  number_to_currency(job.expenses, :unit => "&euro;", :precision => 0) %> </td>
+                <td class="hours"><%=h 0 %>h </td>
+                <td class="expense"><%=  number_to_currency(job.expenses, :unit => "&euro;", :precision => 0) %> </td>
+				<td class="actions"><span><%= link_to "Edit", edit_job_path(job), :class => "button_edit" %> <%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete" %></span></td>
             <% end %>
         <% end %>
         </tbody>
     </table>
-<br />
 </div>
+<p><%= link_to 'Create New Job', new_project_job_path(@project, @job), :class => "button" %></p>
 <!--
     TODO create a job/view page (with edit and delete)
     

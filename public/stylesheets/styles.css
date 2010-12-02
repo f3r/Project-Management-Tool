@@ -3,7 +3,7 @@
 .container_24 {margin:0 auto; width:994px;}
 body {background-image: url(../images/header_background.png); background-repeat: repeat-x; background-position: left top; zoom:1; background-color:#e9e9e9;}
 strong {font-weight:bold;}
-a { color:#333; }
+a { color:#333; color:#006699; }
 a:hover { color:#000; }
 
 /* HEADER */
@@ -86,35 +86,62 @@ table.generic td a {color:#666;}
 table.generic td a:hover {color:#000;}
 table.generic tr.odd td {}
 table.generic tr.even td {background-color:#f7f7f7;}
-table.generic tr:hover td {background-color:#eee;}
+table.generic tr.hover td {background-color:#eee;}
 table.generic tr.totals td { border-top:1px solid #ccc; font-size:16px; }
+table.generic td.actions {font-size:10px;}
+table.generic tr td.actions {width:36px;}
+table.generic tr td.actions span { display:none; }
+table.generic tr.hover td.actions span { display:block; }
 
 table.generic td.status {background-repeat:no-repeat;background-position:center center;width:10px;}
 table.generic td.status_1 {background-image:url(../images/icon_status_not_started.png);}
 table.generic td.status_2 {background-image:url(../images/icon_status_started.png);}
 table.generic td.status_3 {background-image:url(../images/icon_status_finished.png);}
+table.generic td.hours,
 table.generic td.job,
 table.generic td.expense,
 table.generic td.name {font-weight:bold;}
-table.generic td.job {text-align:center;}
+table.generic td.job,
+table.generic td.hours {text-align:center;}
 table.generic td.expense {text-align:right;}
-
+table.generic th.expenses {width:60px;}
+table.generic th.hours {width:40px;}
 table.generic td .no_projects {font-size:22px;font-weight:bold;text-align:center;padding:20px 0;}
 
 .breadcrumbs {font-size:12px; color:#666;}
-.breadcrumbs a {color:#006699; font-weight:bold;}
+.breadcrumbs a {font-weight:bold;}
 
 .breadcrumbs {float:left;}
 .status_selector {float:right;}
 .breadcrumbs,
 .status_selector {margin:10px 0;}
 
+/* PROJECT PAGE */
+
+#project_info dl {line-height:180%;}
+#project_info dl dt {font-weight:bold;float:left;width:25%;color:#666;font-weight:bold;}
+#project_info dl dd {float:left;width:75%;}
+#project_info dl.team {float:left;width:50%;}
+#project_info dl.dates {background-color:#F2F5F7;float:right;width:45%;padding:10px;margin:0;}
+#project_info dl.dates dd {text-align:right;}
+#project_info .description { font-size:14px; }
+#project_info h2 {float:left;margin-bottom:10px;}
+#project_info .status {background-repeat:no-repeat;background-position:4px center;width:60px;font-size:11px;color:#666;padding-left:18px;float:right;margin-top:8px;}
+#project_info .status_1 {background-image:url(../images/icon_status_not_started.png);}
+#project_info .status_2 {background-image:url(../images/icon_status_started.png);}
+#project_info .status_3 {background-image:url(../images/icon_status_finished.png);}
+
 /* SIDEBAR */
 #sidebar {color:#666;font-size:12px;padding:10px 15px;}
+#sidebar a {color:#333;}
 #sidebar h3 {font-size:14px;color:#000;margin:4px 6px;}
-#sidebar ul{border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; list-style:none;padding:10px 6px;}
-#sidebar ul li{margin:0;padding:0;font-weight:bold;;}
+#sidebar ul {border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; list-style:none;padding:10px 6px;}
+#sidebar ul li{margin:0;padding:0;font-weight:bold;}
 
+#sidebar #options a {padding:0px 0px 0px 22px;margin:4px 0;display:block;background-position:2px top;background-repeat:no-repeat;font-weight:normal;text-decoration:none;height:16px;font-size:12px;line-height:140%;}
+#sidebar #options a:hover {background-position:2px -16px;color:#000;}
+#sidebar #options a.edit_project {background-image:url(../images/icon_project_settings.png);}
+#sidebar #options a.delete_project {background-image:url(../images/icon_delete_project.png);}
 
 /* FOOTER */
 #footer {padding-top:10px; background-image: url(../images/main_background_bottom.png); background-repeat: no-repeat; background-position: center top; zoom:1; }
