@@ -12,7 +12,7 @@ class HoursController < ApplicationController
       if params[:year].blank? || params[:week].blank?
         @year = (params[:year].blank?) ? Time.now.year           : params[:year]
         @week = (params[:week].blank?) ? Time.now.strftime("%W") : params[:week]
-        redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
+        redirect_to hoursreports_path(:year => @year.to_s, :week => @week.to_s, :escape => false)
         return
       end
 
@@ -23,7 +23,7 @@ class HoursController < ApplicationController
       if !Date.valid_commercial?(@year,@week,7)
         @year = Time.now.year
         @week = Time.now.strftime("%W")
-        redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
+        redirect_to hoursreports_path(:year => @year.to_s, :week => @week.to_s, :escape => false)
         return
       end
        
@@ -33,7 +33,7 @@ class HoursController < ApplicationController
       if Date.commercial(@year,@week, 1) < start_date  or Date.today < Date.commercial(@year,@week, 1)
         @year = Time.now.year.to_i
         @week = Time.now.strftime("%W").to_i
-        redirect_to url_for(:action => 'index', :year => @year.to_s, :week => @week.to_s, :escape => false)
+        redirect_to hoursreports_path(:year => @year.to_s, :week => @week.to_s, :escape => false)
         return
       end
       
@@ -53,9 +53,14 @@ class HoursController < ApplicationController
         params['job'].each do |job|
           saveWeekHoursForJob(params['year'],params['week'],job)
         end
-              
-        flash[:notice] = 'Hours successfully updated!'
-        redirect_to url_for(:action => 'index', :year => params['year'], :week => params['week'], :escape => false)
+
+        respond_to do |format|
+          format.html {
+            flash[:notice] = 'Hours successfully updated!'
+            redirect_to hoursreports_path(:year => params['year'], :week => params['week'], :escape => false)
+          }
+          format.js { @action = "saved" }
+        end
         return
   
       # If the user wants to SIGN the report
@@ -64,9 +69,14 @@ class HoursController < ApplicationController
         params['job'].each do |job|
           saveAndSignWeekHoursForJob(params['year'],params['week'],job)
         end
-  
-        flash[:notice] = 'Your report has been signed'
-        redirect_to url_for(:action => 'index', :year => params['year'], :week => params['week'], :escape => false)
+
+        respond_to do |format|
+          format.html {
+            flash[:notice] = 'Your report has been signed'
+            redirect_to hoursreports_path(:year => params['year'], :week => params['week'], :escape => false)
+          }
+          format.js { @action = "signed" }
+        end
         return
       end
     rescue Exception => e

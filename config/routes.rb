@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories, :has_many => :employees
   map.resources :employees
   map.resources :expensereports
+
+  map.hours '/hoursreports', :controller => 'hours', :action => 'index'
   
   map.connect 'hoursreports/:year/:week/saveHours',
              :controller => 'hours',
@@ -13,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
              :conditions => { :method => :post }
  
 
-  map.connect 'hoursreports/:year/:week',
+  map.hoursreports 'hoursreports/:year/:week',
              :controller => 'hours',
              :action     => 'index'
 

@@ -16,6 +16,8 @@ $('.hours').click(function() {
 //
 $('.hours').focusout(function() {
 
+	$("a.button_save_report").html("Save Report").removeClass("active");
+
   // If user leaves blank, we put a zero
   if (this.value == "") {
     $(this).val("0");
@@ -63,7 +65,7 @@ $('.hours').focusout(function() {
     
     // Update Day TOTAL
     total = 0
-    $('td[id^="pr"][id$='+week_day+']').each(function() {
+    $('th[id^="pr"][id$='+week_day+']').each(function() {
       total += parseFloat($(this).html());
     });
     $("#total_"+week_day).html(total);
@@ -73,8 +75,7 @@ $('.hours').focusout(function() {
     for(i=1;i<6;i++) {
       total += parseFloat($("#total_"+i).html());
     }
-    $("#total_total").html(total);    
-
+    $("#total_total").html(total);
   } else {
     error = false;
   } 
@@ -97,40 +98,11 @@ $('.hours').focusout(function() {
 
 // this tells jquery to run the function below once the DOM is ready
 $(document).ready(function() {
-
-  // choose text for the show/hide link - can contain HTML (e.g. an image)
-  var expand  = '<img src="/images/expand.png" />';
-  var contract= '<img src="/images/contract.png" />';
-  
-  // append show/hide links
-  $('th[id^=timeRep_proj_]').prepend('<a href="#" class="toggleLink">'+contract+'</a> ');
-  
-  // hide all of the elements with a class of 'toggle'
-  //$('.timeRep_job').hide();
-  
-  // change the link depending on whether the element is shown or hidden
-  $('a.toggleLink').click(function() {
-  
-    if ($(this).html().search("expand") != -1) {
-      $(this).html(contract);
-    } else {
-      $(this).html(expand);
-    };
-    
-    // toggle the display
-    $(this).parent().parent().siblings().toggle(1000);  
-    
-    // return false so any link destination is not followed
-    return false;
-  });
-  
-  // We TOTALIZE for every job hour there is in the document (PreLoad Sum Hours)
-  $('.hours').trigger('focusout');
+	// We TOTALIZE for every job hour there is in the document (PreLoad Sum Hours)
+	$('.hours').trigger('focusout');
+	
+	$('.timeRep_proj').click(function(){
+		$(this).toggleClass("collapsed");
+		$(this).siblings().toggle();
+	})
 });
-
-function confirmSign()
-{
-  var agree=confirm("Are you sure you want to sign this report?");
-  if (agree) return true ;
-  else       return false ;
-}

@@ -7,6 +7,13 @@ module HoursHelper
       return out 
   end
 
+  def show_short_date(year,week)
+      out  = Date.commercial(year, week, 1).to_datetime.to_s(:date) + ' - '
+      out += Date.commercial(year, week, 5).to_datetime.to_s(:date) + '&nbsp;'
+      out += '<span>(Week ' + week.to_s + ')</span>'
+      return out 
+  end
+
   def url_for_next_week(year,week)
     begin
       if (week==52)
@@ -15,7 +22,7 @@ module HoursHelper
       else
         week += 1
       end
-      return url_for(:action => 'index', :year => year.to_s, :week => week.to_s, :escape => false)
+      return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
     rescue Exception => e
       logger.error { "Error [hours_helper.rb/url_for_next_week] #{e.message}" }
     end
@@ -29,9 +36,17 @@ module HoursHelper
       else
         week -= 1
       end
-      return url_for(:action => 'index', :year => year.to_s, :week => week.to_s, :escape => false)
+      return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
     rescue Exception => e
       logger.error { "Error [hours_helper.rb/url_for_prev_week] #{e.message}" }
+    end
+  end
+
+  def url_for_week(year,week)
+    begin
+      return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
+    rescue Exception => e
+      logger.error { "Error [hours_helper.rb/url_next_week] #{e.message}" }
     end
   end
   

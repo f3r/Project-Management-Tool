@@ -21,7 +21,7 @@
 	<li class="dir"><a href="#">Reports</a>
 		<ul>
 	    <li <% if menu_active?('hours')%> class="active" <%end%>>
-	        <%= link_to 'Time Reports', :controller => 'hours', :action => 'index' %>
+	        <%= link_to 'Time Reports', hours_path %>
 	    </li>
 	    <li <% if menu_active?('expensereports')%> class="active" <%end%>>
 	        <%= link_to 'Expense Reports', :controller => 'expensereports', :action => 'index' %>

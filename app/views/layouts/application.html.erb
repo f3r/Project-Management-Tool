@@ -5,11 +5,12 @@
     <title><%= "[Intranet SHP] #{@title}"%></title>
     <%= stylesheet_link_tag "reset", "960", "text", "styles" %>
 	<%= javascript_include_tag(:defaults) %>
-    <%= javascript_include_tag "dropdown", "hour_management", "jquery.tablesorter.min", "jquery.metadata" %>
+    <%= javascript_include_tag "dropdown", "jquery.tablesorter.min", "jquery.metadata" %>
 	<%  #if RAILS_ENV=='production'   
 	        #Codigo Especifico para entorno de producccion, p.ej. Analytics       
 	    #end 
     %>
+	<%= yield(:head) %>
 </head>
 <body>
 

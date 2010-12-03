@@ -1,9 +1,10 @@
-    <TR class="timeRep_job">
-        <TH><%= job_title %>
-        <% idAll = 'p'+pid+'_j'+id+'_' %>
-        <TD><input class="hours" id="<%= idAll+'1' %>" name="job[<%= id %>][mon]" size="2" type="text" value="<%= ftoi(hours.h_mon) %>" readonly="readonly"/>
-        <TD><input class="hours" id="<%= idAll+'2' %>" name="job[<%= id %>][tue]" size="2" type="text" value="<%= ftoi(hours.h_tue) %>" readonly="readonly"/>
-        <TD><input class="hours" id="<%= idAll+'3' %>" name="job[<%= id %>][wed]" size="2" type="text" value="<%= ftoi(hours.h_wed) %>" readonly="readonly"/>
-        <TD><input class="hours" id="<%= idAll+'4' %>" name="job[<%= id %>][thu]" size="2" type="text" value="<%= ftoi(hours.h_thu) %>" readonly="readonly"/>
-        <TD><input class="hours" id="<%= idAll+'5' %>" name="job[<%= id %>][fri]" size="2" type="text" value="<%= ftoi(hours.h_fri) %>" readonly="readonly"/>
-        <TD id="<%= idAll+'total' %>">0
+<tr class="timeRep_job signed_report <%= cycle('odd', 'even') %>">
+	<td class="title"><%= job_title %>
+	<% idAll = 'p'+pid+'_j'+id+'_' %></td>
+	<td><input class="hours" id="<%= idAll+'1' %>" name="job[<%= id %>][mon]" size="2" type="text" value="<%= ftoi(hours.h_mon) %>" readonly="readonly"/></td>
+	<td><input class="hours" id="<%= idAll+'2' %>" name="job[<%= id %>][tue]" size="2" type="text" value="<%= ftoi(hours.h_tue) %>" readonly="readonly"/></td>
+	<td><input class="hours" id="<%= idAll+'3' %>" name="job[<%= id %>][wed]" size="2" type="text" value="<%= ftoi(hours.h_wed) %>" readonly="readonly"/></td>
+	<td><input class="hours" id="<%= idAll+'4' %>" name="job[<%= id %>][thu]" size="2" type="text" value="<%= ftoi(hours.h_thu) %>" readonly="readonly"/></td>
+	<td><input class="hours" id="<%= idAll+'5' %>" name="job[<%= id %>][fri]" size="2" type="text" value="<%= ftoi(hours.h_fri) %>" readonly="readonly"/></td>
+	<td id="<%= idAll+'total' %>">0</td>
+</tr>

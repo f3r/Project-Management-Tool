@@ -1,82 +1,120 @@
-<br />
-<br />
+<div class="breadcrumbs"><%= link_to 'Reports', hours_path %> &raquo; <%= show_short_date(@year, @week) %></div><!-- .breadcrumbs -->
+<div class="clear"></div>
 
-<TABLE class="timeReport">
-  <thead>
-    <TR class="timeRep_dateNav">
-      <TH> <% # Don't allow to navigate before your first project start date 
-              if !start_date.nil? and start_date < Date.commercial(@year,@week, 1) %>
-              <%= link_to "&laquo;", url_for_prev_week(@year, @week), :class => "timeRep_days"  %>
-           <% end %> 
 
-      <TH> <%= show_date(@year, @week) %> 
+<%= title "Report for #{show_date(@year, @week)}", :h2 %> 
 
-      <TH> <% # Don't allow to put future dates
-              if Date.commercial(@year,@week, 7) < Date.today %>
-              <%= link_to "&raquo;", url_for_next_week(@year, @week), :class => "timeRep_days" %>
-           <% end %>
-  </thead>
+<% if @projects.present? %>
+<form method="post" action="<%= request.request_uri %>/saveHours" id="hours_reports">
+<div class="note">* Click any value to edit</div>
+<% end %>
+<table class="timeReport generic generic_reports">
+	<% if @projects.blank? %>
+	<tbody>
+		<tr class="timeRep_empty"><th colspan="6" >No projects to show this week
+	</tbody>
+	</table>
+	<% else %>  
+	<thead>
+		<tr class="timeRep_days">
+			<th class="{sorter: false} project">Project</th>
+			<th class="{sorter: false} day">Mon</th>
+			<th class="{sorter: false} day">Tue</th>
+			<th class="{sorter: false} day">Wed</td>
+			<th class="{sorter: false} day">Thu</th>
+			<th class="{sorter: false} day">Fri</td>
+			<th class="{sorter: false} total_week">Total Week</th>
+		</tr>
+	</thead>
+
+	<%= token_tag %>
+
+	<% jobs_are_signed = false
+	@projects.each do |project|  %>
+
+	<tbody>
+		<tr>
+			<td colspan="7">
+				<table>
+				    <%= render :partial => "project_line", 
+				               :locals => {:pid => project.id.to_s, :proj_title => project.name} %>
+				    <%  jobs = get_jobs(project)
+
+				        jobs.each do |job| %>
+				          <% hours = job.week_hour.find(:first, :conditions => { :year => @year, :week => @week}) 
+				             if hours.blank? 
+				                 hours = job.week_hour.create(:year=>@year,:week=>@week,:h_mon=>0,:h_tue=>0, 
+				                            :h_wed=>0,:h_thu=>0,:h_fri=>0,:signed=>false)           
+				             end %>
+				           <% if hours.signed? 
+				                  jobs_are_signed = true %>
+				              <%= render :partial => "job_line_signed", 
+				                         :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
+				           <% else %>
+				              <%= render :partial => "job_line", 
+				                         :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
+
+				           <% end %>
+				    <%  end %>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+
+    <% end %>
+
+	<tfoot>
+		<tr class="timeRep_footer totals">
+			<td>Total Day</td>
+			<td id="total_1" class="day">0</td>
+			<td id="total_2" class="day">0</td>
+			<td id="total_3" class="day">0</td>
+			<td id="total_4" class="day">0</td>
+			<td id="total_5" class="day">0</td>
+			<td id="total_total" class="day">0</td>
+		</tr>
+	</tfoot>
 </table>
 
-<TABLE class="timeReport">
-  <% if @projects.blank? %>
-      <tbody>
-        <tr class="timeRep_empty"><th colspan="6" >No projects to show this week
-      </tbody>
-      </table>
-  <% else %>  
-      <thead>
-        <TR class="timeRep_days">
-          <TH> <TH>Mon <TH>Tue <TH>Wed <TH>Thu <TH>Fri <TH>Total Week
-      </thead>
-      <tfoot>
-        <TR class="timeRep_footer">
-          <TH> Total Day
-          <TD id="total_1">0
-          <TD id="total_2">0
-          <TD id="total_3">0
-          <TD id="total_4">0
-          <TD id="total_5">0
-          <TD id="total_total">0  
-      </tfoot>
-      <form method="post" action="<%= request.request_uri %>/saveHours" >
-        <%= token_tag %>
-        
-        <% 
-        jobs_are_signed = false
-        @projects.each do |project|  %>
-        <tbody>
-          <%= render :partial => "project_line", 
-                     :locals => {:pid => project.id.to_s, :proj_title => project.name} %>
-          <%  jobs = get_jobs(project)
-    
-              jobs.each do |job| %>
-                <% hours = job.week_hour.find(:first, :conditions => { :year => @year, :week => @week}) 
-                   if hours.blank? 
-                       hours = job.week_hour.create(:year=>@year,:week=>@week,:h_mon=>0,:h_tue=>0, 
-                                  :h_wed=>0,:h_thu=>0,:h_fri=>0,:signed=>false)           
-                   end %>
-                 <% if hours.signed? 
-                        jobs_are_signed = true %>
-                    <%= render :partial => "job_line_signed", 
-                               :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
-                 <% else %>
-                    <%= render :partial => "job_line", 
-                               :locals => {:id => job.id.to_s, :pid => project.id.to_s, :job_title => job.name, :hours => hours} %>
-    
-                 <% end %>
-          <%  end %>
-        </tbody>
-        <% end %>
-    
-    </TABLE>
-    <br /><br />
-      <% if !jobs_are_signed %>
-        <input name="commit" type="submit" class="timeRep_button" value="Save"> 
-        <input name="commit" type="submit" class="timeRep_button_left" value="Sign Report" onClick="return confirmSign()">
-      <% else %>
-        <input name="commit" type="submit" class="timeRep_button_signed" value="This Report is already signed" onClick="return false;"> 
-      <% end%>
-    </form>
-    <%= javascript_include_tag 'hour_management' %>
+</form>
+
+<%= javascript_include_tag 'hour_management' %>
+<% end %>
+<div class="clear"></div>
+
+<div class="navigation">
+<% # Don't allow to navigate before your first project start date 
+if !start_date.nil? and start_date < Date.commercial(@year,@week, 1) %>
+<%= link_to "&laquo; Previous week", url_for_prev_week(@year, @week), :class => "button_previous"  %>
+<% end %> 
+
+<% # Don't allow to put future dates
+if Date.commercial(@year,@week, 7) < Date.today %>
+<%= link_to "Next week &raquo;", url_for_next_week(@year, @week), :class => "button_next" %>
+<% end %>
+</div><!-- .navigation -->
+
+<% content_for :sidebar do %>
+<div id="options">
+
+<h3>Options</h3>
+<ul>
+<% if jobs_are_signed %>
+<li><%= link_to('Signed Report', "#", :class  => "button button_sign_report active" ) %></li>
+<% else %>
+	<li><%= link_to_remote('Sign Report', :url => { :action => "saveHours" }, :submit => "hours_reports", :script => true, :confirm => "Are you sure you want to sign this report?", :html => { :class  => "button button_sign_report" }) %></li>
+	<li><%= link_to_remote('Save Report', :url => { :action => "saveHours", :commit => "Save" }, :submit => "hours_reports", :script => true, :html => { :class  => "button button_save_report" }) %></li>
+<% end %>
+</ul>
+
+<h3>Previous reports</h3>
+<ul class="reports">
+	<% week = @week %>
+	<% for i in 1..5 %>
+	<% week = week -1 %>
+	<li><%= link_to show_short_date(@year, week), url_for_week(@year, week) %></li>
+	<% end %>
+</ul>
+
+</div><!-- #options -->
 <% end %>
