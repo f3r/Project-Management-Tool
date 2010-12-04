@@ -1,5 +1,6 @@
-<h2><%= link_to 'Employees', employees_path %> &raquo; <%= @employee.full_name %> </h2>
-<div id="mainContent">	
+<div class="breadcrumbs"><%= link_to 'Employees', employees_path %> &raquo; <%=h @employee.full_name %> &raquo; Details</div>
+<div class="clear"></div>
+
     <table style="margin-left:50px">
     <tr><td width="100"><p>Level:</p></td><td><p>
         <% if @employee.category %>
@@ -21,16 +22,24 @@
         <% end %>
         </p></td></tr>
     </table>
-</div>
 
-<div id="secondaryContent">
-    <div class="module">
-        <% if @employee.photo.exists? then %>
-            <p><%= image_tag @employee.photo.url(:small) %></p>
-        <% end %>
-        <p><%= link_to 'Edit Employee', edit_employee_path(@employee) %> <br/>
-           <%= link_to 'Delete', @employee, :confirm => 'Are you sure?', :method => :delete %></p>
-    </div>
-</div>
-
+<h4>Jobs</h4>
 <%= render :partial => 'jobs/list_job_for_employee', :locals => {:jobs => @jobs} %>
+
+<% content_for :sidebar do %>
+
+
+<% if @employee.photo.exists? then %>
+<div class="employee_photo">
+<%= image_tag @employee.photo.url(:small) %>
+</div><!-- .employee_photo -->
+<% end %>
+
+<div id="options">
+<h3>Options</h3>
+<ul>
+<li><%= link_to 'Edit Details', edit_employee_path(@employee), :class => "button button_edit_project" %></li>
+<li><%= link_to 'Delete employee', @employee, :confirm => 'Are you sure?', :method => :delete, :class => "button button_delete_project" %></li>
+</ul>
+</div><!-- #options -->
+<% end %>

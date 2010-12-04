@@ -1,14 +1,13 @@
 <% if !jobs.nil? %>
-<br/>
+
 <div id="result_table">
-    <table width="50%">
+    <table class="generic">
         <thead>
         <tr>
+            <th class="{sorter: false}">&nbsp;</th>
             <th>Project Name</th>
             <th>Client</th>
             <th>Job Name</th>
-            <th>Job Description</th>
-            <th>Status</th>
         </tr>
         <thead>  
         <tbody>
@@ -16,15 +15,14 @@
         <!--
             TODO Cambiar url_for job.project por EDIT JOB
         -->
-        <tr class="row" onclick='window.location = "<%= url_for :controller => 'jobs', :action => 'edit', :id => job.id %>"'>
-            <td><%=h job.project.name %>        </td>
-            <td><%=h job.project.client.name %> </td>
-            <td><%=h job.name %>                </td>
-            <td><%=h job.description %> </td>
+        <tr class="<%= cycle('odd', 'even') %>">
+            <td class="status status_<%= job.project.status.id %>">&nbsp;</td>
+            <td><%= link_to job.project.name, job.project %>        </td>
+            <td><%= link_to job.project.client.name, job.project.client %> </td>
+            <td><%= link_to job.name, job %>                </td>
             <!--
                 TODO Cambiar a job.status cuando lo meta en migration
             -->
-            <td><%=h job.project.status.name %> </td>
         </tr>
         <% end %>
         </tbody>

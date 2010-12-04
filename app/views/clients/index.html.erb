@@ -1,5 +1,8 @@
-<h2>Listing clients</h2>
-<br />
+<div class="breadcrumbs"><%= link_to 'Clients', clients_path %> &raquo; List</div><!-- .breadcrumbs -->
+<div class="clear"></div>
+
+<%= title "Clients", :h2 %>
+
 <div id="result_table">
     <table class="generic">
         <thead>
@@ -8,22 +11,21 @@
                 <th>CIF</th>
                 <th>Email</th>
                 <th>Website</th>
+                <th class="{sorter: false}">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
             <% @clients.each do |client| %>
-              <tr class="<%= cycle('odd', 'even') %>" onclick='window.location = "<%= url_for client %>"'>
+              <tr class="<%= cycle('odd', 'even') %>">
                 <td><%= link_to client.name, client %></td>
                 <td><%=h client.cif %></td>
                 <td><%= mail_to client.email, client.email, :encode => "hex" %></td>
                 <td><%= link_to client.website, client.website, :target => "_blank" %></td>
+				<td class="actions"><span><%= link_to "Edit", edit_client_path(client), :class => "button_edit" %> <%= link_to image_tag("icon_delete_small.png"), client, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete" %></span></td>
               </tr>
             <% end %>
         </tbody>
     </table>
 </div>
-<br />
 
-<%= link_to 'New client', new_client_path %>
-
-
+<p><%= link_to 'New client', new_client_path %></p>

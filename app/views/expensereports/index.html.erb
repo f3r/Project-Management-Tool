@@ -19,7 +19,7 @@
                 <tr class="<%= cycle('odd', 'even') %>" onclick='window.location = "<%= url_for :controller => 'expensereports', :action => 'edit', :id => exrep.id %>"'>
                   <td><%=h Project.find(exrep.project_id).name %></td>
                   <td><%=h Job.find(exrep.job_id).name %></td>
-                  <td><%= number_to_currency(exrep.amount, :unit => "&euro;", :precision => 0) %> </td>
+                  <td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
                   <td><%=h exrep.expenseDate %></td>
                   <td><%= link_to 'Delete', exrep, :confirm => 'Are you sure?', :method => :delete %></td>
                 </tr>

@@ -1,21 +1,29 @@
-<h2><%= link_to 'Clients', clients_path %> &raquo; <%= @client.name %> </h2>
+<div class="breadcrumbs"><%= link_to 'Clients', clients_path %> &raquo; <%= @client.name %> &raquo; Details</div><!-- .breadcrumbs -->
+<div class="clear"></div>
 
-<div id="mainContent">	
-    <table style="margin-left:50px">
-    <tr><td width="100px"><p>CIF:</p></td>  <td><p> <%=h @client.cif %>     </p></td></tr>
-    <tr><td><p>Address:</p></td>            <td><p> <%=h @client.address %> </p></td></tr>
-    <tr><td><p>Fax:</p></td>                <td><p> <%=h @client.fax %>     </p></td></tr>
-    <tr><td><p>Phone:</p></td>              <td><p> <%=h @client.phone %>   </p></td></tr>
-    <tr><td><p>Mobile:</p></td>             <td><p> <%=h @client.mobile %>  </p></td></tr>
-    <tr><td><p>Email:</p></td>              <td><p> <%=h @client.email %>   </p></td></tr>
-    <tr><td><p>Website:</p></td>            <td><p> <%=h @client.website %> </p></td></tr>
-    <tr><td><p>Notes:</p></td>              <td><p> <%=h @client.notes %>   </p></td></tr>
-    </table>
+<%= title @client.name, :h2 %>
+
+<div id="client_info">
+
+<dl class="details">
+<dt>CIF:</dt><dd><%=h @client.cif %>&nbsp;</dd>
+<dt>Address:</dt><dd><%=h @client.address %>&nbsp;</dd>
+<dt>Fax:</dt><dd><%=h @client.fax %>&nbsp;</dd>
+<dt>Phone:</dt><dd><%=h @client.phone %>&nbsp;</dd>
+<dt>Mobile:</dt><dd><%=h @client.mobile %>&nbsp;</dd>
+<dt>Email:</dt><dd><%= mail_to @client.email, @client.email, :hex => true %>&nbsp;</dd>
+<dt>Website:</dt><dd><%= link_to @client.website, @client.website %>&nbsp;</dd>
+<dt>Notes:</dt><dd><%=simple_format @client.notes %>&nbsp;</dd>
+</dl>
+
+</div><!-- #client_info -->
+
+<% content_for :sidebar do %>
+<div id="options">
+<h3>Options</h3>
+<ul>
+<li><%= link_to 'Edit client', edit_client_path(@client), :class => "button button_edit_project" %></li>
+<li><%= link_to 'Delete client', @client, :confirm => 'Are you sure?', :method => :delete, :class => "button button_delete_project" %></li>
+</ul>
 </div>
-<div id="secondaryContent">
-        <div class="module">
-            <p><strong>Client Options</strong></p>
-            <p> <%= link_to 'Edit Client', edit_client_path(@client) %> <br/>
-                <%= link_to 'Delete', @client, :confirm => 'Are you sure?', :method => :delete %></p>
-        </div>
-</div>
+<% end %>

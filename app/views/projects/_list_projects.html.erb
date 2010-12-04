@@ -23,7 +23,7 @@
                 <td><%= link_to project.partner.short_name, project.partner %>    </td>
                 <td><%= link_to project.manager.short_name, project.manager %>    </td>
                 <td class="job"><%=h project.number_of_jobs    %>    </td>
-                <td class="expense"><%=h project.accumulated_expenses %> </td>
+                <td class="expense"><%= number_to_currency(project.accumulated_expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
             </tr>
             <% end %>
         <% end %>

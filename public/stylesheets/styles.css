@@ -104,7 +104,7 @@ table.generic td.name {font-weight:bold;}
 table.generic td.job,
 table.generic td.hours {text-align:center;}
 table.generic td.expense {text-align:right;}
-table.generic th.expenses {width:60px;}
+table.generic th.expenses {width:70px;}
 table.generic th.jobs,
 table.generic th.hours {width:40px;}
 table.generic td .no_projects {font-size:22px;font-weight:bold;text-align:center;padding:20px 0;}
@@ -167,6 +167,11 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 #project_info .status_2 {background-image:url(../images/icon_status_started.png);}
 #project_info .status_3 {background-image:url(../images/icon_status_finished.png);}
 
+/* CLIENT PAGE */
+#client_info dl {line-height:180%;}
+#client_info dl dt {font-weight:bold;float:left;width:25%;color:#666;font-weight:bold;}
+#client_info dl dd {float:left;width:75%;}
+
 /* SIDEBAR */
 #sidebar {color:#666;font-size:12px;padding:10px 15px;}
 #sidebar a {color:#333;}
@@ -177,12 +182,15 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 #sidebar #options a.button {-moz-user-select: none;-khtml-user-select: none;user-select: none;outline: none;padding:0px 0px 0px 22px;margin:0;display:block;background-position:2px top;background-repeat:no-repeat;font-weight:normal;text-decoration:none;height:16px;font-size:12px;line-height:140%;}
 #sidebar #options a.active,
 #sidebar #options a.button:hover {background-position:2px -16px;color:#000;}
+#sidebar #options a.button_edit_password {background-image:url(../images/icon_password.png);}
 #sidebar #options a.button_edit_project {background-image:url(../images/icon_project_settings.png);}
 #sidebar #options a.button_delete_project {background-image:url(../images/icon_delete_project.png);}
 #sidebar #options a.button_sign_report {background-image:url(../images/icon_sign_report.png);}
 #sidebar #options a.button_save_report {background-image:url(../images/icon_save_report.png);}
 #sidebar #options ul.reports li {font-size:11px;font-weight:normal;}
 #sidebar #options ul.reports li a:hover {color:#000;}
+
+#sidebar .employee_photo { margin:0 auto 10px auto; width:100%; padding:4px; text-align:center; background-color:#f1f1f1; border:1px solid #f7f7f7; }
 
 /* FOOTER */
 #footer {padding-top:10px; background-image: url(../images/main_background_bottom.png); background-repeat: no-repeat; background-position: center top; zoom:1; }

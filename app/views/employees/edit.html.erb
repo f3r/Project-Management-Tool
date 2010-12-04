@@ -1,18 +1,22 @@
-<h2><%= link_to 'Employees', employees_path %> &raquo; <%= link_to @employee.full_name, employee_path %> &raquo; Editing Employee</h2>
+<div class="breadcrumbs"><%= link_to 'Employees', employees_path %> &raquo; <%= link_to @employee.full_name, @employee %> &raquo; Edit Details</div>
+<div class="clear"></div>
 
-<div id="mainContent">	
-    <%= render :partial => 'employees/form_employee' %>
-</div>
+<%= render :partial => 'employees/form_employee' %>
 
-<div id="secondaryContent">
-    <% if @employee.photo.exists? then %>
-        <div class="module">
-            <%= image_tag @employee.photo.url(:small) %><br/>
-        </div>
-    <% end %>
+<% content_for :sidebar do %>
+	<% if @employee.photo.exists? then %>
+	<div class="employee_photo">
+	<%= image_tag @employee.photo.url(:small) %>
+	</div><!-- .employee_photo -->
+	<% end %>
 
     <!-- TODO Add password-change link -->
-    <div class="module">
-        <p>Change Password</p>
-    </div>
-</div>
+
+<div id="options">
+<h3>Other options</h3>
+<ul>
+<li><%= link_to "Change Password", "#", :class => "button button_edit_password " %></li>
+</ul>
+</div><!-- #options -->
+
+<% end %>
