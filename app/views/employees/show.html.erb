@@ -1,27 +1,26 @@
 <div class="breadcrumbs"><%= link_to 'Employees', employees_path %> &raquo; <%=h @employee.full_name %> &raquo; Details</div>
 <div class="clear"></div>
 
-    <table style="margin-left:50px">
-    <tr><td width="100"><p>Level:</p></td><td><p>
-        <% if @employee.category %>
-            <%=h @employee.category.name %>
-        <% else %>
-            Not available
-        <% end %>
-        </p></td>
-    </tr>
-    <tr><td><p>NIF:</p></td>                <td><p> <%=h @employee.nif %></p></td></tr>
-    <tr><td><p>Email:</p></td>              <td><p> <%=h @employee.email %></p></td></tr>
-    <tr><td><p>Phone:</p></td>              <td><p> <%=h @employee.phone %></p></td></tr>
-    <tr><td><p>Mobile:</p></td>             <td><p> <%=h @employee.mobile %></p></td></tr>
-    <tr><td><p>Join Date:</p></td>          <td><p> 
-        <% if @employee.join_date %>
-            <%=h @employee.join_date.strftime("%d / %B / %Y") %>
-        <% else %>
-            Not available
-        <% end %>
-        </p></td></tr>
-    </table>
+<div id="employee_info">
+
+<%= title @employee.full_name, :h2 %>
+<p class="meta"><strong>Join Date:</strong> <% if @employee.join_date %><%=h @employee.join_date.to_datetime.to_s(:short_date) %><% else %>Not available<% end %></p>
+
+<dl class="details highlight_box">
+	<dt>Email:</dt><dd><%= mail_to @employee.email, @employee.email, :hex => true %>&nbsp;</dd>
+	<dt>Phone:</dt><dd><%=h @employee.phone %>&nbsp;</dd>
+	<dt>Mobile:</dt><dd><%=h @employee.mobile %>&nbsp;</dd>
+	<div class="clear"></div>
+</dl>
+
+<div class="employee_type">
+<p class="level"><strong>Level:</strong> <% if @employee.category %><%=h @employee.category.name %><% else %>Not available<% end %></p>
+<p class="nif"><strong>NIF:</strong> <%=h @employee.nif %></p>
+</div><!-- .employee_type -->
+
+</div><!-- #employee_info -->
+
+<div class="clear"></div>
 
 <h4>Jobs</h4>
 <%= render :partial => 'jobs/list_job_for_employee', :locals => {:jobs => @jobs} %>

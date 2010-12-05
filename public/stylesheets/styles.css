@@ -69,6 +69,7 @@ ul.dropdown li:hover > ul { display: block;}
 #content #wrapper {margin:0 auto;width:980px;}
 
 #content h2 {font-size:18px;color:#000;}
+#content h4 {font-size:14px;color:#333;margin:10px 0;}
 
 /* TABLES */
 
@@ -151,6 +152,7 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 .status_selector {margin:10px 0;}
 
 .note {font-size:11px;color:#999;text-align:right;}
+#notice {color:#080;padding:10px;}
 
 /* PROJECT PAGE */
 
@@ -158,12 +160,7 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 #project_info dl dt {font-weight:bold;float:left;width:25%;color:#666;font-weight:bold;}
 #project_info dl dd {float:left;width:75%;}
 #project_info dl.team {float:left;width:50%;}
-#project_info dl.dates {background-color:#F2F5F7;float:right;width:45%;padding:10px;margin:0;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-khtml-border-radius: 6px;
-	border-radius: 6px;
-}
+#project_info dl.dates {float:right;width:45%;}
 #project_info dl.dates dd {text-align:right;}
 #project_info .description { font-size:14px; }
 #project_info h2 {float:left;margin-bottom:10px;}
@@ -172,10 +169,31 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 #project_info .status_2 {background-image:url(../images/icon_status_started.png);}
 #project_info .status_3 {background-image:url(../images/icon_status_finished.png);}
 
-/* CLIENT PAGE */
+
+p.meta {font-size:11px;color:#777;}
+.highlight_box {
+	padding:10px;
+	margin:0;
+	background-color:#F2F5F7;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+}
+
+/* CLIENT, EMPLOYEE PAGE */
+#employee_info h2 {margin:0;}
+#employee_info dl,
 #client_info dl {line-height:180%;}
+#employee_info dl dt,
 #client_info dl dt {font-weight:bold;float:left;width:25%;color:#666;font-weight:bold;}
+#employee_info dl dd,
 #client_info dl dd {float:left;width:75%;}
+#employee_info dl.details {width:50%;float:left;}
+#employee_info .employee_type {width:30%; float:right;}
+#employee_info .employee_type p {margin:0;}
+#employee_info .employee_type p.level {font-size:18px;}
+#employee_info .employee_type p.nif {font-size:14px;color:#666;}
 
 /* SIDEBAR */
 #sidebar {color:#666;font-size:12px;padding:10px 15px;}
