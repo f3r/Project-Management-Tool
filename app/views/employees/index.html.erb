@@ -10,20 +10,18 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Mobile</th>
             <th>Jobs</th>
+            <th class="{sorter: false}">&nbsp;</th>
         </tr>
         <thead>  
         <tbody>
         <% @employees.each do |employee| %>
-        <tr class="<%= cycle('odd', 'even') %>" onclick='window.location = "<%= url_for employee %>"'>
+        <tr class="<%= cycle('odd', 'even') %>">
             <td><%= link_to employee.first_name, employee %></td>
             <td><%= link_to employee.last_name, employee %></td>   
             <td><%= mail_to employee.email, employee.email, :encode => "hex" %></td>
-            <td><%=h employee.phone %></td>
-            <td><%=h employee.mobile %></td>
             <td><%=h employee.number_of_jobs %></td> 
+			<td class="actions"><span><%= link_to "Edit", edit_employee_path(employee), :class => "button_edit" %> <%= link_to image_tag("icon_delete_small.png"), employee, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete" %></span></td>
         </tr>
         <% end %>
         </tbody>

@@ -7,10 +7,15 @@ a {color:#fff;}
 #content #notice,
 #content #error { text-align:center; border:1px solid #fff; width:300px; margin:0 auto; }
 #mainContent{margin:0 auto;width:300px;}
-#mainContent form {background-color:#511C05;padding:10px;}
-#mainContent form div.fields {margin:5px 0;border-bottom:1px solid #9A5030;padding:10px 5px;}
+#mainContent form {background-color:#511C05;padding:10px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+}
+#mainContent form div.fields {margin:5px 0 ;padding:10px 5px;}
 #mainContent form div.fields label {font-weight:bold;}
 #mainContent form div.fields input.field {padding:4px;border:0;float:right;}
 
-fieldset {border:1px solid #9A5030;}
+fieldset {border:0;}
 fieldset legend {font-family: "Lucida Grande";font-weight:bold;font-size:14px;}
