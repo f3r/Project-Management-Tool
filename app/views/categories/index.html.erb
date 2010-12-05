@@ -1,26 +1,27 @@
-<h2>Listing Categories</h2>
+<div class="breadcrumbs"><%= link_to 'Categories', categories_path %> &raquo; List</div><!-- .breadcrumbs -->
+<div class="clear"></div>
 
-<div id="result_table">
-    <table class="generic">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Level</th>
-                <th>Hour fee</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @categories.each do |category| %>
-              <tr class="<%= cycle('odd', 'even') %>">
-                <td><%= link_to category.name, :action => :edit, :id => category %></td>
-                <td><%=h category.level %></td>
-                <td><%=h category.hour_fee %></td>
-                <td><%= link_to 'Delete', category, :confirm => "Are you sure you want to delete category #{category.name}?", :method => :delete %></td>
-              </tr>
-            <% end %>
-        </tbody>
-    </table>
-</div>
+<%= title "Categories", :h2 %>
 
-<%= link_to 'New category', new_category_path %>
+<table class="generic">
+	<thead>
+		<tr>
+		<th>Name</th>
+		<th>Level</th>
+		<th>Hour fee</th>
+		<th class="{sorter: false}">&nbsp;</th>
+	</tr>
+</thead>
+	<tbody>
+		<% @categories.each do |category| %>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td><%= link_to category.name, :action => :edit, :id => category %></td>
+			<td><%=h category.level %></td>
+			<td><%= number_to_currency(category.hour_fee, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %></td>
+			<td class="actions"><span><%= link_to "Edit", edit_category_path(category), :class => "button_edit" %> <%= link_to image_tag("icon_delete_small.png"), category, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete" %></span></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= link_to 'New category', new_category_path %></p>

@@ -1,5 +1,6 @@
-<h2>Edit Job</h2>
+<div class="breadcrumbs"><%= link_to 'Projects', project_path(@job) %> &raquo; <%= link_to @job.project.name, @job.project %> &raquo; <%= @job.name %> &raquo; Edit</div><!-- .breadcrumbs -->
+<div class="clear"></div>
 
-<div id="mainContent">	
-    <%= render :partial => 'jobs/form_job', :locals => {:jobs => @job} %>
-</div>
+<%= title "Editing job", :h2 %>
+
+<%= render :partial => 'jobs/form_job', :locals => {:jobs => @job} %>

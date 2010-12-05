@@ -1,8 +1,6 @@
-<h2>Editing category</h2>
+<div class="breadcrumbs"><%= link_to 'Categories', categories_path %> &raquo; <%= @category.name %> &raquo; Edit</div><!-- .breadcrumbs -->
+<div class="clear"></div>
 
-<div id="mainContent">	
-    <%= render :partial => 'categories/form_category' %>
-    
-    <%= link_to 'Back', categories_path %>
-</div>
+<%= title "Editing category", :h2 %>
 
+<%= render :partial => 'categories/form_category' %>

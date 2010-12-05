@@ -1,61 +1,23 @@
-<% form_for(@employee, :html => { :multipart => true }) do |f| %>
-<%= f.error_messages %>
-<div class="fields">
-    <label>
-        First Name
-    </label>
-    <%= f.text_field :first_name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-</div>
-<div class="fields">
-    <label>
-        Last Name
-    </label>
-    <%= f.text_field :last_name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-</div>
-<div class="fields">
-    <label>
-        Email
-    </label>
-    <%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-</div>
-<div class="fields">
-    <label>
-        NIF
-    </label>
-    <%= f.text_field :nif, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-</div>
-<div class="fields">
-    <label>
-        Phone
-    </label>
-    <%= f.text_field :phone, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-</div>
-<div class="fields">
-    <label>
-        Mobile Phone
-    </label>
-    <%= f.text_field :mobile, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-</div>
-<div class="fields">
-    <label>
-        Role
-    </label>
-    <%= f.collection_select(:category_id, Category.all, :id, :name, :prompt => true) %>
-</div>
-<div class="fields">
-    <label>
-        Join Date
-    </label>
-    <%= date_select("employee","join_date", options = {:order => [:day, :month, :year], :start_year => 2010}) %>
-</div>
-<div class="fields">
-    <label>
-        Photo
-    </label>
-    <%= f.file_field :photo %>
-</div>
-<div class="fields">
-    <%= f.submit 'Save Employee' %>  &nbsp;
-    <input name="cancel" type="submit" value="Cancel" onClick="history.back();return false;">
-</div>
-<% end -%>
+<% semantic_form_for @employee do |form| %>
+<%= form.semantic_errors :state %>
+<div class="note">* Required fields</div>
+
+  <% form.inputs "Employee details" do %>
+	<%= form.input :first_name, :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :last_name, :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :email, :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :nif, :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :phone, :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :mobile, :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+  <% end %>
+
+  <% form.inputs "Employee type" do %>
+	<%= form.input :category, :as => :select, :collection => Category.all, :required => false  %>
+	<%= form.input :join_date, :as => :date, :required => false  %>
+  <% end %>
+
+  <% form.buttons do %>
+    <%= form.commit_button :label => "Save" %> <%= link_to "Cancel", employee_path(@employee) if @employee.id.present? %>
+  <% end %>
+
+<% end %>

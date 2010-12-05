@@ -1,20 +1,15 @@
+<% semantic_form_for @job do |form| %>
+<%= form.semantic_errors :state %>
+<div class="note">* Required fields</div>
 
-<% form_for ([@project,@job]) do |f| %>
-    <%= f.error_messages %>
-	<div class="form_row">
-		<label> Job Name </label>
-        <%= f.text_field :name, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-	</div>
-	<div class="form_row">
-		<label> Description </label>
-        <%= f.text_area :description, :cols => TEXT_FIELD_SIZE, :rows => 10 %>
-	</div>
-	<div class="form_row">
-		<label> Employee </label>
-        <%= f.collection_select(:employee_id, @employees, :id, :full_name) %>
-	</div>
-	<div class="form_row">
-		<%= f.submit 'Update' %> &nbsp; 
-		<input name="cancel" type="submit" value="Cancel" onClick="history.back();return false;">
-	</div>
+  <% form.inputs "Project details" do %>
+	<%= form.input :name, :label => "Job name", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :description, :as => :text, :input_html => { :rows => 6 } %>
+	<%= form.input :employee, :as => :select, :collection => @employees %>
+  <% end %>
+
+  <% form.buttons do %>
+    <%= form.commit_button :label => "Save" %> <%= link_to "Cancel", project_path(@job.project) if @job.project.id.present? %>
+  <% end %>
+
 <% end %>

@@ -158,7 +158,12 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 #project_info dl dt {font-weight:bold;float:left;width:25%;color:#666;font-weight:bold;}
 #project_info dl dd {float:left;width:75%;}
 #project_info dl.team {float:left;width:50%;}
-#project_info dl.dates {background-color:#F2F5F7;float:right;width:45%;padding:10px;margin:0;}
+#project_info dl.dates {background-color:#F2F5F7;float:right;width:45%;padding:10px;margin:0;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+}
 #project_info dl.dates dd {text-align:right;}
 #project_info .description { font-size:14px; }
 #project_info h2 {float:left;margin-bottom:10px;}
@@ -183,6 +188,8 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 #sidebar #options a.active,
 #sidebar #options a.button:hover {background-position:2px -16px;color:#000;}
 #sidebar #options a.button_edit_password {background-image:url(../images/icon_password.png);}
+#sidebar #options a.button_edit_profile {background-image:url(../images/icon_profile.png);}
+#sidebar #options a.button_edit_picture {background-image:url(../images/icon_picture.png);}
 #sidebar #options a.button_edit_project {background-image:url(../images/icon_project_settings.png);}
 #sidebar #options a.button_delete_project {background-image:url(../images/icon_delete_project.png);}
 #sidebar #options a.button_sign_report {background-image:url(../images/icon_sign_report.png);}
@@ -190,7 +197,34 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 #sidebar #options ul.reports li {font-size:11px;font-weight:normal;}
 #sidebar #options ul.reports li a:hover {color:#000;}
 
-#sidebar .employee_photo { margin:0 auto 10px auto; width:100%; padding:4px; text-align:center; background-color:#f1f1f1; border:1px solid #f7f7f7; }
+#sidebar .employee_photo { margin:0 auto 10px auto; width:100%; padding:4px; text-align:center; background-color:#f7f7f7; border:1px solid #f1f1f1; }
+
+/* FORMS ver formtastic.css */
+
+form.formtastic fieldset > ol > li label { font-weight:bold; color:#333; }
+form.formtastic > fieldset > legend { font-size:16px; font-weight:bold; color:#532901; }
+form.formtastic fieldset.inputs {
+	background-color:#f7f7f7; border:1px solid #f1f1f1; padding:10px; margin-bottom:10px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+}
+
+form.formtastic fieldset > ol > li.string input, 
+form.formtastic fieldset > ol > li.password input, 
+form.formtastic fieldset > ol > li.numeric input,
+form.formtastic fieldset > ol > li.email input,
+form.formtastic fieldset > ol > li.url input,
+form.formtastic fieldset > ol > li.phone input,
+form.formtastic fieldset > ol > li.search input,
+form.formtastic fieldset > ol > li.text textarea {
+	border:1px solid #eee; padding:4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+}
 
 /* FOOTER */
 #footer {padding-top:10px; background-image: url(../images/main_background_bottom.png); background-repeat: no-repeat; background-position: center top; zoom:1; }

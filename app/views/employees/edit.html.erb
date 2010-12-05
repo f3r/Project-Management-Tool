@@ -1,5 +1,7 @@
-<div class="breadcrumbs"><%= link_to 'Employees', employees_path %> &raquo; <%= link_to @employee.full_name, @employee %> &raquo; Edit Details</div>
+<div class="breadcrumbs"><%= link_to 'Employees', employees_path %> &raquo; <%= link_to @employee.full_name, @employee %> &raquo; Edit details</div>
 <div class="clear"></div>
+
+<%= title "Edit details", :h2 %>
 
 <%= render :partial => 'employees/form_employee' %>
 
@@ -15,6 +17,7 @@
 <div id="options">
 <h3>Other options</h3>
 <ul>
+<li><%= link_to "Change profile picture", "#", :class => "button button_edit_picture " %></li>
 <li><%= link_to "Change Password", "#", :class => "button button_edit_password " %></li>
 </ul>
 </div><!-- #options -->
