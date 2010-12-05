@@ -8,10 +8,10 @@
 	<li class="dir"><a href="#">Employees</a>
 		<ul>
 	    <li <% if menu_active?('employees')%> class="active" <%end%>>
-	        <%= link_to 'Employees', :controller => 'employees', :action => 'index' %>
+	        <%= link_to 'Employee List', :controller => 'employees', :action => 'index' %>
 	    </li>    
 	    <li <% if menu_active?('categories')%> class="active last" <%end%>>
-	        <%= link_to 'Categories', :controller => 'categories', :action => 'index' %>
+	        <%= link_to 'Employee Categories', :controller => 'categories', :action => 'index' %>
 	    </li>
 		</ul>    
 	</li>
