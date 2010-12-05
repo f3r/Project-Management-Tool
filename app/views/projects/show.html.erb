@@ -13,7 +13,7 @@
 <dt>Manager:</dt><dd><%= link_to @project.manager.full_name, employee_path(@project.manager) %></dd>
 </dl>
 
-<dl class="dates">
+<dl class="dates highlight_box">
 <dt>Start Date:</dt><dd><%= @project.date_start.to_datetime.to_s(:full_date) %></dd>
 <dt>End Date:</dt><dd><%= @project.date_end.to_datetime.to_s(:full_date) %></dd>
 </dl>
