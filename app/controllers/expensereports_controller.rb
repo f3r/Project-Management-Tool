@@ -33,8 +33,6 @@ class ExpensereportsController < ApplicationController
       end    
       @expensereport = Expensereport.find(params[:id])
     else
-      # TODO: esto es porque hacer click en delete, al tener el click
-      # en toda la fila, llama a delete, pero tb a edit
       redirect_to(expensereports_url)
     end
   end
@@ -43,7 +41,7 @@ class ExpensereportsController < ApplicationController
     @expensereport = Expensereport.new(params[:expensereport])
     @expensereport.employee_id = session[:user_id]
     if @expensereport.save
-        flash[:notice] = 'Expensereport was successfully created.'
+        flash[:notice] = 'Expense Report was successfully created.'
         redirect_to(expensereports_url)
     else
         @jobs = Job.find_all_by_employee_id(session[:user_id])
@@ -60,7 +58,7 @@ class ExpensereportsController < ApplicationController
   def update
     @expensereport = Expensereport.find(params[:id])
     if @expensereport.update_attributes(params[:expensereport])
-        flash[:notice] = 'Expensereport was successfully updated.'
+        flash[:notice] = 'Expense Report was successfully updated.'
         redirect_to(expensereports_url)
     else
         render :action => "edit"

@@ -14,7 +14,7 @@
   <% end %>
 
   <% form.buttons do %>
-    <%= form.commit_button :label => "Save" %> <%= link_to "Cancel", project_path(@project) if @project.id.present? %>
+    <%= form.commit_button :label => "Save" %> <%= link_to_if(@project.id.present?, "Cancel", @project) do link_to("Cancel", projects_path) end %>
   <% end %>
 
 <% end %>

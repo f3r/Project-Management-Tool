@@ -1,33 +1,17 @@
-<% form_for(@expensereport) do |f| %>
-  <%= f.error_messages %>
+<% semantic_form_for @expensereport do |form| %>
+<%= form.semantic_errors :state %>
+<div class="note">* Required fields</div>
 
-  <div class="form_row">
-    <label> Project</label>
-        <%= f.select "project_id", options_from_collection_for_select(@projects, "id", "name") %>
-  </div>
+  <% form.inputs "Employee details" do %>
+	<%= form.input :project_id, :as => :select, :collection => @projects %>
+	<%= form.input :job_id, :as => :select, :collection => @jobs %>
+	<%= form.input :amount, :label => "Amount (&euro;)", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :expenseDate, :label => "Date", :as => :date %>
+  <% end %>
 
-  <div class="form_row">
-    <label> Job Name</label>
-        <%= f.select "job_id", options_from_collection_for_select(@jobs, "id", "name") %>
-  </div>
+  <% form.buttons do %>
+    <%= form.commit_button :label => "Save" %> <%= link_to("Cancel", expensereports_path) %>
 
-  <div class="form_row">
-    <label> Amount (&euro;)</label>
-        <%= f.text_field :amount, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %> 
-  </div>
+  <% end %>
 
-  <div class="form_row">
-    <label> Date</label>
-        <%= date_select("expensereport", "expenseDate") %>
-  </div>
-  
-  <div class="form_row">
-        <% if @current_action == "new" %>
-            <%= f.submit 'Create New Expense' %>
-        <% else %>
-            <%= f.submit 'Update Expense' %>
-        <% end %>
-  </div>
 <% end %>
-
-<%= link_to 'Back', expensereports_path %>

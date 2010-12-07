@@ -1,6 +1,6 @@
-<h2>New Expense</h2>
+<div class="breadcrumbs"><%= link_to 'Reports', "#" %> &raquo; <%= link_to "Expense Reports", expensereports_path %> &raquo; New Expense</div>
+<div class="clear"></div>
 
-<div id="mainContent">  
-    <%= render :partial => 'expensereports/form_expensereport', 
-               :locals => {:expensereport => @expensereport, :projects => @projects, :jobs => @jobs} %>
-</div>
+<%= title "New Expense", :h2 %>
+
+<%= render :partial => 'expensereports/form_expensereport', :locals => {:expensereport => @expensereport, :projects => @projects, :jobs => @jobs} %>

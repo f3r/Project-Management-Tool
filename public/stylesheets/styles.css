@@ -152,10 +152,11 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 .status_selector {margin:10px 0;}
 
 .note {font-size:11px;color:#999;text-align:right;}
-.notice,
-.error {padding:10px 10px 10px 44px;margin:10px 0;background-repeat:no-repeat;background-position:10px center;}
-.notice {color:#080;background-color:#E1FFD1;border-top:1px solid #C5F8AC;border-bottom:1px solid #C5F8AC;background-image:url(../images/icon_check.png);}
-.error {color:#800;background-color:#FFE9E3;border-top:1px solid #DEADAD;border-bottom:1px solid #DEADAD;background-image:url(../images/icon_warning.png);}
+
+.notice_message,
+.error_message {padding:10px 10px 10px 44px;margin:10px 0;background-repeat:no-repeat;background-position:10px center;}
+.notice_message {color:#080;background-color:#E1FFD1;border-top:1px solid #C5F8AC;border-bottom:1px solid #C5F8AC;background-image:url(../images/icon_check.png);}
+.error_message {color:#800;background-color:#FFE9E3;border-top:1px solid #DEADAD;border-bottom:1px solid #DEADAD;background-image:url(../images/icon_warning.png);}
 
 /* PROJECT PAGE */
 
