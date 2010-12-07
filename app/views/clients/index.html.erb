@@ -20,7 +20,7 @@
 			<td><%=h client.cif %></td>
 			<td><%= mail_to client.email, client.email, :encode => "hex" %></td>
 			<td><%= link_to client.website, client.website, :target => "_blank" %></td>
-			<td class="actions"><span><%= link_to "Edit", edit_client_path(client), :class => "button_edit" %> <%= link_to image_tag("icon_delete_small.png"), client, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete" %></span></td>
+			<td class="actions"><span><%= link_to "Edit", edit_client_path(client), :class => "button_edit", :rel => "tipsy", :title => "Edit this client" %> <%= link_to image_tag("icon_delete_small.png"), client, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tipsy", :title => "Delete this client" %></span></td>
 		</tr>
 		<% end %>
 	</tbody>

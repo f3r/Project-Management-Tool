@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$('a[rel=tipsy]').tipsy({fade: true, gravity: 's'});
 	$(".generic").tablesorter();
 	$(".generic tr").hover(
 	  function () {
