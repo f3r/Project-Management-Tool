@@ -3,6 +3,70 @@
 
 <%= title "Expense Reports", :h2 %>
 
+<script type="text/javascript">
+
+	var chart;
+	$(document).ready(function() {
+		chart = new Highcharts.Chart({
+			credits: {
+				enabled:false
+			},
+			chart: {
+				renderTo: 'container',
+				defaultSeriesType: 'line',
+				marginRight: 130,
+				marginBottom: 25
+			},
+			title: {
+				text: 'Expense Reports',
+				x: -20 //center
+			},
+			subtitle: {
+				// text: 'bla bla',
+				x: -20
+			},
+			yAxis: {
+				title: {
+					text: 'Euros per day'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				formatter: function() {
+		                return '<b>'+ this.series.name +'</b><br/>'+
+						this.x +': '+ this.y +' euros';
+				}
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'top',
+				x: -10,
+				y: 100,
+				borderWidth: 0
+			},
+			series: [
+
+			      {
+			        name: "Project name",
+			        data: <%= expense_chart(1.month.ago) %>
+			      }
+			
+			]
+		});
+		
+		
+	});
+		
+</script>
+
+
+<div id="container" style="width: 100%; height: 300px; margin: 0 auto"></div>
+
 <table class="generic">
 	<thead>
 		<tr>
