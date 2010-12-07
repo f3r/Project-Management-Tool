@@ -44,11 +44,16 @@
 
 	<div id="content">
 	<div id="wrapper">
+
     	<% if flash[:notice] -%>
-    	   <div id="notice"><%= flash[:notice] %></div>					
+		<div class="grid_18">
+    	   <div class="notice"><%= flash[:notice] %></div>
+		</div>
     	<% end -%>
     	<% if flash[:error] -%>
-    	   <div id="error"><%= flash[:error] %></div>
+		<div class="grid_18">
+    	   <div class="error"><%= flash[:error] %></div>
+		</div>
     	<% end -%>				
 
 		<div class="grid_18">
