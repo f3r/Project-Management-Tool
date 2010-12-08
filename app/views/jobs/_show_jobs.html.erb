@@ -30,7 +30,9 @@
         </tbody>
     </table>
 </div>
-<p><%= link_to 'Create New Job', new_project_job_path(@project, @job, :anchor => "new_job"), :class => "button", :rel => "modal" %></p>
+
+<% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>Create New Job</span><% end %>
+
 <!--
     TODO create a job/view page (with edit and delete)
     

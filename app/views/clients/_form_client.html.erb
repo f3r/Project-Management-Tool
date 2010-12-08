@@ -16,7 +16,7 @@
   <% end %>
 
   <% form.buttons do %>
-    <%= form.commit_button :label => "Save" %> <%= link_to "Cancel", client_path(@client) if @client.id.present? %>
+    <%= form.commit_button :label => "Save" %> <%= link_to_if(@client.id.present?, "Cancel", @client) do link_to("Cancel", clients_path) end %>
   <% end %>
 
 <% end %>

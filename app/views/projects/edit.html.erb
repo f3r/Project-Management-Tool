@@ -1,4 +1,5 @@
 <div class="breadcrumbs"><%= link_to 'Projects', projects_path %> &raquo; <%= link_to @project.name, @project %> &raquo; Edit Project</div>
 <div class="clear"></div>
 
+<%= title "Edit project", :h2 %>
 <%= render :partial => 'projects/form_project' %>
