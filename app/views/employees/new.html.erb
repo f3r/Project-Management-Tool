@@ -1,7 +1,6 @@
-<h2><%= link_to 'Employees', employees_path %> &raquo; New Employee</h2>
+<div class="breadcrumbs"><%= link_to 'Employees', employees_path %> &raquo; New employee</div>
+<div class="clear"></div>
 
-<div id="mainContent">	
-    <%= render :partial => 'employees/form_employee', :locals => {:employee => @employee} %>
-    
-    <%= link_to 'Back', employees_path %>
-</div>
+<%= title "New employee", :h2 %>
+
+<%= render :partial => 'employees/form_employee', :locals => {:employee => @employee} %>

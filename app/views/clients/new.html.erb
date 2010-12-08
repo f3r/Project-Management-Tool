@@ -1,4 +1,7 @@
-<h2>New client</h2>
+<div class="breadcrumbs"><%= link_to 'Clients', clients_path %> &raquo; New client</div><!-- .breadcrumbs -->
+<div class="clear"></div>
+
+<%= title "New client", :h2 %>
 
 <div id="mainContent">	
     <%= render :partial => 'clients/form_client', :locals => {:client => @client} %>

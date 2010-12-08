@@ -1,18 +1,18 @@
 <div id="project_list">
 	<div class="breadcrumbs"><%= link_to 'Projects', projects_path %> &raquo; <%= @status_name %></div><!-- .breadcrumbs -->
+	<div class="clear"></div>
+
+	<%= title "#{@status_name} projects", :h2 %>
+
 	<div class="status_selector">
 	<% remote_function :url => {:action => 'get_projects'} %>
-
 	<!--
 	    TODO Add My projects ==> Project.show(session[:user_id])
 	-->
-
 	<select id="status_selected">
 	<%= options_from_collection_for_select(Status.find(:all).insert(0,Status.new(:id => 0,:name => "All Projects")),:id,:name, params[:id].to_i) %>
 	</select>
-
 	<%= observe_field 'status_selected',:url => {:action => 'get_projects'},:with => 'id',:update => :project_list, :success => "update_tablesort('.generic')" %>
-
 	</div><!-- .status_selector -->
 	<div class="clear"></div>
 

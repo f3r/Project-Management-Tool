@@ -68,7 +68,7 @@ ul.dropdown li:hover > ul { display: block;}
 #content {background-image: url(../images/main_background_middle.png); background-repeat: repeat-y; background-position: center top; zoom:1; }
 #content #wrapper {margin:0 auto;width:980px;}
 
-#content h2 {font-size:18px;color:#000;margin:0;}
+#content h2 {font-size:18px;color:#000;margin:10px 0;}
 #content h4 {font-size:14px;color:#333;margin:10px 0;}
 
 /* TABLES */
@@ -78,7 +78,8 @@ table.generic th.headerSortUp {background-image:url(../images/icon_sort_up.png);
 table.generic th.headerSortDown {background-image:url(../images/icon_sort_down.png);}
 
 table.generic {width:100%;}
-table.generic th { background-color:#cce0eb; font-size:12px; font-weight:bold; text-align:left; border-bottom:1px solid #cacaca; }
+table.generic thead th { border-top:1px solid #A3C8DB;}
+table.generic th { background-color:#cce0eb; font-size:12px; font-weight:bold; text-align:left; }
 table.generic th,
 table.generic td {padding:4px;}
 table.generic th.actions {width:100px;}
@@ -121,7 +122,7 @@ table.generic_reports th.total_week { width:70px;}
 table.generic_reports table {width:100%;border-bottom:1px solid #cacaca;margin:0;}
 table.generic_reports table th {font-size:14px;font-weight:bold;color:#000;background-color:#fff;font-family:'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;text-align:center;}
 
-table.generic_reports table tr.timeRep_proj {border-left:1px solid #eee;border-right:1px solid #eee;border-top:1px solid #333;cursor:pointer;}
+table.generic_reports table tr.timeRep_proj {border-left:1px solid #eee;border-right:1px solid #eee; border-top:1px solid #ccc; cursor:pointer;}
 table.generic_reports table tr.timeRep_proj th.project {-moz-user-select: none;-khtml-user-select: none;user-select: none; padding-left:25px; background-repeat:no-repeat;background-position:4px center; background-image:url(../images/icon_opened.png);}
 table.generic_reports table tr.collapsed th.project {background-image:url(../images/icon_collapsed.png);}
 table.generic_reports table td {border:1px solid #eee;text-align:center;}
@@ -146,10 +147,8 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 .breadcrumbs {font-size:12px; color:#666;}
 .breadcrumbs a {font-weight:bold;}
 
-.breadcrumbs {float:left;}
-.status_selector {float:right;}
-.breadcrumbs,
-.status_selector {margin:10px 0;}
+#project_list h2 {float:left;}
+#project_list .status_selector {float:right;margin:10px 0;}
 
 .note {font-size:11px;color:#999;text-align:right;}
 
@@ -186,7 +185,7 @@ p.meta {font-size:11px;color:#777;}
 }
 
 /* CLIENT, EMPLOYEE PAGE */
-#employee_info h2 {margin:0;}
+#employee_info h2 {margin:10px 0 0 0;}
 #employee_info dl,
 #client_info dl {line-height:180%;}
 #employee_info dl dt,
@@ -196,7 +195,7 @@ p.meta {font-size:11px;color:#777;}
 #employee_info dl.details {width:50%;float:left;}
 #employee_info .employee_type {width:30%; float:right;}
 #employee_info .employee_type p {margin:0;}
-#employee_info .employee_type p.level {font-size:18px;}
+#employee_info .employee_type p.level {font-size:16px;}
 #employee_info .employee_type p.nif {font-size:14px;color:#666;}
 
 /* SIDEBAR */
