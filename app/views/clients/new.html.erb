@@ -3,8 +3,4 @@
 
 <%= title "New client", :h2 %>
 
-<div id="mainContent">	
-    <%= render :partial => 'clients/form_client', :locals => {:client => @client} %>
-    
-    <%= link_to 'Back', clients_path %>
-</div>
+<%= render :partial => 'clients/form_client', :locals => {:client => @client} %>
