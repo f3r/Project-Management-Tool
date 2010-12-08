@@ -1,5 +1,4 @@
-<h2><%= link_to 'Projects', projects_path %> &raquo; New Project</h2>
+<div class="breadcrumbs"><%= link_to 'Projects', projects_path %> &raquo; New project</div><!-- .breadcrumbs -->
+<div class="clear"></div>
 
-<div id="mainContent">	
-    <%= render :partial => 'projects/form_project', :locals => {:project => @project} %>
-</div>
+<%= render :partial => 'projects/form_project', :locals => {:project => @project} %>

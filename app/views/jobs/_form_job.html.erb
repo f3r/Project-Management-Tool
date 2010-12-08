@@ -1,15 +1,15 @@
-<% semantic_form_for @job do |form| %>
+<% semantic_form_for [@project,@job] do |form| %>
 <%= form.semantic_errors :state %>
 <div class="note">* Required fields</div>
 
-  <% form.inputs "Project details" do %>
+  <% form.inputs "Job details" do %>
 	<%= form.input :name, :label => "Job name", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<%= form.input :description, :as => :text, :input_html => { :rows => 6 } %>
 	<%= form.input :employee, :as => :select, :collection => @employees %>
   <% end %>
 
   <% form.buttons do %>
-    <%= form.commit_button :label => "Save" %> <%= link_to "Cancel", project_path(@job.project) if @job.project.id.present? %>
+    <%= form.commit_button :label => "Save" %> <%= link_to_if(@job.project, "Cancel", @job.project) do link_to("Cancel", project_path(params[:project_id])) end %>
   <% end %>
 
 <% end %>

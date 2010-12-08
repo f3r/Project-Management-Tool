@@ -68,7 +68,7 @@ ul.dropdown li:hover > ul { display: block;}
 #content {background-image: url(../images/main_background_middle.png); background-repeat: repeat-y; background-position: center top; zoom:1; }
 #content #wrapper {margin:0 auto;width:980px;}
 
-#content h2 {font-size:18px;color:#000;}
+#content h2 {font-size:18px;color:#000;margin:0;}
 #content h4 {font-size:14px;color:#333;margin:10px 0;}
 
 /* TABLES */
@@ -247,6 +247,9 @@ form.formtastic fieldset > ol > li.text textarea {
 	-khtml-border-radius: 4px;
 	border-radius: 4px;
 }
+
+/* MODAL WINDOWS */
+.boxy-inner form#new_job {width:500px;padding:10px;}
 
 /* FOOTER */
 #footer {padding-top:10px; background-image: url(../images/main_background_bottom.png); background-repeat: no-repeat; background-position: center top; zoom:1; }

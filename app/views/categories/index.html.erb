@@ -18,7 +18,7 @@
 			<td><%= link_to category.name, :action => :edit, :id => category %></td>
 			<td><%=h category.level %></td>
 			<td><%= number_to_currency(category.hour_fee, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %></td>
-			<td class="actions"><span><%= link_to "Edit", edit_category_path(category), :class => "button_edit", :rel => "tipsy", :title => "Edit this category" %> <%= link_to image_tag("icon_delete_small.png"), category, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tipsy", :title => "Delete this category" %></span></td>
+			<td class="actions"><span><%= link_to "Edit", edit_category_path(category), :class => "button_edit", :rel => "tooltip", :title => "Edit this category" %> <%= link_to image_tag("icon_delete_small.png"), category, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this category" %></span></td>
 		</tr>
 		<% end %>
 	</tbody>

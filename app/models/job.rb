@@ -1,6 +1,6 @@
 class Job < ActiveRecord::Base
     # Validations
-    validates_presence_of :name, :description, :project_id
+    validates_presence_of :name, :description, :project_id, :employee_id
 
     # Relationships
     belongs_to  :employee

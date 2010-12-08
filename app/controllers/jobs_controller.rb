@@ -24,8 +24,8 @@ class JobsController < ApplicationController
         flash[:notice] = 'Job was successfully created.'
         redirect_to(@job.project)
       else
-        flash[:notice] = "Error creating job: #{@job.errors}"
-        redirect_to(@job.project)
+        flash[:error] = "Error creating job"
+        render :action => "new"
       end
     end
   end
@@ -62,6 +62,7 @@ class JobsController < ApplicationController
         @job = Job.find(params[:id])
         @proj = @job.project
         @job.destroy
+        flash[:notice] = 'Job was successfully deleted.'
         redirect_to(@proj)
     rescue Exception => e
         logger.error { "Error [jobs_controller.rb/destroy] #{e.message}" }
