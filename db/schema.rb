@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101114140133) do
+ActiveRecord::Schema.define(:version => 20101221161226) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20101114140133) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -93,11 +94,11 @@ ActiveRecord::Schema.define(:version => 20101114140133) do
     t.integer  "year"
     t.integer  "week"
     t.integer  "job_id"
-    t.float    "h_mon"
-    t.float    "h_tue"
-    t.float    "h_wed"
-    t.float    "h_thu"
-    t.float    "h_fri"
+    t.float    "h_mon",      :default => 0.0
+    t.float    "h_tue",      :default => 0.0
+    t.float    "h_wed",      :default => 0.0
+    t.float    "h_thu",      :default => 0.0
+    t.float    "h_fri",      :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "signed"
