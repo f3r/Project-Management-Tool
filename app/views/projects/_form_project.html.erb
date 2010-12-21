@@ -5,12 +5,12 @@
   <% form.inputs "Project details" do %>
 	<%= form.input :name, :label => "Project name", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<%= form.input :description, :as => :text, :input_html => { :rows => 6 } %>
-	<%= form.input :partner, :as => :select, :collection => @partners %>
-	<%= form.input :manager, :as => :select, :collection => @managers %>
-	<%= form.input :client, :as => :select, :collection => @clients %>
-	<%= form.input :status, :as => :select, :collection => @statuses %>
-	<%= form.input :date_start, :as => :date %>
-	<%= form.input :date_end, :as => :date %>
+	<%= form.input :partner, :as => :select, :collection => @partners, :prompt => true %>
+	<%= form.input :manager, :as => :select, :collection => @managers, :prompt => true %>
+	<%= form.input :client, :as => :select, :collection => @clients,   :prompt => true %>
+	<%= form.input :status, :as => :select, :collection => @statuses,  :prompt => true %>
+	<%= form.input :date_start, :as => :date, :prompt => true %>
+	<%= form.input :date_end, :as => :date,   :prompt => true  %>
   <% end %>
 
   <% form.buttons do %>

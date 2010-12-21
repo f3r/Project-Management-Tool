@@ -72,14 +72,24 @@ class ProjectsController < ApplicationController
    end
 
   def update
-    @project = Project.find(params[:id])
-
-      if @project.update_attributes(params[:project])
-        flash[:notice] = 'Project was successfully updated.'
-        redirect_to(@project)
-      else
+    begin
+      @project = Project.find(params[:id])
+      if @project.has_pending_jobs and params[:project][:status_id].to_i == 3
+        flash[:error] = 'To close a Project you must first finish all its jobs'
         render :action => "edit"
+      else
+        if @project.update_attributes(params[:project])
+          flash[:notice] = 'Project was successfully updated.'
+          redirect_to(@project)
+        else
+          flash[:notice] = 'There was some problem saving your changes.'
+          render :action => "edit"
+        end
       end
+
+    rescue Exception => e
+      logger.error { "Error [projects_controller.rb/update] #{e.message}" }
+    end
   end
 
   def destroy
