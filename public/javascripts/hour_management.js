@@ -75,7 +75,8 @@ $('.hours').focusout(function() {
     for(i=1;i<6;i++) {
       total += parseFloat($("#total_"+i).html());
     }
-    $("#total_total").html(total);
+    total_perc = Math.round((total*100)/40)
+    $("#total_total").html(total + ' ('+ total_perc +'%)');
   } else {
     error = false;
   } 
