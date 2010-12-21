@@ -41,11 +41,15 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
-    @partners = Employee.get_partners
-    @managers = Employee.get_managers
-    @clients  = Client.find(:all)
-    @statuses = Status.find(:all)
+    begin
+      @project = Project.find(params[:id])
+      @partners = Employee.get_partners
+      @managers = Employee.get_managers
+      @clients  = Client.find(:all)
+      @statuses = Status.find(:all)
+    rescue Exception => e
+        logger.error { "Error [projects_controller.rb/edit] #{e.message}" }      
+    end
   end
 
   def create

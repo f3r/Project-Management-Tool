@@ -13,7 +13,6 @@ class Project < ActiveRecord::Base
     def self.create_project(params)
       begin
           project = Project.new(params)
-          project.status = Status.find(1)
           project.save
           return project
       rescue Exception => e
