@@ -2,6 +2,7 @@
     <table class="generic">
         <thead>
         <tr>
+            <th class="{sorter: false}">&nbsp;</th>
             <th>Job Name</th>
             <th>Description</th>
             <th>Employee</th>
@@ -16,6 +17,7 @@
         <% else %>
             <% @jobs.each do |job| %>
             <tr class="<%= cycle('odd', 'even') %>">
+                <td class="status status_<%= job.status.id %>">&nbsp;</td>
                 <td><a name="job-<%= job.id %>"></a><%=h job.name %></td>
                 <td><%=h job.description %> </td>
                 <td><%= link_to job.employee.short_name, job.employee %></td>

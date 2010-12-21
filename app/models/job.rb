@@ -7,8 +7,7 @@ class Job < ActiveRecord::Base
     belongs_to  :project
     has_many    :expensereports
     has_many    :week_hour, :class_name => 'WeekHours'
-
-    #TODO Add that Job has_one :status
+    belongs_to  :status
 
     def expenses
       return Expensereport.find_all_by_job_id(self.id).sum(&:amount)

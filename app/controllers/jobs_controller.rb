@@ -9,6 +9,7 @@ class JobsController < ApplicationController
       @job = Job.new
       @project   = Project.find(params[:project_id])
       @employees = Employee.find(:all)
+      @statuses  = Status.find(:all)
     rescue Exception => e
       logger.error { "Error [jobs_controller.rb/new] #{e.message}" }
     end
@@ -32,8 +33,9 @@ class JobsController < ApplicationController
 
   def edit
     begin
-      @job        = Job.find(params[:id])
-      @employees  = Employee.find(:all)
+      @job       = Job.find(params[:id])
+      @employees = Employee.find(:all)
+      @statuses  = Status.find(:all)
     rescue Exception => e
       logger.error { "Error [jobs_controller.rb/edit] #{e.message}" }
     end
