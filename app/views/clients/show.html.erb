@@ -18,6 +18,11 @@
 
 </div><!-- #client_info -->
 
+<%= title "Projects", :h2 %>
+<%= render :partial => 'projects/list_projects_for_client', :locals => {:projects => @projects} %>
+
+</div><!-- #client_info -->
+
 <% content_for :sidebar do %>
 <div id="options">
 <h3>Options</h3>
