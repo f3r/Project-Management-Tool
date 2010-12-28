@@ -4,15 +4,15 @@
 <div class="note">* Required fields</div>
 
   <% form.inputs "Client details" do %>
-	<%= form.input :name, :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
-	<%= form.input :cif, :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :name,    :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :cif,     :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<%= form.input :address, :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
-	<%= form.input :fax, :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
-	<%= form.input :phone, :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
-	<%= form.input :mobile, :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
-	<%= form.input :email, :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :fax,     :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :phone,   :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :mobile,  :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<%= form.input :email,   :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<%= form.input :website, :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
-	<%= form.input :notes, :as => :text, :required => false %>
+	<%= form.input :notes,   :as => :text,   :required => false %>
   <% end %>
 
   <% form.buttons do %>
