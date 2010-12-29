@@ -60,7 +60,7 @@ class SiteController < ApplicationController
                 # TODO Configure EMAIL  
                 # ExcancelMailer.deliver_password_reset(user, request.host, request.port, protocol)
                 flash[:notice] = 'A password reset link has been sent to your mail account'
-                logger.error { "#{request.protocol}#{request.host}:#{request.port}/site/reset/#{user.reset_uuid}" }
+                logger.error { "#{request.protocol}#{request.host}:#{request.port}/reset_password/#{user.reset_uuid}" }
                 redirect_to :controller => 'site', :action => 'login'
             else
                 flash[:error] = 'Sorry, your email has not been found. Please contact the administrator'
@@ -74,8 +74,8 @@ class SiteController < ApplicationController
   def reset
     begin
         @title = 'Password Reset'
-        if request.get? and params[:id]
-            @user = Employee.find_by_reset_uuid(params[:id])
+        if request.get? and params[:reset_code]
+            @user = Employee.find_by_reset_uuid(params[:reset_code])
             if !@user
                 flash[:error] = 'Sorry, the reset code has expired or is invalid'
                 redirect_to :controller => 'site', :action => 'login'
@@ -92,10 +92,10 @@ class SiteController < ApplicationController
                 @user.encrypt_password!
                 @user.clear_reset_uuid!
                 @user.save!
-                flash[:notice] = "Your password has successfully been changed to #{pwd}!"
+                flash[:notice] = "Your password has successfully been changed!"
                 redirect_to :controller => 'site', :action => 'login'
             else
-                flash[:error] = 'Please insert both passwords' if !pwd or !pwd_conf or pwd.empty?
+                flash[:error] = 'Please fill both fields' if !pwd or !pwd_conf or pwd.empty?
                 flash[:error] = 'Your passwords do not match'  if pwd and pwd_conf and (pwd != pwd_conf)
             end
         end

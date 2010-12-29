@@ -1,17 +1,20 @@
-<% form_tag({:controller => 'site', :action => 'reset'}, :method => 'post') do %>
-    <%= hidden_field_tag :user_id, @user.id if @user %>
-    <div class="form_row">
-        <label>New password</label>
-        <%= password_field_tag :password, nil, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-    </div>
-    <div class="form_row">
-        <label>Repeat password</label>
-        <%=  password_field_tag :password_confirmation, nil, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH %>
-    </div>
-    <div class="form_row">
-        <%= submit_tag 'Change password', :class => 'button' %>
-    </div>
-    <div class="form_row">
-        <%= link_to 'Cancel', :controller => 'site', :action => 'login' %>
-    </div>
+<% form_tag(reset_password_path, :method => 'post', :id => "reset_password") do %>
+<%= hidden_field_tag :user_id, @user.id if @user %>
+
+<fieldset>
+<legend>Enter your new password</legend>
+
+<dl>
+<dt><label>New</label></dt>
+<dd><%= password_field_tag :password, nil, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %></dd>
+
+<dt><label>Repeat</label></dt>
+<dd><%=  password_field_tag :password_confirmation, nil, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %></dd>
+
+<dt><%= submit_tag 'Change password', :class => 'button button_reset' %></dt>
+<dd><%= link_to 'Cancel', login_path %></dd>
+
+</dl>
+</fieldset>
+
 <% end %>

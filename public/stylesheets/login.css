@@ -22,11 +22,11 @@ width:350px;height:200px;
 #mainContent form label {font-size:14px;font-weight:bold;}
 #mainContent form input.field {padding:6px;border:0;width:200px;font-size:14px;font-family:'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;color:#999;font-weight:bold;}
 
-#mainContent form input.button {background:transparent;background-position:center top; background-repeat:no-repeat;;border:0;width:91px;height:30px;color:transparent;}
+#mainContent form input.button {background:transparent;background-position:center top; background-repeat:no-repeat;;border:0;width:90px;height:30px;color:transparent;}
+#mainContent form input.button:hover {background-position:center bottom;}
 #mainContent form input.button_submit {background-image:url(../images/button_login.png);}
 #mainContent form input.button_send {background-image:url(../images/button_send.png);}
-#mainContent form input.button:hover {background-position:center bottom;}
-
+#mainContent form input.button_reset {background-image:url(../images/button_reset.png);}
 
 #mainContent form a.more {font-size:12px;margin-left:10px;}
 #mainContent form a.more:hover {text-decoration:none;}
