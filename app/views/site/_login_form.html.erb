@@ -1,15 +1,19 @@
-<% form_for :user, :url => { :action => "login" }, :html => {:id => 'login'} do |f| -%>
+<% form_for :user, :url => login_path, :html => {:id => 'login'} do |f| -%>
+
 <fieldset>
-	<legend>Employee Login</legend>
-  	<div class="fields">
-  		<label>Email</label>
-		<%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %>
-  	</div>
-	<div class="fields">
-  		<label>Password</label>
-		<%= f.password_field :password, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %>
-  	</div>
-  	<%= submit_tag 'Login' %>
-  	<%= link_to 'Forgotten your password?', {:controller =>'site', :action => 'remind'}, {:class => 'more'} %>
+<legend>Employee Login</legend>
+
+<dl>
+<dt><label>Email</label></dt>
+<dd><%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %></dd>
+
+<dt><label>Password</label></dt>
+<dd><%= f.password_field :password, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %></dd>
+
+<dt><%= submit_tag 'Login', :class => "button button_submit" %></dt>
+<dd><%= link_to 'Forgot your password?', forgot_password_path, :class => 'more' %></dd>
+
+</dl>
 </fieldset>
+
 <% end -%>

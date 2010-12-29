@@ -1,12 +1,13 @@
-<% form_for :site, :url => { :action => "remind" }, :html => {:id => 'login'} do |f| -%>
+<% form_for :site, :url => forgot_password_path, :html => {:id => 'login'} do |f| -%>
 <fieldset>
-	<legend>Forgot my Password</legend>
-  	<div class="fields">
-  		<label>Email</label>
-		<%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %>
-  	</div>
-	<div class="submit_field">
-	  	<%= submit_tag 'I forgot my password!' %>
-	</div>
+<legend>Forgot password</legend>
+
+<br />
+<dl>
+<label>Account email address</label><br />
+<%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %>
+<%= submit_tag 'Send', :class => "button button_send" %>
+</dl>
+
 </fieldset>
 <% end -%>

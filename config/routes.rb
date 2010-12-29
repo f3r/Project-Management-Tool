@@ -21,6 +21,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "site", :action => 'index' 
 
+  map.forgot_password '/forgot_password', :controller =>'site', :action => 'remind'
+  map.login '/login', :controller =>'site', :action => 'login'
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

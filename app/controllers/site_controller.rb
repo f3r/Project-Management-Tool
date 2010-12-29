@@ -7,7 +7,7 @@ class SiteController < ApplicationController
   
   # Aqui pondremos una vez se logueen
   def index
-    redirect_to :action => 'login'
+    redirect_to login_path
   end
   
   def login
@@ -28,7 +28,7 @@ class SiteController < ApplicationController
                   flash[:notice] = "#{'Welcome back '} #{user.first_name}"
                   redirect_to :controller => 'intranet', :action => 'index'
               else
-                  flash[:notice] = 'Sorry, your email&password combination does not match'
+                  flash[:error] = 'Sorry, your email & password combination does not match'
                   return
               end
           end
@@ -51,7 +51,7 @@ class SiteController < ApplicationController
   
   def remind
     begin
-        @title = 'Forgotten your password?'
+        @title = 'Forgot password'
 
         if request.post? and params[:site][:email]
             user = Employee.find_by_email(params[:site][:email])
@@ -63,7 +63,7 @@ class SiteController < ApplicationController
                 logger.error { "#{request.protocol}#{request.host}:#{request.port}/site/reset/#{user.reset_uuid}" }
                 redirect_to :controller => 'site', :action => 'login'
             else
-                flash[:notice] = 'Sorry, your email has not been found. Please contact the administrator'
+                flash[:error] = 'Sorry, your email has not been found. Please contact the administrator'
             end
         end
     rescue Exception => e
@@ -77,7 +77,7 @@ class SiteController < ApplicationController
         if request.get? and params[:id]
             @user = Employee.find_by_reset_uuid(params[:id])
             if !@user
-                flash[:notice] = 'Sorry, the reset code has expired or is invalid'
+                flash[:error] = 'Sorry, the reset code has expired or is invalid'
                 redirect_to :controller => 'site', :action => 'login'
             end
         end
@@ -95,8 +95,8 @@ class SiteController < ApplicationController
                 flash[:notice] = "Your password has successfully been changed to #{pwd}!"
                 redirect_to :controller => 'site', :action => 'login'
             else
-                flash[:notice] = 'Please insert both passwords' if !pwd or !pwd_conf or pwd.empty?
-                flash[:notice] = 'Your passwords do not match'  if pwd and pwd_conf and (pwd != pwd_conf)
+                flash[:error] = 'Please insert both passwords' if !pwd or !pwd_conf or pwd.empty?
+                flash[:error] = 'Your passwords do not match'  if pwd and pwd_conf and (pwd != pwd_conf)
             end
         end
     rescue Exception => e

@@ -6,16 +6,33 @@ a {color:#fff;}
 #content h2{text-align:center;font-family: "Lucida Grande";}
 #content #notice,
 #content #error { text-align:center; border:1px solid #fff; width:300px; margin:0 auto; }
-#mainContent{margin:0 auto;width:300px;}
-#mainContent form {background-color:#511C05;padding:10px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-khtml-border-radius: 6px;
-	border-radius: 6px;
-}
-#mainContent form div.fields {margin:5px 0 ;padding:10px 5px;}
-#mainContent form div.fields label {font-weight:bold;}
-#mainContent form div.fields input.field {padding:4px;border:0;float:right;}
 
+#mainContent{margin:0 auto;width:350px;}
+
+#mainContent form {
+background-image:url(../images/background_login_box.png); background-repeat:no-repeat;
+width:350px;height:200px;
+}
+#mainContent form fieldset {margin:0;padding:0;}
+#mainContent form fieldset legend {font-family: "Lucida Grande",'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif; font-weight:bold;font-size:18px; text-align:center; width:350px;text-shadow: #000 1px 1px 1px;padding-top:12px;padding-bottom:10px;}
+
+#mainContent form dl {margin:18px;}
+#mainContent form dt {width:100px;float:left;line-height:29px;}
+#mainContent form dd {margin:0 0 10px 100px;}
+#mainContent form label {font-size:14px;font-weight:bold;}
+#mainContent form input.field {padding:6px;border:0;width:200px;font-size:14px;font-family:'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;color:#999;font-weight:bold;}
+
+#mainContent form input.button {background:transparent;background-position:center top; background-repeat:no-repeat;;border:0;width:91px;height:30px;color:transparent;}
+#mainContent form input.button_submit {background-image:url(../images/button_login.png);}
+#mainContent form input.button_send {background-image:url(../images/button_send.png);}
+#mainContent form input.button:hover {background-position:center bottom;}
+
+
+#mainContent form a.more {font-size:12px;margin-left:10px;}
+#mainContent form a.more:hover {text-decoration:none;}
 fieldset {border:0;}
-fieldset legend {font-family: "Lucida Grande";font-weight:bold;font-size:14px;}
+
+.notice_message,
+.error_message {padding:10px 10px 10px 44px;margin:10px 0;background-repeat:no-repeat;background-position:10px center;margin:20px auto;width:450px;}
+.notice_message {color:#080;background-color:#E1FFD1;border-top:1px solid #C5F8AC;border-bottom:1px solid #C5F8AC;background-image:url(../images/icon_check.png);}
+.error_message {color:#800;background-color:#FFE9E3;border-top:1px solid #DEADAD;border-bottom:1px solid #DEADAD;background-image:url(../images/icon_warning.png);}
