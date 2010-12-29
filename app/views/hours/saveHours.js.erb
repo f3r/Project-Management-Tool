@@ -2,6 +2,8 @@ var action = "<%= @action %>";
 if (action=="signed") {
 	$("a.button_sign_report").addClass("active").attr('onclick','').parent().effect("highlight", {}, 3000);
 	$("a.button_save_report").parent().remove();
+	$("#old_total").val($("#new_total").val())
 } else if(action=="saved") {
 	$("a.button_save_report").html("Saved").addClass("active").parent().effect("highlight", {}, 3000);
+	$("#old_total").val($("#new_total").val())
 }

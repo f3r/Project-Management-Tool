@@ -247,17 +247,21 @@ form.formtastic fieldset > ol > li.text textarea {
 	border-radius: 4px;
 }
 
+form#new_project_small li {list-style:none;}
+form#new_project_small li input {float:left;padding:4px;font-size:14px;width:86px;color:#999;}
+form#new_project_small button {margin:0;padding:0;}
+
 /* MODAL WINDOWS */
 .boxy-inner form#new_job {width:500px;padding:10px;}
 
 /* BUTTONS */
 
-a.grey_button { background: url(../images/background_button_right.png) no-repeat scroll right top transparent; border: 0; color: #fff; cursor: pointer; display: block; float: left; height: 30px; margin-right: 6px; padding-right: 12px !important; text-decoration: none; font-weight:bold; font-size:11px; margin:10px 0; }
-a.grey_button span { background: url(../images/background_button_left.png) no-repeat scroll 0 0 transparent;display: block;line-height: 14px;padding: 8px 0 10px 10px;text-shadow: #000 1px 1px 3px; }
+.grey_button { background: url(../images/background_button_right.png) no-repeat scroll right top transparent; border: 0; color: #fff !important; cursor: pointer; display: block; float: left; height: 30px; margin-right: 6px; padding-right: 12px !important; text-decoration: none; font-weight:bold; font-size:11px; margin:10px 0; }
+.grey_button span { background: url(../images/background_button_left.png) no-repeat scroll 0 0 transparent; display: block;line-height: 14px;padding: 8px 0 10px 10px;text-shadow: #000 1px 1px 3px; }
 
+/*button.grey_button { padding-right: 9px !important; height:31px; background-position: right 1px; }*/
 
 /* FOOTER */
 #footer {padding-top:10px; background-image: url(../images/main_background_bottom.png); background-repeat: no-repeat; background-position: center top; zoom:1; }
 #footer .copyright {font-weight:bold; color:#999;}
 #footer .language_selector {text-align:right;}
-

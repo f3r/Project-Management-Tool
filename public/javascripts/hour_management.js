@@ -75,35 +75,32 @@ $('.hours').focusout(function() {
     for(i=1;i<6;i++) {
       total += parseFloat($("#total_"+i).html());
     }
-    total_perc = Math.round((total*100)/40)
+    total_perc = Math.round((total*100)/40);
     $("#total_total").html(total + ' ('+ total_perc +'%)');
+	$("#new_total").val(total);
+
   } else {
     error = false;
   } 
 });
 
-// In case the user wants to leave the page
-//window.onbeforeunload = function (e) {
-//    var e = e || window.event;
-//    var msg = 'Are you sure you want to leave?';
-//
-//    // For IE and Firefox
-//    if (e) {
-//        e.returnValue = msg;
-//    }
-//
-//    // For Safari / chrome
-//    return msg;
-//}
-
-
 // this tells jquery to run the function below once the DOM is ready
 $(document).ready(function() {
 	// We TOTALIZE for every job hour there is in the document (PreLoad Sum Hours)
-	$('.hours').trigger('focusout');
-	
+	$('.hours').trigger('focusout');	
+
+    $("#old_total").val(total);
+
 	$('.timeRep_proj').click(function(){
 		$(this).toggleClass("collapsed");
 		$(this).siblings().toggle();
 	})
 });
+
+function unloadPage(){
+	if ($("#new_total").val()!=$("#old_total").val()) {
+	    return "You haven't saved the report yet";
+	}
+}
+
+window.onbeforeunload = unloadPage;

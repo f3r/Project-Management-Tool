@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	$('a[rel=tooltip]').tipsy({fade: true, gravity: 's'});
+	$('table.generic td.status').tipsy({fade: true, gravity: 'e'});
+	$('table.timeReport input.hours').tipsy({title: function() { return "Click to edit"; }, fade: true, gravity: 'e'});
 
 	$("a[rel=modal]").click(function(){
 		new Boxy.load(this.href, {
@@ -18,6 +20,21 @@ $(document).ready(function(){
 	    $(this).removeClass("hover");
 	  }
 	);
+
+	var clear_previous = '';
+	$('.clear_on_focus').focus(function() {
+		if($(this).val()==$(this).attr('title')) {
+			clear_previous = $(this).val();
+			$(this).val('');
+		}
+	});
+
+	$('.clear_on_focus').blur(function() {
+		if($(this).val()=='') {
+			$(this).val(clear_previous);
+		}
+	});
+
 });
 
 function update_tablesort(table) {

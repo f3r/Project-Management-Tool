@@ -16,7 +16,7 @@ width:350px;height:200px;
 #mainContent form fieldset {margin:0;padding:0;}
 #mainContent form fieldset legend {font-family: "Lucida Grande",'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif; font-weight:bold;font-size:18px; text-align:center; width:350px;text-shadow: #000 1px 1px 1px;padding-top:12px;padding-bottom:10px;}
 
-#mainContent form dl {margin:18px;}
+#mainContent form dl {margin:0 18px;padding-top:20px;}
 #mainContent form dt {width:100px;float:left;line-height:29px;}
 #mainContent form dd {margin:0 0 10px 100px;}
 #mainContent form label {font-size:14px;font-weight:bold;}
