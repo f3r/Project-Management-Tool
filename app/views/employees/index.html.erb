@@ -27,8 +27,9 @@
         </tbody>
     </table>
 </div>
-<br />
-<!--
-    TODO Change for a new employee button
--->
-<%= link_to 'Create New Employee', new_employee_path %>
+
+<%= will_paginate @employees %>
+
+<% content_for :sidebar do %>
+<p><% link_to(new_employee_path, :class => "grey_button") do %><span>Create new employee</span><% end %></p>
+<% end %>

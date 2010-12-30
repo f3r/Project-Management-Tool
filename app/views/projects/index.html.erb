@@ -18,6 +18,7 @@
 
     <%= render :partial => 'list_projects', :locals => {:projects => @projects, :status_name => @status_name } %>
 
+	<%= will_paginate @projects %>
 </div>
 
 <% content_for :sidebar do %>

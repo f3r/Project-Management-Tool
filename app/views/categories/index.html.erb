@@ -24,4 +24,8 @@
 	</tbody>
 </table>
 
-<p><%= link_to 'New category', new_category_path %></p>
+<%= will_paginate @categories %>
+
+<% content_for :sidebar do %>
+<p><% link_to(new_category_path, :class => "grey_button") do %><span>Create new category</span><% end %></p>
+<% end %>

@@ -3,7 +3,7 @@ class ExpensereportsController < ApplicationController
   before_filter :protect_user
 
   def index
-    @expensereports = Expensereport.paginate_by_employee_id session[:user_id], :page => params[:page], :order => 'updated_at DESC'
+    @expensereports = Expensereport.paginate_by_employee_id session[:user_id], :page => params[:page], :order => 'expenseDate DESC'
   end
 
   def show

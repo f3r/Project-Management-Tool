@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   before_filter :protect_user
   
   def index
-    @clients = Client.all
+    @clients = Client.paginate :page => params[:page], :order => 'name'
   end
   
   def show

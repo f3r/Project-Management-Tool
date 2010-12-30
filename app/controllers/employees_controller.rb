@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
 
   def index
     begin
-        @employees = Employee.all
+        @employees = Employee.paginate :page => params[:page], :order => 'last_name'
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/index] #{e.message}" }
     end

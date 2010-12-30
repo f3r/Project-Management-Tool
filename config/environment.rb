@@ -52,7 +52,7 @@ Rails::Initializer.run do |config|
   TEXT_AREA_COLS = 30  
   
   # Default results per page
-  DEFAULT_PER_PAGE = 5
+  DEFAULT_PER_PAGE = 10
 
   
 end

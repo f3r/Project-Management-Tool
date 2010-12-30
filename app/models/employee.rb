@@ -26,6 +26,10 @@ class Employee < ActiveRecord::Base
     
     attr_protected  :id
     attr_accessor   :password_confirmation
+
+    def self.per_page
+      DEFAULT_PER_PAGE
+    end
     
     def self.create_employee(params)
       begin

@@ -6,4 +6,9 @@ class Category < ActiveRecord::Base
     
     # Relationships    
     has_many :employees
+
+    def self.per_page
+      DEFAULT_PER_PAGE
+    end
+
 end

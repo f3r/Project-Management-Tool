@@ -9,6 +9,10 @@ class Project < ActiveRecord::Base
     belongs_to  :status
     has_many    :jobs, :dependent => :destroy
     has_many    :expensereports
+
+    def self.per_page
+      DEFAULT_PER_PAGE
+    end
     
     def self.create_project(params)
       begin

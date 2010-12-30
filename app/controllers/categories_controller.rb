@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   def index
       begin
-          @categories = Category.all    
+          @categories = Category.paginate :page => params[:page], :order => 'name'
       rescue Exception => e
           logger.error { "Error [categories_controller.rb/index] #{e.message}" }
       end

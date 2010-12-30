@@ -26,4 +26,8 @@
 	</tbody>
 </table>
 
-<% link_to(new_client_path, :class => "grey_button") do %><span>New client</span><% end %>
+<%= will_paginate @clients %>
+
+<% content_for :sidebar do %>
+<p><% link_to(new_client_path, :class => "grey_button") do %><span>Create new client</span><% end %></p>
+<% end %>
