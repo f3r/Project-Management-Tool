@@ -1,37 +1,35 @@
-<div id="result_table">
-    <table class="generic">
-        <thead>
-        <tr>
-            <th class="{sorter: false}">&nbsp;</th>
-            <th>Job Name</th>
-            <th>Description</th>
-            <th>Employee</th>
-            <th class="hours">Hours</th>
-            <th class="expenses">Expenses</th>
-            <th class="{sorter: false}">&nbsp;</th>
-        </tr>
-        <thead>  
-        <tbody>
-        <% if @jobs.count == 0 %>
-            <tr><td colspan="5">This project doesn't have any job yet</td></tr>
-        <% else %>
-            <% @jobs.each do |job| %>
-            <tr class="<%= cycle('odd', 'even') %>">
-                <td class="status status_<%= job.status.id %>">&nbsp;</td>
-                <td><a name="job-<%= job.id %>"></a><%=h job.name %></td>
-                <td><%=h job.description %> </td>
-                <td><%= link_to job.employee.short_name, job.employee %></td>
-                <!--
-                    TODO Meter aqui el acumulado de los jooobss para horas y pricing
-                -->
-                <td class="hours"><%=h 0 %>h </td>
-                <td class="expense"><%= number_to_currency(job.expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
-				<td class="actions"><span><%= link_to "Edit", edit_job_path(job), :class => "button_edit", :rel => "tooltip", :title => "Edit this job" %> <%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this job" %></span></td>
-            <% end %>
+<table class="generic">
+    <thead>
+    <tr>
+        <th class="{sorter: false}">&nbsp;</th>
+        <th>Job Name</th>
+        <th>Description</th>
+        <th>Employee</th>
+        <th class="hours">Hours</th>
+        <th class="expenses">Expenses</th>
+        <th class="{sorter: false}">&nbsp;</th>
+    </tr>
+    <thead>  
+    <tbody>
+    <% if @jobs.count == 0 %>
+        <tr><td colspan="5">This project doesn't have any job yet</td></tr>
+    <% else %>
+        <% @jobs.each do |job| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+            <td class="status status_<%= job.project.status.id %>" title="<%= job.project.status.name %>">&nbsp;</td>
+            <td><a name="job-<%= job.id %>"></a><%=h job.name %></td>
+            <td><%=h job.description %> </td>
+            <td><%= link_to job.employee.short_name, job.employee %></td>
+            <!--
+                TODO Meter aqui el acumulado de los jooobss para horas y pricing
+            -->
+            <td class="hours"><%=h 0 %>h </td>
+            <td class="expense"><%= number_to_currency(job.expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
+<td class="actions"><span><%= link_to "Edit", edit_job_path(job), :class => "button_edit", :rel => "tooltip", :title => "Edit this job" %> <%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this job" %></span></td>
         <% end %>
-        </tbody>
-    </table>
-</div>
+    <% end %>
+    </tbody>
+</table>
 
 <% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>Create New Job</span><% end %>
 

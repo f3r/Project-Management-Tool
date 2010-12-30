@@ -1,34 +1,31 @@
 <% if !jobs.nil? %>
+<table class="generic">
+    <thead>
+    <tr>
+        <th class="{sorter: false}">&nbsp;</th>
+        <th>Project Name</th>
+        <th>Job Name</th>
+        <th>Client</th>
+        <th class="{sorter: false}">&nbsp;</th>
+    </tr>
+    <thead>  
+    <tbody>
+    <% jobs.each do |job| %>
+    <!--
+        TODO Cambiar url_for job.project por EDIT JOB
+    -->
+    <tr class="<%= cycle('odd', 'even') %>">
+        <td class="status status_<%= job.project.status.id %>" title="<%= job.project.status.name %>">&nbsp;</td>
+        <td><%= link_to job.project.name, job.project %></td>
+        <td><%= link_to job.name, job %></td>
+        <td><%= link_to job.project.client.name, job.project.client %> </td>
+<td class="actions"><span><%= link_to "Edit", edit_job_path(job), :class => "button_edit" %> <%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete" %></span></td>
 
-<div id="result_table">
-    <table class="generic">
-        <thead>
-        <tr>
-            <th class="{sorter: false}">&nbsp;</th>
-            <th>Project Name</th>
-            <th>Job Name</th>
-            <th>Client</th>
-            <th class="{sorter: false}">&nbsp;</th>
-        </tr>
-        <thead>  
-        <tbody>
-        <% jobs.each do |job| %>
         <!--
-            TODO Cambiar url_for job.project por EDIT JOB
+            TODO Cambiar a job.status cuando lo meta en migration
         -->
-        <tr class="<%= cycle('odd', 'even') %>">
-            <td class="status status_<%= job.project.status.id %>">&nbsp;</td>
-            <td><%= link_to job.project.name, job.project %></td>
-            <td><%= link_to job.name, job %></td>
-            <td><%= link_to job.project.client.name, job.project.client %> </td>
-			<td class="actions"><span><%= link_to "Edit", edit_job_path(job), :class => "button_edit" %> <%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete" %></span></td>
-
-            <!--
-                TODO Cambiar a job.status cuando lo meta en migration
-            -->
-        </tr>
-        <% end %>
-        </tbody>
-    </table>
-</div>
+    </tr>
+    <% end %>
+    </tbody>
+</table>
 <% end %>

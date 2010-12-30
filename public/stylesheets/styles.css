@@ -66,7 +66,7 @@ ul.dropdown li:hover > ul { display: block;}
 #content_top {margin-top:10px; height:12px; background-image: url(../images/main_background_top.png); background-repeat: no-repeat; background-position: center bottom; zoom:1; }
 
 #content {background-image: url(../images/main_background_middle.png); background-repeat: repeat-y; background-position: center top; zoom:1; }
-#content #wrapper {margin:0 auto;width:980px;}
+#content #wrapper {margin:0 auto;width:980px; padding:4px 0;}
 
 #content h2 {font-size:18px;color:#000;margin:10px 0;}
 #content h4 {font-size:14px;color:#333;margin:10px 0;}
@@ -140,7 +140,7 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 
 /* NAVIGATION */
 .navigation a.button_previous,
-.navigation a.button_next {font-size:14px;}
+.navigation a.button_next {font-size:11px;font-weight:bold;}
 .navigation a.button_previous {float:left;}
 .navigation a.button_next {float:right;}
 
@@ -247,9 +247,8 @@ form.formtastic fieldset > ol > li.text textarea {
 	border-radius: 4px;
 }
 
-form#new_project_small li {list-style:none;}
-form#new_project_small li input {float:left;padding:4px;font-size:14px;width:86px;color:#999;}
-form#new_project_small button {margin:0;padding:0;}
+form#side_form li {list-style:none;}
+form#side_form li input {float:left;padding:4px;font-size:14px;line-height:130%;width:86px;color:#999;}
 
 form.boxy-content {padding:20px;width:400px;}
 form.boxy-content fieldset > ol > li label {width:35%;}
@@ -259,8 +258,12 @@ form.boxy-content fieldset > ol > li label {width:35%;}
 
 /* BUTTONS */
 
-.grey_button { background: url(../images/background_button_right.png) no-repeat scroll right top transparent; border: 0; color: #fff !important; cursor: pointer; display: block; float: left; height: 30px; margin-right: 6px; padding-right: 12px !important; text-decoration: none; font-weight:bold; font-size:11px; margin:10px 0; }
-.grey_button span { background: url(../images/background_button_left.png) no-repeat scroll 0 0 transparent; display: block;line-height: 14px;padding: 8px 0 10px 10px;text-shadow: #000 1px 1px 3px; }
+a.grey_button { background: url(../images/background_button_right.png) no-repeat scroll right top transparent; border: 0; color: #fff !important; cursor: pointer; display: block; float: left; height: 30px; margin-right: 6px; padding-right: 12px !important; text-decoration: none; font-weight:bold; font-size:11px; margin:10px 0; }
+a.grey_button span { background: url(../images/background_button_left.png) no-repeat scroll 0 0 transparent; display: block;line-height: 14px;padding: 8px 0 10px 10px;text-shadow: #000 1px 1px 3px; }
+
+button.button {border:0px;width:86px;height:30px;margin-left:2px;}
+button.button span {display:none;}
+button.button_new_project {background: url(../images/button_new_project.png) no-repeat scroll 0 0 transparent;}
 
 /*button.grey_button { padding-right: 9px !important; height:31px; background-position: right 1px; }*/
 

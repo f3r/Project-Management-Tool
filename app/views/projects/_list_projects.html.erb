@@ -1,34 +1,30 @@
-<div id="result_table">
-    <table class="generic">
-        <thead>
-        <tr>
-            <th class="{sorter: false}">&nbsp;</th>
-            <th>Name</th>
-            <th>Client</th>
-            <th>Partner</th>
-            <th>Manager</th>
-            <th class="jobs">Jobs</th>
-            <th class="expenses">Acc &euro;</th>
+<table class="generic">
+    <thead>
+    <tr>
+        <th class="{sorter: false}">&nbsp;</th>
+        <th>Name</th>
+        <th>Client</th>
+        <th>Partner</th>
+        <th>Manager</th>
+        <th class="jobs">Jobs</th>
+        <th class="expenses">Acc &euro;</th>
+    </tr>
+    <thead>  
+    <tbody>
+    <% if projects.count == 0 %>
+        <tr><td colspan="7"><div class="no_projects">No projects to show</div></td></tr>
+    <% else %>
+        <% projects.each do |project| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+            <td class="status status_<%= project.status.id %>" title="<%= project.status.name %>">&nbsp;</td>
+            <td class="name"><%= link_to project.name, project %>                 </td>   
+            <td><%= link_to project.client.name, project.client %>          </td>
+            <td><%= link_to project.partner.short_name, project.partner %>    </td>
+            <td><%= link_to project.manager.short_name, project.manager %>    </td>
+            <td class="job"><%=h project.number_of_jobs    %>    </td>
+            <td class="expense"><%= number_to_currency(project.accumulated_expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
         </tr>
-        <thead>  
-        <tbody>
-        <% if projects.count == 0 %>
-            <tr><td colspan="7"><div class="no_projects">No projects to show</div></td></tr>
-        <% else %>
-            <% projects.each do |project| %>
-            <tr class="<%= cycle('odd', 'even') %>">
-                <td class="status status_<%= project.status.id %>">&nbsp;</td>
-                <td class="name"><%= link_to project.name, project %>                 </td>   
-                <td><%= link_to project.client.name, project.client %>          </td>
-                <td><%= link_to project.partner.short_name, project.partner %>    </td>
-                <td><%= link_to project.manager.short_name, project.manager %>    </td>
-                <td class="job"><%=h project.number_of_jobs    %>    </td>
-                <td class="expense"><%= number_to_currency(project.accumulated_expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
-            </tr>
-            <% end %>
         <% end %>
-        </tbody>
-    </table>
-</div>
-
-<p><%= link_to 'Create New Project', new_project_path, :class => "button" %></p>
+    <% end %>
+    </tbody>
+</table>

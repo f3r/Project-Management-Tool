@@ -29,4 +29,10 @@
 	<li>Total jobs:</li>
 	<li>Total expenses:</li>
 </ul>
+
+<% semantic_form_for Project.new, :html => {:id => "side_form"} do |form| %>
+	<%= form.input :name, :label => false, :as => :string, :input_html => { :size => 10, :class => "clear_on_focus", :value => "Project name", :title => "Project name", :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<button class="button button_new_project"><span>New project</span></button>
+<% end %>
+
 <% end %>
