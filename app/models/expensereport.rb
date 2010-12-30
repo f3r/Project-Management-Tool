@@ -6,4 +6,9 @@ class Expensereport < ActiveRecord::Base
   belongs_to :project
   belongs_to :employee
   belongs_to :job
+
+  def self.per_page
+    5
+  end
+
 end
