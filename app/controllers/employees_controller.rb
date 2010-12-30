@@ -34,6 +34,51 @@ class EmployeesController < ApplicationController
         logger.error { "Error [employee_controller.rb/edit] #{e.message}"  }
     end
   end
+  
+  def change_picture
+    begin
+        @employee = Employee.find(params[:id])
+        if params[:modal] == "true"
+          render :layout => false
+        end
+    rescue Exception => e
+        logger.error { "Error [employee_controller.rb/change_picture] #{e.message}" }
+    end
+  end
+
+  def change_password
+    begin
+      @employee = Employee.find(params[:id])
+
+      if request.put? && params[:employee][:password] && params[:employee][:password_confirmation]
+          pwd      = params[:employee][:password]
+          pwd_conf = params[:employee][:password_confirmation]
+          if pwd and pwd_conf and (pwd == pwd_conf) and !pwd.empty?
+              @employee.password = pwd
+              @employee.password_confirmation = pwd_conf
+              @employee.encrypt_password!
+              @employee.save!
+              flash[:notice] = "Your password has successfully been changed!"
+              redirect_to employee_path(@employee)
+          else
+              flash[:error] = 'Please fill both fields' if !pwd or !pwd_conf or pwd.empty?
+              flash[:error] = 'Your passwords do not match'  if pwd and pwd_conf and (pwd != pwd_conf)
+              redirect_to change_password_path(@employee)
+          end
+      
+      else
+
+        @employee.password = nil
+        if params[:modal] == "true"
+          render :layout => false
+        end
+
+      end
+
+    rescue Exception => e
+        logger.error { "Error [employee_controller.rb/change_password] #{e.message}" }
+    end
+  end
 
   def create
     begin
@@ -55,18 +100,16 @@ class EmployeesController < ApplicationController
 
   def update
     begin
-      if params[:commit] == "Cancel"
-        redirect_to(@employee)
-      else      
-        @employee = Employee.find(params[:id])
-
-        if @employee.update_attributes(params[:employee])
-            flash[:notice] = 'Employee was successfully updated.'
-            redirect_to(@employee)
-        else
+      
+      @employee = Employee.find(params[:id])
+      
+      if @employee.update_attributes(params[:employee])
+          flash[:notice] = 'Employee was successfully updated.'
+          redirect_to(@employee)
+      else
             render :action => "edit"
-        end
       end
+
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/update] #{e.message}"  }
     end

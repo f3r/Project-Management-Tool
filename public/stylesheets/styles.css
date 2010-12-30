@@ -223,7 +223,7 @@ p.meta {font-size:11px;color:#777;}
 /* FORMS ver formtastic.css */
 
 form.formtastic fieldset > ol > li label { font-weight:bold; color:#333; }
-form.formtastic > fieldset > legend { font-size:16px; font-weight:bold; color:#532901; }
+form.formtastic > fieldset > legend { font-size:16px; font-weight:bold; color:#333; }
 form.formtastic fieldset.inputs {
 	background-color:#f7f7f7; border:1px solid #f1f1f1; padding:10px; margin-bottom:10px;
 	-moz-border-radius: 4px;
@@ -250,6 +250,9 @@ form.formtastic fieldset > ol > li.text textarea {
 form#new_project_small li {list-style:none;}
 form#new_project_small li input {float:left;padding:4px;font-size:14px;width:86px;color:#999;}
 form#new_project_small button {margin:0;padding:0;}
+
+form.boxy-content {padding:20px;width:400px;}
+form.boxy-content fieldset > ol > li label {width:35%;}
 
 /* MODAL WINDOWS */
 .boxy-inner form#new_job {width:500px;padding:10px;}

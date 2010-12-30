@@ -17,14 +17,8 @@
 <div id="options">
 <h3>Other options</h3>
 <ul>
-<li><%= link_to "Change profile picture", "#", :class => "button button_edit_picture " %></li>
-<li>
-  <% semantic_form_for @employee, :url => employee_path, :html => { :multipart => true } do |form| %>
-    <%= form.file_field :photo %>
-    <%= form.commit_button :label => "Update Picture" %> <%= link_to_if(@employee.id.present?, "Cancel", @employee) do link_to("Cancel", employees_path) end %>
-  <% end %>
-</li>
-<li><%= link_to "Change Password", "#", :class => "button button_edit_password " %></li>
+<li><%= link_to "Change profile picture", change_picture_path(:modal => true), :class => "button button_edit_picture", :rel => "modal" %></li>
+<li><%= link_to "Change Password", change_password_path(:modal => true), :class => "button button_edit_password", :rel => "modal" %></li>
 </ul>
 </div><!-- #options -->
 

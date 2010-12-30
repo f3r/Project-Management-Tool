@@ -1,0 +1,8 @@
+<% semantic_form_for @employee, :url => employee_path, :html => { :multipart => true } do |form| %>
+	<% form.inputs "Change profile picture" do %>
+		<%= form.input :photo, :label => false, :as => :file %>
+	<% end %>
+	<% form.buttons do %>
+		<%= form.commit_button :label => "Update Picture" %> <%= link_to "Cancel", edit_employee_path(@employee), :onclick => "Boxy.get(this).hide();return false;" %>
+	<% end %>
+<% end %>

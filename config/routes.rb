@@ -25,6 +25,9 @@ ActionController::Routing::Routes.draw do |map|
   map.reset_password '/reset_password/:reset_code', :controller =>'site', :action => 'reset'
   map.login '/login', :controller =>'site', :action => 'login'
   map.logout '/logout', :controller =>'site', :action => 'logout'
+  
+  map.change_picture '/employees/:id/change_picture', :controller => 'employees', :action => 'change_picture', :requirements => { :method => :get }
+  map.change_password '/employees/:id/change_password', :controller => 'employees', :action => 'change_password', :requirements => { :method => :get }
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
