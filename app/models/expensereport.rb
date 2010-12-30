@@ -8,7 +8,7 @@ class Expensereport < ActiveRecord::Base
   belongs_to :job
 
   def self.per_page
-    5
+    DEFAULT_PER_PAGE
   end
 
 end
