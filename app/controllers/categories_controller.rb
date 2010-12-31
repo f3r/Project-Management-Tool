@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   def index
       begin
-          @categories = Category.paginate :page => params[:page], :order => 'name'
+          @categories = Category.paginate :page => params[:page], :order => 'level DESC'
       rescue Exception => e
           logger.error { "Error [categories_controller.rb/index] #{e.message}" }
       end
@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
 
         if @category.save
             flash[:notice] = 'Category was successfully created.'
-            redirect_to(categories_url)
+            redirect_to categories_path
         else
             render :action => "new"
         end        
@@ -55,7 +55,7 @@ class CategoriesController < ApplicationController
 
         if @category.update_attributes(params[:category])
             flash[:notice] = 'Category was successfully updated.'
-            redirect_to(@category)
+            redirect_to categories_path
         else
             render :action => "edit"
         end        
@@ -69,7 +69,7 @@ class CategoriesController < ApplicationController
         @category = Category.find(params[:id])
         @category.destroy
 
-        redirect_to(categories_url)
+        redirect_to categories_path
     rescue Exception => e
         logger.error { "Error [categories_controller.rb/destroy] #{e.message}" }
     end

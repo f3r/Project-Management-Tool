@@ -9,7 +9,7 @@
   <% end %>
 
   <% form.buttons do %>
-    <%= form.commit_button :label => "Save" %> <%= link_to_if(@category.id.present?, "Cancel", @category) do link_to("Cancel", categories_path) end %>
+    <%= form.commit_button :label => "Save" %> <%= link_to("Cancel", categories_path) %>
   <% end %>
 
 <% end %>

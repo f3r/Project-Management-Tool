@@ -1,7 +1,6 @@
-<h2>New category</h2>
+<div class="breadcrumbs"><%= link_to 'Categories', categories_path %> &raquo; New</div><!-- .breadcrumbs -->
+<div class="clear"></div>
 
-<div id="mainContent">	
-    <%= render :partial => 'categories/form_category', :locals => {:category => @category} %>
-    
-    <%= link_to 'Back', categories_path %>
-</div>
+<%= title "New category", :h2 %>
+
+<%= render :partial => 'categories/form_category', :locals => {:category => @category} %>
