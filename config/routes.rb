@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
              :controller => 'hours',
              :action     => 'index'
 
+  map.expense_report_by_date '/expensereports/:year/:month', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
+
   map.root :controller => "site", :action => 'index' 
 
   map.forgot_password '/forgot_password', :controller =>'site', :action => 'remind'

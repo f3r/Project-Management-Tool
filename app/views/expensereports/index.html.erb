@@ -1,7 +1,7 @@
-<div class="breadcrumbs"><%= link_to 'Reports', "#" %> &raquo; Expense Reports</div>
+<div class="breadcrumbs"><%= link_to 'Reports', "#" %> &raquo; <%= link_to "Expense Reports", expensereports_path %> &raquo; <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %></div>
 <div class="clear"></div>
 
-<%= title "Expense Reports", :h2 %>
+<%= title "Expense Report for #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2 %>
 
 <script type="text/javascript">
 
@@ -50,22 +50,9 @@
 				borderWidth: 0
 			},
 			series: [
-
-
-
-						      {
-						        name: "Project name",
-						        data: [0, 0, 0, 0, 0, 0, 1098, 410, 540, 1340, 0, 540, 520, 840, 130, 970, 0, 0, 0, 0, 0, 0, 0, 500.0, 742.0, 0, 0, 131.0, 0, 0]
-						      }
-
-
-
-
-			      // {
-			      //   name: "Project name",
-			      //   data: <  %= expense_chart(1.month.ago) % >
-			      // }
-			
+			<% for project in @projects %>
+				{ name: "<%= project.project.name %>", data: <%= expense_chart(@start_date, @end_date, session[:user_id], project.project.id)	%> }<% unless project == @projects.last %>,<% end %>
+			<% end %>
 			]
 		});
 		
@@ -104,6 +91,25 @@
 	</tbody>
 </table>
 
-<%= will_paginate @expensereports %>
 
-<p><% link_to(new_expensereport_path, :class => "grey_button") do %><span>New Expense Report</span><% end %></p>
+<% content_for :sidebar do %>
+
+<h3>Reports</h3>
+<ul>
+<li>Total expense reports: <%= @expensereports_all.count %></li>
+<li>Total on <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %>: <%= @expensereports.count %></li>
+<li>Total jobs: <%= @jobs.count %></li>
+<li>Total projects: <%= @projects.count %></li>
+</ul>
+
+<h3>By month</h3>
+
+<select name="date_select" id="date_select" class="jump_menu">
+<% for date in month_list(@expensereports_all.first.expenseDate.to_date,Time.now) do %>
+<option value="<%= expense_report_by_date_path(:month => date[:month], :year => date[:year]) %>"<% if params[:month].to_i == date[:month] && params[:year].to_i == date[:year] %> selected="selected"<% end %>><%= "#{Date::MONTHNAMES[date[:month]]} #{date[:year]}" %></option>
+<% end %>
+</select>
+
+<% link_to(new_expensereport_path, :class => "grey_button") do %><span>New Expense Report</span><% end %>
+
+<% end %>
