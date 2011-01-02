@@ -50,8 +50,10 @@
 				borderWidth: 0
 			},
 			series: [
-			<% for project in @projects %>
-				{ name: "<%= project.project.name %>", data: <%= expense_chart(@start_date, @end_date, session[:user_id], project.project.id)	%> }<% unless project == @projects.last %>,<% end %>
+			<% unless @projects.blank? %>
+				<% for project in @projects %>
+					{ name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, session[:user_id], project.id)	%> }<% unless project == @projects.last %>,<% end %>
+				<% end %>
 			<% end %>
 			]
 		});
@@ -60,7 +62,6 @@
 	});
 		
 </script>
-
 
 <div id="container" style="width: 100%; height: 300px; margin: 0 auto"></div>
 
@@ -83,7 +84,7 @@
 			<td><%= link_to exrep.project.name, exrep.project %></td>
 			<td><%= link_to exrep.job.name,  project_path(exrep.project, :anchor => "job-#{exrep.job_id}") %></td>
 			<td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
-			<td><%=h exrep.expenseDate %></td>
+			<td><%=h exrep.expense_date %></td>
 			<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" %></span></td>
 		</tr>
 		<% end %>
@@ -97,14 +98,13 @@
 <ul>
 <li>Total expense reports: <%= @expensereports_all.count %></li>
 <li>Total on <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %>: <%= @expensereports.count %></li>
-<li>Total jobs: <%= @jobs.count %></li>
-<li>Total projects: <%= @projects.count %></li>
+<% unless @projects.blank? %><li>Total projects: <%= @projects.count %></li><% end %>
 </ul>
 
 <h3>By month</h3>
 
 <select name="date_select" id="date_select" class="jump_menu">
-<% for date in month_list(@expensereports_all.first.expenseDate.to_date,Time.now) do %>
+<% for date in month_list(@expensereports_all.first.expense_date.to_date,Time.now) do %>
 <option value="<%= expense_report_by_date_path(:month => date[:month], :year => date[:year]) %>"<% if params[:month].to_i == date[:month] && params[:year].to_i == date[:year] %> selected="selected"<% end %>><%= "#{Date::MONTHNAMES[date[:month]]} #{date[:year]}" %></option>
 <% end %>
 </select>

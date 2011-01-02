@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101221161226) do
+ActiveRecord::Schema.define(:version => 20110102215622) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20101221161226) do
   create_table "expensereports", :force => true do |t|
     t.integer  "job_id"
     t.integer  "employee_id"
-    t.integer  "amount",      :limit => 10, :precision => 10, :scale => 0
-    t.date     "expenseDate"
+    t.integer  "amount",       :limit => 10, :precision => 10, :scale => 0
+    t.date     "expense_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
