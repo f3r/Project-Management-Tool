@@ -5,12 +5,12 @@ class ExpensereportsController < ApplicationController
   def index
     @expensereports_all = Expensereport.find_all_by_employee_id(session[:user_id], :order => 'expenseDate ASC')
     @jobs = Job.find_all_by_employee_id(session[:user_id], :order => 'name')
-    @projects = Job.find_all_by_employee_id(session[:user_id], :group => "project_id", :order => 'name')
+    @projects = Job.find_all_by_employee_id(session[:user_id], :include => :project, :group => "project_id", :order => 'projects.name')
     if params[:month] && params[:year]
       date = Date.parse("1-#{params[:month]}-#{params[:year]}")
       @start_date = date.beginning_of_month
       @end_date = date.end_of_month
-      @expensereports = Expensereport.find(:all, :conditions => {:employee_id => session[:user_id], :expenseDate => @start_date..@end_date})
+      @expensereports = Expensereport.find(:all, :include => :job, :conditions => {:employee_id => session[:user_id], :expenseDate => @start_date..@end_date})
     else
       redirect_to expense_report_by_date_path(:month => Date.today.month,:year => Date.today.year)
     end

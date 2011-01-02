@@ -75,22 +75,21 @@
 		</tr>
 	<thead>  
 	<tbody>
-		<% if @expensereports.count == 0 %>
+		<% if @expensereports.blank? %>
 		<tr height="30"><td colspan="5" align="center">You have no expense reports yet</td></tr>
-			<% else %>
-			<% @expensereports.each do |exrep| %>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<td><%= link_to exrep.project.name, exrep.project %></td>
-				<td><%= link_to exrep.job.name,  project_path(exrep.project, :anchor => "job-#{exrep.job_id}") %></td>
-				<td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
-				<td><%=h exrep.expenseDate %></td>
-				<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" %></span></td>
+		<% else %>
+		<% for exrep in @expensereports do %>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td><%= link_to exrep.project.name, exrep.project %></td>
+			<td><%= link_to exrep.job.name,  project_path(exrep.project, :anchor => "job-#{exrep.job_id}") %></td>
+			<td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
+			<td><%=h exrep.expenseDate %></td>
+			<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" %></span></td>
 		</tr>
 		<% end %>
 		<% end %>
 	</tbody>
 </table>
-
 
 <% content_for :sidebar do %>
 
