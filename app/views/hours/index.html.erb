@@ -6,6 +6,7 @@
 
 <% if @projects.present? %>
 <form method="post" action="<%= request.request_uri %>/saveHours" id="hours_reports">
+<div id="percentage_change" class="negative"></div>
 <div class="note">* Click any value to edit</div>
 <% end %>
 <table class="timeReport generic generic_reports">

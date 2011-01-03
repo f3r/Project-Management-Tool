@@ -122,6 +122,7 @@ table.generic_reports th.total_week { width:70px;}
 table.generic_reports table {width:100%;border-bottom:1px solid #cacaca;margin:0;}
 table.generic_reports table th {font-size:14px;font-weight:bold;color:#000;background-color:#fff;font-family:'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;text-align:center;}
 
+table.generic_reports {margin-bottom:10px;}
 table.generic_reports table tr.timeRep_proj {border-left:1px solid #eee;border-right:1px solid #eee; border-top:1px solid #ccc; cursor:pointer;}
 table.generic_reports table tr.timeRep_proj th.project {-moz-user-select: none;-khtml-user-select: none;user-select: none; padding-left:25px; background-repeat:no-repeat;background-position:4px center; background-image:url(../images/icon_opened.png);}
 table.generic_reports table tr.collapsed th.project {background-image:url(../images/icon_collapsed.png);}
@@ -137,6 +138,10 @@ table.generic_reports table tr.signed_report input:focus,
 table.generic_reports table tr.signed_report input:hover {border:1px solid #fff;background-color:#fff;cursor:default;}
 
 table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;padding:4px;}
+
+#percentage_change {height:25px;font-size:16px;font-weight:bold;background-repeat:no-repeat;background-position:2px center;padding-left:20px;position:absolute;top:30px;right:0;}
+#percentage_change.positive {color:#080;background-image: url(../images/icon_increase.png);}
+#percentage_change.negative {color:#900;background-image: url(../images/icon_decrease.png);}
 
 /* NAVIGATION */
 .navigation a.button_previous,

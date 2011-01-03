@@ -76,7 +76,12 @@ $('.hours').focusout(function() {
       total += parseFloat($("#total_"+i).html());
     }
     total_perc = Math.round((total*100)/40);
-    $("#total_total").html(total + ' ('+ total_perc +'%)');
+    $("#total_total").html(total);
+	$("#percentage_change").html(total_perc +'%');
+	if(parseInt(total_perc) > 100) {
+		$("#percentage_change").addClass("positive")
+		$("#percentage_change").removeClass("negative")
+	}
 	$("#new_total").val(total);
 
   } else {
