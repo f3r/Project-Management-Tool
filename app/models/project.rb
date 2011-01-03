@@ -1,6 +1,8 @@
 class Project < ActiveRecord::Base
     # Validations
     validates_presence_of :name, :description, :status, :partner_id, :manager_id, :client_id
+    validates_date :date_start, :on_or_after => lambda { 1.years.ago }
+    validates_date :date_end, :on_or_after => :date_start
 
     # Relationships
     belongs_to  :partner, :class_name => 'Employee', :foreign_key => 'partner_id'
