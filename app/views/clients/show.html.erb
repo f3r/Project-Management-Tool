@@ -1,34 +1,44 @@
 <div class="breadcrumbs"><%= link_to 'Clients', clients_path %> &raquo; <%= @client.name %> &raquo; Details</div><!-- .breadcrumbs -->
 <div class="clear"></div>
 
+<div id="employee_info">
+
 <%= title @client.name, :h2 %>
+<% unless @client.address.blank? %><p class="meta"><strong>Address:</strong> <%=h @client.address %></p><% end %>
 
-<div id="client_info">
-
-<dl class="details">
-<dt>CIF:</dt><dd><%=h @client.cif %>&nbsp;</dd>
-<dt>Address:</dt><dd><%=h @client.address %>&nbsp;</dd>
-<dt>Fax:</dt><dd><%=h @client.fax %>&nbsp;</dd>
-<dt>Phone:</dt><dd><%=h @client.phone %>&nbsp;</dd>
-<dt>Mobile:</dt><dd><%=h @client.mobile %>&nbsp;</dd>
-<dt>Email:</dt><dd><%= mail_to @client.email, @client.email, :hex => true %>&nbsp;</dd>
-<dt>Website:</dt><dd><%= link_to @client.website, @client.website %>&nbsp;</dd>
-<dt>Notes:</dt><dd><%=simple_format @client.notes %>&nbsp;</dd>
+<dl class="details highlight_box">
+<% unless @client.fax.blank? %><dt>Fax:</dt><dd><%=h @client.fax %>&nbsp;</dd><% end %>
+<% unless @client.phone.blank? %><dt>Phone:</dt><dd><%=h @client.phone %>&nbsp;</dd><% end %>
+<% unless @client.mobile.blank? %><dt>Mobile:</dt><dd><%=h @client.mobile %>&nbsp;</dd><% end %>
+<% unless @client.email.blank? %><dt>Email:</dt><dd><%= mail_to @client.email, @client.email, :hex => true %>&nbsp;</dd><% end %>
+<% unless @client.website.blank? %><dt>Website:</dt><dd><%= link_to @client.website, @client.website %>&nbsp;</dd><% end %>
 </dl>
 
-</div><!-- #client_info -->
+<div class="employee_type">
+<p class="nif"><strong>CIF:</strong> <%=h @client.cif %></p>
+</div><!-- .employee_type -->
 
-<%= title "Projects", :h2 %>
+<div class="clear"></div>
+
+<% unless @client.notes.blank? %>
+<h3>Notes:</h3>
+<%=simple_format @client.notes %>
+<% end %>
+
+</div><!-- #employee_info -->
+
+<div class="clear"></div>
+
+<h4>Projects</h4>
+
 <%= render :partial => 'projects/list_projects_for_client', :locals => {:projects => @projects} %>
-
-</div><!-- #client_info -->
 
 <% content_for :sidebar do %>
 <div id="options">
 <h3>Options</h3>
 <ul>
-<li><%= link_to 'Edit client', edit_client_path(@client), :class => "button button_edit_project" %></li>
-<li><%= link_to 'Delete client', @client, :confirm => 'Are you sure?', :method => :delete, :class => "button button_delete_project" %></li>
+<li><%= link_to 'Edit this client', edit_client_path(@client), :class => "button button_edit_project" %></li>
+<li><%= link_to 'Delete this client', "javascript:;", :class => "button button_delete" %> <span class="confirm"><%= link_to 'Yes', @client, :method => :delete, :class => "yes" %> / <a href="#" class="no">No</a></span></li>
 </ul>
 </div>
 <% end %>

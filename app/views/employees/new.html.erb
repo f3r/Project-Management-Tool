@@ -4,3 +4,12 @@
 <%= title "New employee", :h2 %>
 
 <%= render :partial => 'employees/form_employee', :locals => {:employee => @employee} %>
+
+<% content_for :sidebar do %>
+<div id="options">
+<h3>Options</h3>
+<ul>
+<li><%= link_to 'Employee list', employees_path, :class => "button button_list" %></li>
+</ul>
+</div><!-- #options -->
+<% end %>

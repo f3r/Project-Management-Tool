@@ -11,6 +11,17 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$("a.button_delete").click(function(){
+		$("a.button_delete + span.confirm").show();
+		$(this).parent().addClass("selected");
+		return false;
+	});
+
+	$("a.button_delete + span.confirm a.no").click(function(){
+		$(this).parent().hide().parent().removeClass("selected");
+		return false;
+	});
+
 	$(".generic").tablesorter();
 	$(".generic tr").hover(
 	  function () {

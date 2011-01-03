@@ -4,3 +4,12 @@
 <%= title "New client", :h2 %>
 
 <%= render :partial => 'clients/form_client', :locals => {:client => @client} %>
+
+<% content_for :sidebar do %>
+<div id="options">
+<h3>Options</h3>
+<ul>
+<li><%= link_to 'Client list', clients_path, :class => "button button_list" %></li>
+</ul>
+</div><!-- #options -->
+<% end %>

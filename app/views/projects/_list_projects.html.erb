@@ -12,7 +12,7 @@
     <thead>  
     <tbody>
     <% if projects.count == 0 %>
-        <tr><td colspan="7"><div class="no_projects">No projects to show</div></td></tr>
+        <tr><td colspan="7" class="message">No projects to show</td></tr>
     <% else %>
         <% projects.each do |project| %>
         <tr class="<%= cycle('odd', 'even') %>">

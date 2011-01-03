@@ -69,6 +69,7 @@ ul.dropdown li:hover > ul { display: block;}
 #content #wrapper {margin:0 auto;width:980px; padding:4px 0;}
 
 #content h2 {font-size:18px;color:#000;margin:10px 0;}
+#content h3 {font-size:16px;margin:10px 0;}
 #content h4 {font-size:14px;color:#333;margin:10px 0;}
 
 /* TABLES */
@@ -96,9 +97,6 @@ table.generic tr td.actions span { display:none; }
 table.generic tr.hover td.actions span { display:block; }
 
 table.generic td.status {background-repeat:no-repeat;background-position:center center;width:10px;}
-table.generic td.status_1 {background-image:url(../images/icon_status_not_started.png);}
-table.generic td.status_2 {background-image:url(../images/icon_status_started.png);}
-table.generic td.status_3 {background-image:url(../images/icon_status_finished.png);}
 table.generic td.hours,
 table.generic td.job,
 table.generic td.expense,
@@ -109,7 +107,7 @@ table.generic td.expense {text-align:right;}
 table.generic th.expenses {width:70px;}
 table.generic th.jobs,
 table.generic th.hours {width:40px;}
-table.generic td .no_projects {font-size:22px;font-weight:bold;text-align:center;padding:20px 0;}
+table.generic td.message {font-size:18px;font-weight:bold;text-align:center;padding:20px 0;background-color:#eee;}
 
 table.generic_reports td {padding:0;}
 table.generic_reports tr.odd td,
@@ -186,10 +184,9 @@ a.next_page {text-transform:uppercase;}
 #project_info .description { font-size:14px; }
 #project_info h2 {float:left;margin-bottom:10px;}
 #project_info .status {background-repeat:no-repeat;background-position:4px center;width:60px;font-size:11px;color:#666;padding-left:18px;float:right;margin-top:16px;}
-#project_info .status_1 {background-image:url(../images/icon_status_not_started.png);}
-#project_info .status_2 {background-image:url(../images/icon_status_started.png);}
-#project_info .status_3 {background-image:url(../images/icon_status_finished.png);}
-
+.status_1 {background-image:url(../images/status_icons/160.png);}
+.status_2 {background-image:url(../images/status_icons/152.png);}
+.status_3 {background-image:url(../images/status_icons/153.png);}
 
 p.meta {font-size:11px;color:#777;}
 .highlight_box {
@@ -223,18 +220,25 @@ p.meta {font-size:11px;color:#777;}
 #sidebar ul {border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; list-style:none;padding:10px 6px;}
 #sidebar ul li{margin:0;padding:4px;font-weight:bold;}
 
+#sidebar #options li:hover,
+#sidebar #options li.selected {background-color:#EEF4F8;}
 #sidebar #options a.button {-moz-user-select: none;-khtml-user-select: none;user-select: none;outline: none;padding:0px 0px 0px 22px;margin:0;display:block;background-position:2px top;background-repeat:no-repeat;font-weight:normal;text-decoration:none;height:16px;font-size:12px;line-height:140%;}
 #sidebar #options a.active,
+#sidebar #options li.selected a,
 #sidebar #options a.button:hover {background-position:2px -16px;color:#000;}
 #sidebar #options a.button_edit_password {background-image:url(../images/icon_password.png);}
 #sidebar #options a.button_edit_profile {background-image:url(../images/icon_profile.png);}
 #sidebar #options a.button_edit_picture {background-image:url(../images/icon_picture.png);}
 #sidebar #options a.button_edit_project {background-image:url(../images/icon_project_settings.png);}
-#sidebar #options a.button_delete_project {background-image:url(../images/icon_delete_project.png);}
+#sidebar #options a.button_list {background-image:url(../images/icon_list.png);}
+#sidebar #options a.button_view {background-image:url(../images/icon_view.png);}
+#sidebar #options a.button_delete {background-image:url(../images/icon_delete_project.png);}
 #sidebar #options a.button_sign_report {background-image:url(../images/icon_sign_report.png);}
 #sidebar #options a.button_save_report {background-image:url(../images/icon_save_report.png);}
 #sidebar #options ul.reports li {font-size:11px;font-weight:normal;}
 #sidebar #options ul.reports li a:hover {color:#000;}
+
+#sidebar #options .confirm {font-size:11px;float:right;font-weight:normal;position:relative;top:-16px;display:none;}
 
 #sidebar .employee_photo { margin:0 auto 10px auto; width:100%; padding:4px; text-align:center; background-color:#f7f7f7; border:1px solid #f1f1f1; }
 
@@ -270,6 +274,8 @@ form#side_form li input {float:left;padding:4px;font-size:14px;line-height:130%;
 
 form.boxy-content {padding:20px;width:400px;}
 form.boxy-content fieldset > ol > li label {width:35%;}
+
+form#new_job.boxy-content fieldset > ol > li label {width:25%;}
 
 /* MODAL WINDOWS */
 .boxy-inner form#new_job {width:500px;padding:10px;}

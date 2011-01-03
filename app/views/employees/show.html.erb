@@ -22,8 +22,10 @@
 
 <div class="clear"></div>
 
+<% unless @jobs.blank? %>
 <h4>Jobs</h4>
 <%= render :partial => 'jobs/list_job_for_employee', :locals => {:jobs => @jobs} %>
+<% end %>
 
 <% content_for :sidebar do %>
 
@@ -37,8 +39,8 @@
 <div id="options">
 <h3>Options</h3>
 <ul>
-<li><%= link_to 'Edit Details', edit_employee_path(@employee), :class => "button button_edit_profile" %></li>
-<li><%= link_to 'Delete employee', @employee, :confirm => 'Are you sure?', :method => :delete, :class => "button button_delete_project" %></li>
+<li><%= link_to 'Edit employee details', edit_employee_path(@employee), :class => "button button_edit_profile" %></li>
+<li><%= link_to 'Delete employee', "javascript:;", :class => "button button_delete" %> <span class="confirm"><%= link_to 'Yes', @employee, :method => :delete, :class => "yes" %> / <a href="#" class="no">No</a></span></li>
 </ul>
 </div><!-- #options -->
 <% end %>

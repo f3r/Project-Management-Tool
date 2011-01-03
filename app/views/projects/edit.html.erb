@@ -3,3 +3,13 @@
 
 <%= title "Edit project", :h2 %>
 <%= render :partial => 'projects/form_project' %>
+
+<% content_for :sidebar do %>
+<div id="options">
+<h3>Options</h3>
+<ul>
+<li><%= link_to 'View project details', @project, :class => "button button_view" %></li>
+<li><%= link_to 'Delete this project', "javascript:;", :class => "button button_delete" %> <span class="confirm"><%= link_to 'Yes', @project, :method => :delete, :class => "yes" %> / <a href="#" class="no">No</a></span></li>
+</ul>
+</div><!-- #options -->
+<% end %>

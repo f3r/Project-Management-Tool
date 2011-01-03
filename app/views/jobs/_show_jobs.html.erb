@@ -1,22 +1,21 @@
 <table class="generic">
-    <thead>
-    <tr>
-        <th class="{sorter: false}">&nbsp;</th>
-        <th>Job Name</th>
-        <th>Description</th>
-        <th>Employee</th>
-        <th class="hours">Hours</th>
-        <th class="expenses">Expenses</th>
-        <th class="{sorter: false}">&nbsp;</th>
-    </tr>
-    <thead>  
-    <tbody>
     <% if @jobs.count == 0 %>
-        <tr><td colspan="5">This project doesn't have any job yet</td></tr>
+        <tr><td colspan="7" class="message">This project doesn't have any jobs yet, <%= link_to "add a job", new_project_job_path(@project, @job, :anchor => "new_job"), :rel => "modal" %></td></tr>
     <% else %>
+		<thead>
+	    <tr>
+	        <th class="{sorter: false}">&nbsp;</th>
+	        <th>Job Name</th>
+	        <th>Description</th>
+	        <th>Employee</th>
+	        <th class="hours">Hours</th>
+	        <th class="expenses">Expenses</th>
+	        <th class="{sorter: false}">&nbsp;</th>
+	    </tr>
+		</thead>
         <% @jobs.each do |job| %>
         <tr class="<%= cycle('odd', 'even') %>">
-            <td class="status status_<%= job.project.status.id %>" title="<%= job.project.status.name %>">&nbsp;</td>
+            <td class="status status_<%= job.status_id %>" title="<%= job.status.name %>">&nbsp;</td>
             <td><a name="job-<%= job.id %>"></a><%=h job.name %></td>
             <td><%=h job.description %> </td>
             <td><%= link_to job.employee.short_name, job.employee %></td>
@@ -28,10 +27,11 @@
 <td class="actions"><span><%= link_to "Edit", edit_job_path(job), :class => "button_edit", :rel => "tooltip", :title => "Edit this job" %> <%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this job" %></span></td>
         <% end %>
     <% end %>
-    </tbody>
 </table>
 
-<% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>Create New Job</span><% end %>
+<% if @jobs.count != 0 %>
+<% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>New Job</span><% end %>
+<% end %>
 
 <!--
     TODO create a job/view page (with edit and delete)

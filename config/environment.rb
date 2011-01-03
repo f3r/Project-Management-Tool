@@ -45,7 +45,7 @@ Rails::Initializer.run do |config|
 
   #Form Elements Options
   TEXT_FIELD_SIZE_MINI = 10
-  TEXT_FIELD_SIZE = 20
+  TEXT_FIELD_SIZE = 30
   TEXT_FIELD_MAX_LENGTH = 70
   TEXT_FIELD_MAX_LENGTH_LONG = 250 
   TEXT_AREA_ROWS = 10
