@@ -21,8 +21,8 @@ class HoursController < ApplicationController
             
       # If the date suplied is not a valid date
       if !Date.valid_commercial?(@year,@week,7)
-        @year = Time.now.year
-        @week = Time.now.strftime("%W")
+        @year = Time.now.beginning_of_week.year
+        @week = Time.now.beginning_of_week.strftime("%W")
         redirect_to hoursreports_path(:year => @year.to_s, :week => @week.to_s, :escape => false)
         return
       end

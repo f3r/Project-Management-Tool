@@ -6,8 +6,6 @@ class ExpensereportsController < ApplicationController
     if params[:month] && params[:year]
 
       @expensereports_all = Expensereport.find_all_by_employee_id(session[:user_id], :include => :project)
-      # @projects = Project.all
-      # @projects = @expensereports_all.map{|expense| expense.project}
       @projects = []
       for expense in @expensereports_all do
         unless @projects.include?(expense.project)
