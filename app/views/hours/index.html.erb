@@ -113,11 +113,15 @@ if Date.commercial(@year,@week, 7) < Date.today %>
 
 <h3>Previous reports</h3>
 <ul class="reports">
-	<% week = @week %>
-	<% for i in 1..5 %>
-	<% week = week -1 %>
+<% week = @week
+for i in 1..5
+	week = week -1
+	if week == 0
+		week = 52
+	end
+%>
 	<li><%= link_to show_short_date(@year, week), url_for_week(@year, week) %></li>
-	<% end %>
+<% end %>
 </ul>
 
 </div><!-- #options -->
