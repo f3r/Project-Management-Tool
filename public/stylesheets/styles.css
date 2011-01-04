@@ -143,8 +143,8 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 
 #container.expense_reports_graph {width: 100%; height: 300px; margin: 0 auto 10px auto}
 
-ul#status_legend {float:right;margin:5px 0;}
-ul#status_legend li {background-repeat:no-repeat;background-position:4px center;font-size:11px;color:#666;padding-left:18px;margin:16px 5px 0 0;list-style:none;float:left;}
+ul#status_legend {float:right;margin:10px 0;}
+ul#status_legend li {background-repeat:no-repeat;background-position:4px center;font-size:11px;color:#666;padding-left:18px;margin:0 5px 0 0;list-style:none;float:left;}
 
 /* NAVIGATION */
 .navigation a.button_previous,
@@ -224,7 +224,7 @@ p.meta {font-size:11px;color:#777;}
 #sidebar h3 {font-size:14px;color:#000;margin:4px 6px;}
 #sidebar ul {border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; list-style:none;padding:10px 6px;}
 #sidebar ul li{margin:0;padding:4px;font-weight:bold;}
-#sidebar form {margin:0 10px;}
+#sidebar form {margin:0;}
 
 #sidebar #options li:hover,
 #sidebar #options li.selected {background-color:#EEF4F8;}
@@ -288,8 +288,8 @@ form#new_job.boxy-content fieldset > ol > li label {width:25%;}
 
 /* BUTTONS */
 
-a.grey_button { background: url(../images/background_button_right.png) no-repeat scroll right top transparent; border: 0; color: #fff !important; cursor: pointer; display: block; float: left; height: 30px; margin-right: 6px; padding-right: 12px !important; text-decoration: none; font-weight:bold; font-size:11px; margin:10px 0; }
-a.grey_button span { background: url(../images/background_button_left.png) no-repeat scroll 0 0 transparent; display: block;line-height: 14px;padding: 8px 0 10px 10px;text-shadow: #000 1px 1px 3px; }
+a.grey_button { background: url(../images/background_button_right.png) no-repeat scroll right top transparent; border: 0; color: #fff !important; cursor: pointer; display: block; float: left; height: 24px; margin-right: 6px; padding-right: 12px !important; text-decoration: none; font-weight:bold; font-size:11px; margin:10px 0; }
+a.grey_button span { background: url(../images/background_button_left.png) no-repeat scroll 0 0 transparent; display: block;line-height: 14px;padding: 5px 0 5px 10px;text-shadow: #000 1px 1px 3px; }
 
 button.button {border:0px;width:86px;height:30px;margin-left:2px;}
 button.button span {display:none;}

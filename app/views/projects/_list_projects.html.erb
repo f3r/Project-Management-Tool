@@ -30,5 +30,5 @@
 </table>
 
 <% unless projects.blank? %>
-<% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>New Job</span><% end %>
+<%= render :partial => 'shared/status_legend' %>
 <% end %>
