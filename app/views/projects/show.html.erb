@@ -13,15 +13,19 @@
 <dt>Manager:</dt><dd><%= link_to @project.manager.full_name, employee_path(@project.manager) %></dd>
 </dl>
 
+<% unless @project.date_start.blank? && @project.date_end.blank? %>
 <dl class="dates highlight_box">
-<dt>Start Date:</dt><dd><%= @project.date_start.to_datetime.to_s(:full_date) %></dd>
-<dt>End Date:</dt><dd><%= @project.date_end.to_datetime.to_s(:full_date) %></dd>
+<dt>Start Date:</dt><dd><%= @project.date_start.to_datetime.to_s(:full_date) unless @project.date_start.blank? %></dd>
+<dt>End Date:</dt><dd><%= @project.date_end.to_datetime.to_s(:full_date) unless @project.date_end.blank? %></dd>
 </dl>
+<% end %>
 <div class="clear"></div>
 
+<% unless @project.description.blank? %>
 <div class="description">
 <%= simple_format  @project.description %>
 </div><!-- .description -->
+<% end %>
 
 </div><!-- #project_info -->
 <div class="clear"></div>
