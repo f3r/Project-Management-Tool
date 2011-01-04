@@ -143,6 +143,9 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 
 #container.expense_reports_graph {width: 100%; height: 300px; margin: 0 auto 10px auto}
 
+ul#status_legend {float:right;margin:5px 0;}
+ul#status_legend li {background-repeat:no-repeat;background-position:4px center;font-size:11px;color:#666;padding-left:18px;margin:16px 5px 0 0;list-style:none;float:left;}
+
 /* NAVIGATION */
 .navigation a.button_previous,
 .navigation a.button_next {font-size:11px;font-weight:bold;}

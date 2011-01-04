@@ -29,7 +29,11 @@
     <% end %>
 </table>
 
-<% if @jobs.count != 0 %>
+<% unless @jobs.blank? %>
+<%= render :partial => 'shared/status_legend' %>
+<% end %>
+
+<% unless @jobs.blank? %>
 <% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>New Job</span><% end %>
 <% end %>
 

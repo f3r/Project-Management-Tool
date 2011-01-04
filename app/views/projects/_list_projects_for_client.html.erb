@@ -25,6 +25,10 @@
 <% end %>
 </table>
 
-<% if projects.count != 0 %>
+<% unless projects.blank? %>
+<%= render :partial => 'shared/status_legend' %>
+<% end %>
+
+<% unless projects.blank? %>
 <% link_to(new_project_path(@project), :class => "grey_button") do %><span>New Project</span><% end %>
 <% end %>

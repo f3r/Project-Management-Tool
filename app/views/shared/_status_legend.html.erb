@@ -1,0 +1,5 @@
+<ul id="status_legend">
+<% for stats in Status.list %>
+<li class="status_<%= stats.id %>"><%= stats.name %></li>
+<% end %>
+</ul>

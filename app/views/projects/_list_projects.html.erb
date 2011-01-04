@@ -1,19 +1,19 @@
 <table class="generic">
-    <thead>
-    <tr>
-        <th class="{sorter: false}">&nbsp;</th>
-        <th>Name</th>
-        <th>Client</th>
-        <th>Partner</th>
-        <th>Manager</th>
-        <th class="jobs">Jobs</th>
-        <th class="expenses">Acc &euro;</th>
-    </tr>
-    <thead>  
-    <tbody>
     <% if projects.count == 0 %>
         <tr><td colspan="7" class="message">No projects to show</td></tr>
     <% else %>
+		<thead>
+	    <tr>
+	        <th class="{sorter: false}">&nbsp;</th>
+	        <th>Name</th>
+	        <th>Client</th>
+	        <th>Partner</th>
+	        <th>Manager</th>
+	        <th class="jobs">Jobs</th>
+	        <th class="expenses">Acc &euro;</th>
+	    </tr>
+	    </thead>  
+		<tbody>
         <% projects.each do |project| %>
         <tr class="<%= cycle('odd', 'even') %>">
             <td class="status status_<%= project.status.id %>" title="<%= project.status.name %>">&nbsp;</td>
@@ -25,6 +25,10 @@
             <td class="expense"><%= number_to_currency(project.accumulated_expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
         </tr>
         <% end %>
+		<tbody>
     <% end %>
-    </tbody>
 </table>
+
+<% unless projects.blank? %>
+<% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>New Job</span><% end %>
+<% end %>

@@ -29,7 +29,6 @@
 
 <% content_for :sidebar do %>
 
-
 <% if @employee.photo.exists? then %>
 <div class="employee_photo">
 <%= image_tag @employee.photo.url(:small) %>
