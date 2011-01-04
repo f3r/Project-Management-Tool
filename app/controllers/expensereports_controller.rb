@@ -57,8 +57,10 @@ class ExpensereportsController < ApplicationController
     @expensereport = Expensereport.new(params[:expensereport])
     @expensereport.employee_id = session[:user_id]
     if @expensereport.save
+        month = @expensereport.expense_date.strftime("%m")
+        year = @expensereport.expense_date.strftime("%Y")
         flash[:notice] = 'Expense Report was successfully created.'
-        redirect_to(expensereports_url)
+        redirect_to expensereports_path(:month => month, :year => year)
     else
         @jobs = Job.find_all_by_employee_id(session[:user_id])
         @projects = Array.new
@@ -74,8 +76,10 @@ class ExpensereportsController < ApplicationController
   def update
     @expensereport = Expensereport.find(params[:id])
     if @expensereport.update_attributes(params[:expensereport])
+        month = @expensereport.expense_date.strftime("%m")
+        year = @expensereport.expense_date.strftime("%Y")
         flash[:notice] = 'Expense Report was successfully updated.'
-        redirect_to(expensereports_url)
+        redirect_to expensereports_path(:month => month, :year => year)
     else
         render :action => "edit"
     end

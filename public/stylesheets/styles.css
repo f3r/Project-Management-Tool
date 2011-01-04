@@ -141,6 +141,8 @@ table.generic_reports .totals td {font-size:16px;color:#777;font-weight:bold;pad
 #percentage_change.positive {color:#080;background-image: url(../images/icon_increase.png);}
 #percentage_change.negative {color:#900;background-image: url(../images/icon_decrease.png);}
 
+#container.expense_reports_graph {width: 100%; height: 300px; margin: 0 auto 10px auto}
+
 /* NAVIGATION */
 .navigation a.button_previous,
 .navigation a.button_next {font-size:11px;font-weight:bold;}
@@ -219,6 +221,7 @@ p.meta {font-size:11px;color:#777;}
 #sidebar h3 {font-size:14px;color:#000;margin:4px 6px;}
 #sidebar ul {border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; list-style:none;padding:10px 6px;}
 #sidebar ul li{margin:0;padding:4px;font-weight:bold;}
+#sidebar form {margin:0 10px;}
 
 #sidebar #options li:hover,
 #sidebar #options li.selected {background-color:#EEF4F8;}
