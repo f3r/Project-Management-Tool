@@ -21,6 +21,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.expense_report_by_date '/expensereports/:year/:month', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
   map.expense_report_by_employee '/expensereports/:year/:month/employee/:employee_id', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
+  map.expense_report_by_category '/expensereports/:year/:month/employee/:employee_id/category/:category', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
 
   map.root :controller => "site", :action => 'index' 
 

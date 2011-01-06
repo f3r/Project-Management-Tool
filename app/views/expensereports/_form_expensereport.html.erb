@@ -7,6 +7,7 @@
 	<%= form.input :job_id, :as => :select, :collection => @jobs %>
 	<%= form.input :amount, :label => "Amount (&euro;)", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<%= form.input :expense_date, :label => "Date", :as => :date %>
+	<%= form.input :expense_category, :label => "Category", :collection => ExpenseCategory.all, :as => :select %>
   <% end %>
 
   <% form.buttons do %>

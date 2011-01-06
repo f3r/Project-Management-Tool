@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
   def index
     @status = Status.all 
     @status_name = "All"
-    @projects = Project.paginate :page => params[:page], :order => 'status_id ASC, name'
+    @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
   end
 
   def show

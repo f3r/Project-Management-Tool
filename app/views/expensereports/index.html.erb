@@ -63,7 +63,7 @@ end
 					{
 						pointInterval: 1,
 						pointStart: 1, 
-						name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, session[:user_id], project.id)	%>
+						name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, session[:user_id], project.id, @category.id)	%>
 					}<% unless project == @projects.last %>,<% end %>
 				<% end %>
 			<% end %>
@@ -86,6 +86,7 @@ end
 			<tr>
 				<th>Project</th>
 				<th>Job</th>
+				<th>Category</th>
 				<th>Amount</th>
 				<th>Date</th>
 				<th class="{sorter: false}">&nbsp;</th>
@@ -96,6 +97,7 @@ end
 		<tr class="<%= cycle('odd', 'even') %>">
 			<td><%= link_to exrep.project.name, exrep.project %></td>
 			<td><%= link_to exrep.job.name,  project_path(exrep.project, :anchor => "job-#{exrep.job_id}") %></td>
+			<td><%=h exrep.expense_category.name unless exrep.expense_category.blank? %></td>
 			<td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
 			<td><%=h exrep.expense_date %></td>
 			<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" %></span></td>
@@ -122,10 +124,10 @@ end
 	<select name="date_select" id="date_select" class="jump_menu">
 	<% for date in month_list(@expensereports_all.first.expense_date.to_date,Time.now) do %>
 	<option value="<%= 
-	if params[:employee_id]
-		expense_report_by_employee_path(:month => date[:month], :year => date[:year], :employee_id => params[:employee_id])
+	if @category.id
+		expense_report_by_category_path(:month => date[:month], :year => date[:year], :employee_id => @employee.id, :category => @category.slug)
 	else
-		expense_report_by_date_path(:month => date[:month], :year => date[:year])
+		expense_report_by_employee_path(:month => date[:month], :year => date[:year], :employee_id => @employee.id)
 	end
 	 %>"<% if params[:month].to_i == date[:month] && params[:year].to_i == date[:year] %> selected="selected"<% end %>><%= "#{Date::MONTHNAMES[date[:month]]} #{date[:year]}" %></option>
 	<% end %>
@@ -137,13 +139,25 @@ end
 	<h4>By employee</h4>
 	<form>
 	<select name="user_select" id="user_select" class="jump_menu">
-	<option></option>
 	<% for employee in @employees %>
 	<option value="<%= expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => employee.id) %>"<% if employee.id == @employee.id %> selected="selected"<% end %>><%= employee.short_name %></option>
 	<% end %>
 	</select>
 	</form>
 <% end %>
+
+<% unless @categories.blank? %>
+	<h4>By category</h4>
+	<form>
+	<select name="user_select" id="user_select" class="jump_menu">
+	<option value="<%= expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %>">All</option>
+	<% for category in @categories %>
+	<option value="<%= expense_report_by_category_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id, :category => category.slug) %>"<% if category == @category %> selected="selected"<% end %>><%= category.name %></option>
+	<% end %>
+	</select>
+	</form>
+<% end %>
+
 </div><!-- .dropdowns -->
 
 <% link_to(new_expensereport_path, :class => "grey_button") do %><span>New Expense Report</span><% end %>
