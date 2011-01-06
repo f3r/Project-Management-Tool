@@ -1,4 +1,6 @@
-<div class="breadcrumbs"><%= link_to 'Reports', "#" %> &raquo; <%= link_to "Expense Reports", expensereports_path %> &raquo; <%= link_to @employee.full_name, @employee %> &raquo; <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %></div>
+<div class="breadcrumbs"><%= link_to 'Reports', "#" %> &raquo; <%= link_to "Expense Reports", expensereports_path %> &raquo; <%= link_to @employee.full_name, expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %> &raquo; 
+<% if @category.id %><%= link_to "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %>  &raquo; <% end%> <%= @category.name %> <% unless @category.id %> <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %><% end %>
+</div>
 <div class="clear"></div>
 
 <%=
@@ -86,7 +88,7 @@ end
 			<tr>
 				<th>Project</th>
 				<th>Job</th>
-				<th>Category</th>
+				<% unless @category.id %><th>Category</th><% end %>
 				<th>Amount</th>
 				<th>Date</th>
 				<th class="{sorter: false}">&nbsp;</th>
@@ -97,7 +99,7 @@ end
 		<tr class="<%= cycle('odd', 'even') %>">
 			<td><%= link_to exrep.project.name, exrep.project %></td>
 			<td><%= link_to exrep.job.name,  project_path(exrep.project, :anchor => "job-#{exrep.job_id}") %></td>
-			<td><%=h exrep.expense_category.name unless exrep.expense_category.blank? %></td>
+			<% unless @category.id %><td><%=h exrep.expense_category.name unless exrep.expense_category.blank? %></td><% end %>
 			<td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
 			<td><%=h exrep.expense_date %></td>
 			<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" %></span></td>

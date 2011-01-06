@@ -19,4 +19,4 @@ config.action_mailer.raise_delivery_errors = false
 #config.gem 'rack-debug'
 #config.middleware.use 'Rack::Debug'
 
-config.cache_store = :mem_cache_store
+# config.cache_store = :mem_cache_store

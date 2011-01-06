@@ -1,7 +1,7 @@
 class Expensereport < ActiveRecord::Base
 
   validates_numericality_of :amount
-  validates_presence_of :project_id, :job_id, :amount, :expense_date
+  validates_presence_of :project_id, :job_id, :amount, :expense_date, :expense_category_id
   validates_date :expense_date, :on_or_after => lambda { 1.years.ago }
   
   belongs_to :project
