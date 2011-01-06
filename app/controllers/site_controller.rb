@@ -57,10 +57,10 @@ class SiteController < ApplicationController
             user = Employee.find_by_email(params[:site][:email])
             if user
                 user.new_reset_uuid!
-                # TODO Configure EMAIL  
-                # ExcancelMailer.deliver_password_reset(user, request.host, request.port, protocol)
+                reset_link = "#{request.protocol}#{request.host}:#{request.port}/reset_password/#{user.reset_uuid}"
+                UserMailer.deliver_reset_password(user,reset_link)
                 flash[:notice] = 'A password reset link has been sent to your mail account'
-                logger.error { "#{request.protocol}#{request.host}:#{request.port}/reset_password/#{user.reset_uuid}" }
+                # logger.error { reset_link }
                 redirect_to :controller => 'site', :action => 'login'
             else
                 flash[:error] = 'Sorry, your email has not been found. Please contact the administrator'

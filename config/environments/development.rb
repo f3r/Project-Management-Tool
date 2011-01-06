@@ -13,10 +13,15 @@ config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 
-# Don't care if the mailer can't send
-config.action_mailer.raise_delivery_errors = false
+config.action_mailer.raise_delivery_errors = true
 
 #config.gem 'rack-debug'
 #config.middleware.use 'Rack::Debug'
 
 # config.cache_store = :mem_cache_store
+
+ActionMailer::Base.delivery_method = :sendmail
+ActionMailer::Base.sendmail_settings = { 
+  :location       => '/usr/sbin/sendmail', 
+  :arguments      => '-i -t'
+}
