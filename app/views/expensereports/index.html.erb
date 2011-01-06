@@ -1,8 +1,15 @@
-<div class="breadcrumbs"><%= link_to 'Reports', "#" %> &raquo; <%= link_to "Expense Reports", expensereports_path %> &raquo; <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %></div>
+<div class="breadcrumbs"><%= link_to 'Reports', "#" %> &raquo; <%= link_to "Expense Reports", expensereports_path %> &raquo; <%= link_to @employee.full_name, @employee %> &raquo; <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %></div>
 <div class="clear"></div>
 
-<%= title "Expense Report for #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2 %>
+<%=
+if @employee
+	title "Expense Report for #{@employee.full_name} &mdash #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2
+else
+	title "Expense Report &mdash #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2
+end
+%>
 
+<% unless @projects.blank? %>
 <script type="text/javascript">
 
 	var chart;
@@ -33,7 +40,8 @@
 					value: 0,
 					width: 1,
 					color: '#808080'
-				}]
+				}],
+				min: 0
 			},
 			tooltip: {
 				formatter: function() {
@@ -52,7 +60,11 @@
 			series: [
 			<% unless @projects.blank? %>
 				<% for project in @projects %>
-					{ name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, session[:user_id], project.id)	%> }<% unless project == @projects.last %>,<% end %>
+					{
+						pointInterval: 1,
+						pointStart: 1, 
+						name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, session[:user_id], project.id)	%>
+					}<% unless project == @projects.last %>,<% end %>
 				<% end %>
 			<% end %>
 			]
@@ -64,10 +76,11 @@
 </script>
 
 <div id="container" class="expense_reports_graph"></div>
+<% end %>
 
 <table class="generic">
 		<% if @expensereports.blank? %>
-		<tr height="30"><td colspan="5" class="message">You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %></td></tr>
+		<tr height="30"><td colspan="5" class="message"><% if @employee.id == session[:user_id] %>You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %><% else %>This user haven't created an expense report<% end %></td></tr>
 		<% else %>
 		<thead>
 			<tr>
@@ -97,19 +110,41 @@
 <h3>Reports</h3>
 <ul>
 <li>Total expense reports: <%= @expensereports_all.count %></li>
-<li>Total on <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %>: <%= @expensereports.count %></li>
+<% unless @expensereports_all.blank? %><li>On this month: <%= @expensereports.count %></li><% end %>
 <% unless @projects.blank? %><li>Total projects: <%= @projects.count %></li><% end %>
 </ul>
 
-<h3>By month</h3>
-
-<form>
-<select name="date_select" id="date_select" class="jump_menu">
-<% for date in month_list(@expensereports_all.first.expense_date.to_date,Time.now) do %>
-<option value="<%= expense_report_by_date_path(:month => date[:month], :year => date[:year]) %>"<% if params[:month].to_i == date[:month] && params[:year].to_i == date[:year] %> selected="selected"<% end %>><%= "#{Date::MONTHNAMES[date[:month]]} #{date[:year]}" %></option>
+<h3>Filter results</h3>
+<div class="dropdowns">
+<% unless @expensereports_all.blank? %>
+	<h4>By month</h4>
+	<form>
+	<select name="date_select" id="date_select" class="jump_menu">
+	<% for date in month_list(@expensereports_all.first.expense_date.to_date,Time.now) do %>
+	<option value="<%= 
+	if params[:employee_id]
+		expense_report_by_employee_path(:month => date[:month], :year => date[:year], :employee_id => params[:employee_id])
+	else
+		expense_report_by_date_path(:month => date[:month], :year => date[:year])
+	end
+	 %>"<% if params[:month].to_i == date[:month] && params[:year].to_i == date[:year] %> selected="selected"<% end %>><%= "#{Date::MONTHNAMES[date[:month]]} #{date[:year]}" %></option>
+	<% end %>
+	</select>
+	</form>
 <% end %>
-</select>
-</form>
+
+<% unless @employees.blank? %>
+	<h4>By employee</h4>
+	<form>
+	<select name="user_select" id="user_select" class="jump_menu">
+	<option></option>
+	<% for employee in @employees %>
+	<option value="<%= expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => employee.id) %>"<% if employee.id == @employee.id %> selected="selected"<% end %>><%= employee.short_name %></option>
+	<% end %>
+	</select>
+	</form>
+<% end %>
+</div><!-- .dropdowns -->
 
 <% link_to(new_expensereport_path, :class => "grey_button") do %><span>New Expense Report</span><% end %>
 

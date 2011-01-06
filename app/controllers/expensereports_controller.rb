@@ -4,9 +4,16 @@ class ExpensereportsController < ApplicationController
 
   def index
     if params[:month] && params[:year]
-
-      @expensereports_all = Expensereport.find_all_by_employee_id(session[:user_id], :include => :project)
+      if params[:employee_id]
+        employee = params[:employee_id]
+      else
+        employee = session[:user_id]
+      end
+      @employee = Employee.find(employee)
+      @expensereports_all = Expensereport.find_all_by_employee_id(employee, :include => :project)
+      @employees = Employee.all
       @projects = []
+
       for expense in @expensereports_all do
         unless @projects.include?(expense.project)
           @projects << expense.project
@@ -16,7 +23,7 @@ class ExpensereportsController < ApplicationController
       date = Date.parse("1-#{params[:month]}-#{params[:year]}")
       @start_date = date.beginning_of_month
       @end_date = date.end_of_month
-      @expensereports = Expensereport.find(:all, :include => :job, :conditions => {:employee_id => session[:user_id], :expense_date => @start_date..@end_date})
+      @expensereports = Expensereport.find(:all, :include => :job, :conditions => {:employee_id => employee, :expense_date => @start_date..@end_date})
     else
       redirect_to expense_report_by_date_path(:month => Date.today.month,:year => Date.today.year)
     end
