@@ -43,14 +43,15 @@ class ExpensereportsController < ApplicationController
 
   def new
     # We get all the projects and jobs that belong to an employee
-    @jobs = Job.find_all_by_employee_id(session[:user_id])
+    jobs = Job.find_all_by_employee_id(session[:user_id])
     @projects = Array.new
-    @jobs.each do |job|
+    jobs.each do |job|
       if !@projects.include?(Project.find(job.project_id))
         @projects << Project.find(job.project_id)
       end 
     end
     @expensereport = Expensereport.new
+    @jobs = []
   end
 
   def edit
@@ -71,19 +72,21 @@ class ExpensereportsController < ApplicationController
   def create
     @expensereport = Expensereport.new(params[:expensereport])
     @expensereport.employee_id = session[:user_id]
+
     if @expensereport.save
         month = @expensereport.expense_date.strftime("%m")
         year = @expensereport.expense_date.strftime("%Y")
         flash[:notice] = 'Expense Report was successfully created.'
         redirect_to expensereports_path(:month => month, :year => year)
     else
-        @jobs = Job.find_all_by_employee_id(session[:user_id])
+        jobs = Job.find_all_by_employee_id(session[:user_id])
         @projects = Array.new
-        @jobs.each do |job|
+        jobs.each do |job|
           if !@projects.include?(Project.find(job.project_id))
             @projects << Project.find(job.project_id)
           end 
-        end      
+        end
+        @jobs = Job.find_all_by_project_id(params[:expensereport][:project_id])
         render :action => "new"
     end
   end
@@ -105,4 +108,5 @@ class ExpensereportsController < ApplicationController
     @expensereport.destroy
     redirect_to(expensereports_url)
   end
+
 end

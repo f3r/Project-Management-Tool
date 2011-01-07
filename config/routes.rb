@@ -23,6 +23,8 @@ ActionController::Routing::Routes.draw do |map|
   map.expense_report_by_employee '/expensereports/:year/:month/employee/:employee_id', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
   map.expense_report_by_category '/expensereports/:year/:month/employee/:employee_id/category/:category', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
 
+  map.get_jobs '/projects/:id/get_jobs', :controller => "projects", :action => "get_jobs", :requirements => { :method => :get }
+
   map.root :controller => "site", :action => 'index' 
 
   map.forgot_password '/forgot_password', :controller =>'site', :action => 'remind'

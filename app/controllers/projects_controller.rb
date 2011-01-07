@@ -102,7 +102,15 @@ class ProjectsController < ApplicationController
 
     redirect_to(projects_url)
   end
-  
+
+  def get_jobs
+    @project = Project.find(params[:id])
+    @jobs = @project.jobs
+    respond_to do |format|
+      format.json { render :json => { :jobs => @jobs, :project => @project }.to_json }
+    end
+  end
+
   private
   
   def projects_by_status(projects, status_id)

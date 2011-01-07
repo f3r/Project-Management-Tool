@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   require 'uuidtools'
   
   before_filter :instantiate_controller_and_action_names
+  before_filter :set_locale
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
@@ -18,4 +19,8 @@ class ApplicationController < ActionController::Base
       @current_controller = controller_name
   end
   
+  def set_locale
+    I18n.locale = "en"
+  end
+
 end

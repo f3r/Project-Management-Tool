@@ -1,12 +1,16 @@
+<%= javascript_include_tag 'new_expense_report' %>
+
 <% semantic_form_for @expensereport do |form| %>
 <%= form.semantic_errors :state %>
 <div class="note">* Required fields</div>
 
   <% form.inputs "Employee details" do %>
 	<%= form.input :project_id, :as => :select, :collection => @projects %>
+	<%= form.input :project_date_start, :as => :hidden %>
+	<%= form.input :project_date_end, :as => :hidden %>
 	<%= form.input :job_id, :as => :select, :collection => @jobs %>
 	<%= form.input :amount, :label => "Amount (&euro;)", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
-	<%= form.input :expense_date, :label => "Date", :as => :date %>
+	<%= form.input :expense_date, :label => "Date", :as => :date, :start_year => Time.now.year - 5, :end_year => Time.now.year + 10  %>
 	<%= form.input :expense_category, :label => "Category", :collection => ExpenseCategory.all, :as => :select %>
   <% end %>
 
