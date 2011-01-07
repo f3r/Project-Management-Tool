@@ -48,7 +48,15 @@ class Project < ActiveRecord::Base
       rescue Exception => e
         logger.error { "Error [project.rb/has_pending_jobs] #{e.message}" }
       end
-      
+    end
+    
+    def remaining_days
+      unless self.date_end.blank?
+        remaining_days = self.date_end.to_datetime - Time.now.to_date
+        return remaining_days
+      else
+        return 0
+      end
     end
   
 end

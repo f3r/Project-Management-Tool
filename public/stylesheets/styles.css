@@ -65,7 +65,7 @@ ul.dropdown li:hover > ul { display: block;}
 /* CONTENT */
 #content_top {margin-top:10px; height:12px; background-image: url(../images/main_background_top.png); background-repeat: no-repeat; background-position: center bottom; zoom:1; }
 
-#content {background-image: url(../images/main_background_middle.png); background-repeat: repeat-y; background-position: center top; zoom:1; }
+#content {background-image: url(../images/main_background_middle.png); background-repeat: repeat-y; background-position: center top; zoom:1; min-height:450px; }
 #content #wrapper {margin:0 auto;width:980px; padding:4px 0;}
 
 #content h2 {font-size:18px;color:#000;margin:10px 0;}
@@ -180,15 +180,20 @@ a.next_page {text-transform:uppercase;}
 
 /* PROJECT PAGE */
 
-#project_info dl {line-height:180%;}
+#project_info dl {line-height:180%;margin:0;}
 #project_info dl dt {font-weight:bold;float:left;width:25%;color:#666;font-weight:bold;}
 #project_info dl dd {float:left;width:75%;}
 #project_info dl.team {float:left;width:50%;}
-#project_info dl.dates {float:right;width:45%;}
-#project_info dl.dates dd {text-align:right;}
-#project_info .description { font-size:14px; }
+#project_info dl.dates {float:right;width:45%;line-height:140%;}
+#project_info dl.dates dt {width:40%;}
+#project_info dl.dates dd {text-align:right;width:60%;}
+#project_info dl.dates dd.late {font-weight:bold; color:#800;}
+
+#project_info .description { margin:16px 0; font-size:14px; }
 #project_info h2 {float:left;margin-bottom:10px;}
 #project_info .status {background-repeat:no-repeat;background-position:4px center;width:60px;font-size:11px;color:#666;padding-left:18px;float:right;margin-top:16px;}
+
+.status {cursor:help;}
 .status_1 {background-image:url(../images/status_icons/160.png);}
 .status_2 {background-image:url(../images/status_icons/152.png);}
 .status_3 {background-image:url(../images/status_icons/153.png);}
@@ -247,6 +252,7 @@ p.meta {font-size:11px;color:#777;}
 #sidebar #options a.button_save_report {background-image:url(../images/icon_save_report.png);}
 #sidebar #options ul.reports li {font-size:11px;font-weight:normal;}
 #sidebar #options ul.reports li a:hover {color:#000;}
+#sidebar #options ul.reports li:hover {background:transparent;}
 
 #sidebar #options .confirm {font-size:11px;float:right;font-weight:normal;position:relative;top:-16px;display:none;}
 

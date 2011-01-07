@@ -82,9 +82,7 @@ class EmployeesController < ApplicationController
 
   def create
     begin
-      if params[:commit] == "Cancel"
-        redirect_to(@employee)
-      else
+
         @employee = Employee.create_employee(params[:employee])
         if @employee.save
             flash[:notice] = 'Employee was successfully created.'
@@ -92,7 +90,7 @@ class EmployeesController < ApplicationController
         else
             render :action => "new" 
         end
-      end        
+
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/create] #{e.message}"  }
     end

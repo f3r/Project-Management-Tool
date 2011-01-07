@@ -13,10 +13,13 @@
 <dt>Manager:</dt><dd><%= link_to @project.manager.full_name, employee_path(@project.manager) %></dd>
 </dl>
 
-<% unless @project.date_start.blank? && @project.date_end.blank? %>
+<% unless @project.date_start.blank? || @project.date_end.blank? %>
 <dl class="dates highlight_box">
-<dt>Start Date:</dt><dd><%= @project.date_start.to_datetime.to_s(:full_date) unless @project.date_start.blank? %></dd>
-<dt>End Date:</dt><dd><%= @project.date_end.to_datetime.to_s(:full_date) unless @project.date_end.blank? %></dd>
+<dt>Start Date:</dt><dd><%= @project.date_start.to_datetime.to_s(:full_date) %></dd>
+<dt>End Date:</dt><dd><%= @project.date_end.to_datetime.to_s(:full_date) %></dd>
+<% if @project.status_id != 3 %>
+<dt>Remaining days:</dt><dd<%= " class=\"late\"" if @project.remaining_days < 0 %>><% if @project.remaining_days < 0 %><%= @project.remaining_days.abs %> days late<% else %><%= @project.remaining_days %> days left<% end %></dd>
+<% end %>
 </dl>
 <% end %>
 <div class="clear"></div>
@@ -30,7 +33,7 @@
 </div><!-- #project_info -->
 <div class="clear"></div>
 
-
+<h4>Jobs</h4>
 <%= render :partial => 'jobs/show_jobs', :locals => {:jobs => @jobs, :project => @project} %>
 
 <% content_for :sidebar do %>

@@ -4,28 +4,32 @@ class ProjectsController < ApplicationController
   before_filter :protect_user
   
   def get_projects
-      @status = Status.all
-      if params[:id].to_i == 0 or params[:id] == blank?
-          @projects = Project.all
-          @status_name = "All"
-      else
-          @projects = Project.find_all_by_status_id(params[:id])
-          @status_name = Status.find(params[:id]).name
-      end
-      render :index, :layout => false do |page|
-          page.replace_html 'project_list', :partial => 'list_projects', :projects => @projects, :status_name => @status_name
-      end
+    @status = Status.all
+    if params[:id].to_i == 0 or params[:id] == blank?
+      @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
+      @status_name = "All"
+    else
+      @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :conditions => {:status_id => params[:id]}, :page => params[:page], :order => 'status_id ASC, name')
+      @status_name = Status.find(params[:id]).name
+    end
+    render :index, :layout => false do |page|
+      page.replace_html 'project_list', :partial => 'list_projects', :projects => @projects, :status_name => @status_name
+    end
   end
   
   def index
     @status = Status.all 
     @status_name = "All"
     @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
+    @jobs_count = jobs_count_from_projects(@projects)
+    @started_projects = projects_by_status(@projects, 2)
+    @finished_projects = projects_by_status(@projects, 3)
+    @not_started_projects = projects_by_status(@projects, 1)
   end
 
   def show
     @project = Project.find(params[:id])
-    @jobs    = @project.jobs.find(:all)
+    @jobs    = @project.jobs.all
   end
 
   def new
@@ -98,4 +102,33 @@ class ProjectsController < ApplicationController
 
     redirect_to(projects_url)
   end
+  
+  private
+  
+  def projects_by_status(projects, status_id)
+    started_projects = []
+    for project in projects do
+      if projects.detect{ |project| project.status_id == status_id}
+        started_projects << project
+      end
+    end
+    return started_projects
+  end
+  
+  def jobs_count_from_projects(projects)
+    jobs = 0
+    for project in projects do
+      jobs = jobs + project.jobs.count
+    end
+    return jobs
+  end
+
+  def total_expenses_from_projects(projects)
+    expenses = 0
+    for project in projects do
+      expenses = expenses + project.expensereports.count
+    end
+    return jobs
+  end
+
 end

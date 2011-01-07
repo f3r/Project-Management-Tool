@@ -12,7 +12,7 @@
 	<select id="status_selected">
 	<%= options_from_collection_for_select(Status.find(:all).insert(0,Status.new(:id => 0,:name => "All Projects")),:id,:name, params[:id].to_i) %>
 	</select>
-	<%= observe_field 'status_selected',:url => {:action => 'get_projects'},:with => 'id',:update => :project_list, :success => "update_tablesort('.generic')" %>
+	<%= observe_field 'status_selected',:url => { :action => 'get_projects'},:with => 'id',:update => :project_list, :success => "update_tablesort('.generic')" %>
 	</div><!-- .status_selector -->
 	<div class="clear"></div>
 
@@ -22,18 +22,21 @@
 </div>
 
 <% content_for :sidebar do %>
+<% if controller.action_name == "index" %>
 <h3>Projects</h3>
 <ul>
-	<li>Started projects:</li>
-	<li>Not Started projects:</li>
-	<li>Finished projects:</li>
-	<li>Total jobs:</li>
+	<li>Started projects: <%= @started_projects.count %></li>
+	<li>Not Started projects: <%= @not_started_projects.count %></li>
+	<li>Finished projects: <%= @finished_projects.count %></li>
+	<li>Total jobs: <%= @jobs_count %></li>
 	<li>Total expenses:</li>
 </ul>
 
 <% semantic_form_for Project.new, :html => {:id => "side_form"} do |form| %>
 	<%= form.input :name, :label => false, :as => :string, :input_html => { :size => 10, :class => "clear_on_focus", :value => "Project name", :title => "Project name", :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<button class="button button_new_project"><span>New project</span></button>
+<% end %>
+
 <% end %>
 
 <% end %>
