@@ -1,9 +1,8 @@
-<tr class="timeRep_job <%= cycle('odd', 'even') %>">
-	<td class="title"><%= job_title %> <% idAll = 'p'+pid+'_j'+id+'_' %></td>
-	<td><input class="hours nosign" id="<%= idAll+'1' %>" name="job[<%= id %>][mon]" size="2" type="text" value="<%= ftoi(hours.h_mon) %>"/></td>
-	<td><input class="hours nosign" id="<%= idAll+'2' %>" name="job[<%= id %>][tue]" size="2" type="text" value="<%= ftoi(hours.h_tue) %>"/></td>
-	<td><input class="hours nosign" id="<%= idAll+'3' %>" name="job[<%= id %>][wed]" size="2" type="text" value="<%= ftoi(hours.h_wed) %>"/></td>
-	<td><input class="hours nosign" id="<%= idAll+'4' %>" name="job[<%= id %>][thu]" size="2" type="text" value="<%= ftoi(hours.h_thu) %>"/></td>
-	<td><input class="hours nosign" id="<%= idAll+'5' %>" name="job[<%= id %>][fri]" size="2" type="text" value="<%= ftoi(hours.h_fri) %>"/></td>
-	<td id="<%= idAll+'total' %>">0</td>
+<tr class="time_report_job <%= cycle('odd', 'even') %>">
+	<td class="title"><%= link_to job.name, project_path(project, :anchor => "job-#{job.id}") %></td>
+	<% id_prefix = 'p' + project.id.to_s + '_j' + job.id.to_s + '_' %>
+	<% for day in weekdays do %>
+	<td><input class="hours nosign" id="<%= id_prefix + day[0].to_s %>" name="job[<%= job.id %>][<%= day[1] %>]" size="2" type="text" value="<%= ftoi(hours["h_" + day[1]]) %>"/></td>
+	<% end %>
+	<td id="<%= id_prefix + 'total' %>">0</td>
 </tr>

@@ -1,10 +1,8 @@
-<tr class="timeRep_proj">
-	<th id="timeRep_proj_1" class="project"><%= proj_title %></th>
-	<% idAll = 'pr'+pid+'_' %></th>
-	<th id="<%= idAll + '1'%>" class="day">0</th>
-	<th id="<%= idAll + '2'%>" class="day">0</th>
-	<th id="<%= idAll + '3'%>" class="day">0</th>
-	<th id="<%= idAll + '4'%>" class="day">0</th>
-	<th id="<%= idAll + '5'%>" class="day">0</th>
-	<th id="pr<%= pid %>_total" class="total_week">0</th>
+<tr class="time_report_project">
+	<th id="time_report_project_1" class="project"><%= project.name %></th>
+	<% id_prefix = 'pr' + project.id.to_s + '_' %></th>
+	<% for count in 1..5 do %>
+	<th id="<%= id_prefix + count.to_s %>" class="day">0</th>
+	<% end %>
+	<th id="pr<%= project.id %>_total" class="total_week">0</th>
 </tr>

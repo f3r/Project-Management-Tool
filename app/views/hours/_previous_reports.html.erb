@@ -1,0 +1,13 @@
+<ul class="reports">
+<% if week == 1
+	year = year - 1
+end
+5.times do
+	week = week -1
+	if week == 0
+		week = 52
+	end
+%>
+<li><%= link_to show_short_date(year, week), url_for_week(year, week) %></li>
+<% end %>
+</ul>

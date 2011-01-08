@@ -958,7 +958,7 @@ a.timeRep_days {
 
 /* PROJECT LINE */
 
-tr.timeRep_proj {
+tr.time_report_project {
   background-color:#abc;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -969,13 +969,13 @@ tr.timeRep_proj {
   vertical-align: middle;   
 }
 
-tr.timeRep_proj th {
+tr.time_report_project th {
   padding-left: 5px;
   text-align: left;
   vertical-align: middle;
 }
 
-tr.timeRep_proj td {
+tr.time_report_project td {
   border:0px;
   text-align :center;
   vertical-align: middle;
@@ -983,14 +983,14 @@ tr.timeRep_proj td {
 
 /* JOB LINE WHEN YOU CAN EDIT*/
 
-tr.timeRep_job {
+tr.time_report_job {
   border: 0px;
   text-align: center;
   font-size:  15px;  
 }
 
 /* First column */
-tr.timeRep_job th {
+tr.time_report_job th {
   padding-left: 15px;
   text-align: left;
   background-color : #E0E0E0;
@@ -998,7 +998,7 @@ tr.timeRep_job th {
 }
 
 /* Last column */
-tr.timeRep_job td + td + td +td +td +td {
+tr.time_report_job td + td + td +td +td +td {
   background-color : #D0D0D0;
   font-weight : bold;
 }

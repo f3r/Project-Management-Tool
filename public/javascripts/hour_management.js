@@ -96,7 +96,7 @@ $(document).ready(function() {
 
     $("#old_total").val(total);
 
-	$('.timeRep_proj').click(function(){
+	$('.time_report_project').click(function(){
 		$(this).toggleClass("collapsed");
 		$(this).siblings().toggle();
 	})
