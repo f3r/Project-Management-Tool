@@ -940,7 +940,7 @@ tr.timeRep_dateNav th {
 
 /* DAYS OF THE WEEK */
 
-tr.timeRep_days th {
+tr.time_report_days th {
   background-color:#333;
   text-align: center;
   color: white; 
@@ -949,7 +949,7 @@ tr.timeRep_days th {
   vertical-align: middle;
 }
 
-a.timeRep_days {
+a.time_report_days {
   text-decoration : none;
   color : white;
   font-size: 28px;

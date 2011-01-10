@@ -122,7 +122,10 @@ table.generic_reports table th {font-size:14px;font-weight:bold;color:#000;backg
 
 table.generic_reports {margin-bottom:10px;}
 table.generic_reports table tr.time_report_project {border-left:1px solid #eee;border-right:1px solid #eee; border-top:1px solid #ccc; cursor:pointer;}
-table.generic_reports table tr.time_report_project th.project {-moz-user-select: none;-khtml-user-select: none;user-select: none; padding-left:25px; background-repeat:no-repeat;background-position:4px center; background-image:url(../images/icon_opened.png);}
+
+table.generic_reports tr.time_report_days th.project {width:312px;}
+
+table.generic_reports table tr.time_report_project th.project {-moz-user-select: none;-khtml-user-select: none;user-select: none; padding-left:25px; background-repeat:no-repeat;background-position:4px center; background-image:url(../images/icon_opened.png);width:290px;}
 table.generic_reports table tr.collapsed th.project {background-image:url(../images/icon_collapsed.png);}
 table.generic_reports table td {border:1px solid #eee;text-align:center;}
 table.generic_reports table td {padding:4px;}
