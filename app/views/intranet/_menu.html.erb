@@ -1,20 +1,4 @@
 <ul class="dropdown">
-    <li <% if menu_active?('intranet')%> class="active" <%end%>>
-        <%= link_to 'Overview', :controller => 'intranet', :action => 'index' %>
-    </li>    
-    <li <% if menu_active?('clients')%> class="active" <%end%>>
-        <%= link_to 'Clients', :controller => 'clients', :action => 'index' %>
-    </li>
-	<li class="dir"><a href="#">Employees</a>
-		<ul>
-	    <li <% if menu_active?('employees')%> class="active" <%end%>>
-	        <%= link_to 'Employee List', :controller => 'employees', :action => 'index' %>
-	    </li>    
-	    <li <% if menu_active?('categories')%> class="active last" <%end%>>
-	        <%= link_to 'Employee Categories', :controller => 'categories', :action => 'index' %>
-	    </li>
-		</ul>    
-	</li>
     <li <% if menu_active?('projects')%> class="active" <%end%>>
         <%= link_to 'Projects', :controller => 'projects', :action => 'index' %>
     </li>
@@ -25,6 +9,19 @@
 	    </li>
 	    <li <% if menu_active?('expensereports')%> class="active" <%end%>>
 	        <%= link_to 'Expense Reports', :controller => 'expensereports', :action => 'index' %>
+	    </li>
+		</ul>    
+	</li>
+    <li <% if menu_active?('clients')%> class="active" <%end%>>
+        <%= link_to 'Clients', :controller => 'clients', :action => 'index' %>
+    </li>
+	<li class="dir"><a href="#">Employees</a>
+		<ul>
+	    <li <% if menu_active?('employees')%> class="active" <%end%>>
+	        <%= link_to 'Employee List', :controller => 'employees', :action => 'index' %>
+	    </li>    
+	    <li <% if menu_active?('categories')%> class="active last" <%end%>>
+	        <%= link_to 'Employee Categories', :controller => 'categories', :action => 'index' %>
 	    </li>
 		</ul>    
 	</li>

@@ -6,7 +6,7 @@
 <dl>
 <label>Account email address</label><br />
 <%= f.text_field :email, :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH, :class => "field" %>
-<%= submit_tag 'Send', :class => "button button_send" %>
+<%= submit_tag 'Send', :class => "button button_send" %> <%= link_to 'Back to login', login_path %>
 </dl>
 
 </fieldset>

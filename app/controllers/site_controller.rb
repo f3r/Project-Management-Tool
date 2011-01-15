@@ -21,12 +21,12 @@ class SiteController < ApplicationController
           # If user submit data, and data is correct
           if request.post? and params[:user] and !params[:user].empty?
               email          = params[:user][:email]
-              encrypted_pwd  = Digest::SHA1.hexdigest("#{email}|#{params[:user][:password]}")
+              encrypted_pwd  = Digest::SHA1.hexdigest("#{email.downcase}|#{params[:user][:password]}")
               if encrypted_pwd == Employee.password_from_mail(email)
                   user = Employee.find_by_email(email)
                   user.log_in_session!(session)
                   flash[:notice] = "#{'Welcome back '} #{user.first_name}"
-                  redirect_to :controller => 'intranet', :action => 'index'
+                  redirect_to projects_path
               else
                   flash[:error] = 'Sorry, your email & password combination does not match'
                   return
@@ -54,7 +54,8 @@ class SiteController < ApplicationController
         @title = 'Forgot password'
 
         if request.post? and params[:site][:email]
-            user = Employee.find_by_email(params[:site][:email])
+            user = Employee.find_by_sql ["SELECT * FROM employees WHERE lower(email) = lower(?)", params[:site][:email]]
+            user = user.first
             if user
                 user.new_reset_uuid!
                 reset_link = "#{request.protocol}#{request.host}:#{request.port}/reset_password/#{user.reset_uuid}"
