@@ -12,4 +12,9 @@ class Job < ActiveRecord::Base
     def expenses
       return Expensereport.find_all_by_job_id(self.id).sum(&:amount)
     end
+    
+    def hours
+      total = WeekHours.find_by_sql ["SElECT sum(h_mon + h_tue + h_wed + h_thu + h_fri) as total from week_hours WHERE job_id = ?", self.id]
+      return total.first.total
+    end
 end
