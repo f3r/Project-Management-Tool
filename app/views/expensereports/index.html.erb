@@ -65,7 +65,7 @@ end
 					{
 						pointInterval: 1,
 						pointStart: 1, 
-						name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, session[:user_id], project.id, @category.id)	%>
+						name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, @employee.id, project.id, @category.id)	%>
 					}<% unless project == @projects.last %>,<% end %>
 				<% end %>
 			<% end %>
@@ -82,7 +82,7 @@ end
 
 <table class="generic">
 		<% if @expensereports.blank? %>
-		<tr height="30"><td colspan="5" class="message"><% if @employee.id == session[:user_id] %>You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %><% else %>This user haven't created an expense report<% end %></td></tr>
+		<tr height="30"><td colspan="5" class="message"><% if @employee.id == session[:user_id] %>You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %><% else %>This user haven't created an expense report<% if @projects.count > 0 %> this month<% end %><% end %></td></tr>
 		<% else %>
 		<thead>
 			<tr>
