@@ -34,6 +34,19 @@ class Project < ActiveRecord::Base
       end
     end
     
+    def number_of_hours
+      # ES RECOMENDABLE HACER UN CACHE DE ESTO.
+      begin
+        hours = 0
+        for job in self.jobs do
+          hours = hours + job.hours.to_i
+        end
+        return hours
+      rescue Exception => e
+        logger.error { "Error [project.rb/number_of_hours] #{e.message}" }
+      end
+    end
+    
     def accumulated_expenses
       begin
         self.expensereports.to_a.sum(&:amount)

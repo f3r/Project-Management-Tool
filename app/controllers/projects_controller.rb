@@ -6,14 +6,19 @@ class ProjectsController < ApplicationController
   def get_projects
     @status = Status.all
     if params[:id].to_i == 0 or params[:id] == blank?
-      @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
       @status_name = "All"
+      @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
+      @not_started_projects = projects_by_status(@projects, 1)
+      @started_projects = projects_by_status(@projects, 2)
+      @finished_projects = projects_by_status(@projects, 3)
     else
       @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :conditions => {:status_id => params[:id]}, :page => params[:page], :order => 'status_id ASC, name')
       @status_name = Status.find(params[:id]).name
     end
-    render :index, :layout => false do |page|
-      page.replace_html 'project_list', :partial => 'list_projects', :projects => @projects, :status_name => @status_name
+    @jobs_count = jobs_count_from_projects(@projects)
+    @total_expenses = total_expenses_from_projects(@projects)
+    render :index, :layout => "project_list" do |page|
+      page.replace_html 'project_list', :partial => 'list_projects'
     end
   end
   
@@ -22,9 +27,12 @@ class ProjectsController < ApplicationController
     @status_name = "All"
     @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
     @jobs_count = jobs_count_from_projects(@projects)
+    @total_expenses = total_expenses_from_projects(@projects)
+
+    @not_started_projects = projects_by_status(@projects, 1)
     @started_projects = projects_by_status(@projects, 2)
     @finished_projects = projects_by_status(@projects, 3)
-    @not_started_projects = projects_by_status(@projects, 1)
+
   end
 
   def show
@@ -113,14 +121,15 @@ class ProjectsController < ApplicationController
 
   private
   
+  # GET PROJECTS BY STATUS FROM EXISTING ARRAY OF PROJECTS
   def projects_by_status(projects, status_id)
-    started_projects = []
+    selected_projects = []
     for project in projects do
-      if projects.detect{ |project| project.status_id == status_id}
-        started_projects << project
+      if project.status_id == status_id
+        selected_projects << project
       end
     end
-    return started_projects
+    return selected_projects
   end
   
   def jobs_count_from_projects(projects)
@@ -134,9 +143,9 @@ class ProjectsController < ApplicationController
   def total_expenses_from_projects(projects)
     expenses = 0
     for project in projects do
-      expenses = expenses + project.expensereports.count
+      expenses = expenses + project.accumulated_expenses
     end
-    return jobs
+    return expenses
   end
 
 end

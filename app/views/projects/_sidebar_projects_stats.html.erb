@@ -1,0 +1,18 @@
+<h3>Projects</h3>
+<ul>
+<% if @status_name == "All" %>
+	<li>Total projects: <%= @projects.count %></li>
+	<li>Started projects: <%= @started_projects.count %></li>
+	<li>Not Started projects: <%= @not_started_projects.count %></li>
+	<li>Finished projects: <%= @finished_projects.count %></li>
+<% else %>
+	<li>Projects: <%= @projects.count %></li>
+<% end %>
+	<li>Total jobs: <%= @jobs_count %></li>
+	<li>Total expenses: <%= number_to_currency(@total_expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %></li>
+</ul>
+
+<% semantic_form_for Project.new, :html => {:id => "side_form"} do |form| %>
+	<%= form.input :name, :label => false, :as => :string, :input_html => { :size => 10, :class => "clear_on_focus", :value => "Project name", :title => "Project name", :maxlength => TEXT_FIELD_MAX_LENGTH } %>
+	<button class="button button_new_project"><span>New project</span></button>
+<% end %>
