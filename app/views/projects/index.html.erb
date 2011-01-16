@@ -17,5 +17,5 @@
 	<%= will_paginate @projects %>
 </div>
 <% content_for :sidebar do %>
-<%= render :partial => 'sidebar_projects_stats' %>
+<%= render :partial => 'sidebar_projects_stats', :locals => { :new_project_form => true } %>
 <% end %>

@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.get_jobs '/projects/:id/get_jobs', :controller => "projects", :action => "get_jobs", :requirements => { :method => :get }
 
-  map.root :controller => "site", :action => 'index' 
+  map.root :controller => "projects", :action => 'index' 
 
   map.forgot_password '/forgot_password', :controller =>'site', :action => 'remind'
   map.reset_password '/reset_password/:reset_code', :controller =>'site', :action => 'reset'

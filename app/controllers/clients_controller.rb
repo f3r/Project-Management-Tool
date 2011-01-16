@@ -47,4 +47,5 @@ class ClientsController < ApplicationController
     
     redirect_to(clients_url)
   end
+
 end

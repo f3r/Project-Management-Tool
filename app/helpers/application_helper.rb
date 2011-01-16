@@ -55,5 +55,45 @@ module ApplicationHelper
   def stylesheet(*files)
     content_for(:head) { stylesheet_link_tag(*files) }
   end
+  
+  # PROJECTS STATS (THIS SHOULD BE CACHED)
+  
+  def jobs_count_from_projects(projects)
+    jobs = 0
+    for project in projects do
+      jobs = jobs + project.number_of_jobs
+    end
+    return jobs
+  end
+
+  def total_expenses_from_projects(projects)
+    expenses = 0
+    for project in projects do
+      expenses = expenses + project.accumulated_expenses
+    end
+    return expenses
+  end
+
+  def total_hours_from_projects(projects)
+    hours = 0
+    for project in projects do
+      hours = hours + project.number_of_hours
+    end
+    return hours
+  end
+
+  def projects_by_status(projects, status_id)
+    selected_projects = []
+    for project in projects do
+      if project.status_id == status_id
+        selected_projects << project
+      end
+    end
+    return selected_projects
+  end
+
+  def format_currency(money)
+    number_to_currency(money, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u")
+  end
 
 end

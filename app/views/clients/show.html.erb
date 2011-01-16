@@ -21,7 +21,7 @@
 <div class="clear"></div>
 
 <% unless @client.notes.blank? %>
-<h3>Notes:</h3>
+<h4>Notes:</h4>
 <%=simple_format @client.notes %>
 <% end %>
 
@@ -34,6 +34,9 @@
 <%= render :partial => 'projects/list_projects_for_client', :locals => {:projects => @projects} %>
 
 <% content_for :sidebar do %>
+
+<%= render :partial => 'projects/sidebar_projects_stats', :locals => { :new_project_form => false } %>
+
 <div id="options">
 <h3>Options</h3>
 <ul>

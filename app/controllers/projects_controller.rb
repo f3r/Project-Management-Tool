@@ -8,15 +8,10 @@ class ProjectsController < ApplicationController
     if params[:id].to_i == 0 or params[:id] == blank?
       @status_name = "All"
       @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
-      @not_started_projects = projects_by_status(@projects, 1)
-      @started_projects = projects_by_status(@projects, 2)
-      @finished_projects = projects_by_status(@projects, 3)
     else
       @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :conditions => {:status_id => params[:id]}, :page => params[:page], :order => 'status_id ASC, name')
       @status_name = Status.find(params[:id]).name
     end
-    @jobs_count = jobs_count_from_projects(@projects)
-    @total_expenses = total_expenses_from_projects(@projects)
     render :index, :layout => "project_list" do |page|
       page.replace_html 'project_list', :partial => 'list_projects'
     end
@@ -26,13 +21,6 @@ class ProjectsController < ApplicationController
     @status = Status.all 
     @status_name = "All"
     @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
-    @jobs_count = jobs_count_from_projects(@projects)
-    @total_expenses = total_expenses_from_projects(@projects)
-
-    @not_started_projects = projects_by_status(@projects, 1)
-    @started_projects = projects_by_status(@projects, 2)
-    @finished_projects = projects_by_status(@projects, 3)
-
   end
 
   def show
@@ -121,31 +109,5 @@ class ProjectsController < ApplicationController
 
   private
   
-  # GET PROJECTS BY STATUS FROM EXISTING ARRAY OF PROJECTS
-  def projects_by_status(projects, status_id)
-    selected_projects = []
-    for project in projects do
-      if project.status_id == status_id
-        selected_projects << project
-      end
-    end
-    return selected_projects
-  end
-  
-  def jobs_count_from_projects(projects)
-    jobs = 0
-    for project in projects do
-      jobs = jobs + project.jobs.count
-    end
-    return jobs
-  end
-
-  def total_expenses_from_projects(projects)
-    expenses = 0
-    for project in projects do
-      expenses = expenses + project.accumulated_expenses
-    end
-    return expenses
-  end
 
 end
