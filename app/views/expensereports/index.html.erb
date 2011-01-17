@@ -5,7 +5,7 @@
 
 <%=
 if @employee
-	title "Expense Report for #{@employee.full_name} &mdash #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2
+	title "Expense Report for #{@employee.full_name} — #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2
 else
 	title "Expense Report &mdash #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2
 end
@@ -82,7 +82,7 @@ end
 
 <table class="generic">
 		<% if @expensereports.blank? %>
-		<tr height="30"><td colspan="5" class="message"><% if @employee.id == session[:user_id] %>You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %><% else %>This user haven't created an expense report<% if @projects.count > 0 %> this month<% end %><% end %></td></tr>
+		<tr height="30"><td colspan="5" class="message"><% if @employee.id == session[:user_id] %>You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %><% else %>This user haven't created an expense report<% if @projects.count > 0 %> on <%= Date::MONTHNAMES[params[:month].to_i] %><% end %><% end %></td></tr>
 		<% else %>
 		<thead>
 			<tr>

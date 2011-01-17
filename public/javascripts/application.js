@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	$('a[rel=tooltip]').tipsy({fade: true, gravity: 's'});
 	$('table.generic td.status').tipsy({fade: true, gravity: 'e'});
-	$('table.timeReport input.hours').tipsy({title: function() { return "Click to edit"; }, fade: true, gravity: 'e'});
-	$('table.timeReport input.hours').focus(function(){
+	$('table.timeReport input.nosign').tipsy({title: function() { return "Click to edit"; }, live: true, fade: true, gravity: 'e'});
+	$('table.timeReport input.nosign').focus(function(){
 		$(this).tipsy("hide");
 	});
 
