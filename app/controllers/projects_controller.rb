@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
   def update
     begin
       @project = Project.find(params[:id])
-      if @project.has_pending_jobs and params[:project][:status_id].to_i == 3
+      if @project.has_pending_jobs? and params[:project][:status_id].to_i == 3
         flash[:error] = 'To close a Project you must first finish all its jobs'
         render :action => "edit"
       else

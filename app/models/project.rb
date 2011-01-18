@@ -54,12 +54,13 @@ class Project < ActiveRecord::Base
         logger.error { "Error [project.rb/accumulated_expenses] #{e.message}" }
       end
     end
-    
-    def has_pending_jobs
+
+    def has_pending_jobs?
       begin
-        return self.jobs.find_all_by_status_id(1).count + self.jobs.find_all_by_status_id(2).count != 0
+        jobs = self.jobs.find(:all, :conditions => ["jobs.status_id != ?", 3])
+        return jobs.count > 0
       rescue Exception => e
-        logger.error { "Error [project.rb/has_pending_jobs] #{e.message}" }
+        logger.error { "Error [project.rb/has_pending_jobs?] #{e.message}" }
       end
     end
     
