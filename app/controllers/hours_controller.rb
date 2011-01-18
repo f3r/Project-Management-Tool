@@ -93,19 +93,19 @@ private
       week   = week
       year   = year
       
+      # We filter the projects by date
+      week_start = Date.commercial(year, week, 1)
+      week_end   = Date.commercial(year, week, 5)
+
       # Projects where the employee is a manager or partner
       # p_partnerManager = Project.find_by_sql ["SELECT DISTINCT p.* FROM projects p WHERE partner_id = ? OR manager_id = ?", emp_id, emp_id]
   
       # Projects where the employee has a job assigned
-      p_gotJobAssigned = Project.find_by_sql ["SELECT DISTINCT p.* FROM projects p, jobs j WHERE p.id=j.project_id AND j.employee_id=?", emp_id]
+      p_gotJobAssigned = Project.find(:all, :conditions => ["(jobs.employee_id = ? AND projects.date_start < ?) AND (projects.date_end > ? OR projects.status_id != ?)", emp_id, week_end, week_start, 3], :include => :jobs)
   
       # We merge the two into one, skipping duplicates
       #projects = p_partnerManager | p_gotJobAssigned  
   
-      # We filter the projects by date
-      week_start = Date.commercial(year, week, 1)
-      week_end   = Date.commercial(year, week, 5)
-      p_gotJobAssigned.reject! {|p| p.date_start > week_end or p.date_end < week_start}
 
       return p_gotJobAssigned
 

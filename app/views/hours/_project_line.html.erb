@@ -1,5 +1,12 @@
-<tr class="time_report_project">
-	<th id="time_report_project_1" class="project"><%= project.name %></th>
+<tr class="time_report_project<% if (project.date_end.to_date < Time.now.to_date) && project.status != 3 %> time_report_project_late<% end %>">
+	<th id="time_report_project_1" class="project"><%= project.name %> 
+		
+		
+		<% if project.remaining_days < 0 %><span class="late"><%= project.remaining_days.abs %> days late</span><% end %>
+		<% if project.status_id == 3 %><span class="finished_project">[<%= project.status.name %>]</span><% end %>
+		
+		
+		</th>
 	<% id_prefix = 'pr' + project.id.to_s + '_' %></th>
 	<% for count in 1..5 do %>
 	<th id="<%= id_prefix + count.to_s %>" class="day">0</th>
