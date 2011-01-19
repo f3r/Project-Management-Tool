@@ -72,5 +72,17 @@ class Project < ActiveRecord::Base
         return 0
       end
     end
+    
+    def involved_employees
+      begin
+        employee_list = Job.find_by_sql ["SELECT DISTINCT employee_id from jobs WHERE project_id = ?", self.id]
+        employees = employee_list.map {|p| p.employee_id }
+        employees << self.partner_id
+        employees << self.manager_id        
+        return employees
+      rescue Exception => e
+        logger.error { "Error [project.rb/involved_employees] #{e.message}" }
+      end
+    end
   
 end

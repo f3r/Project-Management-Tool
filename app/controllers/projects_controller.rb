@@ -2,25 +2,39 @@ class ProjectsController < ApplicationController
 
   include ApplicationHelper
   before_filter :protect_user
-  
-  def get_projects
-    @status = Status.all
-    if params[:id].to_i == 0 or params[:id] == blank?
-      @status_name = "All"
-      @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
-    else
-      @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :conditions => {:status_id => params[:id]}, :page => params[:page], :order => 'status_id ASC, name')
-      @status_name = Status.find(params[:id]).name
-    end
-    render :index, :layout => "project_list" do |page|
-      page.replace_html 'project_list', :partial => 'list_projects'
-    end
-  end
+
+  filter_resource_access
+  filter_access_to [:index, :get_jobs], :attribute_check => false  
   
   def index
     @status = Status.all 
-    @status_name = "All"
-    @projects = Project.paginate(:include => [:client, :status, :partner, :manager, :jobs, :expensereports], :page => params[:page], :order => 'status_id ASC, name')
+
+    if params[:id].to_i == 0 or params[:id] == blank?
+      @status_name = "All"
+      status = ""
+    else
+      @status_name = Status.find(params[:id]).name
+      status = params[:id]
+    end
+
+    if permitted_to? :manage, :projects
+      conditions = ["projects.status_id LIKE ?", "%#{status}%"]
+    else
+      conditions = ["(jobs.employee_id = ? OR projects.manager_id = ?) AND projects.status_id LIKE ?", current_user.id, current_user.id, "%#{status}%"]
+    end
+    @projects = Project.paginate( :conditions => conditions,
+                                  :include => [:client, :status, :partner, :manager, :jobs, :expensereports],
+                                  :page => params[:page],
+                                  :order => 'projects.status_id ASC, projects.name')
+
+    if params[:ajax]=="true"
+      puts "WAAA"
+      render :index, :layout => "project_list" do |page|
+        page.replace_html 'project_list', :partial => 'list_projects'
+      end
+    end
+
+
   end
 
   def show
@@ -31,6 +45,7 @@ class ProjectsController < ApplicationController
   def new
     begin
         @project  = Project.new
+        @project.manager = current_user
         @partners = Employee.get_partners
         @managers = Employee.get_managers
         @clients  = Client.find(:all)

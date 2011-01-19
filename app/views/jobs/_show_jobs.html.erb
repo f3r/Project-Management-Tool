@@ -1,6 +1,6 @@
 <table class="generic">
     <% if jobs.count == 0 %>
-        <tr><td colspan="7" class="message">This project doesn't have any jobs yet, <%= link_to "add a job", new_project_job_path(@project, @job, :anchor => "new_job"), :rel => "modal" %></td></tr>
+        <tr><td colspan="7" class="message">This project doesn't have any jobs yet<% permitted_to? :create, :jobs do %>, <%= link_to "add a job", new_project_job_path(@project, @job, :anchor => "new_job"), :rel => "modal" %><% end %></td></tr>
     <% else %>
 		<thead>
 	    <tr>
@@ -24,7 +24,12 @@
             -->
             <td class="hours"><%=h job.hours %>h </td>
             <td class="expense"><%= number_to_currency(job.expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %></td>
-<td class="actions"><span><%= link_to "Edit", edit_job_path(job), :class => "button_edit", :rel => "tooltip", :title => "Edit this job" %> <%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this job" %></span></td>
+			<td class="actions"><span>
+			<%= link_to "Edit", edit_job_path(job), :class => "button_edit", :rel => "tooltip", :title => "Edit this job" if permitted_to? :edit, job %>
+			<% permitted_to? :destroy, :jobs do %>
+			<%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this job" if permitted_to? :destroy, job %>
+			<% end %>
+			</span></td>
 		</tr>
         <% end %>
     <% end %>
@@ -35,7 +40,9 @@
 <% end %>
 
 <% unless jobs.blank? %>
-<% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>New Job</span><% end %>
+	<% permitted_to? :create, :jobs do %>
+		<% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>New Job</span><% end %>
+	<% end %>
 <% end %>
 
 <!--

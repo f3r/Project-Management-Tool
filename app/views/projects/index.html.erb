@@ -3,14 +3,14 @@
 	<div class="clear"></div>
 	<%= title "#{@status_name} projects", :h2 %>
 	<div class="status_selector">
-	<% remote_function :url => {:action => 'get_projects'} %>
+	<% remote_function :url => projects_path(:ajax => true) %>
 	<!--
 	    TODO Add My projects ==> Project.show(session[:user_id])
 	-->
 	<select id="status_selected">
 	<%= options_from_collection_for_select(Status.find(:all).insert(0,Status.new(:id => 0,:name => "All Projects")),:id,:name, params[:id].to_i) %>
 	</select>
-	<%= observe_field 'status_selected', :url => { :action => 'get_projects'}, :with => 'id', :update => :wrapper, :success => "update_tablesort('.generic')" %>
+	<%= observe_field 'status_selected', :url => projects_path(:ajax => true), :method => "get", :with => 'id', :update => :wrapper, :success => "update_tablesort('.generic')" %>
 	</div><!-- .status_selector -->
 	<div class="clear"></div>
     <%= render :partial => 'list_projects', :locals => {:projects => @projects, :status_name => @status_name } %>

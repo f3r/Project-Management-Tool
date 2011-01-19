@@ -35,13 +35,17 @@
 
 <h4>Jobs</h4>
 <%= render :partial => 'jobs/show_jobs', :locals => {:jobs => @jobs, :project => @project} %>
-<% content_for :sidebar do %>
 
-<div id="options">
-<h3>Options</h3>
-<ul>
-<li><%= link_to 'Edit project details', edit_project_path(@project), :class => "button button_edit_project" %></li>
-<li><%= link_to 'Delete this project', "javascript:;", :class => "button button_delete" %> <span class="confirm"><%= link_to 'Yes', @project, :method => :delete, :class => "yes" %> / <a href="#" class="no">No</a></span></li>
-</ul>
-</div><!-- #options -->
+<% content_for :sidebar do %>
+	<% permitted_to? :manage, @project do %>
+		<div id="options">
+		<h3>Options</h3>
+		<ul>
+			<li><%= link_to 'Edit project details', edit_project_path(@project), :class => "button button_edit_project" if permitted_to? :edit, @project %></li>
+			<% permitted_to? :destroy, @project do %>
+			<li><%= link_to 'Delete this project', "javascript:;", :class => "button button_delete" %> <span class="confirm"><%= link_to 'Yes', @project, :method => :delete, :class => "yes" %> / <a href="#" class="no">No</a></span></li>
+			<% end %>
+		</ul>
+		</div><!-- #options -->
+	<% end %>
 <% end %>

@@ -4,6 +4,8 @@ class JobsController < ApplicationController
 
   before_filter :load_project, :only => [:new, :create]
   
+  filter_resource_access
+  
   def new
     begin
       @job = Job.new

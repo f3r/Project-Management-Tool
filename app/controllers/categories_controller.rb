@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   include ApplicationHelper
   before_filter :protect_user
+  filter_resource_access
 
   def index
       begin

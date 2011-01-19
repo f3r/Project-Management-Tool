@@ -20,12 +20,19 @@ class Employee < ActiveRecord::Base
         
     # Relationships
     belongs_to :category
-    has_many   :projects
+    has_many   :projects, :foreign_key => 'manager_id'
+    has_many   :projects, :foreign_key => 'partner_id'
     has_many   :jobs
     has_many   :expensereports
     
     attr_protected  :id
     attr_accessor   :password_confirmation
+
+    def role_symbols
+      roles = []
+      roles << "#{category.name.downcase.gsub(/[^[:alnum:]]/,'_')}".gsub(/-{2,}/,'-').to_sym
+      return roles
+    end
 
     def self.per_page
       DEFAULT_PER_PAGE
@@ -128,7 +135,7 @@ class Employee < ActiveRecord::Base
 
     def self.get_managers
         begin
-            return Employee.find(:all, :conditions => ["category_id >? and category_id<?",2,5])            
+            return Employee.find(:all, :conditions => ["category_id >= ? and category_id <= ?",2,5])            
         rescue Exception => e
             logger.error { "Error [employee.rb/get_manaters] #{e.message}" }
         end

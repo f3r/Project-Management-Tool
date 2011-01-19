@@ -8,7 +8,9 @@
 <div id="options">
 <h3>Options</h3>
 <ul>
+<% permitted_to? :index, :projects do %>
 <li><%= link_to 'Projects list', projects_path, :class => "button button_list" %></li>
+<% end %>
 </ul>
 </div><!-- #options -->
 <% end %>

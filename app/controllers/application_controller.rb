@@ -8,10 +8,24 @@ class ApplicationController < ActionController::Base
   
   before_filter :instantiate_controller_and_action_names
   before_filter :set_locale
+  # before_filter :set_current_user
 
   # Scrub sensitive parameters from your log
-  filter_parameter_logging :password
+  filter_parameter_logging :password, :password_confirmation
+
+  public
   
+  def current_user
+    current_user = Employee.find(session[:user_id])
+  end
+
+  protected
+
+  def permission_denied
+    flash[:error] = "Sorry, you are not allowed to access that page."
+    redirect_to root_url
+  end
+
   private 
 
   def instantiate_controller_and_action_names

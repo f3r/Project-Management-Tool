@@ -9,7 +9,7 @@
 <div id="options">
 <h3>Options</h3>
 <ul>
-<li><%= link_to 'Client list', clients_path, :class => "button button_list" %></li>
+<li><%= link_to 'Client list', clients_path, :class => "button button_list" if permitted_to? :index, :clients %></li>
 </ul>
 </div><!-- #options -->
 <% end %>

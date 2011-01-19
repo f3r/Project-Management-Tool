@@ -20,7 +20,7 @@
 			<td><%=h client.cif %></td>
 			<td><%= mail_to client.email, client.email, :encode => "hex" %></td>
 			<td><%= link_to client.website, client.website, :target => "_blank" %></td>
-			<td class="actions"><span><%= link_to "Edit", edit_client_path(client), :class => "button_edit", :rel => "tooltip", :title => "Edit this client" %> <%= link_to image_tag("icon_delete_small.png"), client, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this client" %></span></td>
+			<td class="actions"><span><%= link_to "Edit", edit_client_path(client), :class => "button_edit", :rel => "tooltip", :title => "Edit this client" if permitted_to? :edit, client %> <%= link_to image_tag("icon_delete_small.png"), client, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this client" if permitted_to? :destroy, client %></span></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -29,5 +29,7 @@
 <%= will_paginate @clients %>
 
 <% content_for :sidebar do %>
-<p><% link_to(new_client_path, :class => "grey_button") do %><span>Create new client</span><% end %></p>
+	<% permitted_to? :new, :clients do %>
+		<p><% link_to(new_client_path, :class => "grey_button") do %><span>Create new client</span><% end %></p>
+	<% end %>
 <% end %>

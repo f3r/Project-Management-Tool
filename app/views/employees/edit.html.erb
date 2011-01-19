@@ -17,8 +17,12 @@
 <div id="options">
 <h3>Other options</h3>
 <ul>
+<% permitted_to? :change_picture, :employees do %>
 <li><%= link_to "Change profile picture", change_picture_path(:modal => true), :class => "button button_edit_picture", :rel => "modal" %></li>
+<% end %>
+<% permitted_to? :change_password, :employees do %>
 <li><%= link_to "Change Password", change_password_path(:modal => true), :class => "button button_edit_password", :rel => "modal" %></li>
+<% end %>
 </ul>
 </div><!-- #options -->
 

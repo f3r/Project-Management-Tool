@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'uuidtools'
   config.gem 'paperclip'
   config.gem 'validates_timeliness', :version => '~> 2.3'
+  config.gem "declarative_authorization"
   # config.gem 'memcached-northscale', :lib => 'memcached'
   # require 'memcached'
 

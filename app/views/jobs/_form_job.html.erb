@@ -3,9 +3,15 @@
 <div class="note">* Required fields</div>
 
   <% form.inputs "Job details" do %>
+	<% if permitted_to? :manage, @project %>
 	<%= form.input :name, :label => "Job name", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<%= form.input :description, :as => :text, :input_html => { :rows => 6 } %>
 	<%= form.input :employee, :as => :select, :collection => @employees, :prompt => true  %>
+	<% else %>
+	<li class="select required" id="job_employee_input"><label for="job_employee_id">Job name</label><%= @job.name %></li>
+	<li class="select required" id="job_employee_input"><label for="job_employee_id">Description</label><%= simple_format @job.description %></li>
+	<li class="select required" id="job_employee_input"><label for="job_employee_id">Employee</label><%= @job.employee.full_name %></li>
+	<% end %>
 	<%= form.input :status,   :as => :select, :collection => @statuses,  :prompt => true  %>
   <% end %>
 

@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   include ApplicationHelper
   before_filter :protect_user
+  filter_resource_access
   
   def index
     @clients = Client.paginate :page => params[:page], :order => 'name'

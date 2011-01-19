@@ -9,8 +9,10 @@
 <div id="options">
 <h3>Options</h3>
 <ul>
-	<li><%= link_to 'View this client', @client, :class => "button button_view" %></li>
+	<li><%= link_to 'View this client', @client, :class => "button button_view" if permitted_to? :show, @client %></li>
+	<% permitted_to? :destroy, @client do %>
 	<li><%= link_to 'Delete this client', "javascript:;", :class => "button button_delete" %> <span class="confirm"><%= link_to 'Yes', @client, :method => :delete, :class => "yes" %> / <a href="#" class="no">No</a></span></li>
+	<% end %>
 </ul>
 </div>
 <% end %>
