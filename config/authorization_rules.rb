@@ -22,7 +22,7 @@ authorization do
 
   role :manager do
     includes [:standard, :guest]
-    has_permission_on [:projects], :to => [:view, :create, :new]
+    has_permission_on [:projects], :to => [:view, :create, :new, :get_jobs]
     has_permission_on [:projects], :to => [:manage] do
       if_attribute :manager_id => is { user.id }
     end
@@ -30,6 +30,10 @@ authorization do
     has_permission_on [:jobs], :to => [:manage] do
       if_permitted_to :manage, :project
     end
+    # has_permission_on [:expensereports], :to => [:manage] do
+    #   if_attribute :employee_id => is { user.id }
+    # end
+    has_permission_on [:employees, :clients], :to => :view
   end
 
   role :junior do
@@ -37,15 +41,30 @@ authorization do
   end
 
   role :standard do
+
     has_permission_on [:employees], :to => [:update, :edit, :show, :change_picture, :change_password] do
       if_attribute :id => is { user.id }
     end
+
     has_permission_on [:projects], :to => [:view] do
       if_attribute :involved_employees => contains { user.id }
     end
+
     has_permission_on [:jobs], :to => [:edit, :update] do
       if_attribute :employee_id => is { user.id }
     end
+
+    has_permission_on [:expensereports], :to => [:new, :create] do
+      # if_attribute :job => is { user.id }
+    end
+
+    # has_permission_on [:expensereports], :to => [:manage] do
+    #   if_attribute :employee_id => is { user.id }
+    # end
+    has_permission_on [:expensereports], :to => [:manage] do
+      if_permitted_to :manage, :job
+    end
+
   end
 
 

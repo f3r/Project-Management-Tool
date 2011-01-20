@@ -1,0 +1,64 @@
+<h3>Filter results</h3>
+<div class="dropdowns">
+<% unless @expensereports_all.blank? %>
+	<h4>By month</h4>
+	<form>
+	<select name="date_select" id="date_select" class="jump_menu">
+	<% for date in month_list(@expensereports_all.first.expense_date.to_date,Time.now) do %>
+	<option value="<%= 
+
+	if @category.present? && @category.id.present? && @employee.present? && @employee.id.present?
+		expense_report_by_category_and_employee_path(:month => date[:month], :year => date[:year], :employee_id => @employee.id, :category => @category.slug)
+	elsif @category.blank? && @employee.present?
+		expense_report_by_employee_path(:month => date[:month], :year => date[:year], :employee_id => @employee.id)
+	elsif @category.present? && @category.id.present? && @employee.blank?
+		expense_report_by_category_path(:month => date[:month], :year => date[:year], :category => @category.slug)
+	else
+		expense_report_by_date_path(:month => date[:month], :year => date[:year])
+	end
+
+	 %>"<% if params[:month].to_i == date[:month] && params[:year].to_i == date[:year] %> selected="selected"<% end %>><%= "#{Date::MONTHNAMES[date[:month]]} #{date[:year]}" %></option>
+	<% end %>
+	</select>
+	</form>
+<% end %>
+
+<% permitted_to? :manage, :projects do %>
+	<% unless @employees.blank? %>
+	<h4>By employee</h4>
+	<form>
+	<select name="user_select" id="user_select" class="jump_menu">
+	<option value="<%= expense_report_by_date_path(:month => params[:month], :year => params[:year]) %>"<% if params[:employee_id].blank? %> selected="selected"<% end %>>All</option>
+	<% for employee in @employees %>
+	<option value="<%= expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => employee.id) %>"<% if @employee.present? && (employee.id == @employee.id) %> selected="selected"<% end %>><%= employee.short_name %></option>
+	<% end %>
+	</select>
+	</form>
+	<% end %>
+<% end %>
+
+<% if @categories.present? && @expensereports_all.count > 0 %>
+	<h4>By category</h4>
+	<form>
+	<select name="user_select" id="user_select" class="jump_menu">
+
+		<% if @employee.present? %>
+		<option value="<%= expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %>">All</option>
+		<% else	%>
+		<option value="<%= expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => "") %>">All</option>
+		<% end %>
+
+	<% for category in @categories %>
+
+		<% if @employee.present? %>
+		<option value="<%= expense_report_by_category_and_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id, :category => category.slug) %>"<% if category == @category %> selected="selected"<% end %>><%= category.name %></option>
+		<% else %>
+		<option value="<%= expense_report_by_category_path(:month => params[:month], :year => params[:year], :category => category.slug) %>"<% if category == @category %> selected="selected"<% end %>><%= category.name %></option>
+		<% end %>
+
+	<% end %>
+	</select>
+	</form>
+<% end %>
+
+</div><!-- .dropdowns -->

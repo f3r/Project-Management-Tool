@@ -116,7 +116,11 @@ class ProjectsController < ApplicationController
 
   def get_jobs
     @project = Project.find(params[:id])
-    @jobs = @project.jobs
+    if permitted_to? :manage, @project
+      @jobs = @project.jobs
+    else
+      @jobs = @project.jobs.find(:all, :conditions => { :employee_id => current_user.id } )
+    end
     respond_to do |format|
       format.json { render :json => { :jobs => @jobs, :project => @project }.to_json }
     end

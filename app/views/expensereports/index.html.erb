@@ -1,5 +1,7 @@
-<div class="breadcrumbs"><%= link_to 'Reports', "#" %> &raquo; <%= link_to "Expense Reports", expensereports_path %> &raquo; <%= link_to @employee.full_name, expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %> &raquo; 
-<% if @category.id %><%= link_to "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %>  &raquo; <% end%> <%= @category.name %> <% unless @category.id %> <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %><% end %>
+<div class="breadcrumbs"><%= link_to 'Reports', "#" %> 
+&raquo; <%= link_to "Expense Reports", expensereports_path %> 
+<% if @employee.present? %>&raquo; <%= link_to @employee.full_name, expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %> <% end %>
+&raquo; <%= @category.name %> <% unless @category.id %> <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %><% end %>
 </div>
 <div class="clear"></div>
 
@@ -62,10 +64,17 @@ end
 			series: [
 			<% unless @projects.blank? %>
 				<% for project in @projects %>
+				<%
+					if @employee.present?
+						employee = @employee
+					else
+						employee = ""
+					end
+				%>
 					{
 						pointInterval: 1,
 						pointStart: 1, 
-						name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, @employee.id, project.id, @category.id)	%>
+						name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, employee, project, @category)	%>
 					}<% unless project == @projects.last %>,<% end %>
 				<% end %>
 			<% end %>
@@ -82,7 +91,20 @@ end
 
 <table class="generic">
 		<% if @expensereports.blank? %>
-		<tr height="30"><td colspan="5" class="message"><% if @employee.id == session[:user_id] %>You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %><% else %>This user haven't created an expense report<% if @projects.count > 0 %> on <%= Date::MONTHNAMES[params[:month].to_i] %><% end %><% end %></td></tr>
+		<tr height="30">
+			<td colspan="5" class="message">
+
+			<% if @employee.present? && @employee == session[:employee_id] %>
+				You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %>
+			<% else %>
+				This user haven't created an expense report
+				<% if @projects.count > 0 %>
+				 	on <%= Date::MONTHNAMES[params[:month].to_i] %>
+				<% end %>
+			<% end %>
+
+			</td>
+		</tr>
 		<% else %>
 		<thead>
 			<tr>
@@ -102,7 +124,7 @@ end
 			<% unless @category.id %><td><%=h exrep.expense_category.name unless exrep.expense_category.blank? %></td><% end %>
 			<td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
 			<td><%=h exrep.expense_date %></td>
-			<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" %></span></td>
+			<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" if permitted_to? :edit, exrep %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" if permitted_to? :destroy, exrep %></span></td>
 		</tr>
 		<% end %>
 		<% end %>
@@ -118,50 +140,10 @@ end
 <% unless @projects.blank? %><li>Total projects: <%= @projects.count %></li><% end %>
 </ul>
 
-<h3>Filter results</h3>
-<div class="dropdowns">
-<% unless @expensereports_all.blank? %>
-	<h4>By month</h4>
-	<form>
-	<select name="date_select" id="date_select" class="jump_menu">
-	<% for date in month_list(@expensereports_all.first.expense_date.to_date,Time.now) do %>
-	<option value="<%= 
-	if @category.id
-		expense_report_by_category_path(:month => date[:month], :year => date[:year], :employee_id => @employee.id, :category => @category.slug)
-	else
-		expense_report_by_employee_path(:month => date[:month], :year => date[:year], :employee_id => @employee.id)
-	end
-	 %>"<% if params[:month].to_i == date[:month] && params[:year].to_i == date[:year] %> selected="selected"<% end %>><%= "#{Date::MONTHNAMES[date[:month]]} #{date[:year]}" %></option>
-	<% end %>
-	</select>
-	</form>
+<%= render :partial => "filters" %>
+
+<% permitted_to? :new, :expensereports do %>
+	<% link_to(new_expensereport_path, :class => "grey_button") do %><span>New Expense Report</span><% end %>
 <% end %>
-
-<% unless @employees.blank? %>
-	<h4>By employee</h4>
-	<form>
-	<select name="user_select" id="user_select" class="jump_menu">
-	<% for employee in @employees %>
-	<option value="<%= expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => employee.id) %>"<% if employee.id == @employee.id %> selected="selected"<% end %>><%= employee.short_name %></option>
-	<% end %>
-	</select>
-	</form>
-<% end %>
-
-<% unless @categories.blank? %>
-	<h4>By category</h4>
-	<form>
-	<select name="user_select" id="user_select" class="jump_menu">
-	<option value="<%= expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %>">All</option>
-	<% for category in @categories %>
-	<option value="<%= expense_report_by_category_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id, :category => category.slug) %>"<% if category == @category %> selected="selected"<% end %>><%= category.name %></option>
-	<% end %>
-	</select>
-	</form>
-<% end %>
-
-</div><!-- .dropdowns -->
-
-<% link_to(new_expensereport_path, :class => "grey_button") do %><span>New Expense Report</span><% end %>
 
 <% end %>

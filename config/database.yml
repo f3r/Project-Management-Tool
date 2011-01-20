@@ -3,8 +3,8 @@
 development:
     adapter: mysql
     database: shp_development
-    user:   root
-    password: 318830
+    user: root
+    password: 
     host: localhost
     encoding: utf8
 
