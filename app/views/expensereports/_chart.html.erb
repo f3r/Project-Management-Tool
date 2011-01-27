@@ -1,0 +1,41 @@
+<% if @projects && @projects.count > 0 && @expensereports.count > 0 %>
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		credits: { enabled:false },
+		chart: { renderTo: 'container', defaultSeriesType: 'line', marginRight: 20,	marginBottom: 80 },
+		title: { text: false },
+		xAxis: { title: { text: 'Days of the month' } },
+		yAxis: { title: { text: 'Euros per day' }, plotLines: [{ value: 0,	width: 1, color: '#808080' }], min: 0 },
+		tooltip: {
+			formatter: function() {
+	                return '<b>'+ this.series.name +'</b><br/>'+
+					this.x +'/<%= params[:month] %>/<%= params[:year] %> : '+ this.y + ' €';
+			}
+		},
+		legend: { layout: 'horizontal',	align: 'center', verticalAlign: 'bottom', x: 0, y: 0, borderWidth: 0 },
+		series: [
+		<% unless @projects.blank? %>
+			<% for project in @projects %>
+			<%
+				if @employee.present?
+					employee = @employee
+				else
+					employee = ""
+				end
+			%>
+				{
+					pointInterval: 1,
+					pointStart: 1, 
+					name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, employee, project, @category)	%>
+				}<% unless project == @projects.last %>,<% end %>
+			<% end %>
+		<% end %>
+		]
+	});	
+});
+</script>
+
+<div id="container" class="expense_reports_graph"></div>
+<% end %>

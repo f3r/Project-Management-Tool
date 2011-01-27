@@ -45,26 +45,19 @@ authorization do
     has_permission_on [:employees], :to => [:update, :edit, :show, :change_picture, :change_password] do
       if_attribute :id => is { user.id }
     end
-
-    has_permission_on [:projects], :to => [:view] do
+    has_permission_on [:projects], :to => [:view, :get_jobs] do
       if_attribute :involved_employees => contains { user.id }
     end
-
     has_permission_on [:jobs], :to => [:edit, :update] do
       if_attribute :employee_id => is { user.id }
     end
-
-    has_permission_on [:expensereports], :to => [:new, :create] do
-      # if_attribute :job => is { user.id }
+    has_permission_on [:expensereports], :to => [:new, :create]
+    has_permission_on [:expensereports], :to => [:manage] do
+      if_attribute :employee_id => is { user.id }
     end
-
-    # has_permission_on [:expensereports], :to => [:manage] do
-    #   if_attribute :employee_id => is { user.id }
-    # end
     has_permission_on [:expensereports], :to => [:manage] do
       if_permitted_to :manage, :job
     end
-
   end
 
 

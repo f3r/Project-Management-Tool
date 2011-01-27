@@ -1,149 +1,86 @@
 <div class="breadcrumbs"><%= link_to 'Reports', "#" %> 
 &raquo; <%= link_to "Expense Reports", expensereports_path %> 
-<% if @employee.present? %>&raquo; <%= link_to @employee.full_name, expense_report_by_employee_path(:month => params[:month], :year => params[:year], :employee_id => @employee.id) %> <% end %>
-&raquo; <%= @category.name %> <% unless @category.id %> <%= "#{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}" %><% end %>
+<% if @employee.present? %>&raquo; <%= link_to @employee.full_name, expense_report_by_employee_path(:month => @month, :year => @year, :employee_id => @employee.id) %><% end %>
+&raquo; <%= link_to "#{Date::MONTHNAMES[@month.to_i]} #{@year.to_i}", expense_report_by_date_path(:month => @month, :year => @year) if @category.id.present? && @employee.blank? %>
+<%= link_to "#{Date::MONTHNAMES[@month.to_i]} #{@year.to_i}", expense_report_by_employee_path(:month => @month, :year => @year, :employee_id => @employee.id) if @category.id.present? && @employee.present? %>
+<%= "#{Date::MONTHNAMES[@month.to_i]} #{@year.to_i}" if @category.id.blank? && @employee.blank? %>
+<% if @category.id.present? %>&raquo; <%= @category.name %><% end %>
 </div>
 <div class="clear"></div>
 
 <%=
 if @employee
-	title "Expense Report for #{@employee.full_name} — #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2
+	title "Expense Report for #{@employee.full_name} — #{Date::MONTHNAMES[@month.to_i]} #{@year.to_i}", :h2
 else
-	title "Expense Report &mdash #{Date::MONTHNAMES[params[:month].to_i]} #{params[:year].to_i}", :h2
+	title "Expense Report — #{Date::MONTHNAMES[@month.to_i]} #{@year.to_i}", :h2
 end
 %>
 
-<% unless @projects.blank? %>
-<script type="text/javascript">
-
-	var chart;
-	$(document).ready(function() {
-		chart = new Highcharts.Chart({
-			credits: {
-				enabled:false
-			},
-			chart: {
-				renderTo: 'container',
-				defaultSeriesType: 'line',
-				marginRight: 20,
-				marginBottom: 80
-			},
-			title: {
-				text: false
-			},
-			xAxis: {
-				title: {
-					text: 'Days of the month'
-				}
-			},
-			yAxis: {
-				title: {
-					text: 'Euros per day'
-				},
-				plotLines: [{
-					value: 0,
-					width: 1,
-					color: '#808080'
-				}],
-				min: 0
-			},
-			tooltip: {
-				formatter: function() {
-		                return '<b>'+ this.series.name +'</b><br/>'+
-						this.x +'/<%= params[:month] %>/<%= params[:year] %> : '+ this.y + ' €';
-				}
-			},
-			legend: {
-				layout: 'horizontal',
-				align: 'center',
-				verticalAlign: 'bottom',
-				x: 0,
-				y: 0,
-				borderWidth: 0
-			},
-			series: [
-			<% unless @projects.blank? %>
-				<% for project in @projects %>
-				<%
-					if @employee.present?
-						employee = @employee
-					else
-						employee = ""
-					end
-				%>
-					{
-						pointInterval: 1,
-						pointStart: 1, 
-						name: "<%= project.name %>", data: <%= expense_chart(@start_date, @end_date, employee, project, @category)	%>
-					}<% unless project == @projects.last %>,<% end %>
-				<% end %>
-			<% end %>
-			]
-		});
-		
-		
-	});
-		
-</script>
-
-<div id="container" class="expense_reports_graph"></div>
-<% end %>
+<%= render :partial => "chart" %>
 
 <table class="generic">
-		<% if @expensereports.blank? %>
-		<tr height="30">
-			<td colspan="5" class="message">
+	<% if @expensereports.blank? %>
+	<tr height="30">
+		<td colspan="5" class="message">
 
-			<% if @employee.present? && @employee == session[:employee_id] %>
-				You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %>
-			<% else %>
-				This user haven't created an expense report
-				<% if @projects.count > 0 %>
-				 	on <%= Date::MONTHNAMES[params[:month].to_i] %>
-				<% end %>
+		<% if @employee.present? && @employee == session[:employee_id] %>
+			You haven't created a expense report yet, <%= link_to "create a report", new_expensereport_path %>
+		<% else %>
+			This user haven't created an expense report
+
+			<% if @projects && @projects.count > 0 && @category.id.blank? %>
+			 	on <%= Date::MONTHNAMES[@month.to_i] %>
+			<% end %>
+			<% if @projects && @projects.count > 0 && !@category.id.blank? %>
+				for '<%= @category.name %>'
 			<% end %>
 
-			</td>
-		</tr>
-		<% else %>
-		<thead>
-			<tr>
-				<th>Project</th>
-				<th>Job</th>
-				<% unless @category.id %><th>Category</th><% end %>
-				<th>Amount</th>
-				<th>Date</th>
-				<th class="{sorter: false}">&nbsp;</th>
-			</tr>
-		<thead>
-		<tbody>
-		<% for exrep in @expensereports do %>
-		<tr class="<%= cycle('odd', 'even') %>">
-			<td><%= link_to exrep.project.name, exrep.project %></td>
-			<td><%= link_to exrep.job.name,  project_path(exrep.project, :anchor => "job-#{exrep.job_id}") %></td>
-			<% unless @category.id %><td><%=h exrep.expense_category.name unless exrep.expense_category.blank? %></td><% end %>
-			<td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
-			<td><%=h exrep.expense_date %></td>
-			<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" if permitted_to? :edit, exrep %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" if permitted_to? :destroy, exrep %></span></td>
-		</tr>
 		<% end %>
-		<% end %>
-		</tbody>
+
+		</td>
+	</tr>
+	<% else %>
+	<thead>
+		<tr>
+			<th>Project</th>
+			<th>Job</th>
+			<% unless @category.id %><th>Category</th><% end %>
+			<th>Amount</th>
+			<th>Date</th>
+			<th class="{sorter: false}">&nbsp;</th>
+		</tr>
+	<thead>
+	<tbody>
+	<% for exrep in @expensereports do %>
+	<tr class="<%= cycle('odd', 'even') %>">
+		<td><%= link_to exrep.project.name, exrep.project %></td>
+		<td><%= link_to exrep.job.name,  project_path(exrep.project, :anchor => "job-#{exrep.job_id}") %></td>
+		<% unless @category.id %><td><%=h exrep.expense_category.name unless exrep.expense_category.blank? %></td><% end %>
+		<td><%= number_to_currency(exrep.amount, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %> </td>
+		<td><%=h exrep.expense_date %></td>
+		<td class="actions"><span><%= link_to "Edit", edit_expensereport_path(exrep), :class => "button_edit", :rel => "tooltip", :title => "Edit this expense report" if permitted_to? :edit, exrep %> <%= link_to image_tag("icon_delete_small.png"), exrep, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this expense report" if permitted_to? :destroy, exrep %></span></td>
+	</tr>
+	<% end %>
+	<% end %>
+	</tbody>
 </table>
 
 <% content_for :sidebar do %>
 
+<% if @expensereports_all %>
 <h3>Reports</h3>
 <ul>
-<li>Total expense reports: <%= @expensereports_all.count %></li>
-<% unless @expensereports_all.blank? %><li>On this month: <%= @expensereports.count %></li><% end %>
-<% unless @projects.blank? %><li>Total projects: <%= @projects.count %></li><% end %>
+	<li>Total expense reports: <%= @expensereports_all.count %></li>
+	<% unless @expensereports_all.blank? %><li>On this month: <%= @expensereports.count %></li><% end %>
+	<% unless @projects.blank? %><li>Total projects: <%= @projects.count %></li><% end %>
 </ul>
+
+<% end %>
 
 <%= render :partial => "filters" %>
 
 <% permitted_to? :new, :expensereports do %>
-	<% link_to(new_expensereport_path, :class => "grey_button") do %><span>New Expense Report</span><% end %>
+<% link_to(new_expensereport_path, :class => "grey_button") do %><span>New Expense Report</span><% end %>
 <% end %>
 
 <% end %>

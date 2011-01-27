@@ -28,7 +28,6 @@ class ProjectsController < ApplicationController
                                   :order => 'projects.status_id ASC, projects.name')
 
     if params[:ajax]=="true"
-      puts "WAAA"
       render :index, :layout => "project_list" do |page|
         page.replace_html 'project_list', :partial => 'list_projects'
       end

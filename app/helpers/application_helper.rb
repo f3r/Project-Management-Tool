@@ -96,4 +96,16 @@ module ApplicationHelper
     number_to_currency(money, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u")
   end
 
+  # USER PROJECTS
+  
+  def user_projects(user)
+    if permitted_to? :manage, :projects
+      conditions = []
+    else
+      conditions = ["(jobs.employee_id = ? OR projects.manager_id = ?)", user.id, user.id]
+    end
+    projects = Project.find(:all, :conditions => conditions, :include => [:jobs], :order => 'projects.name ASC')
+    return projects
+  end
+
 end
