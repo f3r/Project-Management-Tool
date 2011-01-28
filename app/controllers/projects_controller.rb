@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   filter_access_to [:index, :get_jobs], :attribute_check => false  
   
   def index
+    conds = []        
     @status = Status.all 
 
     if params[:client_id].to_i == 0 or params[:client_id] == blank?
@@ -14,6 +15,7 @@ class ProjectsController < ApplicationController
     else
       client = params[:client_id]
       @client = Client.find(client)
+      conds << ["projects.client_id = ?", client]
     end
     if params[:status_id].to_i == 0 or params[:status_id] == blank?
       @status_name = "All"
@@ -21,13 +23,15 @@ class ProjectsController < ApplicationController
     else
       @status_name = Status.find(params[:status_id]).name
       status = params[:status_id]
+      conds << ["projects.status_id = ?", status]
     end
 
-    if permitted_to? :manage, :projects
-      conditions = ["projects.status_id LIKE ? AND projects.client_id LIKE ?", "%#{status}%", "%#{client}%"]
-    else
-      conditions = ["(jobs.employee_id = ? OR projects.manager_id = ?) AND projects.status_id LIKE ? AND projects.client_id LIKE ?", current_user.id, current_user.id, "%#{status}%", "%#{client}%"]
+    unless permitted_to? :manage, :projects
+      conds << ["jobs.employee_id = ? OR projects.manager_id = ?", current_user.id, current_user.id]
     end
+    
+    conditions = Project.merge_conditions(*conds)
+    
     @projects = Project.paginate( :conditions => conditions,
                                   :include => [:client, :status, :partner, :manager, :jobs, :expensereports],
                                   :page => params[:page],
