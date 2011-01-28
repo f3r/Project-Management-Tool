@@ -6,9 +6,9 @@
 	    <tr>
 	        <th class="{sorter: false}">&nbsp;</th>
 	        <th>Job Name</th>
-	        <th>Description</th>
 	        <th>Employee</th>
 	        <th class="hours">Hours</th>
+	        <th class="total_billed">Total billed</th>
 	        <th class="expenses">Expenses</th>
 	        <th class="{sorter: false}">&nbsp;</th>
 	    </tr>
@@ -17,13 +17,13 @@
         <tr class="<%= cycle('odd', 'even') %>">
             <td class="status status_<%= job.status_id unless job.status_id.blank? %>" title="<%= job.status.name unless job.status_id.blank? %>">&nbsp;</td>
             <td><a name="job-<%= job.id %>"></a><%=h job.name %></td>
-            <td><%=h job.description %> </td>
             <td><%= link_to job.employee.short_name, job.employee %></td>
             <!--
                 TODO Meter aqui el acumulado de los jooobss para horas y pricing
             -->
-            <td class="hours"><%=h job.hours %>h </td>
-            <td class="expense"><%= number_to_currency(job.expenses, :unit => "&euro;", :separator => ",", :delimiter => ".", :format => "%n %u") %></td>
+            <td class="hours"><%=h "#{job.hours}h" if job.hours %></td>
+            <td class="total_billed"><%= format_currency(job.total_billed) %></td>
+            <td class="expense"><%= format_currency(job.expenses) %></td>
 			<td class="actions"><span>
 			<%= link_to "Edit", edit_job_path(job), :class => "button_edit", :rel => "tooltip", :title => "Edit this job" if permitted_to? :edit, job %>
 			<% permitted_to? :destroy, :jobs do %>

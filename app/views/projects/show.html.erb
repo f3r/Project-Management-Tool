@@ -17,9 +17,10 @@
 <dl class="dates highlight_box">
 <dt>Start Date:</dt><dd><%= @project.date_start.to_datetime.to_s(:full_date) %></dd>
 <dt>End Date:</dt><dd><%= @project.date_end.to_datetime.to_s(:full_date) %></dd>
+<dt>Total billed:</dt><dd><%= format_currency(@project.total_billed) %></dd>
 <% if @project.status_id != 3 %>
 <dt>Remaining days:</dt><dd<%= " class=\"late\"" if @project.remaining_days < 0 %>><% if @project.remaining_days < 0 %><%= @project.remaining_days.abs %> days late<% else %><%= @project.remaining_days %> days left<% end %></dd>
-<% end %>
+<% end %>	
 </dl>
 <% end %>
 <div class="clear"></div>

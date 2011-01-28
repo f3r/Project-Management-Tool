@@ -10,6 +10,7 @@
 	    <th>Manager</th>
 	    <th class="jobs">Jobs</th>
 	    <th class="hours">Hours</th>
+	    <th class="total_billed">Total billed</th>
 	    <th class="expenses">Acc &euro;</th>
 	</tr>
 	</thead>
@@ -21,6 +22,7 @@
         <td><%= link_to project.manager.short_name, project.manager %></td>
         <td class="job"><%=h project.number_of_jobs %></td>
         <td class="hours"><%=h project.number_of_hours %></td>
+		<td class="total_billed"><%= format_currency(project.total_billed) %></td>
         <td class="expense"><%= format_currency(project.accumulated_expenses) %> </td>
     </tr>
     <% end %>

@@ -10,6 +10,7 @@
 			<th>CIF</th>
 			<th>Email</th>
 			<th>Website</th>
+			<th>Total billed</th>
 			<th class="{sorter: false}">&nbsp;</th>
 		</tr>
 	</thead>
@@ -20,6 +21,7 @@
 			<td><%=h client.cif %></td>
 			<td><%= mail_to client.email, client.email, :encode => "hex" %></td>
 			<td><%= link_to client.website, client.website, :target => "_blank" %></td>
+			<td><%= format_currency(client.total_billed) %></td>
 			<td class="actions"><span><%= link_to "Edit", edit_client_path(client), :class => "button_edit", :rel => "tooltip", :title => "Edit this client" if permitted_to? :edit, client %> <%= link_to image_tag("icon_delete_small.png"), client, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this client" if permitted_to? :destroy, client %></span></td>
 		</tr>
 		<% end %>

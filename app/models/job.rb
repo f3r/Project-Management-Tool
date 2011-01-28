@@ -14,7 +14,16 @@ class Job < ActiveRecord::Base
     end
     
     def hours
+      # we should cache this on the job table.
       total = WeekHours.find_by_sql ["SELECT sum(h_mon + h_tue + h_wed + h_thu + h_fri) as total from week_hours WHERE job_id = ?", self.id]
-      return total.first.total
+      if total.first.total.blank?
+        return 0
+      else 
+        return total.first.total
+      end
+    end
+    
+    def total_billed
+      return self.employee.category.hour_fee.to_i * self.hours.to_i
     end
 end

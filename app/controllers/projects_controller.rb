@@ -9,18 +9,24 @@ class ProjectsController < ApplicationController
   def index
     @status = Status.all 
 
-    if params[:id].to_i == 0 or params[:id] == blank?
+    if params[:client_id].to_i == 0 or params[:client_id] == blank?
+      client = ""
+    else
+      client = params[:client_id]
+      @client = Client.find(client)
+    end
+    if params[:status_id].to_i == 0 or params[:status_id] == blank?
       @status_name = "All"
       status = ""
     else
-      @status_name = Status.find(params[:id]).name
-      status = params[:id]
+      @status_name = Status.find(params[:status_id]).name
+      status = params[:status_id]
     end
 
     if permitted_to? :manage, :projects
-      conditions = ["projects.status_id LIKE ?", "%#{status}%"]
+      conditions = ["projects.status_id LIKE ? AND projects.client_id LIKE ?", "%#{status}%", "%#{client}%"]
     else
-      conditions = ["(jobs.employee_id = ? OR projects.manager_id = ?) AND projects.status_id LIKE ?", current_user.id, current_user.id, "%#{status}%"]
+      conditions = ["(jobs.employee_id = ? OR projects.manager_id = ?) AND projects.status_id LIKE ? AND projects.client_id LIKE ?", current_user.id, current_user.id, "%#{status}%", "%#{client}%"]
     end
     @projects = Project.paginate( :conditions => conditions,
                                   :include => [:client, :status, :partner, :manager, :jobs, :expensereports],

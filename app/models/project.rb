@@ -55,6 +55,19 @@ class Project < ActiveRecord::Base
       end
     end
 
+    def total_billed
+      # ES RECOMENDABLE HACER UN CACHE DE ESTO.
+      begin
+        total = 0
+        for job in self.jobs do
+          total = total + job.total_billed
+        end
+        return total
+      rescue Exception => e
+        logger.error { "Error [project.rb/total_billed] #{e.message}" }
+      end
+    end
+
     def has_pending_jobs?
       begin
         jobs = self.jobs.find(:all, :conditions => ["jobs.status_id != ?", 3])

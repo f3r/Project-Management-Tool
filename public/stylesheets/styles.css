@@ -99,10 +99,12 @@ table.generic tr.hover td.actions span { display:block; }
 table.generic td.status {background-repeat:no-repeat;background-position:center center;width:10px;}
 table.generic td.hours,
 table.generic td.job,
+table.generic td.total_billed,
 table.generic td.expense,
 table.generic td.name {font-weight:bold;}
 table.generic td.job,
 table.generic td.hours {text-align:center;}
+table.generic td.total_billed,
 table.generic td.expense {text-align:right;}
 table.generic th.expenses {width:70px;}
 table.generic th.jobs,
