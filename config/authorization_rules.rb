@@ -16,23 +16,46 @@ authorization do
     includes [:manager]
   end
   
+  role :associate_1 do
+    includes [:associate]
+  end
+
+  role :associate_2 do
+    includes [:associate]
+  end
+
+  role :associate_3 do
+    includes [:associate]
+  end
+
   role :junior_1 do
     includes [:junior]
   end
 
+  role :junior_2 do
+    includes [:junior]
+  end
+
+  role :junior_3 do
+    includes [:junior]
+  end
+
+  role :associate do
+    includes [:manager]
+    has_permission_on [:clients], :to => :manage
+  end
+
   role :manager do
     includes [:standard, :guest]
-    has_permission_on [:projects], :to => [:view, :create, :new, :get_jobs]
+    has_permission_on [:projects], :to => [:view, :get_jobs]
     has_permission_on [:projects], :to => [:manage] do
       if_attribute :manager_id => is { user.id }
     end
+    has_permission_on [:projects], :to => [:create, :new]
     has_permission_on [:jobs], :to => [:create, :new]
     has_permission_on [:jobs], :to => [:manage] do
       if_permitted_to :manage, :project
     end
-    # has_permission_on [:expensereports], :to => [:manage] do
-    #   if_attribute :employee_id => is { user.id }
-    # end
     has_permission_on [:employees, :clients], :to => :view
   end
 
@@ -40,17 +63,20 @@ authorization do
     includes [:standard, :guest]
   end
 
-  role :standard do
+  role :secretary do
+    includes [:guest, :basic]
+    has_permission_on [:clients], :to => :manage
+  end
 
-    has_permission_on [:employees], :to => [:update, :edit, :show, :change_picture, :change_password] do
-      if_attribute :id => is { user.id }
-    end
+  role :standard do
+    includes [:basic]
     has_permission_on [:projects], :to => [:view, :get_jobs] do
       if_attribute :involved_employees => contains { user.id }
     end
     has_permission_on [:jobs], :to => [:edit, :update] do
       if_attribute :employee_id => is { user.id }
     end
+    has_permission_on [:week_hours], :to => [:index]
     has_permission_on [:expensereports], :to => [:new, :create]
     has_permission_on [:expensereports], :to => [:manage] do
       if_attribute :employee_id => is { user.id }
@@ -60,6 +86,12 @@ authorization do
     end
   end
 
+  role :basic do
+    has_permission_on [:employees], :to => [:update, :edit, :show, :change_picture, :change_password] do
+      if_attribute :id => is { user.id }
+    end
+    has_permission_on :intranet, :to => :index
+  end
 
   role :guest do
   end

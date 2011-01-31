@@ -17,10 +17,7 @@
         <tr class="<%= cycle('odd', 'even') %>">
             <td class="status status_<%= job.status_id unless job.status_id.blank? %>" title="<%= job.status.name unless job.status_id.blank? %>">&nbsp;</td>
             <td><a name="job-<%= job.id %>"></a><%=h job.name %></td>
-            <td><%= link_to job.employee.short_name, job.employee %></td>
-            <!--
-                TODO Meter aqui el acumulado de los jooobss para horas y pricing
-            -->
+            <td><%= link_to_if ((permitted_to? :show, job.employee), job.employee.short_name, job.employee) %></td>
             <td class="hours"><%=h "#{job.hours}h" if job.hours %></td>
             <td class="total_billed"><%= format_currency(job.total_billed) %></td>
             <td class="expense"><%= format_currency(job.expenses) %></td>

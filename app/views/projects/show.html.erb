@@ -8,9 +8,9 @@
 <div class="clear"></div>
 
 <dl class="team">
-<dt>Client:</dt><dd><%= link_to @project.client.name, client_path(@project.client) %></dd>
-<dt>Partner:</dt><dd><%= link_to @project.partner.full_name, employee_path(@project.partner) %></dd>
-<dt>Manager:</dt><dd><%= link_to @project.manager.full_name, employee_path(@project.manager) %></dd>
+<dt>Client:</dt><dd><%= link_to_if ((permitted_to? :show, @project.client), @project.client.name, @project.client) %></dd>
+<dt>Partner:</dt><dd><%= link_to_if ((permitted_to? :show, @project.partner), @project.partner.full_name, @project.partner) %></dd>
+<dt>Manager:</dt><dd><%= link_to_if ((permitted_to? :show, @project.manager), @project.manager.full_name, @project.manager) %></dd>
 </dl>
 
 <% unless @project.date_start.blank? || @project.date_end.blank? %>

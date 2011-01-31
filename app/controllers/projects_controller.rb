@@ -48,7 +48,11 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @jobs    = @project.jobs.all
+    if permitted_to? :manage, @project
+      @jobs = @project.jobs.all
+    else
+      @jobs = @project.jobs.find_all_by_employee_id(current_user.id)
+    end
   end
 
   def new

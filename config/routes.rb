@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :employees
   map.resources :expensereports
 
+  map.root :controller => "intranet", :action => 'index' 
+
   map.hours '/hoursreports', :controller => 'hours', :action => 'index'
   
   map.connect 'hoursreports/:year/:week/saveHours',
@@ -14,7 +16,6 @@ ActionController::Routing::Routes.draw do |map|
              :action     => 'saveHours',
              :conditions => { :method => :post }
  
-
   map.hoursreports 'hoursreports/:year/:week',
              :controller => 'hours',
              :action     => 'index'
@@ -25,8 +26,6 @@ ActionController::Routing::Routes.draw do |map|
   map.expense_report_by_category_and_employee '/expensereports/:year/:month/employee/:employee_id/category/:category', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
 
   map.get_jobs '/projects/:id/get_jobs', :controller => "projects", :action => "get_jobs", :requirements => { :method => :get }
-
-  map.root :controller => "projects", :action => 'index' 
 
   map.forgot_password '/forgot_password', :controller =>'site', :action => 'remind'
   map.reset_password '/reset_password/:reset_code', :controller =>'site', :action => 'reset'

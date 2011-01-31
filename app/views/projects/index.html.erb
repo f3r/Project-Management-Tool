@@ -7,11 +7,13 @@
 	<!--
 	    TODO Add My projects ==> Project.show(session[:user_id])
 	-->
-
+	<% permitted_to? :manage, :projects do %>
 	<select id="show_by_client">
 	<%= options_from_collection_for_select(Client.find(:all).insert(0,Client.new(:id => 0,:name => "All clients")),:id,:name, params[:client_id].to_i) %>
 	</select>
 	<%= observe_field 'show_by_client', :url => projects_path(:ajax => true, :status_id => params[:status_id]), :method => "get", :with => 'client_id', :update => :wrapper, :success => "update_tablesort('.generic')" %>
+	<% end %>
+
 	<select id="status_selected">
 	<%= options_from_collection_for_select(Status.find(:all).insert(0,Status.new(:id => 0,:name => "All Projects")),:id,:name, params[:status_id].to_i) %>
 	</select>

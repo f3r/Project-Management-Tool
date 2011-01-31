@@ -11,10 +11,14 @@
 	<%= form.input :mobile,     :as => :string, :required => false, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
   <% end %>
 
+<% if permitted_to? :manage, :employees %>
+
   <% form.inputs "Employee type" do %>
 	<%= form.input :category, :as => :select, :collection => Category.all, :required => false  %>
 	<%= form.input :join_date, :as => :date, :required => false  %>
   <% end %>
+
+<% end %>
   
   <% form.buttons do %>
     <%= form.commit_button :label => "Save" %> <%= link_to_if(@employee.id.present?, "Cancel", @employee) do link_to("Cancel", employees_path) end %>

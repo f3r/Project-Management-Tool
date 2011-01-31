@@ -2,6 +2,7 @@
 	<% permitted_to? :index, :projects do %>
     <li <% if menu_active?('projects')%> class="active" <% end %>><%= link_to 'Projects', :controller => 'projects', :action => 'index' %></li>
 	<% end %>
+	<% if (permitted_to? :index, :week_hours) or (permitted_to? :index, :expensereports) %>
 	<li class="dir"><a href="#">Reports</a>
 		<ul>
 		<% permitted_to? :index, :week_hours do %>
@@ -12,6 +13,7 @@
 		<% end %>
 		</ul>    
 	</li>
+	<% end %>
 	<% permitted_to? :index, :clients do %>
     <li <% if menu_active?('clients')%> class="active" <% end %>><%= link_to 'Clients', :controller => 'clients', :action => 'index' %></li>
 	<% end %>

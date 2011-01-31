@@ -34,6 +34,15 @@ class Employee < ActiveRecord::Base
       return roles
     end
 
+    def has_role?(role)
+      employee_role = "#{self.category.name.downcase.gsub(/[^[:alnum:]]/,'_')}".gsub(/-{2,}/,'-').to_sym
+      if employee_role = role
+        return true
+      else
+        return false
+      end
+    end
+
     def self.per_page
       DEFAULT_PER_PAGE
     end

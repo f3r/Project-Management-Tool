@@ -1,4 +1,4 @@
-<div class="breadcrumbs"><%= link_to 'Employees', employees_path %> &raquo; <%=h @employee.full_name %> &raquo; Details</div>
+<div class="breadcrumbs"><%= link_to_if ((permitted_to? :index, :employees), 'Employees', employees_path) %> &raquo; <%=h @employee.full_name %> &raquo; Details</div>
 <div class="clear"></div>
 
 <div id="employee_info">

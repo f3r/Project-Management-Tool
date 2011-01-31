@@ -1,4 +1,4 @@
-<div class="breadcrumbs"><%= link_to 'Reports', "#" %> 
+<div class="breadcrumbs">Reports 
 &raquo; <%= link_to "Expense Reports", expensereports_path %> 
 <% if @employee.present? %>&raquo; <%= link_to @employee.full_name, expense_report_by_employee_path(:month => @month, :year => @year, :employee_id => @employee.id) %><% end %>
 &raquo; <%= link_to "#{Date::MONTHNAMES[@month.to_i]} #{@year.to_i}", expense_report_by_date_path(:month => @month, :year => @year) if @category.id.present? && @employee.blank? %>
