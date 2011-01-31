@@ -24,6 +24,7 @@ class EmployeesController < ApplicationController
   def new
     begin
         @employee = Employee.new
+        @clients = Client.all
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/new] #{e.message}" }
     end
@@ -32,6 +33,7 @@ class EmployeesController < ApplicationController
   def edit
     begin
         @employee = Employee.find(params[:id])
+        @clients = Client.all
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/edit] #{e.message}"  }
     end

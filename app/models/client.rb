@@ -1,6 +1,8 @@
 class Client < ActiveRecord::Base
   has_many :projects, :dependent => :destroy
   has_many :jobs, :through => :projects
+  has_many :employee_clients
+  has_many :employees, :through => :employee_clients
 
   validates_presence_of   :name, :cif, :email
   validates_format_of     :email, :with => /^[A-Z0-9.+_%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i

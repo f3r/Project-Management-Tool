@@ -18,6 +18,10 @@
 	<%= form.input :join_date, :as => :date, :required => false  %>
   <% end %>
 
+  <% form.inputs "Clients" do %>
+	<%= form.input :clients, :label => "Assigned clients", :as => :select, :collection => @clients, :required => false  %>
+  <% end %>
+
 <% end %>
   
   <% form.buttons do %>

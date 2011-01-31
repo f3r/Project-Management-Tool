@@ -20,10 +20,12 @@ class Employee < ActiveRecord::Base
         
     # Relationships
     belongs_to :category
-    has_many   :projects, :foreign_key => 'manager_id'
-    has_many   :projects, :foreign_key => 'partner_id'
-    has_many   :jobs
-    has_many   :expensereports
+    has_many :projects, :foreign_key => 'manager_id'
+    has_many :projects, :foreign_key => 'partner_id'
+    has_many :jobs
+    has_and_belongs_to_many :employee_clients
+    has_many :clients, :through => :employee_clients
+    has_many :expensereports
     
     attr_protected  :id
     attr_accessor   :password_confirmation
