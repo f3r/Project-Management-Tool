@@ -3,7 +3,7 @@
 <div class="note">* Required fields</div>
 
   <% form.inputs "Job details" do %>
-	<% if permitted_to? :manage, @project %>
+	<% if permitted_to? :manage, @project or controller.action_name == "new" or controller.action_name == "create" %>
 	<%= form.input :name, :label => "Job name", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<%= form.input :description, :as => :text, :input_html => { :rows => 6 } %>
 	<%= form.input :employee, :as => :select, :collection => @employees, :prompt => true  %>

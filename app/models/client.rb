@@ -1,7 +1,9 @@
 class Client < ActiveRecord::Base
+  using_access_control
+
   has_many :projects, :dependent => :destroy
   has_many :jobs, :through => :projects
-  has_many :employee_clients
+  has_many :employee_clients, :dependent => :destroy
   has_many :employees, :through => :employee_clients
 
   validates_presence_of   :name, :cif, :email

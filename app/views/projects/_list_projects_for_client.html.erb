@@ -33,7 +33,7 @@
 <%= render :partial => 'shared/status_legend' %>
 
 <% permitted_to? :create, :projects do %>
-	<% link_to(new_project_path(@project), :class => "grey_button") do %><span>New Project</span><% end %>
+	<% link_to(new_project_path(@project, :client_id => @client.id), :class => "grey_button") do %><span>New Project</span><% end %>
 <% end %>
 
 <% end %>

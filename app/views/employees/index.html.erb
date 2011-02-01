@@ -23,7 +23,7 @@
             <td><%=h employee.category.name %></td>
             <td><%= mail_to employee.email, employee.email, :encode => "hex" %></td>
             <td><%=h employee.number_of_jobs %></td> 
-			<td class="actions"><span><%= link_to "Edit", edit_employee_path(employee), :class => "button_edit", :rel => "tooltip", :title => "Edit this employee" %> <%= link_to image_tag("icon_delete_small.png"), employee, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this employee" %></span></td>
+			<td class="actions"><span><%= link_to "Edit", edit_employee_path(employee), :class => "button_edit", :rel => "tooltip", :title => "Edit this employee" if permitted_to? :edit, employee %> <%= link_to image_tag("icon_delete_small.png"), employee, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this employee" if permitted_to? :destroy, employee %></span></td>
         </tr>
         <% end %>
         </tbody>

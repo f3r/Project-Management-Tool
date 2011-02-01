@@ -7,9 +7,9 @@
 	<!--
 	    TODO Add My projects ==> Project.show(session[:user_id])
 	-->
-	<% permitted_to? :manage, :projects do %>
+	<% unless @clients.blank? %>
 	<select id="show_by_client">
-	<%= options_from_collection_for_select(Client.find(:all).insert(0,Client.new(:id => 0,:name => "All clients")),:id,:name, params[:client_id].to_i) %>
+	<%= options_from_collection_for_select(@clients.insert(0,Client.new(:id => 0,:name => "All clients")),:id,:name, params[:client_id].to_i) %>
 	</select>
 	<%= observe_field 'show_by_client', :url => projects_path(:ajax => true, :status_id => params[:status_id]), :method => "get", :with => 'client_id', :update => :wrapper, :success => "update_tablesort('.generic')" %>
 	<% end %>
@@ -21,7 +21,6 @@
 	</div><!-- .status_selector -->
 	<div class="clear"></div>
     <%= render :partial => 'list_projects', :locals => {:projects => @projects, :status_name => @status_name } %>
-	<%= will_paginate @projects %>
 </div>
 <% content_for :sidebar do %>
 <%= render :partial => 'sidebar_projects_stats', :locals => { :new_project_form => true } %>

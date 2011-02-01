@@ -102,16 +102,14 @@ class EmployeesController < ApplicationController
 
   def update
     begin
-      
       @employee = Employee.find(params[:id])
-      
+      @employee.clients = [] if params[:employee][:client_ids].blank?
       if @employee.update_attributes(params[:employee])
-          flash[:notice] = 'Employee was successfully updated.'
-          redirect_to(@employee)
+        flash[:notice] = 'Employee was successfully updated.'
+        redirect_to(@employee)
       else
-            render :action => "edit"
+        render :action => "edit"
       end
-
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/update] #{e.message}"  }
     end

@@ -4,12 +4,18 @@ class ClientsController < ApplicationController
   filter_resource_access
   
   def index
-    @clients = Client.paginate :page => params[:page], :order => 'name'
+    @clients = Client.with_permissions_to(:show).paginate :page => params[:page], :order => 'name'
   end
   
   def show
     @client = Client.find(params[:id])
-    @projects = @client.projects
+    conds = []
+    conds << ["projects.client_id = ?", @client.id]
+    unless permitted_to? :manage, :projects
+      conds << ["jobs.employee_id = ? OR projects.manager_id = ?", current_user.id, current_user.id]
+    end
+    conditions = Project.merge_conditions(*conds)
+    @projects = Project.find(:all, :conditions => conditions, :include => [:jobs], :order => 'projects.status_id ASC, projects.name')
   end
   
   def new
@@ -44,8 +50,7 @@ class ClientsController < ApplicationController
   
   def destroy
     @client = Client.find(params[:id])
-    @client.destroy
-    
+    @client.destroy 
     redirect_to(clients_url)
   end
 

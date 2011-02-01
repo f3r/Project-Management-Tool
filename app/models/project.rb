@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+    using_access_control
+
     # Validations
     validates_presence_of :name, :description, :status, :partner_id, :manager_id, :client_id
     validates_date :date_start, :on_or_after => lambda { 1.years.ago }
@@ -89,13 +91,29 @@ class Project < ActiveRecord::Base
     def involved_employees
       begin
         employee_list = Job.find_by_sql ["SELECT DISTINCT employee_id from jobs WHERE project_id = ?", self.id]
-        employees = employee_list.map {|p| p.employee_id }
+        employees = employee_list.map {|p| p.employee_id.to_i }
+        # for employee in self.client.employee_clients
+        #   employees << employee.employee_id.to_i
+        # end
         employees << self.partner_id
-        employees << self.manager_id        
-        return employees
+        employees << self.manager_id
+        return employees.uniq
       rescue Exception => e
         logger.error { "Error [project.rb/involved_employees] #{e.message}" }
       end
     end
+
+    # def managers
+    #   begin
+    #     employees = []
+    #     for employee in self.client.employee_clients
+    #       employees << employee.employee_id.to_i
+    #     end
+    #     employees << self.manager_id
+    #     return employees
+    #   rescue Exception => e
+    #     logger.error { "Error [project.rb/managers] #{e.message}" }
+    #   end
+    # end
   
 end

@@ -4,6 +4,18 @@ authorization do
     has_permission_on [:categories, :clients, :employees, :expense_categories, :expensereports, :jobs, :projects, :status, :week_hours], :to => [:manage]
   end
 
+  role :partner_1 do
+    includes [:partner]
+  end
+
+  role :partner_2 do
+    includes [:partner]
+  end
+
+  role :partner_3 do
+    includes [:partner]
+  end
+
   role :manager_1 do
     includes [:manager]
   end
@@ -41,14 +53,16 @@ authorization do
   end
 
   role :associate do
-    includes [:manager]
-    has_permission_on [:clients], :to => :manage
+    includes [:standard, :guest]
+  end
+
+  role :partner do
+    includes [:admin]
   end
 
   role :manager do
     includes [:standard, :guest]
-    has_permission_on [:projects], :to => [:view, :get_jobs]
-    has_permission_on [:projects], :to => [:manage] do
+    has_permission_on [:projects], :to => [:edit, :update] do
       if_attribute :manager_id => is { user.id }
     end
     has_permission_on [:projects], :to => [:create, :new]
@@ -56,7 +70,10 @@ authorization do
     has_permission_on [:jobs], :to => [:manage] do
       if_permitted_to :manage, :project
     end
-    has_permission_on [:employees, :clients], :to => :view
+    has_permission_on :employees, :to => :view
+    has_permission_on :clients, :to => :view do
+      if_attribute :employees => contains { user }
+    end
   end
 
   role :junior do

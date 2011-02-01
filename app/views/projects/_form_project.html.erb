@@ -6,7 +6,12 @@
 	<%= form.input :name, :label => "Project name", :as => :string, :input_html => { :size => TEXT_FIELD_SIZE, :maxlength => TEXT_FIELD_MAX_LENGTH } %>
 	<%= form.input :description, :as => :text, :input_html => { :rows => 6 } %>
 	<%= form.input :partner, :as => :select, :collection => @partners, :prompt => true %>
+<% if permitted_to? :manage, :projects %>
 	<%= form.input :manager, :as => :select, :collection => @managers, :prompt => true %>
+<% else %>
+	<%= form.input :manager_id, :as => :hidden %>
+	<li class="select required" id="project_manager_id_input"><label for="project_manager_id">Manager</label><%= @project.manager.full_name %></li>	
+<% end %>
 	<%= form.input :client, :as => :select, :collection => @clients,   :prompt => true %>
 	<%= form.input :status, :as => :select, :collection => @statuses,  :prompt => true %>
 	<%= form.input :date_start, :as => :date, :prompt => true %>

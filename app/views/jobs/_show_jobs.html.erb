@@ -23,9 +23,7 @@
             <td class="expense"><%= format_currency(job.expenses) %></td>
 			<td class="actions"><span>
 			<%= link_to "Edit", edit_job_path(job), :class => "button_edit", :rel => "tooltip", :title => "Edit this job" if permitted_to? :edit, job %>
-			<% permitted_to? :destroy, :jobs do %>
 			<%= link_to image_tag("icon_delete_small.png"), job, :confirm => 'Are you sure?', :method => :delete, :class => "button_delete", :rel => "tooltip", :title => "Delete this job" if permitted_to? :destroy, job %>
-			<% end %>
 			</span></td>
 		</tr>
         <% end %>

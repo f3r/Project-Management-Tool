@@ -19,7 +19,7 @@
   <% end %>
 
   <% form.inputs "Clients" do %>
-	<%= form.input :clients, :label => "Assigned clients", :as => :select, :collection => @clients, :required => false  %>
+	<%= form.input :clients, :label => "Assigned clients", :as => :select, :collection => @clients, :required => false, :hint => "Press control or command to select multiple clients" %>
   <% end %>
 
 <% end %>

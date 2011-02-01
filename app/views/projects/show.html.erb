@@ -38,7 +38,7 @@
 <%= render :partial => 'jobs/show_jobs', :locals => {:jobs => @jobs, :project => @project} %>
 
 <% content_for :sidebar do %>
-	<% permitted_to? :manage, @project do %>
+	<% if permitted_to? :edit, @project or permitted_to? :destroy, @project %>
 		<div id="options">
 		<h3>Options</h3>
 		<ul>

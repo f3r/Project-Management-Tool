@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     @status = Status.all 
 
     if params[:client_id].to_i == 0 or params[:client_id] == blank?
-      client = ""
+      # client = ""
     else
       client = params[:client_id]
       @client = Client.find(client)
@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
     end
     if params[:status_id].to_i == 0 or params[:status_id] == blank?
       @status_name = "All"
-      status = ""
+      # status = ""
     else
       @status_name = Status.find(params[:status_id]).name
       status = params[:status_id]
@@ -29,13 +29,27 @@ class ProjectsController < ApplicationController
     unless permitted_to? :manage, :projects
       conds << ["jobs.employee_id = ? OR projects.manager_id = ?", current_user.id, current_user.id]
     end
+
+    if permitted_to? :manage, :clients
+      @clients  = Client.find(:all)
+    else
+      @clients = current_user.clients
+      # clients = @clients.map(&:id)
+      # conds << ["projects.client_id IN (?)", clients]
+      # conds << ["projects.manager_id = ?", current_user.id]
+    end
     
     conditions = Project.merge_conditions(*conds)
+
+    # @projects = Project.paginate( :conditions => conditions,
+    #                               :include => [:client, :status, :partner, :manager, :jobs, :expensereports],
+    #                               :page => params[:page],
+    #                               :order => 'projects.status_id ASC, projects.name')
+
     
-    @projects = Project.paginate( :conditions => conditions,
-                                  :include => [:client, :status, :partner, :manager, :jobs, :expensereports],
-                                  :page => params[:page],
-                                  :order => 'projects.status_id ASC, projects.name')
+    @projects = Project.find(:all, :conditions => conditions, :include => [:client, :status, :partner, :manager, :jobs, :expensereports], :order => 'projects.status_id ASC, projects.name')
+
+    # @projects = Project.with_permissions_to(:show).find(:all, :conditions => conditions, :include => [:client, :status, :partner, :manager, :jobs, :expensereports])
 
     if params[:ajax]=="true"
       render :index, :layout => "project_list" do |page|
@@ -58,10 +72,17 @@ class ProjectsController < ApplicationController
   def new
     begin
         @project  = Project.new
-        @project.manager = current_user
         @partners = Employee.get_partners
         @managers = Employee.get_managers
-        @clients  = Client.find(:all)
+        @project.manager = current_user if @managers.include?(current_user)
+        if permitted_to? :manage, :clients
+          @clients  = Client.all
+        else
+          @clients = current_user.clients
+        end
+        if params[:client_id].present?
+          @project.client_id = params[:client_id]
+        end
         @statuses = Status.find(:all)
     rescue Exception => e
         logger.error { "Error [projects_controller.rb/new] #{e.message}" }
@@ -73,7 +94,11 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
       @partners = Employee.get_partners
       @managers = Employee.get_managers
-      @clients  = Client.find(:all)
+      if permitted_to? :manage, :clients
+        @clients  = Client.find(:all)
+      else
+        @clients = current_user.clients
+      end
       @statuses = Status.find(:all)
     rescue Exception => e
         logger.error { "Error [projects_controller.rb/edit] #{e.message}" }      
@@ -81,23 +106,29 @@ class ProjectsController < ApplicationController
   end
 
   def create
-     begin
-         @project = Project.create_project(params[:project])
-         if @project.save
-             flash[:notice] = 'Project was successfully created.'
-             redirect_to(projects_url)
-         else
-             @partners = Employee.get_partners
-             @managers = Employee.get_managers
-             @clients  = Client.find(:all)
-             @statuses = Status.find(:all)
-             render :action => "new"
-         end
-     rescue Exception => e
-       logger.error { "Error [projects_controller.rb/create] #{e.message}" }
-       render :action => "new"
-     end
-   end
+    begin
+      @project = Project.create_project(params[:project])
+      @project.status_id = 1 if @project.status_id.blank?
+      if @project.save
+        flash[:notice] = 'Project was successfully created.'
+        redirect_to(projects_url)
+      else
+        @partners = Employee.get_partners
+        @managers = Employee.get_managers
+        @project.manager = current_user if @project.manager.blank? && @managers.include?(current_user)
+        if permitted_to? :manage, :clients
+          @clients  = Client.all
+        else
+          @clients = current_user.clients
+        end
+        @statuses = Status.find(:all)
+        render :action => "new"
+      end
+    rescue Exception => e
+      logger.error { "Error [projects_controller.rb/create] #{e.message}" }
+      render :action => "new"
+    end
+  end
 
   def update
     begin

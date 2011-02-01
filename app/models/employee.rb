@@ -44,6 +44,10 @@ class Employee < ActiveRecord::Base
         return false
       end
     end
+    
+    def role
+      return "#{self.category.name.downcase.gsub(/[^[:alnum:]]/,'_')}".gsub(/-{2,}/,'-').to_sym
+    end
 
     def self.per_page
       DEFAULT_PER_PAGE

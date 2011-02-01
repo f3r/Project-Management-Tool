@@ -11,6 +11,7 @@ class JobsController < ApplicationController
       @job = Job.new
       @project   = Project.find(params[:project_id])
       @employees = Employee.find(:all)
+      @job.employee = current_user if @job.employee.blank?
       @statuses  = Status.find(:all)
     rescue Exception => e
       logger.error { "Error [jobs_controller.rb/new] #{e.message}" }
