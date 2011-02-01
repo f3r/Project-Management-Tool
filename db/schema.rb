@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110131191339) do
+ActiveRecord::Schema.define(:version => 20110201214622) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20110131191339) do
   end
 
   create_table "employee_clients", :force => true do |t|
-    t.string "employee_id"
-    t.string "client_id"
+    t.integer "employee_id"
+    t.integer "client_id"
   end
 
   create_table "employees", :force => true do |t|
