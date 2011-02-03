@@ -1,8 +1,7 @@
-<div class="breadcrumbs">Reports &raquo; <%= link_to 'Time reports', hours_path %> &raquo; <%= show_short_date(@year, @week) %></div><!-- .breadcrumbs -->
+<div class="breadcrumbs">Reports &raquo; <%= link_to 'Time reports', hours_path %> &raquo; <%= show_date_range(@year, @week, "short", true) %></div><!-- .breadcrumbs -->
 <div class="clear"></div>
 
-
-<%= title "Report for #{show_date(@year, @week)}", :h2 %> 
+<%= title "Report for #{show_date_range(@year, @week, "long", true)}", :h2 %> 
 
 <% if @projects.present? %>
 <form method="post" action="<%= request.request_uri %>/saveHours" id="hours_reports">

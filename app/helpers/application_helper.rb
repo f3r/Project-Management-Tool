@@ -110,21 +110,18 @@ module ApplicationHelper
 
   # DATES
 
-  def show_date(year,week)
-      out  = Date.commercial(year, week, 1).strftime("%e %b %Y") + ' - '
-      out += Date.commercial(year, week, 5).strftime("%e %b %Y") + ' '
-      out += '(Week ' + week.to_s + ')'
-      return out 
-  end
-
-  def show_short_date(year,week)
+  def show_date_range(year,week,type,week_no)
+    if type == "short"
       out  = Date.commercial(year, week, 1).to_datetime.to_s(:date) + ' - '
       out += Date.commercial(year, week, 5).to_datetime.to_s(:date) + ' '
+    elsif type == "long"
+      out  = Date.commercial(year, week, 1).strftime("%e %b %Y") + ' - '
+      out += Date.commercial(year, week, 5).strftime("%e %b %Y") + ' '
+    end
+    if week_no == true
       out += '(Week ' + week.to_s + ')'
-      return out 
+    end
+    return out 
   end
-
-
-
 
 end

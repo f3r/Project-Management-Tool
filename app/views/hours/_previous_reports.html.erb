@@ -8,6 +8,6 @@ end
 		week = 52
 	end
 %>
-<li><%= link_to show_short_date(year, week), url_for_week(year, week) %></li>
+<li><%= link_to show_date_range(year, week, 'short', true), url_for_week(year, week) %></li>
 <% end %>
 </ul>

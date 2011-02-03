@@ -17,7 +17,7 @@ $(document).ready(function() {
       },
       xAxis: {
          categories: [<% for week in @weeks %>
-		"<%= show_date(week[0],week[1]) %>"<%= "," unless week == @weeks.last %>
+		"<%= show_date_range(week[0],week[1],'long', false) %>"<%= "," unless week == @weeks.last %>
 		<% end %>
 		],
 		labels: false
@@ -41,8 +41,9 @@ $(document).ready(function() {
       },
       tooltip: {
          formatter: function() {
-            return '<b>'+ this.x +'</b><br/>'+
-                'Hours by ' + this.series.name +': '+ this.y +'<br/>'+
+            return '<b>'+ this.x +'</b><br/>' + 
+				'<b>'+ this.series.name + '</b><br/>' +
+                'Employee hours: '+ this.y +'<br/>'+
                 'Total hours: '+ this.point.stackTotal;
          }
       },
