@@ -102,18 +102,59 @@ class Project < ActiveRecord::Base
         logger.error { "Error [project.rb/involved_employees] #{e.message}" }
       end
     end
+    
+    def weeks
+      start_date = self.date_start
+      if self.date_end > Date.today 
+        end_date = Date.today
+      else
+        end_date = self.date_end
+      end
+      
+      start_week  = [start_date.beginning_of_week.year,start_date.cweek]
+      end_week  = [end_date.year,end_date.cweek]
 
-    # def managers
-    #   begin
-    #     employees = []
-    #     for employee in self.client.employee_clients
-    #       employees << employee.employee_id.to_i
-    #     end
-    #     employees << self.manager_id
-    #     return employees
-    #   rescue Exception => e
-    #     logger.error { "Error [project.rb/managers] #{e.message}" }
-    #   end
-    # end
+      weeks = []
+      week = start_week[1]
+      year = start_week[0]
+
+      begin        
+        begin
+          if week == 53
+            week = 1
+          end
+          weeks << [year,week]
+          week += 1
+          if year < end_week[0]
+            final_week = 52
+          else
+            final_week = end_week[1]
+          end
+        end while week <= final_week        
+        year += 1
+      end while (year <= end_week[0])
+
+      return weeks
+    end
+    
+    def employees_hours(weeks)
+      employees = Employee.find(:all, :conditions => ["jobs.project_id = ?", self.id], :include => :jobs)
+      hours = []
+      for employee in employees
+        employee_hours = []
+
+        for week in weeks
+          employee_hours << self.week_hours_per_employee(week[0],week[1],employee.id)
+        end
+
+        hours << { :name => employee.full_name, :data => employee_hours }
+      end
+      return hours.to_json
+    end
   
+    def week_hours_per_employee(year,week,employee_id)
+      hours = WeekHours.find_by_sql ["SELECT sum(week_hours.h_mon + week_hours.h_tue + week_hours.h_wed + week_hours.h_thu + week_hours.h_fri) AS hours_in_week FROM `week_hours` LEFT OUTER JOIN `jobs` ON `jobs`.id = `week_hours`.job_id WHERE (week_hours.year = ? AND week_hours.week = ? AND jobs.project_id = ? AND jobs.employee_id = ?)", year, week, self.id, employee_id]
+      return hours.first.hours_in_week.to_i
+    end
+    
 end

@@ -108,4 +108,23 @@ module ApplicationHelper
     return projects
   end
 
+  # DATES
+
+  def show_date(year,week)
+      out  = Date.commercial(year, week, 1).strftime("%e %b %Y") + ' - '
+      out += Date.commercial(year, week, 5).strftime("%e %b %Y") + ' '
+      out += '(Week ' + week.to_s + ')'
+      return out 
+  end
+
+  def show_short_date(year,week)
+      out  = Date.commercial(year, week, 1).to_datetime.to_s(:date) + ' - '
+      out += Date.commercial(year, week, 5).to_datetime.to_s(:date) + ' '
+      out += '(Week ' + week.to_s + ')'
+      return out 
+  end
+
+
+
+
 end

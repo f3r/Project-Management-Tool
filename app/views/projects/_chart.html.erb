@@ -1,0 +1,62 @@
+<% content_for :head do %>
+
+<% @weeks = @project.weeks %>
+
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+   chart = new Highcharts.Chart({
+	  credits: { enabled:false },
+      chart: {
+         renderTo: 'container',
+         defaultSeriesType: 'column',
+		marginTop: 60
+      },
+      title: {
+         text: false
+      },
+      xAxis: {
+         categories: [<% for week in @weeks %>
+		"<%= show_date(week[0],week[1]) %>"<%= "," unless week == @weeks.last %>
+		<% end %>
+		],
+		labels: false
+      },
+      yAxis: {
+         min: 0,
+         title: {
+            text: 'Total hours'
+         }
+      },
+      legend: {
+         align: 'right',
+         x: 0,
+         verticalAlign: 'top',
+         y: 0,
+         floating: true,
+         backgroundColor: '#FFFFFF',
+         borderColor: '#CCC',
+         borderWidth: 1,
+         shadow: false
+      },
+      tooltip: {
+         formatter: function() {
+            return '<b>'+ this.x +'</b><br/>'+
+                'Hours by ' + this.series.name +': '+ this.y +'<br/>'+
+                'Total hours: '+ this.point.stackTotal;
+         }
+      },
+      plotOptions: {
+         column: {
+            stacking: 'normal'
+         }
+      },
+		series: <%= @project.employees_hours(@weeks) %>
+   });
+   
+   
+});
+</script>
+<% end %>
+
+<div id="container" class="hours_graph"></div>
