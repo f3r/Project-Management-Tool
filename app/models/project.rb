@@ -153,7 +153,7 @@ class Project < ActiveRecord::Base
     end
   
     def week_hours_per_employee(year,week,employee_id)
-      hours = WeekHours.find_by_sql ["SELECT sum(week_hours.h_mon + week_hours.h_tue + week_hours.h_wed + week_hours.h_thu + week_hours.h_fri) AS hours_in_week FROM `week_hours` LEFT OUTER JOIN `jobs` ON `jobs`.id = `week_hours`.job_id WHERE (week_hours.year = ? AND week_hours.week = ? AND jobs.project_id = ? AND jobs.employee_id = ?)", year, week, self.id, employee_id]
+      hours = WeekHours.find_by_sql ["SELECT sum(week_hours.h_mon + week_hours.h_tue + week_hours.h_wed + week_hours.h_thu + week_hours.h_fri) AS hours_in_week FROM week_hours LEFT OUTER JOIN jobs ON jobs.id = week_hours.job_id WHERE (week_hours.year = ? AND week_hours.week = ? AND jobs.project_id = ? AND jobs.employee_id = ?)", year, week, self.id, employee_id]
       return hours.first.hours_in_week.to_i
     end
     

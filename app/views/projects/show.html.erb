@@ -35,9 +35,11 @@
 <div class="clear"></div>
 
 <% if permitted_to? :manage, @project %>
+<% if @project.total_billed > 0 %>
 <h4>Time reports</h4>
 <%= render :partial => "chart" %>
 <div class="clear"></div>
+<% end %>
 <% end %>
 
 <h4>Jobs</h4>
