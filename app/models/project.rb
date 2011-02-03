@@ -104,8 +104,9 @@ class Project < ActiveRecord::Base
     end
     
     def weeks
+
       start_date = self.date_start
-      if self.date_end > Date.today 
+      if self.date_end > Date.today or self.remaining_days < 0
         end_date = Date.today
       else
         end_date = self.date_end
