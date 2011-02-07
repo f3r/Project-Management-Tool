@@ -12,6 +12,8 @@ class ExpensereportsController < ApplicationController
       @employee = @employees.detect { |e| e.id == employee.to_i }
     end
     
+    @projects = user_projects(current_user)
+    
     # DATE CHECK
     
     if params[:month] && params[:year]

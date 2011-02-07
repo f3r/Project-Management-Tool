@@ -10,16 +10,13 @@ class ProjectsController < ApplicationController
     conds = []        
     @status = Status.all 
 
-    if params[:client_id].to_i == 0 or params[:client_id] == blank?
-      # client = ""
-    else
+    unless params[:client_id].to_i == 0 or params[:client_id] == blank?
       client = params[:client_id]
       @client = Client.find(client)
       conds << ["projects.client_id = ?", client]
     end
     if params[:status_id].to_i == 0 or params[:status_id] == blank?
       @status_name = "All"
-      # status = ""
     else
       @status_name = Status.find(params[:status_id]).name
       status = params[:status_id]
@@ -34,22 +31,10 @@ class ProjectsController < ApplicationController
       @clients  = Client.find(:all)
     else
       @clients = current_user.clients
-      # clients = @clients.map(&:id)
-      # conds << ["projects.client_id IN (?)", clients]
-      # conds << ["projects.manager_id = ?", current_user.id]
     end
     
     conditions = Project.merge_conditions(*conds)
-
-    # @projects = Project.paginate( :conditions => conditions,
-    #                               :include => [:client, :status, :partner, :manager, :jobs, :expensereports],
-    #                               :page => params[:page],
-    #                               :order => 'projects.status_id ASC, projects.name')
-
-    
     @projects = Project.find(:all, :conditions => conditions, :include => [:client, :status, :partner, :manager, :jobs, :expensereports], :order => 'projects.status_id ASC, projects.name')
-
-    # @projects = Project.with_permissions_to(:show).find(:all, :conditions => conditions, :include => [:client, :status, :partner, :manager, :jobs, :expensereports])
 
     if params[:ajax]=="true"
       render :index, :layout => "project_list" do |page|
@@ -72,6 +57,11 @@ class ProjectsController < ApplicationController
   def new
     begin
         @project  = Project.new
+        if request.post? && (params[:project][:name] == blank? or params[:project][:name] == "Project name")
+          @project.name = nil
+        elsif request.post? && params[:project][:name]
+          @project.name = params[:project][:name]
+        end
         @partners = Employee.get_partners
         @managers = Employee.get_managers
         @project.manager = current_user if @managers.include?(current_user)
@@ -171,6 +161,5 @@ class ProjectsController < ApplicationController
   end
 
   private
-  
 
 end

@@ -11,7 +11,7 @@
 <table class="timeReport generic generic_reports">
 	<% if @projects.blank? %>
 	<tbody>
-		<tr class="timeRep_empty"><th colspan="6" >No projects to show this week
+		<tr><td colspan="6" class="message">No reports to show on this week</td></tr>
 	</tbody>
 	</table>
 	<% else %>  
@@ -97,6 +97,8 @@ if Date.commercial(@year,@week, 7) < Date.today %>
 <% content_for :sidebar do %>
 <div id="options">
 
+<% unless @projects.blank? %>
+
 <h3>Options</h3>
 <ul>
 <% if jobs_are_signed %>
@@ -106,6 +108,7 @@ if Date.commercial(@year,@week, 7) < Date.today %>
 	<li><%= link_to_remote('Save Report', :url => { :action => "saveHours", :commit => "Save" }, :submit => "hours_reports", :script => true, :html => { :class  => "button button_save_report" }) %></li>
 <% end %>
 </ul>
+<% end %>
 
 <h3>Previous reports</h3>
 <%= render :partial => "previous_reports", :locals => { :week => @week, :year => @year } %>

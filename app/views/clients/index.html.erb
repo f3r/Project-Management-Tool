@@ -4,6 +4,9 @@
 <%= title "Clients", :h2 %>
 
 <table class="generic">
+    <% if @clients.count == 0 %>
+        <tr><td colspan="7" class="message">You don't have clients assigned, please contact a manager or secretary</td></tr>
+    <% else %>
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -26,6 +29,7 @@
 		</tr>
 		<% end %>
 	</tbody>
+	<% end %>
 </table>
 
 <%= will_paginate @clients %>

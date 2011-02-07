@@ -109,6 +109,7 @@ table.generic td.expense {text-align:right;}
 table.generic th.expenses {width:70px;}
 table.generic th.jobs,
 table.generic th.hours {width:40px;}
+table.generic td.message:hover,
 table.generic td.message {font-size:18px;font-weight:bold;text-align:center;padding:20px 0;background-color:#eee;}
 
 table.generic_reports td {padding:0;}
@@ -269,6 +270,7 @@ p.meta {font-size:11px;color:#777;}
 
 /* FORMS ver formtastic.css */
 
+form.formtastic fieldset { overflow:hidden; } /* clearing contained floats */
 form.formtastic fieldset > ol > li label { font-weight:bold; color:#333; }
 form.formtastic > fieldset > legend { font-size:16px; font-weight:bold; color:#333; }
 form.formtastic fieldset.inputs {
