@@ -4,6 +4,14 @@
 
 <script type="text/javascript">
 var chart;
+
+x_labels = [<% for week in @weeks %>"<%= show_date_range(week[0],week[1],'long', false) %>"<%= "," unless week == @weeks.last %><% end %>];
+
+function label_text(label) {
+	label = label - 1;
+	return x_labels[label];
+}
+
 $(document).ready(function() {
    chart = new Highcharts.Chart({
 	  credits: { enabled:false },
@@ -16,11 +24,16 @@ $(document).ready(function() {
          text: false
       },
       xAxis: {
-         categories: [<% for week in @weeks %>
-		"<%= show_date_range(week[0],week[1],'long', false) %>"<%= "," unless week == @weeks.last %>
-		<% end %>
-		],
-		labels: false
+		min: 1,
+		allowDecimals: false,
+		labels: {
+			formatter: function() {
+				return this.value;
+			}
+		},
+		title: {
+			text: "Week"
+		}
       },
       yAxis: {
          min: 0,
@@ -41,7 +54,7 @@ $(document).ready(function() {
       },
       tooltip: {
          formatter: function() {
-            return '<b>'+ this.x +'</b><br/>' + 
+            return '<b>'+ label_text(this.x) + '</b><br/>' + 
 				'<b>'+ this.series.name + '</b><br/>' +
                 'Employee hours: '+ this.y +'<br/>'+
                 'Total hours: '+ this.point.stackTotal;
