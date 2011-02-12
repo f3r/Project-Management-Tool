@@ -231,7 +231,8 @@ p.meta {font-size:11px;color:#777;}
 #employee_info .employee_type {width:30%; float:right;}
 #employee_info .employee_type p {margin:0;}
 #employee_info .employee_type p.level {font-size:16px;}
-#employee_info .employee_type p.nif {font-size:14px;color:#666;}
+#employee_info .employee_type p.nif,
+#employee_info .employee_type p.id  {font-size:14px;color:#666;}
 
 /* SIDEBAR */
 #sidebar {color:#666;font-size:12px;padding:10px 15px;}

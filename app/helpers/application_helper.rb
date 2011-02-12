@@ -74,6 +74,14 @@ module ApplicationHelper
     return expenses
   end
 
+  def total_billed_from_projects(projects)
+    billed = 0
+    for project in projects do
+      billed = billed + project.total_billed
+    end
+    return billed
+  end
+
   def total_hours_from_projects(projects)
     hours = 0
     for project in projects do

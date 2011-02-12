@@ -10,9 +10,7 @@
 <% end %>
 	<li>Total jobs: <%= @jobs_count = jobs_count_from_projects(@projects) %></li>
 	<li>Total hours: <%= total_hours_from_projects(@projects) %></li>
-	<% if @client %>
-	<li>Total billed: <%= format_currency(@client.total_billed) %></li>
-	<% end %>
+	<li>Total billed: <%= format_currency(total_billed_from_projects(@projects)) %></li>
 	<li>Total expenses: <%= format_currency(total_expenses_from_projects(@projects)) %></li>
 </ul>
 
