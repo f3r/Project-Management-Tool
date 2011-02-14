@@ -1,7 +1,11 @@
-<div class="breadcrumbs">Reports &raquo; <%= link_to 'Time reports', hours_path %> &raquo; <%= show_date_range(@year, @week, "short", true) %></div><!-- .breadcrumbs -->
+<div class="breadcrumbs">Reports &raquo; <%= link_to 'Time reports', hours_path %> <% if params[:employee_id] %> &raquo; <%= link_to @employee.full_name, url_for_week(Date.today.year, Date.today.cweek, params[:employee_id]) %> <% end %> &raquo; <%= show_date_range(@year, @week, "short", true) %></div><!-- .breadcrumbs -->
 <div class="clear"></div>
 
-<%= title "Report for #{show_date_range(@year, @week, "long", true)}", :h2 %> 
+<% if params[:employee_id] %>
+	<%= title "#{@employee.short_name} - Report for #{show_date_range(@year, @week, "long", true)}", :h2 %>
+<% else %>
+	<%= title "Report for #{show_date_range(@year, @week, "long", true)}", :h2 %>
+<% end %>
 
 <% if @projects.present? %>
 <form method="post" action="<%= request.request_uri %>/saveHours" id="hours_reports">
@@ -38,14 +42,17 @@
 				<table>
 				    <%= weekdays = [[1,"mon"],[2,"tue"],[3,"wed"],[4,"thu"],[5,"fri"]]
 						render :partial => "project_line", :locals => {:pid => project.id.to_s, :project => project } %>
-				    <%  jobs = get_jobs(project)
+				    <%  jobs = get_jobs(project, params[:employee_id])
 				        jobs.each do |job| %>
 				          <% hours = job.week_hour.find(:first, :conditions => { :year => @year, :week => @week}) 
 				             if hours.blank?
 				                 hours = job.week_hour.create(:year=>@year,:week=>@week,:h_mon=>0,:h_tue=>0,:h_wed=>0,:h_thu=>0,:h_fri=>0,:signed=>false)
 				             end %>
 				           <% if hours.signed? 
-				                  jobs_are_signed = true %>
+				              jobs_are_signed = true %>
+				              <%= render :partial => "job_line_signed", 
+				                         :locals => { :job => job, :project => project, :hours => hours, :weekdays => weekdays } %>
+							<% elsif params[:employee_id] && (params[:employee_id].to_i != session[:user_id].to_i) %>
 				              <%= render :partial => "job_line_signed", 
 				                         :locals => { :job => job, :project => project, :hours => hours, :weekdays => weekdays } %>
 				           <% else %>
@@ -85,12 +92,12 @@
 <div class="navigation">
 <% # Don't allow to navigate before your first project start date 
 if !start_date.nil? and start_date < Date.commercial(@year,@week, 1) %>
-<%= link_to "&laquo; Previous week", url_for_prev_week(@year, @week), :class => "button_previous"  %>
+<%= link_to "&laquo; Previous week", url_for_prev_week(@year, @week, params[:employee_id]), :class => "button_previous"  %>
 <% end %> 
 
 <% # Don't allow to put future dates
 if Date.commercial(@year,@week, 7) < Date.today %>
-<%= link_to "Next week &raquo;", url_for_next_week(@year, @week), :class => "button_next" %>
+<%= link_to "Next week &raquo;", url_for_next_week(@year, @week, params[:employee_id]), :class => "button_next" %>
 <% end %>
 </div><!-- .navigation -->
 
@@ -99,16 +106,33 @@ if Date.commercial(@year,@week, 7) < Date.today %>
 
 <% unless @projects.blank? %>
 
-<h3>Options</h3>
-<ul>
-<% if jobs_are_signed %>
-<li><%= link_to('Signed Report', "#", :class  => "button button_sign_report active" ) %></li>
-<% else %>
-	<li><%= link_to_remote('Sign Report', :url => { :action => "saveHours" }, :submit => "hours_reports", :script => true, :confirm => "Are you sure you want to sign this report?", :html => { :class  => "button button_sign_report" }) %></li>
-	<li><%= link_to_remote('Save Report', :url => { :action => "saveHours", :commit => "Save" }, :submit => "hours_reports", :script => true, :html => { :class  => "button button_save_report" }) %></li>
+	<% if params[:employee_id] && (params[:employee_id].to_i != session[:user_id].to_i) %>
+	<% if jobs_are_signed %>
+	<h3>Options</h3>
+	<ul>
+		<li><%= link_to_remote('Unsign Report', :url => { :action => "saveHours", :commit => "unsign" }, :submit => "hours_reports", :script => true, :confirm => "Are you sure you want to unsign this report?", :html => { :class  => "button button_sign_report button_unsign_report active" }) %></li>
+	</ul>
+	<% end %>
+
+	<% else %>
+	<h3>Options</h3>
+	<ul>
+		<% if jobs_are_signed %>
+			<% if permitted_to? :manage, :projects %>
+				<li><%= link_to_remote('Unsign Report', :url => { :action => "saveHours", :commit => "unsign" }, :submit => "hours_reports", :script => true, :confirm => "Are you sure you want to unsign this report?", :html => { :class  => "button button_sign_report button_unsign_report active" }) %></li>
+			<% else %>
+				<li><%= link_to('Signed Report', "#", :class  => "button button_sign_report active" ) %></li>
+			<% end %>
+		<% else %>
+			<li><%= link_to_remote('Sign Report', :url => { :action => "saveHours" }, :submit => "hours_reports", :script => true, :confirm => "Are you sure you want to sign this report?", :html => { :class  => "button button_sign_report" }) %></li>
+			<li><%= link_to_remote('Save Report', :url => { :action => "saveHours", :commit => "Save" }, :submit => "hours_reports", :script => true, :html => { :class  => "button button_save_report" }) %></li>
+		<% end %>
+	</ul>
+	<% end %>
+
 <% end %>
-</ul>
-<% end %>
+
+<%= render :partial => "filters" %>
 
 <h3>Previous reports</h3>
 <%= render :partial => "previous_reports", :locals => { :week => @week, :year => @year } %>

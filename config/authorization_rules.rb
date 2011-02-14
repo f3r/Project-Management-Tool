@@ -68,7 +68,7 @@ authorization do
     has_permission_on [:projects], :to => [:create, :new]
     has_permission_on [:jobs], :to => [:create, :new]
     has_permission_on [:jobs], :to => [:manage] do
-      if_permitted_to :manage, :project
+      if_permitted_to :edit, :project
     end
     has_permission_on :employees, :to => :view
     has_permission_on :clients, :to => :view do

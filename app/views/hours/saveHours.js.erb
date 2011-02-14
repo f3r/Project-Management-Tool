@@ -1,12 +1,18 @@
 var action = "<%= @action %>";
 if (action=="signed") {
-	$("a.button_sign_report").addClass("active").attr('onclick','').parent().effect("highlight", {}, 3000);
+	$("a.button_sign_report").html("Signed Report").addClass("active").attr('onclick','').parent().effect("highlight", {}, 3000);
 	$("a.button_save_report").parent().remove();
 	$("#old_total").val($("#new_total").val());
 	$("#hours_reports input").attr("readonly", "readonly");
 	$("#hours_reports input").removeAttr("title");
 	$("#hours_reports input").removeClass("nosign");
 	$("#hours_reports table tr").addClass("signed_report");
+	<% if permitted_to? :manage, :projects %>
+	javascript:location.reload(true);
+	<% end %>
+} else if(action=="unsigned") {
+	$("a.button_unsign_report").html("Unsigned").removeClass("active").attr('onclick','').parent().effect("highlight", {}, 3000);
+	javascript:location.reload(true);
 } else if(action=="saved") {
 	$("a.button_save_report").html("Saved").addClass("active").parent().effect("highlight", {}, 3000);
 	$("#old_total").val($("#new_total").val());

@@ -1,0 +1,17 @@
+<% if @employees %>
+<h3>Filter results</h3>
+<div class="dropdowns">
+	<% unless @employees.blank? %>
+	<h4>By employee</h4>
+	<form>
+	<select name="user_select" id="user_select" class="jump_menu">
+		<option value="<%= hoursreports_path(:week => @week, :year => @year) %>"<% if params[:employee_id].blank? %> selected="selected"<% end %>>Your reports</option>
+		<option></option>
+		<% for employee in @employees %>
+		<option value="<%= hoursreports_by_employee_path(:week => @week, :year => @year, :employee_id => employee.id) %>"<% if @employee.present? && (employee.id == @employee.id) %> selected="selected"<% end %>><%= employee.short_name %></option>
+		<% end %>
+	</select>
+	</form>
+	<% end %>
+</div><!-- .dropdowns -->
+<% end %>

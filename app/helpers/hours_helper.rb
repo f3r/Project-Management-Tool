@@ -1,6 +1,6 @@
 module HoursHelper
 
-  def url_for_next_week(year,week)
+  def url_for_next_week(year,week,employee_id)
     begin
       if (week==52)
         year += 1
@@ -8,13 +8,19 @@ module HoursHelper
       else
         week += 1
       end
-      return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
+
+      if employee_id
+        return hoursreports_by_employee_path(:year => year.to_s, :week => week.to_s, :employee_id => employee_id, :escape => false)
+      else
+        return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
+      end
+
     rescue Exception => e
       logger.error { "Error [hours_helper.rb/url_for_next_week] #{e.message}" }
     end
   end
   
-  def url_for_prev_week(year,week)
+  def url_for_prev_week(year,week,employee_id)
     begin
       if (week==1)
         week = 52
@@ -22,23 +28,36 @@ module HoursHelper
       else
         week -= 1
       end
-      return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
+      if employee_id
+        return hoursreports_by_employee_path(:year => year.to_s, :week => week.to_s, :employee_id => employee_id, :escape => false)
+      else
+        return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
+      end
     rescue Exception => e
       logger.error { "Error [hours_helper.rb/url_for_prev_week] #{e.message}" }
     end
   end
 
-  def url_for_week(year,week)
+  def url_for_week(year,week,employee_id)
     begin
-      return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
+      if employee_id
+        return hoursreports_by_employee_path(:year => year.to_s, :week => week.to_s, :employee_id => employee_id, :escape => false)
+      else
+        return hoursreports_path(:year => year.to_s, :week => week.to_s, :escape => false)
+      end
     rescue Exception => e
       logger.error { "Error [hours_helper.rb/url_next_week] #{e.message}" }
     end
   end
   
-  def get_jobs(project)
+  def get_jobs(project, employee_id)
     begin
-      return project.jobs.find_all_by_employee_id(session[:user_id])
+      if employee_id
+        user = employee_id
+      else
+        user = session[:user_id]
+      end
+      return project.jobs.find_all_by_employee_id(user)
     rescue Exception => e
       logger.error { "Error [hours_helper.rb/get_jobs] #{e.message}" }
     end

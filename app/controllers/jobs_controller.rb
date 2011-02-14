@@ -37,6 +37,7 @@ class JobsController < ApplicationController
   def edit
     begin
       @job       = Job.find(params[:id])
+      @project = @job.project
       @employees = Employee.find(:all)
       @statuses  = Status.find(:all)
     rescue Exception => e

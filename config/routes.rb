@@ -16,9 +16,8 @@ ActionController::Routing::Routes.draw do |map|
              :action     => 'saveHours',
              :conditions => { :method => :post }
  
-  map.hoursreports 'hoursreports/:year/:week',
-             :controller => 'hours',
-             :action     => 'index'
+  map.hoursreports 'hoursreports/:year/:week', :controller => 'hours', :action => 'index'
+  map.hoursreports_by_employee 'hoursreports/:year/:week/employee/:employee_id', :controller => 'hours', :action => 'index'
 
   map.expense_report_by_date '/expensereports/:year/:month', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
   map.expense_report_by_employee '/expensereports/:year/:month/employee/:employee_id', :controller => 'expensereports', :action => 'index', :year => /\d{4}/, :month => /\d{1,2}/, :requirements => { :method => :get }
