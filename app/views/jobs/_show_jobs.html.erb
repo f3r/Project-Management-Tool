@@ -35,7 +35,7 @@
 <% end %>
 
 <% unless jobs.blank? %>
-	<% permitted_to? :manage, @project do %>
+	<% permitted_to? :edit, @project do %>
 		<% link_to(new_project_job_path(@project, @job, :anchor => "new_job"), :class => "grey_button", :rel => "modal") do %><span>New Job</span><% end %>
 	<% end %>
 <% end %>
