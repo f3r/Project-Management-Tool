@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110201214622) do
+ActiveRecord::Schema.define(:version => 20110214012119) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,11 @@ ActiveRecord::Schema.define(:version => 20110201214622) do
     t.integer  "expense_category_id"
   end
 
+  add_index "expensereports", ["employee_id"], :name => "index_expensereports_on_employee_id"
+  add_index "expensereports", ["expense_category_id"], :name => "index_expensereports_on_expense_category_id"
+  add_index "expensereports", ["job_id"], :name => "index_expensereports_on_job_id"
+  add_index "expensereports", ["project_id"], :name => "index_expensereports_on_project_id"
+
   create_table "jobs", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -81,6 +86,10 @@ ActiveRecord::Schema.define(:version => 20110201214622) do
     t.datetime "updated_at"
     t.integer  "status_id"
   end
+
+  add_index "jobs", ["employee_id"], :name => "index_jobs_on_employee_id"
+  add_index "jobs", ["project_id"], :name => "index_jobs_on_project_id"
+  add_index "jobs", ["status_id"], :name => "index_jobs_on_status_id"
 
   create_table "projects", :force => true do |t|
     t.integer  "partner_id"
@@ -94,6 +103,11 @@ ActiveRecord::Schema.define(:version => 20110201214622) do
     t.date     "date_start"
     t.date     "date_end"
   end
+
+  add_index "projects", ["client_id"], :name => "index_projects_on_client_id"
+  add_index "projects", ["manager_id"], :name => "index_projects_on_manager_id"
+  add_index "projects", ["partner_id"], :name => "index_projects_on_partner_id"
+  add_index "projects", ["status_id"], :name => "index_projects_on_status_id"
 
   create_table "statuses", :force => true do |t|
     t.string   "name"
@@ -114,5 +128,8 @@ ActiveRecord::Schema.define(:version => 20110201214622) do
     t.datetime "updated_at"
     t.boolean  "signed"
   end
+
+  add_index "week_hours", ["job_id"], :name => "index_week_hours_on_job_id"
+  add_index "week_hours", ["signed"], :name => "index_week_hours_on_signed"
 
 end
