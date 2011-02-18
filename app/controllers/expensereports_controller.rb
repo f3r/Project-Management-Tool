@@ -47,11 +47,16 @@ class ExpensereportsController < ApplicationController
           @category = ExpenseCategory.new
         end
 
-        @projects = []
+        projects = []
         for expense in @expensereports_all do
-          unless @projects.include?(expense.project)
-            @projects << expense.project
+          unless projects.include?(expense.project)
+            projects << expense.project
           end
+        end
+        if projects.blank?
+          @projects = Project.with_permissions_to(:edit)
+        else
+          @projects = projects
         end
 
         # EXPENSES LIST

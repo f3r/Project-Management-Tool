@@ -7,7 +7,9 @@ $(document).ready(function() {
 		chart: { renderTo: 'container', defaultSeriesType: 'line', marginRight: 20,	marginBottom: 80 },
 		title: { text: false },
 		xAxis: { title: { text: 'Days of the month' } },
-		yAxis: { title: { text: 'Euros per day' }, plotLines: [{ value: 0,	width: 1, color: '#808080' }], min: 0 },
+		yAxis: { title: { text: 'Euros per day' }, plotLines: [{ value: 0,	width: 1, color: '#808080' }], 
+		//min: 0
+		},
 		tooltip: {
 			formatter: function() {
 	                return '<b>'+ this.series.name +'</b><br/>'+

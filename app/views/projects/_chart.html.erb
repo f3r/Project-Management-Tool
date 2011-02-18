@@ -8,7 +8,7 @@ var chart;
 x_labels = [<% for week in @weeks %>"<%= show_date_range(week[0],week[1],'long', false) %>"<%= "," unless week == @weeks.last %><% end %>];
 
 function label_text(label) {
-	label = label - 1;
+	// label = label - 1;
 	return x_labels[label];
 }
 
