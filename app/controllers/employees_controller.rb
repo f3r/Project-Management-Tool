@@ -119,7 +119,12 @@ class EmployeesController < ApplicationController
   def destroy
     begin
         @employee = Employee.find(params[:id])
-        @employee.destroy
+        unless @employee == current_user
+          @employee.destroy
+          flash[:notice] = 'Employee was successfully deleted.'
+        else
+          flash[:error] = "You can't delete your own account"
+        end
         redirect_to(employees_url)        
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/destroy] #{e.message}"  }

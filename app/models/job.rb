@@ -5,8 +5,8 @@ class Job < ActiveRecord::Base
     # Relationships
     belongs_to  :employee
     belongs_to  :project
-    has_many    :expensereports
-    has_many    :week_hour, :class_name => 'WeekHours'
+    has_many    :expensereports, :dependent => :destroy
+    has_many    :week_hour, :class_name => 'WeekHours', :dependent => :destroy
     belongs_to  :status
 
     def expenses

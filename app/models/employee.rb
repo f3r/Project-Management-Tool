@@ -22,10 +22,12 @@ class Employee < ActiveRecord::Base
     belongs_to :category
     has_many :projects, :foreign_key => 'manager_id'
     has_many :projects, :foreign_key => 'partner_id'
-    has_many :jobs
-    has_and_belongs_to_many :employee_clients
+    has_many :jobs, :dependent => :destroy
+    has_many :employee_clients, :dependent => :destroy
     has_many :clients, :through => :employee_clients
-    has_many :expensereports
+    has_many :expensereports, :dependent => :destroy
+
+    after_destroy :reassign_projects
     
     attr_protected  :id
     attr_accessor   :password_confirmation
@@ -181,4 +183,12 @@ class Employee < ActiveRecord::Base
             logger.error { "Error [employee.rb/number_of_jobs] #{e.message}" }
         end
     end
+
+    private
+
+    def reassign_projects
+      Project.update_all({:manager_id => nil}, {:manager_id => id})
+      Project.update_all({:partner_id => nil}, {:partner_id => id})
+    end
+
 end

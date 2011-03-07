@@ -19,8 +19,14 @@
         <tr class="<%= cycle('odd', 'even') %>">
             <td class="status status_<%= project.status.id %>" title="<%= project.status.name %>">&nbsp;</td>
             <td class="name"><%= link_to project.name, project %></td>   
-            <td><%= link_to_if ((permitted_to? :show, project.client), project.client.name, project.client) %></td>
-            <td><%= link_to_if ((permitted_to? :show, project.manager), project.manager.short_name, project.manager) %></td>
+            <td><%= link_to_if((permitted_to? :show, project.client), project.client.name, project.client) %></td>
+            <td>
+			<% unless project.manager.blank? %>
+				<%= link_to_if((permitted_to? :show, project.manager), project.manager.short_name, project.manager) %>
+			<% else %>
+				<%= "Unassigned" %>
+			<% end %>
+			</td>
             <td class="job"><%=h project.number_of_jobs %></td>
             <td class="hours"><%=h project.number_of_hours %></td>
 			<td class="total_billed"><%= format_currency(project.total_billed) %></td>

@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
     belongs_to  :client
     belongs_to  :status
     has_many    :jobs, :dependent => :destroy
-    has_many    :expensereports
+    has_many    :expensereports, :dependent => :destroy
 
     def self.per_page
       DEFAULT_PER_PAGE

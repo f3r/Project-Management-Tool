@@ -10,7 +10,7 @@
 	<%= form.input :manager, :as => :select, :collection => @managers, :prompt => true %>
 	<% else %>
 	<%= form.input :manager_id, :as => :hidden %>
-	<li class="select required" id="project_manager_id_input"><label for="project_manager_id">Manager</label><%= @project.manager.full_name %></li>	
+	<li class="select required" id="project_manager_id_input"><label for="project_manager_id">Manager</label><% unless @project.manager.blank? %><%= @project.manager.full_name %><% else %>Unassigned<% end %></li>	
 	<% end %>
 	<%= form.input :client, :as => :select, :collection => @clients,   :prompt => true %>
 	<%= form.input :status, :as => :select, :collection => @statuses,  :prompt => true %>
