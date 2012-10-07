@@ -7,8 +7,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :employees
   map.resources :expensereports
 
-  map.root :controller => "intranet", :action => 'index' 
-
   map.hours '/hoursreports', :controller => 'hours', :action => 'index'
   
   map.connect 'hoursreports/:year/:week/saveHours',
@@ -36,4 +34,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  map.root :controller => "intranet", :action => 'index' 
 end

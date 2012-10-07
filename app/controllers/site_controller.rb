@@ -22,7 +22,9 @@ class SiteController < ApplicationController
           if request.post? and params[:user] and !params[:user].empty?
               email          = params[:user][:email]
               encrypted_pwd  = Digest::SHA1.hexdigest("#{email.downcase}|#{params[:user][:password]}")
-              if encrypted_pwd == Employee.password_from_mail(email)
+	      employee_pwd = Employee.get_password(email)
+
+	      if encrypted_pwd == employee_pwd
                   user = Employee.find_by_email(email)
                   user.log_in_session!(session)
                   flash[:notice] = "#{'Welcome back '} #{user.first_name}"

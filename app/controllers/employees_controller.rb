@@ -15,7 +15,7 @@ class EmployeesController < ApplicationController
   def show
     begin
         @employee = Employee.find(params[:id])
-        @jobs = Job.find_all_by_employee_id(params[:id], :order => "project_id", :include => { :projects, :clients })
+        @jobs = Job.find_all_by_employee_id(params[:id], :order => "project_id", :include => [ :projects, :clients ])
     rescue Exception => e
         logger.error { "Error [employee_controller.rb/show] #{e.message}" }
     end

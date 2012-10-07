@@ -66,23 +66,23 @@ class Employee < ActiveRecord::Base
       end        
     end
 
-    def self.password_from_mail(email)
-        begin
-            user = Employee.find_by_sql ["SELECT password FROM employees WHERE lower(email) = lower(?)", email]
-            user = user.first
-            if user
-              return user.password
-            else
-              return nil
-            end
-        rescue Exception => e
-            logger.error { "Error [employee.rb/password_from_mail] #{e.message}" }
-        end
+    def self.get_password(email)
+	begin
+	     user = Employee.find_by_sql ["SELECT password FROM employees WHERE lower(email) = lower(?)", email]
+	     user = user.first
+	     if user
+		return user.password
+	     else
+		return nil
+	     end
+	rescue Exception => e
+	     logger.error { "Error [employee.rb/get_password] #{e.message}" }
+	end
     end
-    
+
     def encrypt_password!
         begin
-            self.password              = Digest::SHA1.hexdigest("#{self.email.downcase}|#{self.password}")              if self.password
+            self.password= Digest::SHA1.hexdigest("#{self.email.downcase}|#{self.password}")              if self.password
             self.password_confirmation = Digest::SHA1.hexdigest("#{self.email.downcase}|#{self.password_confirmation}") if self.password_confirmation
         rescue Exception => e
             logger.error { "Error [employee.rb/encrypt_password] #{e.message}" }

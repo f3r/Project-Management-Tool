@@ -10,7 +10,7 @@ a:hover { color:#000; }
 
 #header {  height:100px; }
 #header h1 { margin:0; }
-#header h1 a { text-decoration:none; margin-top: 10px; padding-top:20px; color:#fff; height:63px; display:block; background-image: url(../images/logoshp.png); background-repeat:no-repeat;background-size: 278px; }
+#header h1 a { text-decoration:none; margin-top: 10px; padding-top:20px; color:#fff; height:63px; display:block; background-image: url(../images/logo_shp.png); background-repeat:no-repeat; }
 #header h1 a span {padding-left:90px; display:none; }
 
 /* TITLE FONT */

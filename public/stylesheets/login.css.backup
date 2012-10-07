@@ -1,11 +1,11 @@
 body {font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
-/*background-image:url("../images/background_login_screen.png");
-background-repeat:repeat-x;*/
-background-color:#FFF;
-color:#000;}
-a {color:#555;}
+background-image:url("../images/background_login_screen.png");
+background-repeat:repeat-x;
+background-color:#511C05;
+color:#fff;}
+a {color:#fff;}
 #header {margin:40px auto;}
-#header h1 {background-image:url(../images/logoshp.png);background-repeat:no-repeat;display:block;width:436px;height:121px;}
+#header h1 {background-image:url(../images/logo_shp_big.png);background-repeat:no-repeat;display:block;width:350px;height:132px;}
 #header h1 span {display:none;}
 #content h2{text-align:center;font-family: "Lucida Grande";}
 #content #notice,
@@ -18,7 +18,7 @@ background-image:url(../images/background_login_box.png); background-repeat:no-r
 width:350px;height:200px;
 }
 #mainContent form fieldset {margin:0;padding:0;}
-#mainContent form fieldset legend {font-family: "Lucida Grande",'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif; font-weight:bold;font-size:18px; text-align:center; width:350px;text-shadow: #FFF 1px 1px 1px;padding-top:12px;padding-bottom:10px;}
+#mainContent form fieldset legend {font-family: "Lucida Grande",'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif; font-weight:bold;font-size:18px; text-align:center; width:350px;text-shadow: #000 1px 1px 1px;padding-top:12px;padding-bottom:10px;}
 
 #mainContent form dl {margin:0 18px;padding-top:20px;}
 #mainContent form dt {width:100px;float:left;line-height:29px;}
